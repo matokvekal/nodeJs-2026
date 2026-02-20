@@ -164,5 +164,11 @@ export const slides = [
       "pipeline הוא הדרך הנכונה לחבר streams עם ניהול שגיאות",
       "for await...of מפשט קריאה מ-streams בצורה נקייה"
     ]
+  },
+  {
+    id: 100,
+    type: "quiz",
+    lessonTitle: "File System & Streams",
+    questions: quiz_1_3
   }
 ];

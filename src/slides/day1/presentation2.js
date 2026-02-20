@@ -150,5 +150,11 @@ export const slides = [
       "for await...of – איטרציה נקייה על נתונים אסינכרוניים",
       "AbortSignal – מנגנון אחיד לביטול ומניעת דליפות"
     ]
+  },
+  {
+    id: 100,
+    type: "quiz",
+    lessonTitle: "Async Patterns",
+    questions: quiz_1_2
   }
 ];
