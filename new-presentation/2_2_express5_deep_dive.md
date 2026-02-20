@@ -1,0 +1,182 @@
+# יום 2 – מצגת 6: Express 5 Deep Dive
+
+---
+
+## שקף 1
+**כותרת ראשית:** Express 5 Deep Dive
+**כותרת משנה:** Routing, Controllers, Middleware, Validation, Error Handling
+
+---
+
+## שקף 2
+**כותרת ראשית:** Express 5 – מה חדש?
+- שוחרר רשמית אחרי שנים של פיתוח בגרסת Beta
+- **תמיכה מובנית ב-async handlers** – שגיאות מגיעות אוטומטית ל-error middleware
+- הסרת מתודות שהוצאו משימוש: `app.del()`, `req.param()`
+- `req.query` מחזיר אובייקט פשוט ללא prototype
+- `path-to-regexp` עודכן לגרסה חדשה – תחביר שונה לפרמטרים אופציונליים
+- התקנה: `npm install express@5`
+
+---
+
+## שקף 3
+**כותרת ראשית:** יצירת שרת Express בסיסי
+```js
+import express from 'express';
+
+const app = express();
+app.use(express.json({ limit: '10kb' }));
+
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok' });
+});
+
+app.listen(process.env.PORT ?? 3000, () => {
+  console.log('Server running on port 3000');
+});
+```
+- **app.js** – הגדרת app; **server.js** – הפעלת server (נפרד לבדיקות)
+- `process.env.PORT ?? 3000` – ברירת מחדל לפורט
+
+---
+
+## שקף 4
+**כותרת ראשית:** Routing – express.Router
+- `express.Router()` יוצר מודול ניתוב עצמאי
+- `app.use('/api/users', userRouter)` – חיבור עם prefix
+- פרמטרים דינמיים: `router.get('/:id', handler)` → `req.params.id`
+- שרשור נתיבים: `router.route('/').get(getAll).post(create)`
+- `router.param('id', middleware)` – middleware ספציפי לפרמטר
+- קובץ נתיבים נפרד לכל ישות: `users.routes.js`, `posts.routes.js`
+
+---
+
+## שקף 5
+**כותרת ראשית:** Controllers – הפרדת אחריות
+- Controller = פונקציה שמקבלת `req`, `res` (ו-`next`)
+- **אחראי**: קריאת נתונים מ-req, קריאה לـ Service, החזרת תגובה
+- **לא אחראי**: לוגיקה עסקית – זה של ה-Service
+- ```js
+  export async function getUser(req, res) {
+    const user = await userService.findById(req.params.id);
+    res.json(user);
+  }
+  ```
+- ב-Express 5: אין צורך ב-`try/catch` – שגיאות מועברות אוטומטית
+- ב-Express 4: `try { } catch(err) { next(err); }`
+
+---
+
+## שקף 6
+**כותרת ראשית:** Middleware Chain – עקרונות
+- Middleware = פונקציה שמבצעת פעולה **בין** קבלת הבקשה להחזרת תגובה
+- חתימה: `(req, res, next)` – חובה לקרוא `next()` כדי להמשיך
+- `app.use(middleware)` – חל על **כל** הבקשות
+- `app.use('/api', middleware)` – חל רק על נתיבים עם prefix
+- `router.get('/path', middleware1, middleware2, handler)` – סדר ← חשוב
+- **סדר רישום**: middlewares מורצים בסדר שנרשמו
+
+---
+
+## שקף 7
+**כותרת ראשית:** Middlewares מובנים ונפוצים
+- `express.json({ limit: '10kb' })` – פענוח body JSON
+- `express.urlencoded({ extended: true })` – פענוח form data
+- `express.static('public')` – הגשת קבצים סטטיים
+- `helmet()` – כותרות אבטחה (מהחבילה `helmet`)
+- `cors({ origin: process.env.ALLOWED_ORIGIN })` – הגדרת CORS
+- `morgan('combined')` – לוגים לכל בקשה (פיתוח)
+
+---
+
+## שקף 8
+**כותרת ראשית:** express.json() לעומק
+- `express.json()` מפרסר body של בקשות עם `Content-Type: application/json`
+- ללא הפעלתו: `req.body === undefined`
+- `{ limit: '10kb' }` – הגבלת גודל למניעת DDoS
+- `{ strict: true }` – ברירת מחדל; מקבל רק אובייקטים ומערכים בשורש
+- שגיאת פרסור JSON → מועברת אוטומטית לـ error middleware
+- יש להפעיל **לפני** הגדרת הנתיבים
+
+---
+
+## שקף 9
+**כותרת ראשית:** Validation עם Zod (מועדף ב-2026)
+- **Zod** – ספריית ולידציה עם TypeScript support מובנה
+- מגדיר schema ומשתמש בו לאימות `req.body`:
+  ```js
+  const createUserSchema = z.object({
+    name: z.string().min(2).max(50),
+    email: z.string().email(),
+    age: z.number().int().min(0).optional()
+  });
+  ```
+- Middleware ולידציה גנרי שמקבל schema ומחזיר `400` עם שגיאות
+- **Zod מועדף על Joi ב-2026** – TypeScript integration, smaller bundle
+- `safeParse` מחזיר `{ success, data, error }` ולא זורק
+
+---
+
+## שקף 10
+**כותרת ראשית:** Central Error Handler
+- Error middleware ב-Express מזוהה על ידי **4 פרמטרים**: `(err, req, res, next)`
+- **חייב להיות אחרון** לאחר כל הנתיבים ב-`app.js`
+- ```js
+  app.use((err, req, res, next) => {
+    const status = err.statusCode ?? 500;
+    const message = err.isOperational ? err.message : 'Internal Server Error';
+    res.status(status).json({ error: { message, status } });
+  });
+  ```
+- `AppError` class עם `statusCode`, `message`, `isOperational`
+- ב-Express 5: async handlers אוטומטית מגיעים לכאן
+
+---
+
+## שקף 11
+**כותרת ראשית:** problem+json – תקן תגובות שגיאה
+- `application/problem+json` – [RFC 7807] – תקן לתגובות שגיאה ב-APIs
+- מבנה סטנדרטי:
+  ```json
+  {
+    "type": "https://api.example.com/errors/validation",
+    "title": "Validation Error",
+    "status": 422,
+    "detail": "Email is required",
+    "instance": "/api/users"
+  }
+  ```
+- שדות: `type`, `title`, `status`, `detail`, `instance`
+- עקביות בתגובות שגיאה מאפשרת ללקוחות לטפל בשגיאות בצורה אחידה
+- `res.setHeader('Content-Type', 'application/problem+json')`
+
+---
+
+## שקף 12
+**כותרת ראשית:** מבנה פרויקט Express שלם
+```
+src/
+├── config/db.js           # חיבור למסד נתונים
+├── routes/users.routes.js # הגדרת נתיבים
+├── controllers/users.controller.js
+├── services/users.service.js
+├── middleware/
+│   ├── auth.middleware.js
+│   ├── validate.middleware.js
+│   └── error.middleware.js
+├── models/user.model.js
+└── utils/AppError.js
+app.js                     # Express app
+server.js                  # server.listen
+```
+
+---
+
+## שקף 13
+**כותרת ראשית:** סיכום – יום 2 מצגת 6
+- Express 5 מביא async error handling מובנה ושיפורים חשובים
+- Routing מאורגן עם `express.Router` ו-Controllers נפרדים
+- Middlewares = אבן הבניין של Express לכל חיתוך רוחבי
+- **Zod** לולידציה – TypeScript-friendly, מועדף ב-2026
+- Central error handler עם `AppError` + `problem+json`
+- במצגת הבאה: REST API Design Modern

@@ -1,0 +1,116 @@
+.event-loop-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background: rgba(11, 15, 20, 0.6);
+  border-radius: 12px;
+  border: 1px solid var(--border-glow);
+}
+
+.animation-header {
+  text-align: center;
+  width: 100%;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border-glow);
+}
+
+.animation-header h3 {
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+  font-weight: 700;
+}
+
+.animation-header p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.event-loop-canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.phase-indicator {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 1.1rem;
+  padding: 10px 20px;
+  background: rgba(97, 218, 251, 0.1);
+  border-radius: 20px;
+  border: 1px solid var(--border-glow);
+}
+
+.phase-label {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.phase-name {
+  font-weight: 700;
+  font-family: "Fira Code", monospace;
+  text-shadow: 0 0 10px currentColor;
+}
+
+.phase-description {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  background: rgba(97, 218, 251, 0.05);
+  border-radius: 8px;
+  font-style: italic;
+  min-height: 30px;
+}
+
+.concept-explanation {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.concept-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px;
+  background: rgba(97, 218, 251, 0.05);
+  border: 1px solid var(--border-glow);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.concept-item:hover {
+  background: rgba(97, 218, 251, 0.1);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.concept-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.concept-item strong {
+  display: block;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+  font-family: "Assistant", sans-serif;
+}
+
+.concept-item p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}

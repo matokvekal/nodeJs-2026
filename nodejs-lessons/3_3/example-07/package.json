@@ -1,0 +1,18 @@
+{
+  "name": "lesson-3_3-example-7",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Complete Auth Flow",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": [
+    "day3",
+    "lesson3",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,23 @@
+{
+  "name": "lesson-4_1-example-3",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Broadcast to All Clients",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": [
+    "day4",
+    "lesson1",
+    "nodejs",
+    "websocket",
+    "broadcast"
+  ],
+  "dependencies": {
+    "ws": "^8.16.0"
+  },
+  "author": "",
+  "license": "ISC"
+}

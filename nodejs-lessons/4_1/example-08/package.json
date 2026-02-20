@@ -1,0 +1,25 @@
+{
+  "name": "lesson-4_1-example-8",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "WebSocket with Redis (Horizontal Scaling)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": [
+    "day4",
+    "lesson1",
+    "nodejs",
+    "websocket",
+    "redis",
+    "scaling"
+  ],
+  "dependencies": {
+    "ws": "^8.16.0",
+    "redis": "^4.6.0"
+  },
+  "author": "",
+  "license": "ISC"
+}

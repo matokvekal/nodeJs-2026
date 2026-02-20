@@ -1,0 +1,24 @@
+{
+  "name": "lesson-4_1-example-2",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "WebSocket with Express Integration",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": [
+    "day4",
+    "lesson1",
+    "nodejs",
+    "websocket",
+    "express"
+  ],
+  "dependencies": {
+    "express": "^5.0.0",
+    "ws": "^8.16.0"
+  },
+  "author": "",
+  "license": "ISC"
+}

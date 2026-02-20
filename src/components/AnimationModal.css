@@ -1,0 +1,102 @@
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modal-content {
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-glow);
+  border-radius: 20px;
+  max-width: 95vw;
+  max-height: 95vh;
+  width: 900px;
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 0 60px rgba(97, 218, 251, 0.3),
+    inset 0 0 40px rgba(97, 218, 251, 0.05);
+  animation: slideUp 0.3s ease;
+  overflow: hidden;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  border-bottom: 2px solid var(--border-glow);
+  background: rgba(97, 218, 251, 0.05);
+}
+
+.modal-header h2 {
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  margin: 0;
+  font-weight: 700;
+}
+
+.modal-close {
+  background: rgba(255, 107, 107, 0.2);
+  border: 1px solid #ff6b6b;
+  color: #ff6b6b;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+  background: rgba(255, 107, 107, 0.3);
+  transform: rotate(90deg) scale(1.1);
+  box-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+}
+
+.modal-body {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.modal-footer {
+  padding: 15px 30px;
+  border-top: 1px solid var(--border-glow);
+  background: rgba(11, 15, 20, 0.5);
+  text-align: center;
+}
+
+.modal-hint {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .modal-content { width: 95vw; max-height: 90vh; }
+  .modal-header { padding: 15px 20px; }
+  .modal-header h2 { font-size: 1.4rem; }
+  .modal-body { padding: 20px; }
+  .modal-close { width: 35px; height: 35px; font-size: 20px; }
+}

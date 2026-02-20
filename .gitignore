@@ -1,0 +1,71 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# Build outputs
+dist/
+build/
+.cache/
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+.tmp/
+.temp/
+
+# Agent and AI files
+AGENT.md
+**/agent.md
+*.agent.md
+
+# Code extraction files
+extract-code.js
+CODE_EXTRACTION_SUMMARY.md
+EXTRACTION_REPORT.md
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Generated files
+*.min.js
+*.min.css
+
+# Worker files (temporary)
+fibonacci-worker.js
+
+# Private keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Misc
+*.pid
+*.seed
+*.pid.lock

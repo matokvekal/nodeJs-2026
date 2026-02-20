@@ -1,0 +1,18 @@
+{
+  "name": "lesson-2_1-example-4",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "ESLint Configuration (Modern Flat Config)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": [
+    "day2",
+    "lesson1",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC"
+}

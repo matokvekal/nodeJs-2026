@@ -1,0 +1,20 @@
+{
+  "name": "lesson-4_3-example-5",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Performance Profiling",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": [
+    "day4",
+    "lesson3",
+    "nodejs",
+    "performance",
+    "profiling"
+  ],
+  "author": "",
+  "license": "ISC"
+}

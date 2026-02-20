@@ -1,0 +1,21 @@
+{
+  "name": "lesson-4_2-example-5",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Asymmetric Encryption (RSA, ECDSA)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": [
+    "day4",
+    "lesson2",
+    "nodejs",
+    "crypto",
+    "rsa",
+    "ecdsa"
+  ],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,18 @@
+{
+  "name": "lesson-2_3-example-2",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Proper HTTP Status Codes",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": [
+    "day2",
+    "lesson3",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC"
+}

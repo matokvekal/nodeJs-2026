@@ -1,0 +1,18 @@
+{
+  "name": "lesson-1_4-example-6",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "HTTP Status Codes - Using Correct Codes",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": [
+    "day1",
+    "lesson4",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC"
+}

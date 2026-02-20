@@ -1,0 +1,21 @@
+{
+  "name": "lesson-4_2-example-4",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Symmetric Encryption (AES-256-GCM)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": [
+    "day4",
+    "lesson2",
+    "nodejs",
+    "crypto",
+    "encryption",
+    "aes"
+  ],
+  "author": "",
+  "license": "ISC"
+}

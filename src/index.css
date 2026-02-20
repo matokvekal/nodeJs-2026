@@ -1,0 +1,94 @@
+/* ── DEFAULT: Winter ── */
+:root {
+  --bg-primary: #0b0f14;
+  --bg-secondary: #151b24;
+  --text-primary: #61dafb;
+  --primary-rgb: 97, 218, 251;
+  --text-secondary: #a8dadc;
+  --text-muted: #7fa3b0;
+  --accent: #00d9ff;
+  --accent-rgb: 0, 217, 255;
+  --border-glow: rgba(97, 218, 251, 0.3);
+  --code-bg: #0d1117;
+}
+
+/* ── Spring ── */
+[data-theme="spring"] {
+  --bg-primary: #080f08;
+  --bg-secondary: #0d1a0d;
+  --text-primary: #72e05a;
+  --primary-rgb: 114, 224, 90;
+  --text-secondary: #9ed69e;
+  --text-muted: #5f8f5f;
+  --accent: #4ee870;
+  --accent-rgb: 78, 232, 112;
+  --border-glow: rgba(114, 224, 90, 0.3);
+  --code-bg: #060d06;
+}
+
+/* ── Summer ── */
+[data-theme="summer"] {
+  --bg-primary: #110f06;
+  --bg-secondary: #1c190a;
+  --text-primary: #ffd166;
+  --primary-rgb: 255, 209, 102;
+  --text-secondary: #e8c890;
+  --text-muted: #9e8b4a;
+  --accent: #ffb347;
+  --accent-rgb: 255, 179, 71;
+  --border-glow: rgba(255, 209, 102, 0.3);
+  --code-bg: #0e0b04;
+}
+
+/* ── Desert ── */
+[data-theme="desert"] {
+  --bg-primary: #120d07;
+  --bg-secondary: #1c140e;
+  --text-primary: #e8865a;
+  --primary-rgb: 232, 134, 90;
+  --text-secondary: #d4a882;
+  --text-muted: #8a6a50;
+  --accent: #f4875d;
+  --accent-rgb: 244, 135, 93;
+  --border-glow: rgba(232, 134, 90, 0.3);
+  --code-bg: #0e0906;
+}
+
+/* ── Purple ── */
+[data-theme="purple"] {
+  --bg-primary: #0d0b14;
+  --bg-secondary: #16112a;
+  --text-primary: #c39bd3;
+  --primary-rgb: 195, 155, 211;
+  --text-secondary: #a07ab5;
+  --text-muted: #6e5585;
+  --accent: #ab6bd6;
+  --accent-rgb: 171, 107, 214;
+  --border-glow: rgba(195, 155, 211, 0.3);
+  --code-bg: #09070f;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "Assistant", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code, pre {
+  font-family: "Fira Code", "Courier New", monospace;
+  direction: ltr;
+  text-align: left;
+}
+
+#root { width: 100vw; height: 100vh; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-primary); }
+::selection { background: rgba(97, 218, 251, 0.3); color: #fff; }

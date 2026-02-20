@@ -1,0 +1,18 @@
+{
+  "name": "lesson-1_1-example-3",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "setImmediate vs setTimeout Inside I/O Callback",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": [
+    "day1",
+    "lesson1",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC"
+}

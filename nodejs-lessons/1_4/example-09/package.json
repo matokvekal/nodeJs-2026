@@ -1,0 +1,18 @@
+{
+  "name": "lesson-1_4-example-9",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Making HTTP Requests with Built-in fetch",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": [
+    "day1",
+    "lesson4",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC"
+}
