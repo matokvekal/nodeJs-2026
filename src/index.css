@@ -68,6 +68,47 @@
   --code-bg: #09070f;
 }
 
+/* ── Light Background Modes (override bg + text vars, placed after themes so they win) ── */
+[data-bg="pearl"] {
+  --bg-primary: #f4f7fb;
+  --bg-secondary: #ffffff;
+  --text-primary: #1e293b;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --code-bg: #eef2f7;
+  --border-glow: rgba(30, 41, 59, 0.15);
+}
+
+[data-bg="warm"] {
+  --bg-primary: #fdf6ec;
+  --bg-secondary: #fffaf3;
+  --text-primary: #2d1f0f;
+  --text-secondary: #4a3520;
+  --text-muted: #8a6a50;
+  --code-bg: #f5e8d0;
+  --border-glow: rgba(100, 60, 0, 0.15);
+}
+
+[data-bg="sky"] {
+  --bg-primary: #eaf4fb;
+  --bg-secondary: #f4f9fd;
+  --text-primary: #0f3460;
+  --text-secondary: #1e4d8c;
+  --text-muted: #4a78b0;
+  --code-bg: #dce9f5;
+  --border-glow: rgba(0, 60, 150, 0.15);
+}
+
+[data-bg="sage"] {
+  --bg-primary: #edf7ee;
+  --bg-secondary: #f5fbf5;
+  --text-primary: #0f3320;
+  --text-secondary: #1a5230;
+  --text-muted: #3d7a52;
+  --code-bg: #dbeede;
+  --border-glow: rgba(0, 80, 30, 0.12);
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {

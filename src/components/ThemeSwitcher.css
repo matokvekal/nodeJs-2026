@@ -70,3 +70,81 @@
   box-shadow: 0 0 18px var(--dot-color);
   filter: brightness(1.2);
 }
+
+/* ── Divider ── */
+.theme-divider {
+  width: 1px;
+  height: 26px;
+  background: var(--border-glow);
+  border-radius: 1px;
+  flex-shrink: 0;
+  margin: 0 2px;
+}
+
+/* ── Dark / Light Toggle ── */
+.bg-toggle {
+  width: 34px;
+  height: 30px;
+  border-radius: 7px;
+  background: var(--bg-primary);
+  border: 2px solid var(--border-glow);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.bg-toggle:hover {
+  transform: scale(1.1);
+  border-color: var(--text-primary);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.bg-toggle.active {
+  border-color: var(--text-primary);
+  box-shadow: 0 0 0 2px var(--text-primary);
+}
+
+/* ── Font Size Buttons ── */
+.font-size-btn {
+  width: 30px;
+  height: 28px;
+  border-radius: 6px;
+  background: var(--bg-primary);
+  border: 2px solid var(--border-glow);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.font-size-btn:hover {
+  transform: scale(1.1);
+  border-color: var(--text-primary);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+}
+
+.font-size-btn.active {
+  background: var(--text-primary);
+  border-color: var(--text-primary);
+  box-shadow: 0 0 0 2px var(--text-primary);
+}
+
+.font-size-btn.active .font-a {
+  color: var(--bg-primary);
+}
+
+.font-a {
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1;
+  font-family: Georgia, serif;
+  transition: font-size 0.2s;
+}

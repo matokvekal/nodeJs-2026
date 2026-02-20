@@ -12,7 +12,7 @@ const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes time window
   max: 100, // Limit each IP to 100 requests per windowMs
   message: "Too many requests from this IP, please try again later",
-  
+
   // Return rate limit info in standard headers
   standardHeaders: true, // RateLimit-* headers
   legacyHeaders: false, // Disable old X-RateLimit-* headers
@@ -56,9 +56,9 @@ const authLimiter = rateLimit({
 app.post("/auth/login", authLimiter, (req, res) => {
   // Simulate login logic
   const { username, password } = req.body;
-  
+
   console.log(`Login attempt from IP: ${req.ip}`);
-  
+
   // Mock authentication
   if (username === "admin" && password === "password") {
     res.json({ success: true, message: "Login successful" });
@@ -106,12 +106,12 @@ app.post("/api/export", expensiveLimiter, (req, res) => {
 const userLimiter = rateLimit({
   windowMs: 60 * 1000, // 1 minute
   max: 30, // 30 requests per minute per user
-  
+
   keyGenerator: (req) => {
     // Rate limit by user ID if authenticated, otherwise by IP
     return req.user?.id || req.ip;
   },
-  
+
   skip: (req) => !req.user // Skip if not authenticated
 });
 
@@ -128,7 +128,7 @@ app.use("/api/user/", mockAuth, userLimiter);
 // Test Routes
 // ===================================
 app.get("/api/data", (req, res) => {
-  res.json({ 
+  res.json({
     message: "API data",
     remaining: req.rateLimit?.remaining,
     limit: req.rateLimit?.limit,
@@ -153,5 +153,7 @@ app.listen(PORT, () => {
   console.log("  /public/*     - 500 requests / 15 min");
   console.log("  /api/export   - 10 requests / hour");
   console.log("\n🧪 Test rate limiting:");
-  console.log("  Run: for i in {1..10}; do curl http://localhost:3000/api/data; done");
+  console.log(
+    "  Run: for i in {1..10}; do curl http://localhost:3000/api/data; done"
+  );
 });

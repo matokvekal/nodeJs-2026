@@ -17,6 +17,7 @@ ALLOWED_ORIGINS=https://myapp.com,https://www.myapp.com node index.js
 ## Test CORS
 
 ### Test with curl:
+
 ```bash
 # Allowed origin - should work
 curl -H "Origin: https://myapp.com" http://localhost:3000/api/data -v
@@ -26,6 +27,7 @@ curl -H "Origin: https://evil.com" http://localhost:3000/api/data -v
 ```
 
 ### Test with browser:
+
 1. Create a simple HTML file with fetch request
 2. Serve from allowed origin
 3. Try accessing the API

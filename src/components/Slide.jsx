@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import AnimationModal from "./AnimationModal";
 import CodeModal from "./CodeModal";
+import Quiz from "./Quiz";
 import "./Slide.css";
 
 /* ── helpers ── */
@@ -119,6 +120,15 @@ function Slide({ data, currentPanel, onNextPanel, onPrevPanel }) {
             </ul>
           )}
         </div>
+      </div>
+    );
+  }
+
+  /* ── QUIZ SLIDE ── */
+  if (data.type === "quiz") {
+    return (
+      <div className={`slide slide-quiz-type ${animate ? "animate" : ""}`}>
+        <Quiz questions={data.questions} lessonTitle={data.lessonTitle} />
       </div>
     );
   }

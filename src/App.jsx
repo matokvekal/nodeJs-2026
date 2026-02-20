@@ -10,11 +10,31 @@ function App() {
   const [route, setRoute] = useState({ view: "home" });
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [theme, setTheme] = useState("winter");
+  const [bgMode, setBgMode] = useState("dark");
+  const [fontScale, setFontScale] = useState(1.0);
 
   // Apply theme to root element
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
+
+  // Apply background mode to root element
+  useEffect(() => {
+    if (bgMode === "dark") {
+      document.documentElement.removeAttribute("data-bg");
+    } else {
+      document.documentElement.setAttribute("data-bg", bgMode);
+    }
+  }, [bgMode]);
+
+  // Apply font scale to root element
+  useEffect(() => {
+    if (fontScale === 1.0) {
+      document.documentElement.style.fontSize = "";
+    } else {
+      document.documentElement.style.fontSize = `${fontScale * 16}px`;
+    }
+  }, [fontScale]);
 
   useEffect(() => {
     const handleKeyPress = (e) => {
@@ -62,7 +82,14 @@ function App() {
     const pres = day.presentations[route.presIndex];
     return (
       <div className="app">
-        <ThemeSwitcher currentTheme={theme} onThemeChange={setTheme} />
+        <ThemeSwitcher
+          currentTheme={theme}
+          onThemeChange={setTheme}
+          bgMode={bgMode}
+          onBgModeChange={setBgMode}
+          fontScale={fontScale}
+          onFontScaleChange={setFontScale}
+        />
         <button
           className="back-btn"
           onClick={() => goDay(route.dayKey)}

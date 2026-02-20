@@ -1,3 +1,5 @@
+import { quiz_1_1 } from "../../data/quizzes/quiz_1_1.js";
+
 export const slides = [
   {
     id: 1,
@@ -471,5 +473,11 @@ function handleChoice(choice) {
 // TODO: מימוש showCPU(), showMemory(), וכו'
 showMenu();`,
     note: "למידה מעשית של Node.js internals – שחקו עם הקוד!"
+  },
+  {
+    id: 100,
+    type: "quiz",
+    lessonTitle: "Modern Node.js Runtime",
+    questions: quiz_1_1
   }
 ];

@@ -24,6 +24,7 @@ node index.js
 6. View Response Headers
 
 You should see security headers like:
+
 - `Content-Security-Policy`
 - `Strict-Transport-Security`
 - `X-Content-Type-Options: nosniff`

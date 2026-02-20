@@ -17,15 +17,16 @@ node index.js
 ## Test Rate Limiting
 
 ### Test with curl:
+
 ```bash
 # Make multiple requests quickly
-for i in {1..10}; do 
+for i in {1..10}; do
   curl http://localhost:3000/api/data
   echo ""
 done
 
 # Test login rate limiting
-for i in {1..7}; do 
+for i in {1..7}; do
   curl -X POST http://localhost:3000/auth/login \
     -H "Content-Type: application/json" \
     -d '{"username":"admin","password":"wrong"}'
@@ -34,6 +35,7 @@ done
 ```
 
 ### Expected behavior:
+
 - First 100 requests to `/api/` succeed
 - 101st request returns 429 (Too Many Requests)
 - First 5 login attempts allowed
@@ -49,6 +51,7 @@ done
 ## Production Tip
 
 For production with multiple servers, use Redis store instead of memory:
+
 ```bash
 npm install rate-limit-redis redis
 ```

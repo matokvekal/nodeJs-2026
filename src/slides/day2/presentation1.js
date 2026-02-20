@@ -1,3 +1,5 @@
+import { quiz_2_1 } from "../../data/quizzes/quiz_2_1.js";
+
 export const slides = [
   {
     id: 1,

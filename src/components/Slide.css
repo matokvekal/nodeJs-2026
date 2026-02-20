@@ -75,11 +75,7 @@
   width: 100%;
   max-width: 1280px;
   height: 82vh;
-  background: linear-gradient(
-    135deg,
-    rgba(21, 27, 36, 0.65),
-    rgba(11, 15, 20, 0.85)
-  );
+  background: var(--bg-secondary);
   border: 2px solid var(--border-glow);
   border-radius: 20px;
   padding: 36px 48px 24px;
