@@ -127,4 +127,6 @@ function getRoomInfo(roomId) {
   };
 }
 
-console.log("WebSocket server with rooms/channels running on ws://localhost:8080");
+console.log(
+  "WebSocket server with rooms/channels running on ws://localhost:8080"
+);

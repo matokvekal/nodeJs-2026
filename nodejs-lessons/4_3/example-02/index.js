@@ -16,7 +16,7 @@ class OrderService extends EventEmitter {
       status: "created",
       createdAt: new Date()
     };
-    
+
     this.orders.push(order);
 
     // Emit event (decoupled from implementation)
@@ -26,7 +26,7 @@ class OrderService extends EventEmitter {
   }
 
   async cancelOrder(orderId) {
-    const order = this.orders.find(o => o.id === orderId);
+    const order = this.orders.find((o) => o.id === orderId);
     if (order) {
       order.status = "cancelled";
       this.emit("order:cancelled", order);
@@ -67,7 +67,7 @@ const order1 = await orderService.createOrder({
 
 console.log("\nCreated order:", order1);
 
-await new Promise(resolve => setTimeout(resolve, 1000));
+await new Promise((resolve) => setTimeout(resolve, 1000));
 
 await orderService.cancelOrder(order1.id);
 

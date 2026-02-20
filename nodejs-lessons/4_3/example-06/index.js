@@ -9,7 +9,7 @@ let isShuttingDown = false;
 // Create HTTP server
 const server = createServer((req, res) => {
   if (isShuttingDown) {
-    res.writeHead(503, { "Connection": "close" });
+    res.writeHead(503, { Connection: "close" });
     res.end("Server is shutting down");
     return;
   }
@@ -41,7 +41,9 @@ async function gracefulShutdown(signal) {
     console.log("✅ HTTP server closed (no new connections)");
   });
 
-  console.log(`⏳ Waiting for ${connections.length} active connections to close...`);
+  console.log(
+    `⏳ Waiting for ${connections.length} active connections to close...`
+  );
 
   // 2. Close existing connections gracefully
   connections.forEach((conn) => conn.end());
@@ -53,11 +55,11 @@ async function gracefulShutdown(signal) {
   }, 10000); // 10 seconds
 
   // 4. Simulate closing database
-  await new Promise(resolve => setTimeout(resolve, 500));
+  await new Promise((resolve) => setTimeout(resolve, 500));
   console.log("✅ Database disconnected");
 
   // 5. Simulate flushing logs
-  await new Promise(resolve => setTimeout(resolve, 200));
+  await new Promise((resolve) => setTimeout(resolve, 200));
   console.log("✅ Logs flushed");
 
   console.log("✅ Graceful shutdown complete");

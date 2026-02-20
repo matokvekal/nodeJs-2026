@@ -54,7 +54,9 @@ console.log("\n⚠️  NEVER use Math.random() for security!");
 console.log("- Math.random() is NOT cryptographically secure");
 console.log("- It's predictable with enough samples");
 console.log("- Not suitable for tokens, passwords, or keys");
-console.log("\n✅ Always use randomBytes() for security-critical random values");
+console.log(
+  "\n✅ Always use randomBytes() for security-critical random values"
+);
 console.log("- Uses OS-level entropy");
 console.log("- Unpredictable");
 console.log("- Suitable for passwords, tokens, keys");

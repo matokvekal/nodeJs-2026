@@ -5,6 +5,7 @@ Day 4, Lesson 1 - Example 8
 ## Prerequisites
 
 Install and run Redis:
+
 ```bash
 # Docker
 docker run -d -p 6379:6379 redis

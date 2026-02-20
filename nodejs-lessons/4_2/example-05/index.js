@@ -63,7 +63,12 @@ export function signData(data, privateKey, algorithm = "sha256") {
 }
 
 // Verify Signature
-export function verifySignature(data, signature, publicKey, algorithm = "sha256") {
+export function verifySignature(
+  data,
+  signature,
+  publicKey,
+  algorithm = "sha256"
+) {
   return verify(
     algorithm,
     Buffer.from(data),
@@ -90,7 +95,11 @@ console.log("Signature valid:", isValid);
 
 // Try to verify tampered message
 const tamperedMessage = "Important message to sign!";
-const tamperedValid = verifySignature(tamperedMessage, signature, rsaKeys.publicKey);
+const tamperedValid = verifySignature(
+  tamperedMessage,
+  signature,
+  rsaKeys.publicKey
+);
 console.log("Tampered message valid:", tamperedValid);
 
 console.log("\nUse Cases:");

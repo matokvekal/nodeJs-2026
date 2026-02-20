@@ -55,10 +55,17 @@ function signRequest(method, path, body, secret) {
   };
 }
 
-const requestHeaders = signRequest("POST", "/api/users", { name: "John" }, secret);
+const requestHeaders = signRequest(
+  "POST",
+  "/api/users",
+  { name: "John" },
+  secret
+);
 console.log("\nAPI Request Headers:", requestHeaders);
 
 // Why timingSafeEqual?
 console.log("\n⚠️  Always use timingSafeEqual for signature comparison!");
 console.log("Regular === is vulnerable to timing attacks");
-console.log("timingSafeEqual takes constant time regardless of where strings differ");
+console.log(
+  "timingSafeEqual takes constant time regardless of where strings differ"
+);

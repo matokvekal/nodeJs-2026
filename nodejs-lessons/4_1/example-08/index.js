@@ -6,8 +6,12 @@ import { createClient } from "redis";
 const wss = new WebSocketServer({ port: 8080 });
 
 // Redis Pub/Sub
-const publisher = createClient({ url: process.env.REDIS_URL || "redis://localhost:6379" });
-const subscriber = createClient({ url: process.env.REDIS_URL || "redis://localhost:6379" });
+const publisher = createClient({
+  url: process.env.REDIS_URL || "redis://localhost:6379"
+});
+const subscriber = createClient({
+  url: process.env.REDIS_URL || "redis://localhost:6379"
+});
 
 await publisher.connect();
 await subscriber.connect();
@@ -46,7 +50,9 @@ wss.on("connection", (ws) => {
   });
 });
 
-console.log("WebSocket server with Redis scaling running on ws://localhost:8080");
+console.log(
+  "WebSocket server with Redis scaling running on ws://localhost:8080"
+);
 
 // This allows horizontal scaling:
 // - Run multiple Node.js instances

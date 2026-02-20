@@ -91,4 +91,6 @@ function broadcastOnlineUsers() {
 // Update online users every 30 seconds
 setInterval(broadcastOnlineUsers, 30000);
 
-console.log("WebSocket server with authentication running on ws://localhost:8080");
+console.log(
+  "WebSocket server with authentication running on ws://localhost:8080"
+);

@@ -49,17 +49,17 @@ async function processRequest(userId, operation) {
 
   return requestContext.run(context, async () => {
     log("info", "Request started");
-    
+
     await simulateAsyncWork(100);
     log("info", "Processing...");
-    
+
     await simulateAsyncWork(50);
     log("info", "Request completed");
   });
 }
 
 function simulateAsyncWork(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 // Run multiple requests concurrently

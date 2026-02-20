@@ -17,22 +17,28 @@ node index.js
 ## Test
 
 ```javascript
-const ws = new WebSocket('ws://localhost:8080');
+const ws = new WebSocket("ws://localhost:8080");
 ws.onmessage = (e) => console.log(JSON.parse(e.data));
 
 // Send different message types
-ws.send(JSON.stringify({ 
-  type: 'chat:message', 
-  payload: { text: 'Hello!', room: 'general' } 
-}));
+ws.send(
+  JSON.stringify({
+    type: "chat:message",
+    payload: { text: "Hello!", room: "general" }
+  })
+);
 
-ws.send(JSON.stringify({ 
-  type: 'user:typing', 
-  payload: { room: 'general' } 
-}));
+ws.send(
+  JSON.stringify({
+    type: "user:typing",
+    payload: { room: "general" }
+  })
+);
 
-ws.send(JSON.stringify({ 
-  type: 'ping', 
-  payload: {} 
-}));
+ws.send(
+  JSON.stringify({
+    type: "ping",
+    payload: {}
+  })
+);
 ```

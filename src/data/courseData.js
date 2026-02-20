@@ -28,6 +28,8 @@ export const courseData = {
     subtitle: "Node.js Runtime & Async",
     description: "V8, libuv, Event Loop, Async Patterns, File System, HTTP",
     color: "#61dafb",
+    githubLink:
+      "https://github.com/matokvekal/nodeJs/tree/main/nodejs-lessons/1_1",
     presentations: [
       {
         id: "1_1",
@@ -68,6 +70,8 @@ export const courseData = {
     subtitle: "Express & REST APIs",
     description: "Modules, NPM, Express 5, REST API Design",
     color: "#a8dadc",
+    githubLink:
+      "https://github.com/matokvekal/nodeJs/tree/main/nodejs-lessons/2_1",
     presentations: [
       {
         id: "2_1",
@@ -107,6 +111,8 @@ export const courseData = {
     title: "יום 3",
     subtitle: "Databases & Security",
     description: "MongoDB, SQL, Auth, Security",
+    githubLink:
+      "https://github.com/matokvekal/nodeJs/tree/main/nodejs-lessons/3_1",
     color: "#9b59b6",
     presentations: [
       {
@@ -147,6 +153,8 @@ export const courseData = {
     title: "יום 4",
     subtitle: "Advanced Node.js",
     description: "WebSockets, Crypto, Testing, Performance",
+    githubLink:
+      "https://github.com/matokvekal/nodeJs/tree/main/nodejs-lessons/4_1",
     color: "#f39c12",
     presentations: [
       {

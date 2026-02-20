@@ -73,7 +73,7 @@ class WorkerPool {
     this.queue = [];
 
     console.log(`Creating worker pool with ${numWorkers} workers...`);
-    
+
     // Create worker pool
     for (let i = 0; i < numWorkers; i++) {
       this.workers.push({
@@ -123,13 +123,14 @@ const pool = new WorkerPool("./fibonacci-worker.js", 4);
 const tasks = [35, 36, 37, 38, 39, 40];
 const start3 = Date.now();
 
-const results = await Promise.all(
-  tasks.map(n => pool.execute({ n }))
-);
+const results = await Promise.all(tasks.map((n) => pool.execute({ n })));
 
 const time3 = Date.now() - start3;
 
-console.log("Results:", results.map(r => r.result));
+console.log(
+  "Results:",
+  results.map((r) => r.result)
+);
 console.log(`Total time with pool: ${time3}ms`);
 
 await pool.close();

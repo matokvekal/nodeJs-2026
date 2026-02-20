@@ -1,0 +1,24 @@
+{
+  "name": "lesson-3_4-example-3",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Rate Limiting",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": [
+    "day3",
+    "lesson4",
+    "nodejs",
+    "security",
+    "rate-limiting"
+  ],
+  "dependencies": {
+    "express": "^5.0.0",
+    "express-rate-limit": "^7.1.5"
+  },
+  "author": "",
+  "license": "ISC"
+}

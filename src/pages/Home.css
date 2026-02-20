@@ -18,7 +18,11 @@
   right: -200px;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(97, 218, 251, 0.06), transparent 60%);
+  background: radial-gradient(
+    circle,
+    rgba(97, 218, 251, 0.06),
+    transparent 60%
+  );
   pointer-events: none;
 }
 
@@ -35,8 +39,12 @@
 }
 
 @keyframes titleGlow {
-  from { text-shadow: 0 0 30px rgba(97, 218, 251, 0.4); }
-  to   { text-shadow: 0 0 60px rgba(97, 218, 251, 0.8); }
+  from {
+    text-shadow: 0 0 30px rgba(97, 218, 251, 0.4);
+  }
+  to {
+    text-shadow: 0 0 60px rgba(97, 218, 251, 0.8);
+  }
 }
 
 .home-subtitle {
@@ -55,16 +63,27 @@
 }
 
 .day-card {
-  background: linear-gradient(135deg, rgba(21, 27, 36, 0.8), rgba(11, 15, 20, 0.9));
+  background: linear-gradient(
+    135deg,
+    rgba(21, 27, 36, 0.8),
+    rgba(11, 15, 20, 0.9)
+  );
   border: 2px solid rgba(97, 218, 251, 0.15);
   border-radius: 16px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.day-card-content {
   padding: 28px 24px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  transition: all 0.35s ease;
-  position: relative;
-  overflow: hidden;
+  flex: 1;
 }
 
 .day-card::before {
@@ -82,6 +101,10 @@
 .day-card.available {
   cursor: pointer;
   border-color: rgba(97, 218, 251, 0.25);
+}
+
+.day-card.available .day-card-content {
+  cursor: pointer;
 }
 
 .day-card.available:hover {
@@ -165,6 +188,35 @@
   background: rgba(127, 163, 176, 0.1);
   border: 1px solid var(--text-muted);
   color: var(--text-muted);
+}
+
+/* GitHub Link */
+.github-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: rgba(97, 218, 251, 0.08);
+  border-top: 1px solid rgba(97, 218, 251, 0.15);
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.github-link:hover {
+  background: rgba(97, 218, 251, 0.15);
+  color: var(--text-primary);
+}
+
+.github-link svg {
+  transition: transform 0.3s ease;
+}
+
+.github-link:hover svg {
+  transform: scale(1.1);
 }
 
 /* Footer */

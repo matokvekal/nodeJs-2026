@@ -19,7 +19,7 @@ const arr = Array.from({ length: 100000 }, (_, i) => i);
 
 measureTime("forEach", () => {
   let sum = 0;
-  arr.forEach((x) => sum += x);
+  arr.forEach((x) => (sum += x));
   return sum;
 });
 
@@ -50,7 +50,7 @@ obs.observe({ entryTypes: ["measure"] });
 performance.mark("db-query-start");
 
 // Simulate database query
-await new Promise(resolve => setTimeout(resolve, 100));
+await new Promise((resolve) => setTimeout(resolve, 100));
 
 performance.mark("db-query-end");
 
@@ -59,7 +59,7 @@ performance.measure("db-query", "db-query-start", "db-query-end");
 
 // Another operation
 performance.mark("api-call-start");
-await new Promise(resolve => setTimeout(resolve, 50));
+await new Promise((resolve) => setTimeout(resolve, 50));
 performance.mark("api-call-end");
 performance.measure("api-call", "api-call-start", "api-call-end");
 
@@ -68,35 +68,43 @@ console.log("\n3. Benchmarking\n");
 
 async function benchmark(name, fn, iterations = 1000) {
   const start = performance.now();
-  
+
   for (let i = 0; i < iterations; i++) {
     await fn();
   }
-  
+
   const end = performance.now();
   const total = end - start;
   const average = total / iterations;
-  
+
   console.log(`${name}:`);
   console.log(`  Total: ${total.toFixed(2)}ms`);
   console.log(`  Average: ${average.toFixed(4)}ms`);
   console.log(`  Ops/sec: ${(1000 / average).toFixed(0)}`);
 }
 
-await benchmark("String concat", () => {
-  let str = "";
-  for (let i = 0; i < 100; i++) {
-    str += "x";
-  }
-}, 100);
+await benchmark(
+  "String concat",
+  () => {
+    let str = "";
+    for (let i = 0; i < 100; i++) {
+      str += "x";
+    }
+  },
+  100
+);
 
-await benchmark("Array join", () => {
-  const arr = [];
-  for (let i = 0; i < 100; i++) {
-    arr.push("x");
-  }
-  arr.join("");
-}, 100);
+await benchmark(
+  "Array join",
+  () => {
+    const arr = [];
+    for (let i = 0; i < 100; i++) {
+      arr.push("x");
+    }
+    arr.join("");
+  },
+  100
+);
 
 // 4. Memory Usage Tracking
 console.log("\n4. Memory Profiling\n");

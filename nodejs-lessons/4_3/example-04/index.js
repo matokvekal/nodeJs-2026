@@ -28,7 +28,7 @@ class LRUCache {
 
   get(key) {
     if (!this.cache.has(key)) return undefined;
-    
+
     // Move to end (most recently used)
     const value = this.cache.get(key);
     this.cache.delete(key);
@@ -41,10 +41,10 @@ class LRUCache {
     if (this.cache.has(key)) {
       this.cache.delete(key);
     }
-    
+
     // Add to end
     this.cache.set(key, value);
-    
+
     // Remove oldest if over limit
     if (this.cache.size > this.maxSize) {
       const firstKey = this.cache.keys().next().value;

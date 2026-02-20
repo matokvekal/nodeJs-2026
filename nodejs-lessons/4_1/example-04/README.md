@@ -18,17 +18,19 @@ JWT_SECRET=secret-key node index.js
 
 ```javascript
 // Generate token (in Node.js)
-const jwt = require('jsonwebtoken');
-const token = jwt.sign({ sub: 'user123' }, 'secret-key');
+const jwt = require("jsonwebtoken");
+const token = jwt.sign({ sub: "user123" }, "secret-key");
 
 // Connect with token
 const ws = new WebSocket(`ws://localhost:8080?token=${token}`);
 ws.onmessage = (e) => console.log(JSON.parse(e.data));
 
 // Send private message
-ws.send(JSON.stringify({ 
-  type: 'private:message', 
-  to: 'user456', 
-  text: 'Hello!' 
-}));
+ws.send(
+  JSON.stringify({
+    type: "private:message",
+    to: "user456",
+    text: "Hello!"
+  })
+);
 ```
