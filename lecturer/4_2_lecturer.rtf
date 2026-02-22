@@ -1,0 +1,214 @@
+{\rtf1\ansi\ansicpg1255\deflang1037\deff0
+{\fonttbl{\f0\froman\fcharset177 David;}{\f1\fmodern\fcharset0 Courier New;}}
+{\colortbl ;\red0\green0\blue0;\red0\green100\blue0;\red180\green0\blue0;}
+\rtldoc\widowctrl\hyphauto
+{\pard\rtlpar\b\fs36 \u1502?\u1491?\u1512?\u1497?\u1498? \u1500?\u1502?\u1512?\u1510?\u1492? \u8211? \u1497?\u1493?\u1501? 4 \u1502?\u1510?\u1490?\u1514? 14: Crypto in Node.js\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1494?\u1502?\u1503?:} 10:30\u8211?11:15\par}
+{\pard\rtlpar {\b \u1502?\u1496?\u1512?\u1492?:} \u1492?\u1497?\u1499?\u1512?\u1493?\u1514? \u1506?\u1501? \u1499?\u1500?\u1497? crypto \u1502?\u1493?\u1489?\u1504?\u1497?\u1501? \u1493?\u1492?\u1489?\u1504?\u1514? \u1502?\u1514?\u1497? \u1500?\u1492?\u1513?\u1514?\u1502?\u1513? \u1489?\u1499?\u1500? \u1488?\u1495?\u1491?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 1 \u8211? \u1508?\u1514?\u1497?\u1495?\u1492?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1489?-Auth \u1492?\u1513?\u1514?\u1502?\u1513?\u1504?\u1493? \u1489?-argon2. \u1489?-WebHooks \u1492?\u1513?\u1514?\u1502?\u1513?\u1504?\u1493? \u1489?-HMAC. \u1506?\u1499?\u1513?\u1497?\u1493? \u1504?\u1489?\u1497?\u1503? \u1502?\u1492? \u1497?\u1513? \u1489?\u1514?\u1493?\u1498? \u1502?\u1493?\u1491?\u1493?\u1500? {\f1\ltrch crypto\f0} \u1513?\u1500? Node.js \u1493?\u1502?\u1514?\u1497? \u1500?\u1492?\u1513?\u1514?\u1502?\u1513? \u1489?\u1499?\u1500? \u1499?\u1500?\u1497?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1502?\u1492? \u1504?\u1500?\u1502?\u1491?:}\par}
+{\pard\rtlpar\li360\fi-360 \u8226? {\f1\ltrch createHash\f0} \u8212? SHA-256 \u1500?verification \u1493?-checksums\par}
+{\pard\rtlpar\li360\fi-360 \u8226? HMAC \u8212? \u1488?\u1497?\u1502?\u1493?\u1514? \u1495?\u1514?\u1497?\u1502?\u1492? (webhooks, API signatures)\par}
+{\pard\rtlpar\li360\fi-360 \u8226? {\f1\ltrch timingSafeEqual\f0} \u8212? \u1492?\u1513?\u1493?\u1493?\u1488?\u1492? \u1489?\u1496?\u1493?\u1495?\u1492? \u1502?\u1508?\u1504?\u1497? timing attacks\par}
+{\pard\rtlpar\li360\fi-360 \u8226? {\f1\ltrch randomBytes\f0} \u8212? \u1488?\u1511?\u1512?\u1488?\u1497?\u1493?\u1514? \u1511?\u1512?\u1497?\u1508?\u1496?\u1493?\u1490?\u1512?\u1508?\u1497?\u1514? \u1488?\u1502?\u1497?\u1514?\u1497?\u1514?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? AES-256-GCM \u8212? \u1492?\u1510?\u1508?\u1504?\u1492? \u1505?\u1497?\u1502?\u1496?\u1512?\u1497?\u1514? \u1506?\u1501? authenticated encryption\par}
+{\pard\rtlpar\li360\fi-360 \u8226? RSA/ECDSA \u8212? \u1492?\u1510?\u1508?\u1504?\u1492? \u1488?\u1505?\u1497?\u1502?\u1496?\u1512?\u1497?\u1514? \u1493?-JWT signing\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1514?\u1499?\u1493?\u1504?\u1493?\u1514? Hash functions \u8212? \u1500?\u1491?\u1506?\u1514? \u1489?\u1506?\u1500? \u1508?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1514?\u1499?\u1493?\u1504?\u1492? {\f1 |} \u1502?\u1513?\u1502?\u1506?\u1493?\u1514?\par}
+{\pard\rtlpar Deterministic {\f1 |} \u1488?\u1493?\u1514?\u1493? input \u1514?\u1502?\u1497?\u1491? \u8594? \u1488?\u1493?\u1514?\u1493? output\par}
+{\pard\rtlpar Fixed Length {\f1 |} output \u1514?\u1502?\u1497?\u1491? \u1488?\u1493?\u1514?\u1493? \u1490?\u1493?\u1491?\u1500? (SHA-256 = 256 bits)\par}
+{\pard\rtlpar One-Way {\f1 |} \u1500?\u1488? \u1504?\u1497?\u1514?\u1503? \u1500?\u1513?\u1495?\u1494?\u1512? input \u1502?\u1492?-hash\par}
+{\pard\rtlpar Avalanche Effect {\f1 |} \u1513?\u1497?\u1504?\u1493?\u1497? \u1511?\u1496?\u1503? \u1489?-input \u8594? \u1513?\u1497?\u1504?\u1493?\u1497? \u1490?\u1491?\u1493?\u1500? \u1489?-output\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1505?\u1497?\u1505?\u1502?\u1488?\u1493?\u1514? \u8212? Salt \u1493?-Stretching:}\par}
+{\pard\rtlpar\li360\fi-360 \u8226? {\b Salt}: \u1502?\u1495?\u1512?\u1493?\u1494?\u1514? \u1488?\u1511?\u1512?\u1488?\u1497?\u1514? \u1497?\u1497?\u1495?\u1493?\u1491?\u1497?\u1514? \u1500?\u1499?\u1500? \u1502?\u1513?\u1514?\u1502?\u1513?, \u1504?\u1493?\u1505?\u1507? \u1500?\u1505?\u1497?\u1505?\u1502?\u1492? \u1500?\u1508?\u1504?\u1497? hashing\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1502?\u1493?\u1504?\u1506? rainbow tables (\u1496?\u1489?\u1500?\u1488?\u1493?\u1514? hash \u1502?\u1493?\u1499?\u1504?\u1493?\u1514? \u1502?\u1512?\u1488?\u1513?)\par}
+{\pard\rtlpar\li360\fi-360 \u8226? {\b Key Stretching}: hashing \u1502?\u1499?\u1493?\u1493?\u1503? \u1500?\u1493?\u1511?\u1495? \u1494?\u1502?\u1503? (~150ms), \u1502?\u1493?\u1504?\u1506? brute force\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1500?\u1499?\u1503? argon2/bcrypt \u1493?\u1500?\u1488? SHA-256 \u1500?\u1505?\u1497?\u1505?\u1502?\u1488?\u1493?\u1514?!\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 2 \u8211? crypto module\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1502?\u1493?\u1491?\u1493?\u1500? {\f1\ltrch crypto\f0} \u1502?\u1505?\u1508?\u1511? gateway \u1500?-OpenSSL \u1502?\u1514?\u1493?\u1498? Node.js. 99% \u1502?\u1492?\u1508?\u1493?\u1504?\u1511?\u1510?\u1497?\u1493?\u1504?\u1500?\u1497?\u1493?\u1514? \u1492?\u1504?\u1491?\u1512?\u1513?\u1514? \u1494?\u1502?\u1497?\u1504?\u1492?, \u1500?\u1500?\u1488? \u1510?\u1493?\u1512?\u1498? \u1489?\u1505?\u1508?\u1512?\u1497?\u1493?\u1514? \u1495?\u1497?\u1510?\u1493?\u1504?\u1497?\u1493?\u1514?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 3 \u8211? Hash\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import \{ createHash \} from "node:crypto";\line
+\line
+// SHA-256\line
+const hash = createHash("sha256").update("Hello World").digest("hex");\line
+console.log(hash); // a591a6d40bf420404a...\line
+\line
+// \u1488?\u1508?\u1513?\u1512? \u1500?build \u1489?\u1513?\u1500?\u1489?\u1497?\u1501?\line
+const hasher = createHash("sha256");\line
+hasher.update("Hello ");\line
+hasher.update("World");\line
+const result = hasher.digest("hex");\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1505?\u1489?\u1512?:} Hash \u1495?\u1491?-\u1499?\u1497?\u1493?\u1493?\u1504?\u1497? \u1502?\u1513?\u1502?\u1506?\u1493? \u1513?\u1500?\u1488? \u1504?\u1497?\u1514?\u1503? \u1500?\u1513?\u1495?\u1494?\u1512? 'Hello World' \u1502?\u1492?-hash. \u1500?\u1499?\u1503? SHA \u1500?\u1488? \u1502?\u1514?\u1488?\u1497?\u1501? \u1500?\u1505?\u1497?\u1505?\u1502?\u1488?\u1493?\u1514? (brute force).\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 4 \u8211? HMAC\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? WebHook signature:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import \{ createHmac \} from "node:crypto";\line
+\line
+const secret = "my_webhook_secret";\line
+const body = JSON.stringify(\{ event: "payment.success", amount: 100 \});\line
+\line
+// Sign\line
+const signature = createHmac("sha256", secret).update(body).digest("hex");\line
+console.log("Signature:", signature);\line
+\line
+// Verify (receiver side)\line
+function verifyWebhook(receivedBody, receivedSig, secret) \{\line
+  const expected = createHmac("sha256", secret)\line
+    .update(receivedBody)\line
+    .digest("hex");\line
+  return expected === receivedSig;\line
+\}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 5 \u8211? timingSafeEqual\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b Timing Attack:}\par}
+{\pard\rtlpar JavaScript string comparison \u1506?\u1493?\u1510?\u1512? \u1489?\u1488?\u1497? \u1492?\u1514?\u1488?\u1502?\u1492? \u1492?\u1512?\u1488?\u1513?\u1493?\u1504?\u1492?. \u1514?\u1493?\u1511?\u1507? \u1497?\u1499?\u1493?\u1500? \u1500?\u1502?\u1491?\u1493?\u1491? \u1494?\u1502?\u1504?\u1497?\u1501? \u1493?\u1500?\u1504?\u1495?\u1513? byte \u1488?\u1495?\u1512?\u1497? byte.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import \{ timingSafeEqual \} from 'node:crypto';\line
+\line
+// \u10060? \u1500?\u1488? \u1489?\u1496?\u1493?\u1495?\line
+if (received === expected) \{ ... \}\line
+\line
+// \u9989? \u1489?\u1496?\u1493?\u1495? - \u1514?\u1502?\u1497?\u1491? \u1500?\u1493?\u1511?\u1495? \u1488?\u1493?\u1514?\u1493? \u1494?\u1502?\u1503?\line
+const safe = timingSafeEqual(\line
+  Buffer.from(received),\line
+  Buffer.from(expected)\line
+);\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 6 \u8211? randomBytes\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1488?\u1493?\u1514?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import \{ randomBytes, randomUUID \} from "node:crypto";\line
+\line
+// Reset token\line
+const token = randomBytes(32).toString("hex"); // 64 hex chars\line
+// store hash in DB, send plain to user via email\line
+\line
+// API Key\line
+const apiKey = `sk_$\{randomBytes(24).toString("base64url")\}`;\line
+\line
+// UUID\line
+const id = randomUUID();\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1495?\u1513?\u1493?\u1489?:} {\f1\ltrch Math.random()\f0} \u1488?\u1497?\u1504?\u1493? \u1511?\u1512?\u1497?\u1508?\u1496?\u1493?\u1490?\u1512?\u1508?\u1497? \u1493?\u1514?\u1493?\u1511?\u1507? \u1497?\u1499?\u1493?\u1500? \u1500?\u1504?\u1489?\u1488?. {\f1\ltrch randomBytes\f0} \u1502?\u1505?\u1508?\u1511? \u1488?\u1511?\u1512?\u1488?\u1497?\u1493?\u1514? \u1488?\u1502?\u1497?\u1514?\u1497?\u1514?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 7 \u8211? AES Encryption\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import \{ createCipheriv, createDecipheriv, randomBytes \} from "node:crypto";\line
+\line
+const KEY = randomBytes(32); // AES-256\line
+const IV = randomBytes(16);\line
+\line
+function encrypt(text) \{\line
+  const cipher = createCipheriv("aes-256-gcm", KEY, IV);\line
+  const encrypted = Buffer.concat([\line
+    cipher.update(text, "utf8"),\line
+    cipher.final()\line
+  ]);\line
+  const tag = cipher.getAuthTag();\line
+  return \{\line
+    data: encrypted.toString("hex"),\line
+    tag: tag.toString("hex"),\line
+    iv: IV.toString("hex")\line
+  \};\line
+\}\line
+\line
+function decrypt(\{ data, tag, iv \}) \{\line
+  const decipher = createDecipheriv("aes-256-gcm", KEY, Buffer.from(iv, "hex"));\line
+  decipher.setAuthTag(Buffer.from(tag, "hex"));\line
+  return (\line
+    decipher.update(Buffer.from(data, "hex"), null, "utf8") +\line
+    decipher.final("utf8")\line
+  );\line
+\}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 8 \u8211? Asymmetric\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar RSA/ECDSA \u1502?\u1513?\u1514?\u1502?\u1513?\u1497?\u1501? \u1489?\u1494?\u1493?\u1490? \u1502?\u1508?\u1514?\u1495?\u1493?\u1514?: Public key \u1500?\u1492?\u1508?\u1510?\u1492? \u1495?\u1493?\u1508?\u1513?\u1497?\u1514?, Private key \u1504?\u1513?\u1502?\u1512? \u1489?\u1489?\u1496?\u1495?\u1493?\u1503?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \\*\\*\u1491?\u1493?\u1490?\u1502?\u1514? JWT:\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+HS256: \u1513?\u1512?\u1514? \u1497?\u1495?\u1497?\u1491? - \u1505?\u1497?\u1502?\u1496?\u1512?\u1497?, secret \u1488?\u1495?\u1491?\line
+RS256: \u1502?\u1505?\u1508?\u1512? \u1513?\u1512?\u1514?\u1497?\u1501? - public key \u1489?\u1508?\u1504?\u1497?\u1501?, private key \u1489?\u1502?\u1512?\u1499?\u1494?\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 11 \u8211? When NOT to\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1506?\u1511?\u1512?\u1493?\u1504?\u1493?\u1514? \u1495?\u1513?\u1493?\u1489?\u1497?\u1501?:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1500?\u1488? \u1500?\u1502?\u1502?\u1513? JWT \u1489?\u1506?\u1510?\u1502?\u1498?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1500?\u1488? \u1500?\u1502?\u1502?\u1513? TLS \u1489?\u1506?\u1510?\u1502?\u1498?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1500?\u1488? \u1500?\u1499?\u1514?\u1493?\u1489? hash \u1500?\u1505?\u1497?\u1505?\u1502?\u1488?\u1493?\u1514?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1514?\u1502?\u1497?\u1491? \u1500?\u1492?\u1513?\u1514?\u1502?\u1513? \u1489?\u1505?\u1508?\u1512?\u1497?\u1493?\u1514? \u1502?\u1493?\u1499?\u1495?\u1493?\u1514?!\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1505?\u1497?\u1499?\u1493?\u1501?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1502?\u1510?\u1490?\u1514? \u1494?\u1493? \u1505?\u1497?\u1511?\u1512?\u1492?:\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? crypto module \u1493?\u1497?\u1499?\u1493?\u1500?\u1493?\u1514?\u1497?\u1493?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Hash (SHA-256)\par}
+{\pard\rtlpar\li360\fi-360 \u8226? HMAC \u1500?-webhooks\par}
+{\pard\rtlpar\li360\fi-360 \u8226? timingSafeEqual\par}
+{\pard\rtlpar\li360\fi-360 \u8226? randomBytes \u1511?\u1512?\u1497?\u1508?\u1496?\u1493?\u1490?\u1512?\u1508?\u1497?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? AES encryption/decryption\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Asymmetric crypto (RSA/ECDSA)\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1506?\u1512?\u1493?\u1514?:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1502?\u1510?\u1490?\u1514? \u1511?\u1510?\u1512?\u1492? (45 \u1491?\u1511?\u1493?\u1514?)\par}
+{\pard\rtlpar\li360\fi-360 \u8226? WebAuthn, FIDO2 \u1502?\u1495?\u1493?\u1509? \u1500?\u1505?\u1511?\u1493?\u1508?\par}
+{\pard\rtlpar\par}
+}

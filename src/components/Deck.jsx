@@ -9,6 +9,10 @@ function Deck({ slides, storageKey = "presentation-current-slide" }) {
     return saved ? parseInt(saved, 10) : 0;
   });
   const [currentPanel, setCurrentPanel] = useState(0);
+  const [isCompleted, setIsCompleted] = useState(() => {
+    const completionKey = `${storageKey}-completed`;
+    return localStorage.getItem(completionKey) === "true";
+  });
 
   const totalSlides = slides.length;
 
@@ -25,6 +29,13 @@ function Deck({ slides, storageKey = "presentation-current-slide" }) {
   useEffect(() => {
     localStorage.setItem(storageKey, currentSlide);
   }, [currentSlide, storageKey]);
+
+  const handleCompletionToggle = () => {
+    const completionKey = `${storageKey}-completed`;
+    const newValue = !isCompleted;
+    setIsCompleted(newValue);
+    localStorage.setItem(completionKey, newValue.toString());
+  };
 
   // Navigation helpers
   const goNext = () => {
@@ -90,21 +101,49 @@ function Deck({ slides, storageKey = "presentation-current-slide" }) {
 
       <div className="navigation">
         <button
-          onClick={() => { setCurrentSlide(0); setCurrentPanel(0); }}
+          onClick={() => {
+            setCurrentSlide(0);
+            setCurrentPanel(0);
+          }}
           disabled={isFirst}
           className="nav-btn start-btn"
           title="חזור לתחילה"
-        >⟳</button>
-        <button onClick={goPrev} disabled={isFirst} className="nav-btn" title="קודם">
+        >
+          ⟳
+        </button>
+        <button
+          onClick={goPrev}
+          disabled={isFirst}
+          className="nav-btn"
+          title="קודם"
+        >
           →
         </button>
         <span className="slide-counter">
           {currentSlide + 1} / {totalSlides}
         </span>
-        <button onClick={goNext} disabled={isLast} className="nav-btn" title="הבא">
+        <button
+          onClick={goNext}
+          disabled={isLast}
+          className="nav-btn"
+          title="הבא"
+        >
           ←
         </button>
       </div>
+
+      {isLast && (
+        <div className="completion-checkbox">
+          <label>
+            <input
+              type="checkbox"
+              checked={isCompleted}
+              onChange={handleCompletionToggle}
+            />
+            <span>סיימתי מצגת זו</span>
+          </label>
+        </div>
+      )}
 
       <Progress current={currentSlide + 1} total={totalSlides} />
     </div>

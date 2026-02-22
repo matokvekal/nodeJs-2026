@@ -1,0 +1,261 @@
+{\rtf1\ansi\ansicpg1255\deflang1037\deff0
+{\fonttbl{\f0\froman\fcharset177 David;}{\f1\fmodern\fcharset0 Courier New;}}
+{\colortbl ;\red0\green0\blue0;\red0\green100\blue0;\red180\green0\blue0;}
+\rtldoc\widowctrl\hyphauto
+{\pard\rtlpar\b\fs36 \u1502?\u1491?\u1512?\u1497?\u1498? \u1500?\u1502?\u1512?\u1510?\u1492? \u8211? \u1497?\u1493?\u1501? 3 \u1502?\u1510?\u1490?\u1514? 11: Authentication & Authorization 2026\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1494?\u1502?\u1503?:} 13:00\u8211?14:45\par}
+{\pard\rtlpar {\b \u1502?\u1496?\u1512?\u1492?:} \u1497?\u1497?\u1513?\u1493?\u1501? JWT auth \u1502?\u1500?\u1488? \u1506?\u1501? Refresh Tokens \u1493?-Rotation\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 1 \u8211? \u1508?\u1514?\u1497?\u1495?\u1492?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1492?-API \u1513?\u1500?\u1504?\u1493? \u1506?\u1493?\u1489?\u1491?, \u1488?\u1489?\u1500? \u1499?\u1512?\u1490?\u1506? \u1499?\u1500? \u1488?\u1495?\u1491? \u1497?\u1499?\u1493?\u1500? \u1500?\u1490?\u1513?\u1514? \u1500?\u1499?\u1500? endpoint. \u1506?\u1499?\u1513?\u1497?\u1493? \u1502?\u1493?\u1505?\u1497?\u1508?\u1497?\u1501? Authentication (\u1502?\u1497? \u1488?\u1514?\u1492??) \u1493?-Authorization (\u1502?\u1492? \u1502?\u1493?\u1514?\u1512? \u1500?\u1498??).\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1502?\u1492? \u1504?\u1500?\u1502?\u1491?:}\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Stateful vs Stateless \u8212? Sessions \u1500?\u1506?\u1493?\u1502?\u1514? JWT\par}
+{\pard\rtlpar\li360\fi-360 \u8226? JWT anatomy \u8212? \u1502?\u1492? \u1489?\u1508?\u1504?\u1497?\u1501? \u1492?\u1496?\u1493?\u1511?\u1503? \u1493?\u1488?\u1497?\u1498? \u1502?\u1488?\u1502?\u1514?\u1497?\u1501? \u1488?\u1493?\u1514?\u1493?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Access Token + Refresh Token \u8212? \u1492?\u1508?\u1497?\u1510?\u1493?\u1500? \u1513?\u1502?\u1488?\u1508?\u1513?\u1512? UX \u1496?\u1493?\u1489? + security\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Token Rotation \u8212? \u1492?\u1490?\u1504?\u1492? \u1502?\u1508?\u1504?\u1497? \u1490?\u1504?\u1497?\u1489?\u1514? Refresh Token\par}
+{\pard\rtlpar\li360\fi-360 \u8226? argon2 \u8212? hashing \u1505?\u1497?\u1505?\u1502?\u1488?\u1493?\u1514? \u1489?\u1510?\u1493?\u1512?\u1492? \u1504?\u1499?\u1493?\u1504?\u1492?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Redis Blacklist \u8212? \u1489?\u1497?\u1496?\u1493?\u1500? tokens \u1500?\u1508?\u1504?\u1497? \u1508?\u1511?\u1497?\u1506?\u1514?\u1501?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? RBAC \u8212? Role-Based Access Control\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1513?\u1500?\u1493?\u1513?\u1492? \u1513?\u1488?\u1500?\u1493?\u1514? \u1513?\u1499?\u1500? \u1502?\u1506?\u1512?\u1499?\u1514? Auth \u1506?\u1493?\u1504?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1513?\u1488?\u1500?\u1492? {\f1 |} \u1502?\u1493?\u1513?\u1490? {\f1 |} \u1502?\u1497?\u1502?\u1493?\u1513?\par}
+{\pard\rtlpar \u1502?\u1497? \u1488?\u1514?\u1492?? {\f1 |} Authentication {\f1 |} Login + JWT\par}
+{\pard\rtlpar \u1502?\u1492? \u1502?\u1493?\u1514?\u1512? \u1500?\u1498?? {\f1 |} Authorization {\f1 |} RBAC / permissions\par}
+{\pard\rtlpar \u1492?\u1488?\u1501? \u1492?token \u1514?\u1511?\u1507?? {\f1 |} Token Validation {\f1 |} verify + blacklist check\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b OAuth2 + OIDC \u8212? Overview:}\par}
+{\pard\rtlpar OAuth2 \u1492?\u1493?\u1488? \u1508?\u1512?\u1493?\u1496?\u1493?\u1511?\u1493?\u1500? \u1500?\u1492?\u1488?\u1510?\u1500?\u1514? \u1492?\u1512?\u1513?\u1488?\u1493?\u1514? (delegated authorization). OIDC \u1502?\u1493?\u1505?\u1497?\u1507? Identity Layer \u1506?\u1500?\u1497?\u1493?.\par}
+{\pard\rtlpar {\b \u1489?\u1508?\u1512?\u1493?\u1491?\u1511?\u1513?\u1503?:} \u1514?\u1502?\u1497?\u1491? \u1500?\u1492?\u1513?\u1514?\u1502?\u1513? \u1489?\u1505?\u1508?\u1512?\u1497?\u1497?\u1492? \u1502?\u1493?\u1499?\u1495?\u1514? (Passport.js, Auth0, Keycloak) \u1493?\u1500?\u1488? \u1500?\u1502?\u1502?\u1513? \u1502?\u1488?\u1508?\u1505?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 2 \u8211? Stateful vs Stateless\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1497?\u1488?\u1490?\u1512?\u1502?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+Stateful (Session):\line
+Client \u8594? Server \u8594? DB (check session) \u8594? Response\line
+\line
+Stateless (JWT):\line
+Client \u8594? Server \u8594? verify JWT (no DB!) \u8594? Response\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar Stateless \u1502?\u1488?\u1508?\u1513?\u1512? \u1492?\u1512?\u1510?\u1514? \u1502?\u1505?\u1508?\u1512? \u1513?\u1512?\u1514?\u1497?\u1501? \u1489?\u1502?\u1511?\u1489?\u1497?\u1500? \u8211? \u1499?\u1500? \u1513?\u1512?\u1514? \u1497?\u1499?\u1493?\u1500? \u1500?\u1488?\u1502?\u1514? tokens \u1489?\u1488?\u1493?\u1508?\u1503? \u1506?\u1510?\u1502?\u1488?\u1497? \u1500?\u1500?\u1488? DB. Stateful \u1491?\u1493?\u1512?\u1513? \u1505?\u1504?\u1499?\u1512?\u1493?\u1503? \u1489?\u1497?\u1503? \u1513?\u1512?\u1514?\u1497?\u1501?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 3 \u8211? JWT Anatomy\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1491?\u1490?\u1502?\u1492? \u1506?\u1501? jwt.io:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u1508?\u1514?\u1497?\u1495?\u1514? {\f1\ltrch jwt.io\f0}\par}
+{\pard\rtlpar\li360\fi-360 \u1492?\u1494?\u1504?\u1514? payload: {\f1\ltrch \{ "sub": "123", "role": "admin", "exp": 1700000000 \}\f0}\par}
+{\pard\rtlpar\li360\fi-360 \u1492?\u1491?\u1490?\u1502?\u1492?: payload {\b \u1511?\u1512?\u1497?\u1488?} \u8211? \u1492?\u1493?\u1488? \u1500?\u1488? \u1502?\u1493?\u1510?\u1508?\u1503?!\par}
+{\pard\rtlpar\li360\fi-360 \u1504?\u1497?\u1505?\u1497?\u1493?\u1503? \u1500?\u1513?\u1504?\u1493?\u1514? {\f1\ltrch role\f0} \u1500?\u1500?\u1488? secret \u8594? "Invalid signature"\par}
+{\pard\rtlpar\li360\fi-360 \u1492?\u1491?\u1490?\u1502?\u1492?: \u1506?\u1501? secret \u1504?\u1499?\u1493?\u1503? \u1492?\u1495?\u1514?\u1497?\u1502?\u1492? \u1514?\u1511?\u1508?\u1492?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1502?\u1493?\u1513?\u1490?:} JWT \u1499?\u1502?\u1493? \u1499?\u1512?\u1496?\u1497?\u1505? \u1499?\u1504?\u1497?\u1505?\u1492? \u8211? \u1504?\u1497?\u1514?\u1503? \u1500?\u1511?\u1512?\u1493?\u1488? \u1502?\u1492? \u1499?\u1514?\u1493?\u1489? \u1506?\u1500?\u1497?\u1493? ("VIP"), \u1488?\u1498? \u1500?\u1488? \u1504?\u1497?\u1514?\u1503? \u1500?\u1494?\u1497?\u1497?\u1507? \u1488?\u1514? \u1495?\u1514?\u1497?\u1502?\u1514? \u1492?\u1502?\u1488?\u1512?\u1490?\u1503?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 4 \u8211? Access + Refresh Tokens\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \\*\\*\u1494?\u1512?\u1497?\u1502?\u1514? Authentication:\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+Login:\line
+  POST /auth/login \u8594? \{ email, password \}\line
+  \u8592? Access Token (15m) + Refresh Token (7d) [HttpOnly Cookie]\line
+\line
+Request:\line
+  GET /api/users \u8594? Authorization: Bearer <access_token>\line
+  \u8592? 200 data\line
+\line
+Refresh:\line
+  POST /auth/refresh \u8594? Cookie: refreshToken=<token>\line
+  \u8592? new Access Token + new Refresh Token [rotation!]\line
+\line
+Logout:\line
+  POST /auth/logout \u8594? Cookie: refreshToken=<token>\line
+  \u8592? blacklist access token + delete refresh token\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 5 \u8211? Token Rotation\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? refresh flow:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+export async function refresh(req, res) \{\line
+  const token = req.cookies.refreshToken;\line
+  if (!token) throw new AppError("No refresh token", 401);\line
+\line
+  // 1. \u1488?\u1502?\u1514? \u1488?\u1514? \u1492?refresh token\line
+  const payload = jwt.verify(token, process.env.REFRESH_SECRET);\line
+\line
+  // 2. \u1489?\u1491?\u1493?\u1511? \u1513?\u1492?\u1493?\u1488? \u1511?\u1497?\u1497?\u1501? \u1489?-DB (\u1500?\u1488? \u1504?\u1502?\u1495?\u1511?)\line
+  const stored = await RefreshToken.findOne(\{ token, userId: payload.sub \});\line
+  if (!stored) \{\line
+    // ROTATION ATTACK! \u1502?\u1495?\u1511? \u1488?\u1514? \u1499?\u1500? \u1492?tokens \u1513?\u1500? \u1492?\u1502?\u1513?\u1514?\u1502?\u1513?\line
+    await RefreshToken.deleteMany(\{ userId: payload.sub \});\line
+    throw new AppError("Refresh token reuse detected", 401);\line
+  \}\line
+\line
+  // 3. \u1502?\u1495?\u1511? \u1497?\u1513?\u1503?, \u1510?\u1493?\u1512? \u1495?\u1491?\u1513?\line
+  await stored.deleteOne();\line
+  const \{ accessToken, refreshToken \} = await generateTokens(payload.sub);\line
+\line
+  res.cookie("refreshToken", refreshToken, \{\line
+    httpOnly: true,\line
+    sameSite: "strict"\line
+  \});\line
+  res.json(\{ accessToken \});\line
+\}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 6 \u8211? argon2\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \\*\\*\u1491?\u1493?\u1490?\u1502?\u1492?:\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import argon2 from "argon2";\line
+\line
+// Register\line
+const hash = await argon2.hash(password);\line
+await User.create(\{ email, passwordHash: hash \});\line
+\line
+// Login\line
+const isValid = await argon2.verify(user.passwordHash, password);\line
+if (!isValid) throw new AppError("Invalid credentials", 401);\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1513?\u1493?\u1493?\u1488?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+bcrypt(password, 12) \u8594? ~250ms \u8592? \u1489?\u1505?\u1491?\u1512?\line
+argon2.hash(password) \u8594? ~150ms \u8592? \u1502?\u1492?\u1497?\u1512? \u1497?\u1493?\u1514?\u1512?, \u1497?\u1493?\u1514?\u1512? \u1489?\u1496?\u1493?\u1495?\line
+MD5(password) \u8594? ~0.001ms \u8592? NEVER!\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 7 \u8211? Blacklist \u1506?\u1501? Redis\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \\*\\*\u1491?\u1493?\u1490?\u1502?\u1492?:\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import \{ createClient \} from "redis";\line
+const redis = createClient();\line
+\line
+// logout - blacklist the access token\line
+export async function logout(req, res) \{\line
+  const token = req.headers.authorization?.split(" ")[1];\line
+  const payload = jwt.decode(token);\line
+  const ttl = payload.exp - Math.floor(Date.now() / 1000);\line
+\line
+  await redis.setEx(`blacklist:$\{payload.jti\}`, ttl, "1");\line
+\line
+  // delete refresh token\line
+  res.clearCookie("refreshToken");\line
+  res.json(\{ message: "Logged out" \});\line
+\}\line
+\line
+// middleware check\line
+const isBlacklisted = await redis.exists(`blacklist:$\{payload.jti\}`);\line
+if (isBlacklisted) throw new AppError("Token revoked", 401);\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 8 \u8211? Token Expiration Design\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1488?\u1505?\u1496?\u1512?\u1496?\u1490?\u1497?\u1497?\u1514? \u1514?\u1493?\u1511?\u1507?:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Access Token: 15 \u1491?\u1511?\u1493?\u1514? \u8211? \u1488?\u1501? \u1504?\u1490?\u1504?\u1489?, \u1514?\u1493?\u1511?\u1507? \u1508?\u1490? \u1502?\u1492?\u1512?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Refresh Token: 7 \u1497?\u1502?\u1497?\u1501? \u8211? \u1502?\u1488?\u1508?\u1513?\u1512? \u1513?\u1497?\u1502?\u1493?\u1513? \u1504?\u1493?\u1495? \u1500?\u1500?\u1488? login \u1495?\u1493?\u1494?\u1512?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 11 \u8211? Auth Middleware\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \\*\\*\u1491?\u1493?\u1490?\u1502?\u1492?:\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+export async function authenticate(req, res, next) \{\line
+  const authHeader = req.headers.authorization;\line
+  if (!authHeader?.startsWith("Bearer ")) \{\line
+    throw new AppError("No token", 401);\line
+  \}\line
+\line
+  const token = authHeader.split(" ")[1];\line
+  const payload = jwt.verify(token, process.env.JWT_SECRET);\line
+\line
+  const isBlacklisted = await redis.exists(`blacklist:$\{payload.jti\}`);\line
+  if (isBlacklisted) throw new AppError("Token revoked", 401);\line
+\line
+  req.user = payload;\line
+  next();\line
+\}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 12 \u8211? RBAC\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b Role-Based Access Control:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+export function authorize(...roles) \{\line
+  return (req, res, next) => \{\line
+    if (!roles.includes(req.user.role)) \{\line
+      throw new AppError("Forbidden", 403);\line
+    \}\line
+    next();\line
+  \};\line
+\}\line
+\line
+// usage\line
+router.delete("/:id", authenticate, authorize("admin"), deleteUser);\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b BOLA demo:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// \u10060? \u1500?\u1488? \u1489?\u1496?\u1493?\u1495? - \u1502?\u1513?\u1514?\u1502?\u1513? \u1497?\u1499?\u1493?\u1500? \u1500?\u1490?\u1513?\u1514? \u1500?task \u1513?\u1500? \u1488?\u1495?\u1512?\line
+const task = await Task.findById(req.params.id);\line
+\line
+// \u9989? \u1489?\u1496?\u1493?\u1495? - ownership check\line
+const task = await Task.findOne(\{ _id: req.params.id, user: req.user.id \});\line
+if (!task) throw new AppError("Not found", 404);\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1505?\u1497?\u1499?\u1493?\u1501?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1502?\u1510?\u1490?\u1514? \u1494?\u1493? \u1505?\u1497?\u1511?\u1512?\u1492?:\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Stateful vs Stateless authentication\par}
+{\pard\rtlpar\li360\fi-360 \u8226? JWT structure \u1493?\u1488?\u1497?\u1498? \u1492?\u1493?\u1488? \u1506?\u1493?\u1489?\u1491?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Access + Refresh tokens pattern\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Token rotation \u1500?\u1502?\u1504?\u1497?\u1506?\u1514? reuse attacks\par}
+{\pard\rtlpar\li360\fi-360 \u8226? argon2 \u1500?hashing \u1505?\u1497?\u1505?\u1502?\u1488?\u1493?\u1514?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Redis blacklist\par}
+{\pard\rtlpar\li360\fi-360 \u8226? RBAC \u1493?-BOLA prevention\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1506?\u1512?\u1493?\u1514?:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1500?\u1502?\u1492? \u1500?\u1488? \u1500?\u1513?\u1502?\u1493?\u1512? \u1492?\u1499?\u1500? \u1489?-token? \u1490?\u1493?\u1491?\u1500? + \u1489?\u1497?\u1496?\u1495?\u1493?\u1503?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? OAuth2 \u1504?\u1494?\u1499?\u1512? \u1499?-overview \u8211? \u1489?\u1508?\u1512?\u1493?\u1491?\u1511?\u1513?\u1503? \u1500?\u1492?\u1513?\u1514?\u1502?\u1513? \u1489?\u1505?\u1508?\u1512?\u1497?\u1497?\u1492? \u1502?\u1493?\u1499?\u1495?\u1514?\par}
+{\pard\rtlpar\par}
+}

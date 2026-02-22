@@ -1,0 +1,250 @@
+{\rtf1\ansi\ansicpg1255\deflang1037\deff0
+{\fonttbl{\f0\froman\fcharset177 David;}{\f1\fmodern\fcharset0 Courier New;}}
+{\colortbl ;\red0\green0\blue0;\red0\green100\blue0;\red180\green0\blue0;}
+\rtldoc\widowctrl\hyphauto
+{\pard\rtlpar\b\fs36 \u1502?\u1491?\u1512?\u1497?\u1498? \u1500?\u1502?\u1512?\u1510?\u1492? \u8211? \u1497?\u1493?\u1501? 4 \u1502?\u1510?\u1490?\u1514? 13: WebSocket (ws)\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1494?\u1502?\u1503?:} 09:00\u8211?10:15\par}
+{\pard\rtlpar {\b \u1502?\u1496?\u1512?\u1492?:} \u1489?\u1504?\u1497?\u1497?\u1514? \u1513?\u1512?\u1514? WebSocket \u1506?\u1501? broadcast, private messaging, \u1493?-heartbeat\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 1 \u8211? \u1508?\u1514?\u1497?\u1495?\u1492?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1489?\u1497?\u1493?\u1501? 3 \u1489?\u1504?\u1497?\u1504?\u1493? API \u1489?\u1496?\u1493?\u1495? \u1506?\u1501? Auth \u1493?-Security. \u1506?\u1499?\u1513?\u1497?\u1493? \u1506?\u1493?\u1489?\u1512?\u1497?\u1501? \u1500?\u1514?\u1511?\u1513?\u1493?\u1512?\u1514? \u1489?\u1494?\u1502?\u1503? \u1488?\u1502?\u1514? \u8212? WebSocket.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1502?\u1492? \u1504?\u1500?\u1502?\u1491?:}\par}
+{\pard\rtlpar\li360\fi-360 \u8226? WebSocket vs HTTP Polling \u8212? \u1500?\u1502?\u1492? WebSocket \u1506?\u1491?\u1497?\u1507? \u1500?Real-time\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Handshake \u8212? \u1488?\u1497?\u1498? \u1502?\u1489?\u1493?\u1505?\u1505? \u1506?\u1500? HTTP \u1493?\u1506?\u1493?\u1489?\u1512? \u1500?\u1508?\u1512?\u1493?\u1496?\u1493?\u1511?\u1493?\u1500? \u1504?\u1508?\u1512?\u1491?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? ws library \u8212? \u1492?\u1505?\u1508?\u1512?\u1497?\u1497?\u1492? \u1492?\u1497?\u1513?\u1497?\u1512?\u1492?, \u1500?\u1500?\u1488? overhead\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Broadcast \u8212? \u1513?\u1500?\u1497?\u1495?\u1492? \u1500?\u1499?\u1500? \u1492?-clients \u1492?\u1502?\u1495?\u1493?\u1489?\u1512?\u1497?\u1501?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Private Messaging \u8212? \u1502?\u1508?\u1514? userId \u8594? WebSocket\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Ping/Pong Heartbeat \u8212? \u1494?\u1497?\u1492?\u1493?\u1497? clients \u1502?\u1504?\u1493?\u1514?\u1511?\u1497?\u1501? (zombie connections)\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Scaling \u8212? Redis Pub/Sub \u1500?\u1513?\u1512?\u1514?\u1497?\u1501? \u1502?\u1512?\u1493?\u1489?\u1497?\u1501?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b WebSocket vs \u1495?\u1500?\u1493?\u1508?\u1493?\u1514?:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1496?\u1499?\u1504?\u1493?\u1500?\u1493?\u1490?\u1497?\u1492? {\f1 |} \u1499?\u1497?\u1493?\u1493?\u1503? {\f1 |} \u1513?\u1497?\u1502?\u1493?\u1513? \u1502?\u1514?\u1488?\u1497?\u1501?\par}
+{\pard\rtlpar HTTP Polling {\f1 |} Client\u8594?Server (\u1499?\u1500? X \u1513?\u1504?\u1497?\u1493?\u1514?) {\f1 |} \u1504?\u1514?\u1493?\u1504?\u1497?\u1501? \u1513?\u1502?\u1513?\u1514?\u1504?\u1497?\u1501? \u1500?\u1488?\u1496?\par}
+{\pard\rtlpar Server-Sent Events {\f1 |} Server\u8594?Client (\u1495?\u1491?-\u1499?\u1497?\u1493?\u1493?\u1504?\u1497?) {\f1 |} feed, notifications\par}
+{\pard\rtlpar WebSocket {\f1 |} \u1491?\u1493?-\u1499?\u1497?\u1493?\u1493?\u1504?\u1497? \u1502?\u1500?\u1488? {\f1 |} \u1510?'\u1488?\u1496?, gaming, collaboration\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b Authentication \u1489?-WebSocket:}\par}
+{\pard\rtlpar WebSocket Handshake \u1492?\u1493?\u1488? HTTP request \u8212? \u1504?\u1497?\u1514?\u1503? \u1500?\u1513?\u1500?\u1493?\u1495? JWT \u1489?-query param \u1488?\u1493? \u1489?-cookie:\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+const ws = new WebSocket(`ws://localhost:3000?token=$\{accessToken\}`);\line
+// \u1489?server: new URL(req.url).searchParams.get('token')\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 2 \u8211? WebSocket \u1493?\u1500?\u1502?\u1492??\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1513?\u1493?\u1493?\u1488?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+HTTP Polling:\line
+Client \u8594? req \u8594? Server \u8594? res \u8594? 200\line
+Client \u8594? req \u8594? Server \u8594? res \u8594? nothing new\line
+Client \u8594? req \u8594? Server \u8594? res \u8594? data!\line
+(\u1499?\u1500? 5 \u1513?\u1504?\u1497?\u1493?\u1514?, \u1489?\u1494?\u1489?\u1493?\u1494?!)\line
+\line
+WebSocket:\line
+Client \u8592?\u8594? Server (\u1514?\u1502?\u1497?\u1491? \u1508?\u1514?\u1493?\u1495?)\line
+Server \u8594? client (\u1499?\u1513?\u1497?\u1513? \u1502?\u1513?\u1492?\u1493? \u1495?\u1491?\u1513?!)\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1502?\u1493?\u1513?\u1490?:} HTTP \u1499?\u1502?\u1493? \u1500?\u1513?\u1500?\u1493?\u1495? SMS \u1499?\u1500? 5 \u1513?\u1504?\u1497?\u1493?\u1514? "\u1497?\u1513? \u1500?\u1497? \u1492?\u1493?\u1491?\u1506?\u1493?\u1514??". WebSocket \u1499?\u1502?\u1493? \u1513?\u1497?\u1495?\u1514? \u1496?\u1500?\u1508?\u1493?\u1503? \u1508?\u1514?\u1493?\u1495?\u1492?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 3 \u8211? Handshake\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1491?\u1490?\u1502?\u1492? \u1489?-Chrome DevTools:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u1508?\u1514?\u1497?\u1495?\u1514? tab Network\par}
+{\pard\rtlpar\li360\fi-360 \u1495?\u1497?\u1508?\u1493?\u1513? WS connections\par}
+{\pard\rtlpar\li360\fi-360 \u1492?\u1510?\u1490?\u1514? 101 Switching Protocols\par}
+{\pard\rtlpar\li360\fi-360 \u1492?\u1510?\u1490?\u1514? Frames (\u1492?\u1493?\u1491?\u1506?\u1493?\u1514?)\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar Handshake \u1502?\u1514?\u1489?\u1510?\u1506? \u1489?\u1508?\u1512?\u1493?\u1496?\u1493?\u1511?\u1493?\u1500? HTTP \u1512?\u1490?\u1497?\u1500? \u8211? \u1500?\u1499?\u1503? \u1506?\u1493?\u1489?\u1512? \u1491?\u1512?\u1498? firewalls. \u1488?\u1495?\u1512?\u1497? \u1492?\u1495?\u1497?\u1489?\u1493?\u1512? \u1494?\u1492? \u1508?\u1512?\u1493?\u1496?\u1493?\u1511?\u1493?\u1500? WebSocket \u1504?\u1508?\u1512?\u1491?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 4 \u8211? ws \u1489?\u1505?\u1497?\u1505?\u1497?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? `server.js`:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import \{ WebSocketServer, WebSocket \} from "ws";\line
+import \{ createServer \} from "node:http";\line
+import express from "express";\line
+\line
+const app = express();\line
+const httpServer = createServer(app);\line
+const wss = new WebSocketServer(\{ server: httpServer \});\line
+\line
+wss.on("connection", (ws, req) => \{\line
+  console.log("New client connected");\line
+  ws.send(JSON.stringify(\{ type: "welcome", message: "Connected!" \}));\line
+\line
+  ws.on("message", (data) => \{\line
+    const msg = JSON.parse(data.toString());\line
+    console.log("Received:", msg);\line
+    ws.send(JSON.stringify(\{ type: "echo", ...msg \}));\line
+  \});\line
+\line
+  ws.on("close", (code) => console.log("Client disconnected, code:", code));\line
+  ws.on("error", (err) => console.error("WebSocket error:", err));\line
+\});\line
+\line
+httpServer.listen(3000);\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b HTML Client:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+<!-- index.html -->\line
+<script>\line
+  const ws = new WebSocket("ws://localhost:3000");\line
+  ws.onopen = () => ws.send(JSON.stringify(\{ type: "hello", text: "Hi!" \}));\line
+  ws.onmessage = (e) => console.log("Message:", JSON.parse(e.data));\line
+  ws.onclose = () => console.log("Disconnected");\line
+</script>\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 5 \u8211? Lifecycle\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b readyState:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+ws.on("message", () => \{\line
+  console.log("readyState:", ws.readyState);\line
+  // 1 = OPEN\line
+\});\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 6 \u8211? Broadcast\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+function broadcast(wss, message, excludeWs = null) \{\line
+  const json = JSON.stringify(message);\line
+  wss.clients.forEach((client) => \{\line
+    if (client !== excludeWs && client.readyState === WebSocket.OPEN) \{\line
+      client.send(json);\line
+    \}\line
+  \});\line
+\}\line
+\line
+wss.on("connection", (ws) => \{\line
+  ws.on("message", (data) => \{\line
+    const msg = JSON.parse(data.toString());\line
+    if (msg.type === "chat") \{\line
+      broadcast(wss, \{ type: "chat", text: msg.text, from: "user" \}, ws);\line
+    \}\line
+  \});\line
+\});\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1489?\u1491?\u1497?\u1511?\u1492?:} \u1508?\u1514?\u1497?\u1495?\u1514? 2 browser tabs \u1493?\u1492?\u1491?\u1490?\u1502?\u1514? \u1513?\u1492?\u1493?\u1491?\u1506?\u1492? \u1502?-tab \u1488?\u1495?\u1491? \u1502?\u1490?\u1497?\u1506?\u1492? \u1500?\u1513?\u1504?\u1497?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 7 \u8211? Private Messages\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+const clients = new Map(); // userId \u8594? ws\line
+\line
+wss.on("connection", (ws, req) => \{\line
+  const userId = new URL(req.url, "http://localhost").searchParams.get(\line
+    "userId"\line
+  );\line
+  clients.set(userId, ws);\line
+\line
+  ws.on("close", () => clients.delete(userId));\line
+\line
+  ws.on("message", (data) => \{\line
+    const msg = JSON.parse(data.toString());\line
+    if (msg.type === "private") \{\line
+      const targetWs = clients.get(msg.to);\line
+      if (targetWs?.readyState === WebSocket.OPEN) \{\line
+        targetWs.send(\line
+          JSON.stringify(\{ type: "private", from: userId, text: msg.text \})\line
+        );\line
+      \}\line
+    \}\line
+  \});\line
+\});\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 8 \u8211? Ping/Pong\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? heartbeat:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+wss.on("connection", (ws) => \{\line
+  ws.isAlive = true;\line
+  ws.on("pong", () => \{\line
+    ws.isAlive = true;\line
+  \});\line
+\});\line
+\line
+const heartbeat = setInterval(() => \{\line
+  wss.clients.forEach((ws) => \{\line
+    if (!ws.isAlive) \{\line
+      console.log("Terminating zombie connection");\line
+      return ws.terminate();\line
+    \}\line
+    ws.isAlive = false;\line
+    ws.ping();\line
+  \});\line
+\}, 30_000);\line
+\line
+wss.on("close", () => clearInterval(heartbeat));\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 12 \u8211? Scaling\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1488?\u1512?\u1499?\u1497?\u1496?\u1511?\u1496?\u1493?\u1512?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+Server A \u8592?\u8594? Redis Pub/Sub \u8592?\u8594? Server B\line
+  \u8593?                              \u8593?\line
+Client 1                       Client 2\line
+\line
+Client 1 \u1513?\u1493?\u1500?\u1495? \u8594? Server A \u8594? Redis publish \u8594? Server B \u8594? Client 2 \u1502?\u1511?\u1489?\u1500?\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1505?\u1497?\u1499?\u1493?\u1501?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1502?\u1510?\u1490?\u1514? \u1494?\u1493? \u1505?\u1497?\u1511?\u1512?\u1492?:\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? WebSocket vs HTTP polling\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Handshake \u1493?-lifecycle\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1513?\u1512?\u1514? WebSocket \u1489?\u1505?\u1497?\u1505?\u1497?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Broadcast \u1500?\u1499?\u1500? \u1492?-clients\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Private messaging\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Ping/Pong heartbeat\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Scaling \u1506?\u1501? Redis Pub/Sub\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1506?\u1512?\u1493?\u1514?:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Authentication: \u1489?-connection handler \u1504?\u1497?\u1514?\u1503? \u1500?\u1511?\u1512?\u1493?\u1488? token \u1502?-URL param \u1488?\u1493? header\par}
+{\pard\rtlpar\li360\fi-360 \u8226? socket.io vs ws: socket.io \u1502?\u1505?\u1508?\u1511? fallbacks. \u1500?\u1508?\u1512?\u1493?\u1491?\u1511?\u1513?\u1503? \u1502?\u1493?\u1491?\u1512?\u1504?\u1497? ws \u1497?\u1513?\u1497?\u1512? \u1502?\u1514?\u1488?\u1497?\u1501?\par}
+{\pard\rtlpar\par}
+}

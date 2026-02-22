@@ -1,0 +1,12 @@
+{
+  "name": "day1-lesson1",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Day 1 Lesson 1",
+  "scripts": {
+    "start": "node ex01.js",
+    "dev": "node --watch ex01.js"
+  },
+  "dependencies": {},
+  "license": "ISC"
+}

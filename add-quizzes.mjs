@@ -88,5 +88,13 @@ presentations.forEach((p) => {
   }
 ];`;
 
-    // Match ];at the end, possibly with whitespace
-    content = content.replace(/\];(\s*)$/m, quizSlide + '$1');
+    content = content.replace(/\];$/, quizSlide);
+
+    writeFileSync(p.file, content, "utf-8");
+    console.log(`✅ Added quiz to ${p.file}`);
+  } catch (error) {
+    console.error(`❌ Error processing ${p.file}:`, error.message);
+  }
+});
+
+console.log("\n✅ Done! All quizzes added.");

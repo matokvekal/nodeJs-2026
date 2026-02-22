@@ -1,0 +1,23 @@
+FIDDLER
+https://www.telerik.com/download/fiddler?_gl=1*8578ov*_ga*OTU2MzYwOTY0LjE3MTA4Njc5MzA.*_ga_9JSNBCSF54*MTcxMDg2NzkzMC4xLjEuMTcxMDg2ODE3OC42MC4wLjA.*_gcl_au*MTg4MjI5MDQzOS4xNzEwODY3OTMw&_ga=2.237938688.1088928051.1710867930-956360964.1710867930
+https://www.telerik.com/download/fiddler/fiddler4
+
+
+
+curl  http:www.localhost:80
+curl https://swapi.dev/api/people/
+
+
+browser
+http://localhost/
+
+https://localhost/
+
+http://127.0.0.1/
+https://swapi.dev/api/people/
+
+postman
+get localhost
+post localhost
+https://swapi.dev/api/people/
+

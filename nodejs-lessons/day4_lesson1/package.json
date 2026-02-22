@@ -1,0 +1,12 @@
+{
+  "name": "day4-lesson1",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Day 4 Lesson 1",
+  "scripts": {
+    "start": "node ex01.js",
+    "dev": "node --watch ex01.js"
+  },
+  "dependencies": {"ws": "^8.16.0", "jsonwebtoken": "^9.0.2", "express": "^5.0.0", "redis": "^4.6.0"},
+  "license": "ISC"
+}

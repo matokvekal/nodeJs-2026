@@ -1,0 +1,284 @@
+{\rtf1\ansi\ansicpg1255\deflang1037\deff0
+{\fonttbl{\f0\froman\fcharset177 David;}{\f1\fmodern\fcharset0 Courier New;}}
+{\colortbl ;\red0\green0\blue0;\red0\green100\blue0;\red180\green0\blue0;}
+\rtldoc\widowctrl\hyphauto
+{\pard\rtlpar\b\fs36 \u1502?\u1491?\u1512?\u1497?\u1498? \u1500?\u1502?\u1512?\u1510?\u1492? \u8211? \u1497?\u1493?\u1501? 3 \u1502?\u1510?\u1490?\u1514? 9: MongoDB + Mongoose v7\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1494?\u1502?\u1503?:} 09:00\u8211?10:30\par}
+{\pard\rtlpar {\b \u1502?\u1496?\u1512?\u1492?:} \u1495?\u1497?\u1489?\u1493?\u1512? \u1492?-API \u1502?\u1497?\u1493?\u1501? 2 \u1500?\u1502?\u1505?\u1491? MongoDB \u1488?\u1502?\u1497?\u1514?\u1497?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 1 \u8211? \u1508?\u1514?\u1497?\u1495?\u1492?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1489?\u1497?\u1493?\u1501? 2 \u1489?\u1504?\u1497?\u1504?\u1493? API \u1506?\u1501? \u1504?\u1514?\u1493?\u1504?\u1497?\u1501? \u1489?-Memory (Map). \u1492?\u1497?\u1493?\u1501? \u1502?\u1495?\u1489?\u1512?\u1497?\u1501? \u1488?\u1493?\u1514?\u1493? \u1500?\u1502?\u1505?\u1491? \u1504?\u1514?\u1493?\u1504?\u1497?\u1501? \u1488?\u1502?\u1497?\u1514?\u1497? \u8212? MongoDB. \u1499?\u1502?\u1506?\u1496? \u1500?\u1488? \u1504?\u1510?\u1496?\u1512?\u1498? \u1500?\u1513?\u1504?\u1493?\u1514? \u1488?\u1514? \u1492?-Controllers, \u1512?\u1511? \u1488?\u1514? \u1492?-Service layer.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1502?\u1492? \u1504?\u1500?\u1502?\u1491?:}\par}
+{\pard\rtlpar\li360\fi-360 \u8226? MongoDB \u8211? Document database, \u1502?\u1492? \u1492?\u1493?\u1488? \u1493?\u1502?\u1514?\u1497? \u1506?\u1491?\u1497?\u1507? \u1506?\u1500? SQL\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Mongoose v7 \u8211? ODM \u1513?\u1502?\u1493?\u1505?\u1497?\u1507? schema, validation, \u1493?-middleware\par}
+{\pard\rtlpar\li360\fi-360 \u8226? CRUD \u1506?\u1501? Mongoose: findById, create, findOneAndUpdate, deleteOne\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Indexes \u8211? \u1492?\u1502?\u1508?\u1514?\u1495? \u1500?\u1489?\u1497?\u1510?\u1493?\u1506?\u1497?\u1501?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? {\f1\ltrch lean()\f0} \u8211? \u1513?\u1497?\u1508?\u1493?\u1512? \u1489?\u1497?\u1510?\u1493?\u1506?\u1497?\u1501? \u1508?\u1513?\u1493?\u1496? \u1493?\u1497?\u1506?\u1497?\u1500?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? {\f1\ltrch populate\f0} \u8211? joins \u1489?-MongoDB\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Aggregation \u8211? \u1505?\u1496?\u1496?\u1497?\u1505?\u1496?\u1497?\u1511?\u1493?\u1514? \u1493?\u1491?\u1493?\u1495?\u1493?\u1514?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Cursor Pagination \u8211? pagination \u1497?\u1506?\u1497?\u1500? \u1500?\u1499?\u1502?\u1493?\u1497?\u1493?\u1514? \u1490?\u1491?\u1493?\u1500?\u1493?\u1514?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b MongoDB vs SQL \u8212? \u1502?\u1514?\u1497? \u1500?\u1492?\u1513?\u1514?\u1502?\u1513?:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar MongoDB {\f1 |} SQL\par}
+{\pard\rtlpar \u1504?\u1514?\u1493?\u1504?\u1497?\u1501? \u1500?\u1488?-\u1502?\u1493?\u1489?\u1504?\u1497?\u1501? (flexible schema) {\f1 |} \u1511?\u1513?\u1512?\u1497?\u1501? \u1502?\u1493?\u1512?\u1499?\u1489?\u1497?\u1501? \u1489?\u1497?\u1503? \u1497?\u1513?\u1493?\u1497?\u1493?\u1514?\par}
+{\pard\rtlpar Real-time, high write throughput {\f1 |} ACID transactions \u1502?\u1500?\u1488?\u1497?\u1501?\par}
+{\pard\rtlpar JSON-native (\u1502?\u1493?\u1513?\u1500?\u1501? \u1500?-Node.js) {\f1 |} \u1504?\u1514?\u1493?\u1504?\u1497?\u1501? \u1502?\u1488?\u1493?\u1491? \u1502?\u1493?\u1489?\u1504?\u1497?\u1501? \u1493?\u1511?\u1489?\u1493?\u1506?\u1497?\u1501?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1499?\u1500?\u1500? \u1488?\u1510?\u1489?\u1506?:} \u1492?\u1502?\u1505?\u1491? \u1492?\u1504?\u1499?\u1493?\u1503? \u1514?\u1500?\u1493?\u1497? \u1489?-use case, \u1500?\u1488? \u1489?\u1496?\u1512?\u1504?\u1491?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 2 \u8211? MongoDB\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar MongoDB \u1492?\u1493?\u1488? document database. \u1489?\u1502?\u1511?\u1493?\u1501? \u1496?\u1489?\u1500?\u1488?\u1493?\u1514? \u1493?\u1513?\u1493?\u1512?\u1493?\u1514? (SQL), MongoDB \u1502?\u1513?\u1514?\u1502?\u1513? \u1489?-collections \u1493?-documents. Document \u1492?\u1493?\u1488? JSON object \u1513?\u1504?\u1513?\u1502?\u1512? \u1489?\u1502?\u1505?\u1491? \u1492?\u1504?\u1514?\u1493?\u1504?\u1497?\u1501?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1513?\u1493?\u1493?\u1488?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+SQL:    users (table) \u8594? row: \{ id, name, email \}\line
+MongoDB: users (collection) \u8594? document: \{ _id, name, email, addresses: [...] \}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 3 \u8211? Mongoose Connection\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? `src/config/db.js`:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import mongoose from "mongoose";\line
+\line
+export async function connectDB() \{\line
+  try \{\line
+    await mongoose.connect(process.env.MONGODB_URI);\line
+    console.log("MongoDB connected");\line
+    mongoose.connection.on("error", (err) =>\line
+      console.error("MongoDB error:", err)\line
+    );\line
+  \} catch (err) \{\line
+    console.error("Failed to connect:", err);\line
+    process.exit(1);\line
+  \}\line
+\}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// src/server.js\line
+import \{ connectDB \} from "./config/db.js";\line
+await connectDB();\line
+app.listen(PORT);\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 4 \u8211? Schema Design\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? `src/models/task.model.js`:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import mongoose from "mongoose";\line
+\line
+const taskSchema = new mongoose.Schema(\line
+  \{\line
+    title: \{\line
+      type: String,\line
+      required: [true, "Title is required"],\line
+      maxlength: 100\line
+    \},\line
+    description: \{ type: String, maxlength: 500 \},\line
+    status: \{\line
+      type: String,\line
+      enum: ["todo", "in-progress", "done"],\line
+      default: "todo"\line
+    \},\line
+    priority: \{\line
+      type: String,\line
+      enum: ["low", "medium", "high"],\line
+      default: "medium"\line
+    \},\line
+    user: \{ type: mongoose.Schema.Types.ObjectId, ref: "User", required: true \},\line
+    dueDate: Date\line
+  \},\line
+  \{ timestamps: true \}\line
+);\line
+\line
+// \u1488?\u1497?\u1504?\u1491?\u1511?\u1505?\u1497?\u1501?\line
+taskSchema.index(\{ user: 1, status: 1 \});\line
+taskSchema.index(\{ createdAt: -1 \});\line
+\line
+export const Task = mongoose.model("Task", taskSchema);\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 5 \u8211? CRUD\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? `src/services/tasks.service.js`:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import \{ Task \} from "../models/task.model.js";\line
+import \{ AppError \} from "../utils/AppError.js";\line
+\line
+export async function findAll(\{ userId, status, sort = "-createdAt" \}) \{\line
+  const filter = \{ user: userId \};\line
+  if (status) filter.status = status;\line
+  return Task.find(filter).sort(sort).lean();\line
+\}\line
+\line
+export async function findById(id, userId) \{\line
+  const task = await Task.findOne(\{ _id: id, user: userId \}).lean();\line
+  if (!task) throw new AppError("Task not found", 404);\line
+  return task;\line
+\}\line
+\line
+export async function create(data, userId) \{\line
+  return Task.create(\{ ...data, user: userId \});\line
+\}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1495?\u1513?\u1493?\u1489?:} \u1489?\u1499?\u1500? \u1511?\u1512?\u1497?\u1488?\u1492? \u1489?\u1500?\u1489?\u1491? (read), \u1513?\u1497?\u1502?\u1493?\u1513? \u1489?-{\f1\ltrch lean()\f0} \u1502?\u1492?\u1497?\u1512? \u1488?\u1514? \u1492?\u1489?\u1497?\u1510?\u1493?\u1506?\u1497?\u1501? \u1508?\u1497? 5.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 6 \u8211? Validation\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar Mongoose validation \u1502?\u1505?\u1508?\u1511?\u1514? \u1513?\u1493?\u1512?\u1514? \u1492?\u1490?\u1504?\u1492? \u1512?\u1488?\u1513?\u1493?\u1504?\u1492? \u1489?\u1512?\u1502?\u1514? \u1492?\u1502?\u1493?\u1491?\u1500?. \u1492?\u1497?\u1488? \u1500?\u1488? \u1502?\u1495?\u1500?\u1497?\u1508?\u1492? \u1488?\u1514? Zod validation \u1489?-route layer, \u1488?\u1500?\u1488? \u1502?\u1493?\u1505?\u1497?\u1508?\u1492? \u1513?\u1499?\u1489?\u1492? \u1504?\u1493?\u1505?\u1508?\u1514?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? ValidationError:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+try \{\line
+  await Task.create(\{ title: "" \}); // required!\line
+\} catch (err) \{\line
+  if (err.name === "ValidationError") \{\line
+    console.log(err.errors); // \{ title: \{ message: 'Title is required' \} \}\line
+  \}\line
+\}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 7 \u8211? Indexes\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar Index \u1492?\u1493?\u1488? B-tree \u1513?\u1502?\u1488?\u1508?\u1513?\u1512? \u1500?\u1513?\u1488?\u1497?\u1500?\u1514?\u1492? \u1500?\u1511?\u1508?\u1493?\u1509? \u1497?\u1513?\u1497?\u1512?\u1493?\u1514? \u1500?\u1514?\u1493?\u1510?\u1488?\u1493?\u1514? \u1489?\u1502?\u1511?\u1493?\u1501? \u1500?\u1505?\u1512?\u1493?\u1511? \u1488?\u1514? \u1499?\u1500? \u1492?-collection.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? explain():}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+const result = await Task.find(\{ user: userId \}).explain("executionStats");\line
+console.log(result.executionStats.totalDocsExamined);\line
+// \u1500?\u1500?\u1488? index: \u1505?\u1493?\u1512?\u1511? \u1492?\u1499?\u1500?\line
+// \u1506?\u1501? index: \u1511?\u1493?\u1508?\u1509? \u1497?\u1513?\u1497?\u1512?\u1493?\u1514?\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 8 \u8211? lean()\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1491?\u1490?\u1502?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// \u1506?\u1501? lean() - plain object\line
+const task = await Task.findById(id).lean();\line
+console.log(task.save); // undefined - \u1500?\u1488? \u1511?\u1497?\u1497?\u1501?\line
+\line
+// \u1489?\u1500?\u1497? lean() - Mongoose Document\line
+const taskDoc = await Task.findById(id);\line
+console.log(typeof taskDoc.save); // function\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1502?\u1491?\u1497?\u1491?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+console.time("without lean");\line
+await Task.find();\line
+console.timeEnd("without lean");\line
+\line
+console.time("with lean");\line
+await Task.find().lean();\line
+console.timeEnd("with lean");\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 9 \u8211? populate\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+const tasks = await Task.find(\{ user: userId \})\line
+  .populate("user", "name email") // \u1513?\u1491?\u1493?\u1514? \u1505?\u1508?\u1510?\u1497?\u1508?\u1497?\u1497?\u1501?!\line
+  .lean();\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b N+1 problem:} \u1488?\u1501? \u1497?\u1513? 100 posts \u1493?\u1506?\u1493?\u1513?\u1497?\u1501? populate \u1506?\u1500? \u1499?\u1500? \u1488?\u1495?\u1491? \u1489?-loop = 101 queries. Mongoose \u1502?\u1489?\u1510?\u1506? 2 queries \u1489?\u1500?\u1489?\u1491? \u1489?\u1488?\u1493?\u1508?\u1503? \u1502?\u1493?\u1508?\u1506?\u1500?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 10 \u8211? Aggregation\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? \u1505?\u1496?\u1496?\u1497?\u1505?\u1496?\u1497?\u1511?\u1493?\u1514?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+const stats = await Task.aggregate([\line
+  \{ $match: \{ user: userId \} \},\line
+  \{\line
+    $group: \{\line
+      _id: "$status",\line
+      count: \{ $sum: 1 \}\line
+    \}\line
+  \},\line
+  \{ $sort: \{ count: -1 \} \}\line
+]);\line
+// [\{ _id: 'todo', count: 5 \}, \{ _id: 'done', count: 3 \}]\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 11-12 \u8211? Pagination\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b Cursor pagination \u1491?\u1493?\u1490?\u1502?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+export async function findAll(\{ after, limit = 20, userId \}) \{\line
+  const query = \{ user: userId \};\line
+  if (after) query._id = \{ $gt: after \};\line
+\line
+  const tasks = await Task.find(query)\line
+    .sort(\{ _id: 1 \})\line
+    .limit(limit + 1)\line
+    .lean();\line
+\line
+  const hasMore = tasks.length > limit;\line
+  return \{\line
+    data: hasMore ? tasks.slice(0, -1) : tasks,\line
+    nextCursor: hasMore ? tasks.at(-2)._id : null\line
+  \};\line
+\}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1505?\u1497?\u1499?\u1493?\u1501?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1502?\u1510?\u1490?\u1514? \u1494?\u1493? \u1505?\u1497?\u1511?\u1512?\u1492?:\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? MongoDB \u1493?\u1492?\u1502?\u1493?\u1513?\u1490?\u1497?\u1501? \u1492?\u1489?\u1505?\u1497?\u1505?\u1497?\u1497?\u1501?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Mongoose schemas \u1493?-models\par}
+{\pard\rtlpar\li360\fi-360 \u8226? CRUD operations\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Validation, Indexes, lean()\par}
+{\pard\rtlpar\li360\fi-360 \u8226? populate \u1493?-aggregation\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Cursor-based pagination\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1506?\u1512?\u1493?\u1514?:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1488?\u1501? MongoDB \u1500?\u1488? \u1506?\u1493?\u1500?\u1492?: {\f1\ltrch docker ps && docker start mongo\f0}\par}
+{\pard\rtlpar\li360\fi-360 \u8226? ObjectId validation errors: Mongoose \u1494?\u1493?\u1512?\u1511? CastError \u1499?\u1513?-id \u1500?\u1488? valid\par}
+{\pard\rtlpar\par}
+}

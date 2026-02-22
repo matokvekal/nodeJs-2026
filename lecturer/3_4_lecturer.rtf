@@ -1,0 +1,261 @@
+{\rtf1\ansi\ansicpg1255\deflang1037\deff0
+{\fonttbl{\f0\froman\fcharset177 David;}{\f1\fmodern\fcharset0 Courier New;}}
+{\colortbl ;\red0\green0\blue0;\red0\green100\blue0;\red180\green0\blue0;}
+\rtldoc\widowctrl\hyphauto
+{\pard\rtlpar\b\fs36 \u1502?\u1491?\u1512?\u1497?\u1498? \u1500?\u1502?\u1512?\u1510?\u1492? \u8211? \u1497?\u1493?\u1501? 3 \u1502?\u1510?\u1490?\u1514? 12: Security Deep Dive\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1494?\u1502?\u1503?:} 15:00\u8211?16:30\par}
+{\pard\rtlpar {\b \u1502?\u1496?\u1512?\u1492?:} \u1492?\u1493?\u1505?\u1508?\u1514? \u1513?\u1499?\u1489?\u1493?\u1514? \u1492?\u1490?\u1504?\u1492? \u1500?-API \u1493?\u1492?\u1497?\u1499?\u1512?\u1493?\u1514? \u1506?\u1501? OWASP API Top 10\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 1 \u8211? \u1508?\u1514?\u1497?\u1495?\u1492?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1497?\u1513? \u1500?\u1504?\u1493? API \u1506?\u1501? Auth \u8212? \u1488?\u1489?\u1500? Auth \u1500?\u1489?\u1491? \u1500?\u1488? \u1502?\u1505?\u1508?\u1497?\u1511?. \u1488?\u1508?\u1513?\u1512? \u1500?\u1506?\u1511?\u1493?\u1507? Auth \u1488?\u1501? \u1497?\u1513? BOLA. \u1488?\u1508?\u1513?\u1512? \u1500?\u1490?\u1504?\u1493?\u1489? secrets \u1488?\u1501? \u1492?\u1501? \u1489?-GitHub. \u1506?\u1499?\u1513?\u1497?\u1493? \u1504?\u1493?\u1505?\u1497?\u1507? \u1513?\u1499?\u1489?\u1493?\u1514? \u1492?\u1490?\u1504?\u1492?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1502?\u1492? \u1504?\u1500?\u1502?\u1491?:}\par}
+{\pard\rtlpar\li360\fi-360 \u8226? OWASP API Top 10 \u8212? \u1492?\u1512?\u1513?\u1497?\u1502?\u1492? \u1513?\u1499?\u1500? \u1502?\u1508?\u1514?\u1495? \u1495?\u1497?\u1497?\u1489? \u1500?\u1492?\u1499?\u1497?\u1512?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? helmet \u8212? security headers \u1489?\u1513?\u1493?\u1512?\u1492? \u1488?\u1495?\u1514?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? CORS \u8212? \u1502?\u1497? \u1502?\u1493?\u1512?\u1513?\u1492? \u1500?\u1490?\u1513?\u1514? \u1500?-API\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Rate Limiting \u8212? \u1492?\u1490?\u1504?\u1492? \u1502?\u1508?\u1504?\u1497? DoS \u1493?-brute force\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Sanitization \u8212? \u1502?\u1504?\u1497?\u1506?\u1514? NoSQL/SQL injection\par}
+{\pard\rtlpar\li360\fi-360 \u8226? BOLA \u8212? \u1492?\u1489?\u1506?\u1497?\u1492? \u1502?\u1505?\u1508?\u1512? 1 \u1489?-API security\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Mass Assignment \u8212? \u1495?\u1493?\u1500?\u1513?\u1492? \u1513?\u1511?\u1500? \u1500?\u1492?\u1514?\u1506?\u1500?\u1501? \u1502?\u1502?\u1504?\u1492?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Secrets Management \u8212? .env \u1500?\u1488? \u1513?\u1497?\u1497?\u1498? \u1500?-Git, \u1488?\u1497? \u1508?\u1506?\u1501?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b OWASP API Top 10 \u8212? \u1514?\u1497?\u1488?\u1493?\u1512? \u1511?\u1510?\u1512?:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar # {\f1 |} \u1513?\u1501? {\f1 |} \u1514?\u1497?\u1488?\u1493?\u1512?\par}
+{\pard\rtlpar 1 {\f1 |} BOLA {\f1 |} \u1490?\u1497?\u1513?\u1492? \u1500?\u1502?\u1513?\u1488?\u1489? \u1513?\u1500? \u1502?\u1513?\u1514?\u1502?\u1513? \u1488?\u1495?\u1512?\par}
+{\pard\rtlpar 2 {\f1 |} Broken Auth {\f1 |} JWT \u1495?\u1500?\u1513?, \u1495?\u1505?\u1512? refresh rotation\par}
+{\pard\rtlpar 3 {\f1 |} Broken Object Level Auth {\f1 |} \u1492?\u1512?\u1513?\u1488?\u1493?\u1514? \u1500?\u1488? \u1504?\u1489?\u1491?\u1511?\u1493?\u1514?\par}
+{\pard\rtlpar 4 {\f1 |} Unrestricted Resource Consumption {\f1 |} \u1495?\u1505?\u1512? rate limiting\par}
+{\pard\rtlpar 5 {\f1 |} Broken Function Level Auth {\f1 |} endpoints \u1495?\u1513?\u1493?\u1508?\u1497?\u1501? \u1500?\u1513?\u1490?\u1497?\u1488?\u1492?\par}
+{\pard\rtlpar 6 {\f1 |} Mass Assignment {\f1 |} \u1506?\u1491?\u1499?\u1493?\u1503? \u1513?\u1491?\u1493?\u1514? \u1500?\u1488? \u1502?\u1493?\u1512?\u1513?\u1497?\u1501?\par}
+{\pard\rtlpar 7 {\f1 |} Security Misconfiguration {\f1 |} CORS \u1512?\u1495?\u1489?, headers \u1495?\u1505?\u1512?\u1497?\u1501?\par}
+{\pard\rtlpar 8 {\f1 |} Injection {\f1 |} SQL/NoSQL/Command injection\par}
+{\pard\rtlpar 9 {\f1 |} Improper Assets Management {\f1 |} API versions \u1497?\u1513?\u1504?\u1493?\u1514? \u1495?\u1513?\u1493?\u1508?\u1493?\u1514?\par}
+{\pard\rtlpar 10 {\f1 |} Unsafe Consumption of APIs {\f1 |} \u1505?\u1502?\u1497?\u1499?\u1493?\u1514? \u1506?\u1497?\u1493?\u1493?\u1512?\u1514? \u1489?-3rd party\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 2 \u8211? OWASP API Top 10\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar OWASP (Open Web Application Security Project) \u1502?\u1508?\u1512?\u1505?\u1501? \u1488?\u1514? \u1512?\u1513?\u1497?\u1502?\u1514? \u1492?\u1505?\u1497?\u1499?\u1493?\u1504?\u1497?\u1501? \u1492?\u1502?\u1493?\u1489?\u1497?\u1500?\u1497?\u1501? \u1489?-API security. \u1494?\u1492?\u1493? \u1502?\u1511?\u1493?\u1512? \u1492?\u1502?\u1497?\u1491?\u1506? \u1492?\u1502?\u1512?\u1499?\u1494?\u1497? \u1500?\u1488?\u1489?\u1496?\u1495?\u1514? APIs.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b BOLA (#1 \u1489?\u1512?\u1513?\u1497?\u1502?\u1492?):}\par}
+{\pard\rtlpar \u1513?\u1490?\u1497?\u1488?\u1492? \u1504?\u1508?\u1493?\u1510?\u1492?: {\f1\ltrch Task.findById(req.params.id)\f0} \u1500?\u1500?\u1488? \u1489?\u1491?\u1497?\u1511?\u1492? \u1513?\u1492?-task \u1513?\u1497?\u1497?\u1498? \u1500?\u1502?\u1513?\u1514?\u1502?\u1513? \u1492?\u1504?\u1493?\u1499?\u1495?\u1497?. \u1494?\u1493? \u1489?\u1506?\u1497?\u1497?\u1514? BOLA \u1511?\u1500?\u1488?\u1505?\u1497?\u1514?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 3 \u8211? helmet\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \\*\\*\u1491?\u1493?\u1490?\u1502?\u1492?:\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import helmet from "helmet";\line
+app.use(helmet());\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \\*\\*Headers \u1513?\u1504?\u1493?\u1505?\u1508?\u1497?\u1501?:\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+X-Content-Type-Options: nosniff\line
+X-Frame-Options: SAMEORIGIN\line
+Strict-Transport-Security: max-age=15552000; includeSubDomains\line
+X-Powered-By: (\u1504?\u1502?\u1495?\u1511?!)\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1513?\u1493?\u1512?\u1492? \u1488?\u1495?\u1514? \u1513?\u1500? \u1511?\u1493?\u1491? \u1502?\u1493?\u1505?\u1497?\u1508?\u1492? \u1506?\u1513?\u1512?\u1493?\u1514? \u1492?\u1490?\u1504?\u1493?\u1514? security. \u1502?\u1493?\u1502?\u1500?\u1509? \u1514?\u1502?\u1497?\u1491?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 4 \u8211? CORS\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \\*\\*\u1491?\u1493?\u1490?\u1502?\u1492?:\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import cors from "cors";\line
+\line
+app.use(\line
+  cors(\{\line
+    origin: ["https://myapp.com", "https://admin.myapp.com"],\line
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],\line
+    allowedHeaders: ["Content-Type", "Authorization"],\line
+    credentials: true\line
+  \})\line
+);\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1513?\u1490?\u1497?\u1488?\u1492? \u1504?\u1508?\u1493?\u1510?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// \u10060? \u1502?\u1505?\u1493?\u1499?\u1503?! \u1499?\u1493?\u1499?\u1489?\u1497?\u1514? + credentials = \u1500?\u1488? \u1506?\u1493?\u1489?\u1491? \u1489?-browser\line
+app.use(cors(\{ origin: "*", credentials: true \}));\line
+\line
+// \u9989? \u1504?\u1499?\u1493?\u1503?\line
+app.use(\line
+  cors(\{ origin: process.env.ALLOWED_ORIGIN?.split(","), credentials: true \})\line
+);\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 5 \u8211? Rate Limiting\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \\*\\*\u1491?\u1493?\u1490?\u1502?\u1492?:\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import rateLimit from "express-rate-limit";\line
+\line
+const generalLimiter = rateLimit(\{\line
+  windowMs: 15 * 60 * 1000, // 15 minutes\line
+  max: 100,\line
+  message: \{ error: "Too many requests", retryAfter: "15 minutes" \}\line
+\});\line
+\line
+const authLimiter = rateLimit(\{\line
+  windowMs: 15 * 60 * 1000,\line
+  max: 5, // \u1502?\u1495?\u1502?\u1497?\u1512? \u1500?auth\line
+  message: \{ error: "Too many login attempts" \}\line
+\});\line
+\line
+app.use("/api/", generalLimiter);\line
+app.use("/auth/login", authLimiter);\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \\*\\*\u1489?\u1491?\u1497?\u1511?\u1492? \u1506?\u1501? curl:\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+# \u1513?\u1500?\u1495? 6 \u1489?\u1511?\u1513?\u1493?\u1514? \u1500?-login \u1493?\u1512?\u1493?\u1488?\u1492? 429\line
+for i in \{1..6\}; do\line
+  curl -X POST http://localhost:3000/auth/login \\\line
+    -H "Content-Type: application/json" \\\line
+    -d '\{"email":"test@test.com","password":"wrong"\}'\line
+done\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 6 \u8211? Sanitization\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \\*\\*\u1491?\u1493?\u1490?\u1502?\u1514? NoSQL Injection:\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// \u10060? \u1502?\u1505?\u1493?\u1499?\u1503? - query injection\line
+// POST /auth/login \{ "email": \{ "$gt": "" \}, "password": "anything" \}\line
+const user = await User.findOne(\{ email: req.body.email \});\line
+\line
+// \u9989? \u1506?\u1501? sanitization\line
+import mongoSanitize from "express-mongo-sanitize";\line
+app.use(mongoSanitize()); // \u1502?\u1505?\u1497?\u1512? $ \u1493?-. \u1502?\u1499?\u1500? \u1492?input\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1491?\u1490?\u1502?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+Input: \{ "email": \{ "$gt": "" \} \}\line
+After sanitize: \{ "email": \{\} \}  \u8592? operator \u1492?\u1493?\u1505?\u1512?\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 7 \u8211? BOLA Demo\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \\*\\*\u1492?\u1491?\u1490?\u1502?\u1514? \u1492?\u1489?\u1506?\u1497?\u1492? \u1493?\u1492?\u1508?\u1514?\u1512?\u1493?\u1503?:\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// Setup: User A \u1497?\u1513? task #1, User B \u1497?\u1513? task #2\line
+// User B \u1502?\u1504?\u1505?\u1492? \u1500?\u1490?\u1513?\u1514? \u1500?-task #1\line
+\line
+// \u10060? BOLA - \u1500?\u1488? \u1489?\u1496?\u1493?\u1495?\line
+router.get("/:id", authenticate, async (req, res) => \{\line
+  const task = await Task.findById(req.params.id);\line
+  res.json(task); // User B \u1511?\u1497?\u1489?\u1500? \u1488?\u1514? \u1492?task \u1513?\u1500? User A!\line
+\});\line
+\line
+// \u9989? \u1489?\u1496?\u1493?\u1495?\line
+router.get("/:id", authenticate, async (req, res) => \{\line
+  const task = await Task.findOne(\{\line
+    _id: req.params.id,\line
+    user: req.user.id // ownership check!\line
+  \});\line
+  if (!task) throw new AppError("Not found", 404);\line
+  res.json(task);\line
+\});\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 8 \u8211? Mass Assignment\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \\*\\*\u1491?\u1493?\u1490?\u1502?\u1492?:\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// \u10060? \u1502?\u1505?\u1493?\u1499?\u1503?\line
+// POST /users \{ "name": "Alice", "role": "admin" \}\line
+await User.findByIdAndUpdate(id, req.body); // role \u1506?\u1493?\u1491?\u1499?\u1503?!\line
+\line
+// \u9989? \u1489?\u1496?\u1493?\u1495?\line
+const \{ name, email, bio \} = req.body; // whitelist\line
+await User.findByIdAndUpdate(id, \{ name, email, bio \});\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b Zod \u1499?\u1508?\u1514?\u1512?\u1493?\u1503?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+const updateSchema = z.object(\{\line
+  name: z.string().optional(),\line
+  email: z.string().email().optional()\line
+  // role \u1500?\u1488? \u1504?\u1502?\u1510?\u1488? \u1499?\u1488?\u1503? = \u1500?\u1488? \u1497?\u1493?\u1506?\u1489?\u1512?\line
+\});\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 9 \u8211? Secrets Management\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1513?\u1490?\u1497?\u1488?\u1492? \u1504?\u1508?\u1493?\u1510?\u1492? \u1502?\u1505?\u1508?\u1512? 1: \u1492?\u1506?\u1500?\u1488?\u1514? \u1511?\u1493?\u1489?\u1509? .env \u1500?-GitHub. \u1505?\u1493?\u1512?\u1511?\u1497?\u1501? \u1488?\u1493?\u1496?\u1493?\u1502?\u1496?\u1497?\u1497?\u1501? \u1502?\u1493?\u1510?\u1488?\u1497?\u1501? \u1505?\u1493?\u1491?\u1493?\u1514? \u1514?\u1493?\u1498? \u1513?\u1504?\u1497?\u1493?\u1514?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \\*\\*\u1492?\u1491?\u1490?\u1502?\u1492?:\par}
+{\pard\rtlpar echo "JWT_SECRET=super_secret_123" >> .env\par}
+{\pard\rtlpar git add .env\par}
+{\pard\rtlpar git status # \u8592? \u1488?\u1500? \u1514?\u1506?\u1513?\u1492? commit!\par}
+{\pard\rtlpar git checkout .env\par}
+{\pard\rtlpar echo ".env" >> .gitignore\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+\line
+---\line
+\line
+## \u1513?\u1511?\u1507? 11 \u8211? CSRF vs JWT\line
+\line
+JWT \u1489?-Authorization header \u1500?\u1488? \u1495?\u1513?\u1493?\u1507? \u1500?-CSRF \u1499?\u1497? \u1492?\u1491?\u1508?\u1491?\u1508?\u1503? \u1500?\u1488? \u1502?\u1493?\u1505?\u1497?\u1507? \u1488?\u1514? \u1492?-header \u1488?\u1493?\u1496?\u1493?\u1502?\u1496?\u1497?\u1514?. Cookies \u1495?\u1513?\u1493?\u1508?\u1497?\u1501? \u1500?-CSRF, \u1500?\u1499?\u1503? Refresh Token \u1504?\u1513?\u1502?\u1512? \u1489?-HttpOnly Cookie \u1506?\u1501? SameSite=Strict.\line
+\line
+---\line
+\line
+## \u1513?\u1511?\u1507? 12 \u8211? Security Checklist\line
+\line
+\u1505?\u1511?\u1497?\u1512?\u1492? \u1513?\u1500? \u1499?\u1500? \u1492?\u1508?\u1512?\u1497?\u1496?\u1497?\u1501? \u1489?\u1512?\u1513?\u1497?\u1502?\u1514? \u1492?-checklist.\line
+\line
+---\line
+\line
+## \u1505?\u1497?\u1499?\u1493?\u1501?\line
+\line
+\u1502?\u1510?\u1490?\u1514? \u1494?\u1493? \u1505?\u1497?\u1511?\u1512?\u1492?:\line
+- OWASP API Top 10\line
+- helmet \u1500?headers \u1488?\u1489?\u1496?\u1495?\u1492?\line
+- CORS configuration\line
+- Rate limiting\line
+- NoSQL injection prevention\line
+- BOLA (\u1492?\u1489?\u1506?\u1497?\u1492? \u1492?\u1502?\u1512?\u1499?\u1494?\u1497?\u1514?)\line
+- Mass assignment\line
+- Secrets management\line
+- CSRF vs JWT\line
+\line
+**\u1499?\u1500?\u1497?\u1501? \u1513?\u1497?\u1502?\u1493?\u1513?\u1497?\u1497?\u1501?:**\line
+- `npm audit` \u1500?\u1489?\u1491?\u1497?\u1511?\u1514? \u1495?\u1493?\u1500?\u1513?\u1493?\u1514? \u1489?\u1514?\u1500?\u1493?\u1497?\u1493?\u1514?\line
+- securityheaders.com \u1500?\u1489?\u1491?\u1497?\u1511?\u1514? headers\line
+\par}
+{\pard\rtlpar\par}
+}

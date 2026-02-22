@@ -7,7 +7,7 @@
   gap: 14px;
   align-items: center;
   background: var(--bg-secondary);
-  padding: 12px 20px;
+  padding: 16px 20px;
   border-radius: 50px;
   border: 1px solid var(--border-glow);
   box-shadow:
@@ -15,6 +15,84 @@
     0 0 8px var(--border-glow);
   backdrop-filter: blur(12px);
   z-index: 500;
+  transition: all 0.3s ease;
+  overflow: visible;
+}
+
+.theme-switcher.collapsed {
+  padding: 8px;
+  gap: 0;
+  left: 20px;
+  transform: translateX(0);
+}
+
+.theme-toggle-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    var(--bg-primary) 0%,
+    var(--bg-secondary) 100%
+  );
+  border: 2px solid var(--border-glow);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.1) rotate(90deg);
+  border-color: var(--text-primary);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    0 0 15px var(--border-glow);
+}
+
+.settings-icon {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.theme-switcher:not(.collapsed) .settings-icon {
+  transform: rotate(0deg);
+}
+
+.theme-switcher.collapsed .settings-icon {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.theme-controls {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  opacity: 1;
+  max-width: 1000px;
+  transition: all 0.3s ease;
+  overflow-x: hidden;
+}
+
+.theme-switcher.collapsed .theme-controls {
+  opacity: 0;
+  max-width: 0;
+  gap: 0;
+  pointer-events: none;
 }
 
 .theme-dot {

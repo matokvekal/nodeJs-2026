@@ -154,6 +154,12 @@
   flex: 1;
 }
 
+.day-card .day-progress {
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(97, 218, 251, 0.08);
+}
+
 .day-meta {
   display: flex;
   justify-content: space-between;

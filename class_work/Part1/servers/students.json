@@ -1,0 +1,14 @@
+ [
+     { "id": 1, "name": "Avi Lolo", "course": "Math", "degree": 78 },
+     { "id": 2, "name": "Jane Smith", "course": "Math", "degree": 88 },
+     { "id": 3, "name": "Alice Johnson", "course": "Math", "degree": 90 },
+     { "id": 4, "name": "Bob Brown", "course": "Math", "degree": 87 },
+     { "id": 5, "name": "Charlie Davis", "course": "Math", "degree": 89 },
+     { "id": 6, "name": "David Evans", "course": "Math", "degree": 86 },
+     { "id": 7, "name": "Eve Foster", "course": "Math", "degree": 91 },
+     { "id": 8, "name": "Frank Green", "course": "Math", "degree": 84 },
+     { "id": 9, "name": "Grace Hall", "course": "Math", "degree": 92 },
+     { "id": 10, "name": "Henry Adams", "course": "Math", "degree": 83 }
+   ]
+ 
+ 

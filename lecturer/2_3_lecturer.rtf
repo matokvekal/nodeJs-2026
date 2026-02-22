@@ -1,0 +1,222 @@
+{\rtf1\ansi\ansicpg1255\deflang1037\deff0
+{\fonttbl{\f0\froman\fcharset177 David;}{\f1\fmodern\fcharset0 Courier New;}}
+{\colortbl ;\red0\green0\blue0;\red0\green100\blue0;\red180\green0\blue0;}
+\rtldoc\widowctrl\hyphauto
+{\pard\rtlpar\b\fs36 \u1502?\u1491?\u1512?\u1497?\u1498? \u1500?\u1502?\u1512?\u1510?\u1492? \u8211? \u1497?\u1493?\u1501? 2 \u1502?\u1510?\u1490?\u1514? 7: REST API Design Modern\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1494?\u1502?\u1503?:} 13:30\u8211?14:45\par}
+{\pard\rtlpar {\b \u1502?\u1496?\u1512?\u1492?:} \u1492?\u1489?\u1504?\u1514? \u1506?\u1511?\u1512?\u1493?\u1504?\u1493?\u1514? REST \u1502?\u1493?\u1491?\u1512?\u1504?\u1497?\u1497?\u1501? \u1493?\u1497?\u1497?\u1513?\u1493?\u1501? pagination \u1493?\u1514?\u1497?\u1506?\u1493?\u1491?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 1 \u8211? \u1508?\u1514?\u1497?\u1495?\u1492?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1497?\u1513? \u1500?\u1504?\u1493? Express app \u1506?\u1493?\u1489?\u1491?. \u1506?\u1499?\u1513?\u1497?\u1493? \u1504?\u1500?\u1502?\u1491? \u1500?\u1506?\u1510?\u1489? \u1488?\u1493?\u1514?\u1493? \u1504?\u1499?\u1493?\u1503? \u8212? REST API \u1502?\u1511?\u1510?\u1493?\u1506?\u1497? \u1513?\u1488?\u1495?\u1512?\u1497?\u1501? \u1497?\u1513?\u1502?\u1495?\u1493? \u1500?\u1506?\u1489?\u1493?\u1491? \u1488?\u1497?\u1514?\u1493?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1502?\u1492? \u1504?\u1500?\u1502?\u1491?:}\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Resource naming \u8211? \u1502?\u1493?\u1505?\u1499?\u1502?\u1493?\u1514? \u1513?\u1502?\u1493?\u1514? \u1504?\u1499?\u1493?\u1504?\u1493?\u1514?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Status codes \u8211? \u1499?\u1500? \u1511?\u1493?\u1491? \u1488?\u1493?\u1502?\u1512? \u1502?\u1513?\u1492?\u1493?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Filtering, Sorting, Pagination \u8211? \u1513?\u1488?\u1500?\u1493?\u1514? \u1504?\u1508?\u1493?\u1510?\u1493?\u1514? \u1489?\u1499?\u1500? API\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Versioning \u8211? \u1488?\u1497?\u1498? \u1502?\u1513?\u1491?\u1512?\u1490?\u1497?\u1501? API \u1489?\u1500?\u1497? \u1500?\u1513?\u1489?\u1493?\u1512? \u1500?\u1511?\u1493?\u1495?\u1493?\u1514? \u1511?\u1497?\u1497?\u1502?\u1497?\u1501?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? OpenAPI/Swagger \u8211? \u1514?\u1497?\u1506?\u1493?\u1491? \u1513?\u1502?\u1497?\u1497?\u1510?\u1512? \u1488?\u1514? \u1506?\u1510?\u1502?\u1493?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b REST Maturity Levels (Richardson Model):}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1512?\u1502?\u1492? {\f1 |} \u1514?\u1497?\u1488?\u1493?\u1512? {\f1 |} \u1491?\u1493?\u1490?\u1502?\u1492?\par}
+{\pard\rtlpar Level 0 {\f1 |} HTTP \u1499?\u1496?\u1504?\u1500? \u8212? \u1513?\u1490?\u1493?\u1497? {\f1 |} POST /api?action=getUser\par}
+{\pard\rtlpar Level 1 {\f1 |} \u1502?\u1513?\u1488?\u1489?\u1497?\u1501? {\f1 |} GET /users/42\par}
+{\pard\rtlpar Level 2 {\f1 |} HTTP Verbs + Status Codes {\f1 |} DELETE /users/42 \u8594? 204\par}
+{\pard\rtlpar Level 3 {\f1 |} HATEOAS {\f1 |} \u1514?\u1490?\u1493?\u1489?\u1492? \u1499?\u1493?\u1500?\u1500?\u1514? links \u1500?\u1508?\u1506?\u1493?\u1500?\u1493?\u1514? \u1492?\u1489?\u1488?\u1493?\u1514?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1512?\u1493?\u1489? APIs \u1489?\u1506?\u1493?\u1500?\u1501? \u1492?\u1488?\u1502?\u1497?\u1514?\u1497? \u1492?\u1501? Level 2} \u8212? Level 3 \u1504?\u1491?\u1497?\u1512? \u1493?\u1502?\u1493?\u1512?\u1499?\u1489?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 2 \u8211? REST Principles\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar REST \u1492?\u1493?\u1488? architectural style, \u1500?\u1488? \u1514?\u1511?\u1503?. \u1497?\u1513? \u1506?\u1511?\u1512?\u1493?\u1504?\u1493?\u1514? \u1502?\u1511?\u1493?\u1489?\u1500?\u1497?\u1501? \u1513?\u1502?\u1490?\u1491?\u1497?\u1512?\u1497?\u1501? REST \u1504?\u1499?\u1493?\u1503?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1488?\u1493?\u1514? \u8211? \u1500?\u1488? \u1504?\u1499?\u1493?\u1503? vs \u1504?\u1499?\u1493?\u1503?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+\u10060? POST /api/getAllUsers\line
+\u10060? GET /api/deleteUser/5\line
+\u9989? GET /api/v1/users\line
+\u9989? DELETE /api/v1/users/5\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 3 \u8211? Resource Naming\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1488?\u1493?\u1514? \u1504?\u1499?\u1493?\u1504?\u1493?\u1514?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+\u9989? GET  /api/v1/users         - \u1499?\u1500? \u1492?\u1502?\u1513?\u1514?\u1502?\u1513?\u1497?\u1501?\line
+\u9989? GET  /api/v1/users/42      - \u1502?\u1513?\u1514?\u1502?\u1513? \u1505?\u1508?\u1510?\u1497?\u1508?\u1497?\line
+\u9989? POST /api/v1/users         - \u1497?\u1510?\u1497?\u1512?\u1514? \u1502?\u1513?\u1514?\u1502?\u1513?\line
+\u9989? GET  /api/v1/users/42/orders  - \u1492?\u1494?\u1502?\u1504?\u1493?\u1514? \u1513?\u1500? \u1502?\u1513?\u1514?\u1502?\u1513?\line
+\u9989? POST /api/v1/users/42/activate  - \u1508?\u1506?\u1493?\u1500?\u1492? \u1506?\u1500? \u1502?\u1513?\u1514?\u1502?\u1513?\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 4 \u8211? Status Codes\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1488?\u1493?\u1514? \u1500?\u1513?\u1497?\u1502?\u1493?\u1513? \u1504?\u1499?\u1493?\u1503?:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1497?\u1510?\u1497?\u1512?\u1514? post \u1495?\u1491?\u1513? \u8594? 201\par}
+{\pard\rtlpar\li360\fi-360 \u8226? POST /users, email \u1499?\u1489?\u1512? \u1511?\u1497?\u1497?\u1501? \u8594? 409 Conflict\par}
+{\pard\rtlpar\li360\fi-360 \u8226? PUT /users/5 \u1493?\u1492?\u1502?\u1513?\u1488?\u1489? \u1500?\u1488? \u1504?\u1502?\u1510?\u1488? \u8594? 404\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1513?\u1491?\u1492? \u1495?\u1505?\u1512? \u1489?-request body \u8594? 422 Unprocessable Entity\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1495?\u1512?\u1497?\u1490?\u1492? \u1502?-rate limit \u8594? 429 Too Many Requests\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1506?\u1511?\u1512?\u1493?\u1503?:} \u1492?\u1495?\u1494?\u1512?\u1514? 200 \u1500?\u1499?\u1500? \u1502?\u1510?\u1489? \u1488?\u1497?\u1504?\u1492? RESTful. \u1492?\u1500?\u1511?\u1493?\u1495? \u1510?\u1512?\u1497?\u1498? \u1500?\u1491?\u1506?\u1514? \u1502?\u1492? \u1511?\u1512?\u1492? \u1502?\u1492?-status code.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 5 \u8211? Filtering & Sorting\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// GET /users?role=admin&active=true&sort=-createdAt&fields=name,email\line
+app.get("/users", async (req, res) => \{\line
+  const \{ role, active, sort, fields \} = req.query;\line
+\line
+  const filter = \{\};\line
+  if (role) filter.role = role;\line
+  if (active !== undefined) filter.active = active === "true";\line
+\line
+  const sortObj = sort?.startsWith("-")\line
+    ? \{ [sort.slice(1)]: -1 \}\line
+    : \{ [sort]: 1 \};\line
+\line
+  const users = await User.find(filter).sort(sortObj).lean();\line
+  res.json(\{ data: users \});\line
+\});\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 6 \u8211? Pagination\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1490?\u1497?\u1513?\u1514? Offset-based pagination:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+const page = parseInt(req.query.page) || 1;\line
+const limit = Math.min(parseInt(req.query.limit) || 20, 100);\line
+const skip = (page - 1) * limit;\line
+\line
+const [users, total] = await Promise.all([\line
+  User.find().skip(skip).limit(limit).lean(),\line
+  User.countDocuments()\line
+]);\line
+\line
+res.json(\{\line
+  data: users,\line
+  meta: \{ page, limit, total, pages: Math.ceil(total / limit) \}\line
+\});\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1490?\u1497?\u1513?\u1514? Cursor-based pagination:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+const after = req.query.after;\line
+const query = after ? \{ _id: \{ $gt: after \} \} : \{\};\line
+const users = await User.find(query).limit(21).lean();\line
+const hasMore = users.length === 21;\line
+const data = hasMore ? users.slice(0, -1) : users;\line
+res.json(\{ data, nextCursor: hasMore ? data.at(-1)._id : null \});\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1513?\u1493?\u1493?\u1488?\u1492?:} Offset pagination \u1489?-SQL \u1502?\u1489?\u1510?\u1506? OFFSET 10000 = scan \u1513?\u1500? 10,000 \u1513?\u1493?\u1512?\u1493?\u1514?. Cursor pagination \u1502?\u1489?\u1510?\u1506? index scan \u1497?\u1513?\u1497?\u1512? \u1493?\u1497?\u1506?\u1497?\u1500? \u1492?\u1512?\u1489?\u1492? \u1497?\u1493?\u1514?\u1512?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 7 \u8211? Versioning\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar Versioning \u1502?\u1488?\u1508?\u1513?\u1512? \u1500?\u1513?\u1502?\u1493?\u1512? \u1513?\u1514?\u1497? \u1490?\u1512?\u1505?\u1488?\u1493?\u1514? API \u1489?\u1502?\u1511?\u1489?\u1497?\u1500?. v1 \u1493?-v2 \u1497?\u1499?\u1493?\u1500?\u1497?\u1501? \u1500?\u1492?\u1514?\u1511?\u1497?\u1497?\u1501? \u1489?\u1497?\u1495?\u1491? \u1502?\u1489?\u1500?\u1497? \u1500?\u1513?\u1489?\u1493?\u1512? backward compatibility.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 8 \u8211? HATEOAS (\u1505?\u1511?\u1497?\u1512?\u1492?)\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b HATEOAS} = Hypermedia As The Engine Of Application State \u8212? \u1512?\u1502?\u1492? 3 \u1513?\u1500? Richardson Model.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1512?\u1506?\u1497?\u1493?\u1503?:} \u1514?\u1490?\u1493?\u1489?\u1514? \u1492?-API \u1499?\u1493?\u1500?\u1500?\u1514? links \u1500?\u1508?\u1506?\u1493?\u1500?\u1493?\u1514? \u1492?\u1489?\u1488?\u1493?\u1514? \u1492?\u1488?\u1508?\u1513?\u1512?\u1497?\u1493?\u1514?.\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+\{\line
+  "id": 42,\line
+  "name": "Alice",\line
+  "status": "active",\line
+  "_links": \{\line
+    "self":    \{ "href": "/users/42" \},\line
+    "orders":  \{ "href": "/users/42/orders" \},\line
+    "deactivate": \{ "href": "/users/42/deactivate", "method": "POST" \}\line
+  \}\line
+\}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1489?\u1506?\u1493?\u1500?\u1501? \u1492?\u1488?\u1502?\u1497?\u1514?\u1497?:} \u1502?\u1506?\u1496?\u1497?\u1501? \u1502?\u1497?\u1497?\u1513?\u1502?\u1497?\u1501? HATEOAS. \u1492?\u1500?\u1511?\u1493?\u1495? \u1510?\u1512?\u1497?\u1498? \u1500?\u1491?\u1506?\u1514? \u1500?\u1511?\u1512?\u1493?\u1488? \u1488?\u1514? \u1492?-links \u1493?\u1500?\u1488? \u1499?\u1493?\u1500?\u1501? \u1506?\u1493?\u1513?\u1497?\u1501? \u1494?\u1488?\u1514?. {\b Level 2 REST \u1502?\u1505?\u1508?\u1497?\u1511?} \u1500?\u1512?\u1493?\u1489? \u1492?-APIs.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 9 \u8211? OpenAPI/Swagger\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1514?\u1511?\u1504?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+npm install swagger-ui-express swagger-jsdoc\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1490?\u1491?\u1512?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// swagger.js\line
+import swaggerUi from "swagger-ui-express";\line
+import swaggerJsdoc from "swagger-jsdoc";\line
+\line
+const spec = swaggerJsdoc(\{\line
+  definition: \{ openapi: "3.0.0", info: \{ title: "My API", version: "1.0.0" \} \},\line
+  apis: ["./src/routes/*.js"]\line
+\});\line
+\line
+export function setupSwagger(app) \{\line
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(spec));\line
+\}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b JSDoc \u1489?\u1600? route:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+/**\line
+ * @openapi\line
+ * /api/v1/users:\line
+ *   get:\line
+ *     summary: Get all users\line
+ *     responses:\line
+ *       200:\line
+ *         description: List of users\line
+ */\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1505?\u1497?\u1499?\u1493?\u1501?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1502?\u1510?\u1490?\u1514? \u1494?\u1493? \u1505?\u1497?\u1511?\u1512?\u1492? \u1506?\u1511?\u1512?\u1493?\u1504?\u1493?\u1514? REST \u1502?\u1493?\u1491?\u1512?\u1504?\u1497?\u1497?\u1501?:\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Resource naming \u1504?\u1499?\u1493?\u1503?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Status codes \u1502?\u1489?\u1497?\u1506?\u1497?\u1501?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Filtering, Sorting, Pagination\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Versioning\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1514?\u1497?\u1506?\u1493?\u1491? \u1506?\u1501? OpenAPI/Swagger\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1506?\u1512?\u1493?\u1514?:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? HATEOAS \u1492?\u1493?\u1488? \u1512?\u1502?\u1492? 3 \u1513?\u1500? REST maturity model, \u1504?\u1491?\u1497?\u1512? \u1489?\u1506?\u1493?\u1500?\u1501? \u1492?\u1488?\u1502?\u1497?\u1514?\u1497?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Swagger \u1502?\u1505?\u1508?\u1511? \u1514?\u1497?\u1506?\u1493?\u1491? \u1488?\u1497?\u1504?\u1496?\u1512?\u1488?\u1511?\u1496?\u1497?\u1489?\u1497? \u1513?\u1502?\u1488?\u1508?\u1513?\u1512? \u1513?\u1500?\u1497?\u1495?\u1514? \u1489?\u1511?\u1513?\u1493?\u1514? \u1497?\u1513?\u1497?\u1512?\u1493?\u1514?\par}
+{\pard\rtlpar\par}
+}

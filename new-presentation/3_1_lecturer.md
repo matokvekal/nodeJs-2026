@@ -1,22 +1,42 @@
 # מדריך למרצה – יום 3 מצגת 9: MongoDB + Mongoose v7
 
-**זמן:** 09:00–10:30 (90 דקות)
-**מטרה:** התלמידים יחברו ה-API מיום 2 למסד MongoDB אמיתי
+**זמן:** 09:00–10:30
+**מטרה:** חיבור ה-API מיום 2 למסד MongoDB אמיתי
 
 ---
 
-## הכנה מראש
-- הפעל MongoDB: `docker run -d -p 27017:27017 --name mongo mongo`
-- הכן connection string ב-.env: `MONGODB_URI=mongodb://localhost:27017/taskdb`
-- `npm install mongoose`
+## שקף 1 – פתיחה
+
+ביום 2 בנינו API עם נתונים ב-Memory (Map). היום מחברים אותו למסד נתונים אמיתי — MongoDB. כמעט לא נצטרך לשנות את ה-Controllers, רק את ה-Service layer.
+
+**מה נלמד:**
+- MongoDB – Document database, מה הוא ומתי עדיף על SQL
+- Mongoose v7 – ODM שמוסיף schema, validation, ו-middleware
+- CRUD עם Mongoose: findById, create, findOneAndUpdate, deleteOne
+- Indexes – המפתח לביצועים
+- `lean()` – שיפור ביצועים פשוט ויעיל
+- `populate` – joins ב-MongoDB
+- Aggregation – סטטיסטיקות ודוחות
+- Cursor Pagination – pagination יעיל לכמויות גדולות
+
+**MongoDB vs SQL — מתי להשתמש:**
+
+| MongoDB | SQL |
+|---------|-----|
+| נתונים לא-מובנים (flexible schema) | קשרים מורכבים בין ישויות |
+| Real-time, high write throughput | ACID transactions מלאים |
+| JSON-native (מושלם ל-Node.js) | נתונים מאוד מובנים וקבועים |
+
+**כלל אצבע:** המסד הנכון תלוי ב-use case, לא בטרנד.
 
 ---
 
-## שקף 2 – MongoDB (8 דקות)
-**מה להגיד:**
-> "MongoDB = document database. במקום טבלאות ושורות יש לנו collections ו-documents. Document = JSON object שחי ב-DB."
+## שקף 2 – MongoDB
 
-**ציור:**
+MongoDB הוא document database. במקום טבלאות ושורות (SQL), MongoDB משתמש ב-collections ו-documents. Document הוא JSON object שנשמר במסד הנתונים.
+
+**השוואה:**
+
 ```
 SQL:    users (table) → row: { id, name, email }
 MongoDB: users (collection) → document: { _id, name, email, addresses: [...] }
@@ -24,18 +44,22 @@ MongoDB: users (collection) → document: { _id, name, email, addresses: [...] }
 
 ---
 
-## שקף 3 – Mongoose Connection (10 דקות)
-**Live coding – `src/config/db.js`:**
+## שקף 3 – Mongoose Connection
+
+**דוגמת `src/config/db.js`:**
+
 ```js
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 export async function connectDB() {
   try {
     await mongoose.connect(process.env.MONGODB_URI);
-    console.log('MongoDB connected');
-    mongoose.connection.on('error', (err) => console.error('MongoDB error:', err));
+    console.log("MongoDB connected");
+    mongoose.connection.on("error", (err) =>
+      console.error("MongoDB error:", err)
+    );
   } catch (err) {
-    console.error('Failed to connect:', err);
+    console.error("Failed to connect:", err);
     process.exit(1);
   }
 }
@@ -43,43 +67,62 @@ export async function connectDB() {
 
 ```js
 // src/server.js
-import { connectDB } from './config/db.js';
+import { connectDB } from "./config/db.js";
 await connectDB();
 app.listen(PORT);
 ```
 
 ---
 
-## שקף 4 – Schema Design (12 דקות)
-**Live coding – `src/models/task.model.js`:**
-```js
-import mongoose from 'mongoose';
+## שקף 4 – Schema Design
 
-const taskSchema = new mongoose.Schema({
-  title: { type: String, required: [true, 'Title is required'], maxlength: 100 },
-  description: { type: String, maxlength: 500 },
-  status: { type: String, enum: ['todo', 'in-progress', 'done'], default: 'todo' },
-  priority: { type: String, enum: ['low', 'medium', 'high'], default: 'medium' },
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  dueDate: Date
-}, { timestamps: true });
+**דוגמת `src/models/task.model.js`:**
+
+```js
+import mongoose from "mongoose";
+
+const taskSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: [true, "Title is required"],
+      maxlength: 100
+    },
+    description: { type: String, maxlength: 500 },
+    status: {
+      type: String,
+      enum: ["todo", "in-progress", "done"],
+      default: "todo"
+    },
+    priority: {
+      type: String,
+      enum: ["low", "medium", "high"],
+      default: "medium"
+    },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    dueDate: Date
+  },
+  { timestamps: true }
+);
 
 // אינדקסים
 taskSchema.index({ user: 1, status: 1 });
 taskSchema.index({ createdAt: -1 });
 
-export const Task = mongoose.model('Task', taskSchema);
+export const Task = mongoose.model("Task", taskSchema);
 ```
 
 ---
 
-## שקף 5 – CRUD (12 דקות)
-**Live coding – `src/services/tasks.service.js`:**
-```js
-import { Task } from '../models/task.model.js';
-import { AppError } from '../utils/AppError.js';
+## שקף 5 – CRUD
 
-export async function findAll({ userId, status, sort = '-createdAt' }) {
+**דוגמת `src/services/tasks.service.js`:**
+
+```js
+import { Task } from "../models/task.model.js";
+import { AppError } from "../utils/AppError.js";
+
+export async function findAll({ userId, status, sort = "-createdAt" }) {
   const filter = { user: userId };
   if (status) filter.status = status;
   return Task.find(filter).sort(sort).lean();
@@ -87,7 +130,7 @@ export async function findAll({ userId, status, sort = '-createdAt' }) {
 
 export async function findById(id, userId) {
   const task = await Task.findOne({ _id: id, user: userId }).lean();
-  if (!task) throw new AppError('Task not found', 404);
+  if (!task) throw new AppError("Task not found", 404);
   return task;
 }
 
@@ -96,20 +139,21 @@ export async function create(data, userId) {
 }
 ```
 
-**הדגש lean():** "בכל קריאה בלבד – `lean()`. מהר פי 5."
+**חשוב:** בכל קריאה בלבד (read), שימוש ב-`lean()` מהיר את הביצועים פי 5.
 
 ---
 
-## שקף 6 – Validation (8 דקות)
-**מה להגיד:**
-> "Mongoose validation = שורת הגנה ראשונה. לא מחליפה Zod ב-route – מוסיפה שכבה נוספת."
+## שקף 6 – Validation
 
-**דמו ValidationError:**
+Mongoose validation מספקת שורת הגנה ראשונה ברמת המודל. היא לא מחליפה את Zod validation ב-route layer, אלא מוסיפה שכבה נוספת.
+
+**דוגמת ValidationError:**
+
 ```js
 try {
-  await Task.create({ title: '' }); // required!
+  await Task.create({ title: "" }); // required!
 } catch (err) {
-  if (err.name === 'ValidationError') {
+  if (err.name === "ValidationError") {
     console.log(err.errors); // { title: { message: 'Title is required' } }
   }
 }
@@ -117,13 +161,14 @@ try {
 
 ---
 
-## שקף 7 – Indexes (8 דקות)
-**מה להגיד:**
-> "Index = B-tree שמאפשר לשאילתה לקפוץ ישירות לתוצאות במקום לסרוק הכל."
+## שקף 7 – Indexes
 
-**demo explain():**
+Index הוא B-tree שמאפשר לשאילתה לקפוץ ישירות לתוצאות במקום לסרוק את כל ה-collection.
+
+**דוגמת explain():**
+
 ```js
-const result = await Task.find({ user: userId }).explain('executionStats');
+const result = await Task.find({ user: userId }).explain("executionStats");
 console.log(result.executionStats.totalDocsExamined);
 // ללא index: סורק הכל
 // עם index: קופץ ישירות
@@ -131,8 +176,10 @@ console.log(result.executionStats.totalDocsExamined);
 
 ---
 
-## שקף 8 – lean() (7 דקות)
+## שקף 8 – lean()
+
 **הדגמה:**
+
 ```js
 // עם lean() - plain object
 const task = await Task.findById(id).lean();
@@ -144,40 +191,46 @@ console.log(typeof taskDoc.save); // function
 ```
 
 **מדידה:**
-```js
-console.time('without lean');
-await Task.find();
-console.timeEnd('without lean');
 
-console.time('with lean');
+```js
+console.time("without lean");
+await Task.find();
+console.timeEnd("without lean");
+
+console.time("with lean");
 await Task.find().lean();
-console.timeEnd('with lean');
+console.timeEnd("with lean");
 ```
 
 ---
 
-## שקף 9 – populate (8 דקות)
-**Live demo:**
+## שקף 9 – populate
+
+**דוגמה:**
+
 ```js
-const tasks = await Task
-  .find({ user: userId })
-  .populate('user', 'name email')  // שדות ספציפיים!
+const tasks = await Task.find({ user: userId })
+  .populate("user", "name email") // שדות ספציפיים!
   .lean();
 ```
 
-**N+1 הסבר:** "אם יש לך 100 posts ועושה populate על כל אחד – 101 queries! Mongoose עושה 2 queries."
+**N+1 problem:** אם יש 100 posts ועושים populate על כל אחד ב-loop = 101 queries. Mongoose מבצע 2 queries בלבד באופן מופעל.
 
 ---
 
-## שקף 10 – Aggregation (8 דקות)
-**Live demo – סטטיסטיקות:**
+## שקף 10 – Aggregation
+
+**דוגמת סטטיסטיקות:**
+
 ```js
 const stats = await Task.aggregate([
   { $match: { user: userId } },
-  { $group: {
-    _id: '$status',
-    count: { $sum: 1 }
-  }},
+  {
+    $group: {
+      _id: "$status",
+      count: { $sum: 1 }
+    }
+  },
   { $sort: { count: -1 } }
 ]);
 // [{ _id: 'todo', count: 5 }, { _id: 'done', count: 3 }]
@@ -185,8 +238,10 @@ const stats = await Task.aggregate([
 
 ---
 
-## שקף 11-12 – Pagination (10 דקות)
-**Cursor pagination demo:**
+## שקף 11-12 – Pagination
+
+**Cursor pagination דוגמה:**
+
 ```js
 export async function findAll({ after, limit = 20, userId }) {
   const query = { user: userId };
@@ -207,6 +262,18 @@ export async function findAll({ after, limit = 20, userId }) {
 
 ---
 
-## הערות מרצה
-- **בעיית connection**: אם MongoDB לא עולה → `docker ps && docker start mongo`
-- **ObjectId errors**: אם id לא valid ObjectId → Mongoose זורק CastError
+## סיכום
+
+מצגת זו סיקרה:
+
+- MongoDB והמושגים הבסיסיים
+- Mongoose schemas ו-models
+- CRUD operations
+- Validation, Indexes, lean()
+- populate ו-aggregation
+- Cursor-based pagination
+
+**הערות:**
+
+- אם MongoDB לא עולה: `docker ps && docker start mongo`
+- ObjectId validation errors: Mongoose זורק CastError כש-id לא valid

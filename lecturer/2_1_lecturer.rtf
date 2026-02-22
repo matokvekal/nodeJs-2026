@@ -1,0 +1,274 @@
+{\rtf1\ansi\ansicpg1255\deflang1037\deff0
+{\fonttbl{\f0\froman\fcharset177 David;}{\f1\fmodern\fcharset0 Courier New;}}
+{\colortbl ;\red0\green0\blue0;\red0\green100\blue0;\red180\green0\blue0;}
+\rtldoc\widowctrl\hyphauto
+{\pard\rtlpar\b\fs36 \u1502?\u1491?\u1512?\u1497?\u1498? \u1500?\u1502?\u1512?\u1510?\u1492? \u8211? \u1497?\u1493?\u1501? 2 \u1502?\u1510?\u1490?\u1514? 5: Modules, NPM & Backend Architecture\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1494?\u1502?\u1503?:} 09:00\u8211?10:45\par}
+{\pard\rtlpar {\b \u1502?\u1496?\u1512?\u1492?:} \u1488?\u1497?\u1514?\u1495?\u1493?\u1500? \u1508?\u1512?\u1493?\u1497?\u1511?\u1496? \u1502?\u1511?\u1510?\u1493?\u1506?\u1497? \u1506?\u1501? ESM, dotenv, ESLint, \u1493?\u1502?\u1489?\u1504?\u1492? \u1514?\u1497?\u1511?\u1497?\u1493?\u1514? \u1514?\u1511?\u1504?\u1497?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 1 \u8211? \u1508?\u1514?\u1497?\u1495?\u1492?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1489?\u1497?\u1493?\u1501? 1 \u1489?\u1504?\u1497?\u1504?\u1493? \u1488?\u1514? \u1492?\u1489?\u1505?\u1497?\u1505?: \u1492?\u1489?\u1504?\u1493? \u1488?\u1497?\u1498? Node.js \u1506?\u1493?\u1489?\u1491?, \u1499?\u1514?\u1489?\u1504?\u1493? Async code, \u1493?\u1497?\u1510?\u1512?\u1504?\u1493? \u1513?\u1512?\u1514? HTTP \u1489?\u1505?\u1497?\u1505?\u1497?. \u1492?\u1497?\u1493?\u1501? \u1504?\u1489?\u1504?\u1492? \u1488?\u1514? \u1492?\u1508?\u1512?\u1493?\u1497?\u1511?\u1496? \u1492?\u1502?\u1511?\u1510?\u1493?\u1506?\u1497? \u1513?\u1497?\u1492?\u1497?\u1492? \u1492?\u1489?\u1505?\u1497?\u1505? \u1500?\u1499?\u1500? \u1502?\u1492? \u1513?\u1504?\u1500?\u1502?\u1491? \u1489?\u1497?\u1493?\u1501? 2 \u1493?-3.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1502?\u1492? \u1504?\u1500?\u1502?\u1491?:}\par}
+{\pard\rtlpar\li360\fi-360 \u8226? ESM \u8211? \u1502?\u1506?\u1512?\u1499?\u1514? \u1492?\u1502?\u1493?\u1491?\u1493?\u1500?\u1497?\u1501? \u1492?\u1505?\u1496?\u1504?\u1491?\u1512?\u1496?\u1497?\u1514? \u1489?-2026\par}
+{\pard\rtlpar\li360\fi-360 \u8226? package.json \u8211? \u1492?\u1500?\u1489? \u1513?\u1500? \u1499?\u1500? \u1508?\u1512?\u1493?\u1497?\u1511?\u1496? Node.js\par}
+{\pard\rtlpar\li360\fi-360 \u8226? dotenv \u1493?-{\f1\ltrch --env-file\f0} \u8211? \u1504?\u1497?\u1492?\u1493?\u1500? \u1511?\u1493?\u1504?\u1508?\u1497?\u1490?\u1493?\u1512?\u1510?\u1497?\u1492? \u1489?\u1496?\u1493?\u1495?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? ESLint + Prettier \u8211? \u1488?\u1497?\u1499?\u1493?\u1514? \u1511?\u1493?\u1491? \u1488?\u1493?\u1496?\u1493?\u1502?\u1496?\u1497?\u1514?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1502?\u1489?\u1504?\u1492? \u1514?\u1497?\u1511?\u1497?\u1493?\u1514? Layered Architecture \u8211? routes/controllers/services\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1489?\u1491?\u1500? \u1489?\u1497?\u1503? CommonJS \u1500?-ESM:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1514?\u1499?\u1493?\u1504?\u1492? {\f1 |} CommonJS (\u1497?\u1513?\u1503?) {\f1 |} ESM (\u1502?\u1493?\u1491?\u1512?\u1504?\u1497?)\par}
+{\pard\rtlpar Import {\f1 |} {\f1\ltrch require()\f0} {\f1 |} {\f1\ltrch import ... from\f0}\par}
+{\pard\rtlpar Export {\f1 |} {\f1\ltrch module.exports\f0} {\f1 |} {\f1\ltrch export\f0} / {\f1\ltrch export default\f0}\par}
+{\pard\rtlpar \u1489?\u1497?\u1510?\u1493?\u1506? {\f1 |} \u1491?\u1497?\u1504?\u1502?\u1497? (runtime) {\f1 |} \u1505?\u1496?\u1496?\u1497? (parsed \u1500?\u1508?\u1504?\u1497? \u1489?\u1497?\u1510?\u1493?\u1506?)\par}
+{\pard\rtlpar {\f1\ltrch __dirname\f0} {\f1 |} \u1494?\u1502?\u1497?\u1503? \u1490?\u1500?\u1493?\u1489?\u1500?\u1497?\u1514? {\f1 |} \u1491?\u1493?\u1512?\u1513? {\f1\ltrch import.meta.url\f0}\par}
+{\pard\rtlpar Top-level await {\f1 |} \u1500?\u1488? \u1504?\u1514?\u1502?\u1498? {\f1 |} \u1504?\u1514?\u1502?\u1498?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1499?\u1500?\u1500? \u1492?-2026:} \u1499?\u1500? \u1511?\u1493?\u1491? \u1495?\u1491?\u1513? = ESM \u1489?\u1500?\u1489?\u1491?. CommonJS \u1512?\u1511? \u1500?\u1495?\u1489?\u1497?\u1500?\u1493?\u1514? \u1497?\u1513?\u1504?\u1493?\u1514?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 2 \u8211? ESM\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar ESM (ECMAScript Modules) \u1492?\u1493?\u1488? \u1502?\u1506?\u1512?\u1499?\u1514? \u1492?\u1502?\u1493?\u1491?\u1493?\u1500?\u1497?\u1501? \u1492?\u1505?\u1496?\u1504?\u1491?\u1512?\u1496?\u1497?\u1514? \u1500?-JavaScript. CommonJS \u1506?\u1491?\u1497?\u1497?\u1503? \u1511?\u1497?\u1497?\u1501? \u1489?\u1495?\u1489?\u1497?\u1500?\u1493?\u1514? \u1497?\u1513?\u1504?\u1493?\u1514? \u1493?\u1489?\u1511?\u1493?\u1491? \u1500?\u1490?\u1488?\u1505?\u1497?, \u1488?\u1498? \u1499?\u1500? \u1511?\u1493?\u1491? \u1495?\u1491?\u1513? \u1510?\u1512?\u1497?\u1498? \u1500?\u1492?\u1497?\u1499?\u1514?\u1489? \u1489?-ESM.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// utils/math.js\line
+export function add(a, b) \{\line
+  return a + b;\line
+\}\line
+export const PI = 3.14159;\line
+export default function multiply(a, b) \{\line
+  return a * b;\line
+\}\line
+\line
+// main.js\line
+import multiply, \{ add, PI \} from "./utils/math.js";\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1495?\u1497?\u1493?\u1504?\u1497? \u1489?-package.json:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+\{ "type": "module" \}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1506?\u1512?\u1492? \u1495?\u1513?\u1493?\u1489?\u1492?:} \u1489?-ESM, \u1495?\u1493?\u1489?\u1492? \u1500?\u1499?\u1500?\u1493?\u1500? \u1488?\u1514? \u1492?\u1505?\u1497?\u1493?\u1502?\u1514? {\f1\ltrch .js\f0} \u1489?-import paths. \u1494?\u1492? \u1504?\u1491?\u1512?\u1513? \u1506?\u1500? \u1508?\u1497? \u1492?-spec \u1499?\u1497?\u1493?\u1493?\u1503? \u1513?-ESM \u1491?\u1493?\u1512?\u1513? URL \u1502?\u1500?\u1488?. Node.js \u1500?\u1488? \u1502?\u1493?\u1505?\u1497?\u1507? \u1505?\u1497?\u1493?\u1502?\u1493?\u1514? \u1488?\u1493?\u1496?\u1493?\u1502?\u1496?\u1497?\u1514? \u1499?\u1502?\u1493? \u1489?-CommonJS.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 3 \u8211? CJS vs ESM\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1489?\u1491?\u1500? \u1502?\u1512?\u1499?\u1494?\u1497? \u8211? \\_\\_dirname:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// CJS\line
+const path = require("path");\line
+console.log(__dirname); // \u9989?\line
+\line
+// ESM - \u1500?\u1488? \u1506?\u1493?\u1489?\u1491?!\line
+console.log(__dirname); // \u10060? ReferenceError\line
+\line
+// ESM - \u1508?\u1514?\u1512?\u1493?\u1503?\line
+import \{ fileURLToPath \} from "node:url";\line
+const __dirname = fileURLToPath(new URL(".", import.meta.url));\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 4-5 \u8211? package.json\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1488?\u1497?\u1514?\u1495?\u1493?\u1500? \u1508?\u1512?\u1493?\u1497?\u1511?\u1496?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+npm init -y\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? package.json \u1502?\u1511?\u1510?\u1493?\u1506?\u1497?\u1514?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+\{\line
+  "name": "my-api",\line
+  "version": "1.0.0",\line
+  "type": "module",\line
+  "engines": \{ "node": ">=20.0.0" \},\line
+  "scripts": \{\line
+    "start": "node server.js",\line
+    "dev": "node --watch --env-file=.env server.js",\line
+    "test": "node --test",\line
+    "lint": "eslint src/",\line
+    "format": "prettier --write src/"\line
+  \}\line
+\}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 6 \u8211? exports\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1492?\u1513?\u1491?\u1492? {\f1\ltrch exports\f0} \u1489?-package.json \u1502?\u1488?\u1508?\u1513?\u1512? \u1513?\u1500?\u1497?\u1496?\u1492? \u1502?\u1500?\u1488?\u1492? \u1506?\u1500? \u1502?\u1492? \u1495?\u1513?\u1493?\u1507? \u1502?\u1492?\u1495?\u1489?\u1497?\u1500?\u1492?. \u1504?\u1514?\u1497?\u1489? \u1513?\u1500?\u1488? \u1502?\u1493?\u1490?\u1491?\u1512? \u1489?-{\f1\ltrch exports\f0} \u1488?\u1497?\u1504?\u1493? \u1504?\u1490?\u1497?\u1513? \u1500?-import, \u1502?\u1492? \u1513?\u1502?\u1488?\u1508?\u1513?\u1512? \u1492?\u1505?\u1514?\u1512?\u1492? \u1513?\u1500? \u1502?\u1497?\u1502?\u1493?\u1513?\u1497?\u1501? \u1508?\u1504?\u1497?\u1502?\u1497?\u1497?\u1501?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+\{\line
+  "exports": \{\line
+    ".": "./src/index.js",\line
+    "./utils": "./src/utils/index.js"\line
+  \}\line
+\}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1499?\u1498? {\f1\ltrch import \{ helper \} from 'my-pkg/internal'\f0} \u1497?\u1497?\u1499?\u1513?\u1500? \u8212? \u1492?\u1504?\u1514?\u1497?\u1489? \u1492?\u1508?\u1504?\u1497?\u1502?\u1497? \u1495?\u1505?\u1493?\u1501?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b Semantic Versioning (SemVer) \u8211? \u1490?\u1512?\u1505?\u1488?\u1493?\u1514? \u1495?\u1489?\u1497?\u1500?\u1493?\u1514?:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1505?\u1502?\u1500? {\f1 |} \u1502?\u1513?\u1502?\u1506?\u1493?\u1514? {\f1 |} \u1491?\u1493?\u1490?\u1502?\u1492?\par}
+{\pard\rtlpar {\f1\ltrch ^4.2.0\f0} {\f1 |} \u1499?\u1500? 4.x.x (\u1500?\u1488? breaking changes) {\f1 |} {\f1\ltrch ^4.2.0\f0} \u8594? {\f1\ltrch 4.9.1\f0} \u10003?\par}
+{\pard\rtlpar {\f1\ltrch ~4.2.0\f0} {\f1 |} \u1512?\u1511? patch: 4.2.x {\f1 |} {\f1\ltrch ~4.2.0\f0} \u8594? {\f1\ltrch 4.2.9\f0} \u10003?\par}
+{\pard\rtlpar {\f1\ltrch 4.2.0\f0} {\f1 |} \u1490?\u1512?\u1505?\u1492? \u1502?\u1491?\u1493?\u1497?\u1511?\u1514? \u1489?\u1500?\u1489?\u1491? {\f1 |} {\f1\ltrch 4.2.0\f0} \u1489?\u1500?\u1489?\u1491?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1488?\u1489?\u1496?\u1495?\u1514? \u1514?\u1500?\u1493?\u1497?\u1493?\u1514?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+npm audit           # \u1489?\u1491?\u1497?\u1511?\u1514? \u1495?\u1493?\u1500?\u1513?\u1493?\u1514? \u1497?\u1491?\u1493?\u1506?\u1493?\u1514?\line
+npm audit fix       # \u1514?\u1497?\u1511?\u1493?\u1503? \u1488?\u1493?\u1496?\u1493?\u1502?\u1496?\u1497?\line
+npm outdated        # \u1512?\u1513?\u1497?\u1502?\u1514? \u1495?\u1489?\u1497?\u1500?\u1493?\u1514? \u1502?\u1497?\u1493?\u1513?\u1504?\u1493?\u1514?\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 7 \u8211? dotenv (10 \u1491?\u1511?\u1493?\u1514?)\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b Live demo:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+# .env\line
+DATABASE_URL=mongodb://localhost:27017/mydb\line
+JWT_SECRET=my_secret_key\line
+PORT=3000\line
+\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// Node 20.6+ - \u1502?\u1493?\u1489?\u1504?\u1492?!\line
+// node --env-file=.env server.js\line
+\line
+// \u1490?\u1512?\u1505?\u1488?\u1493?\u1514? \u1497?\u1513?\u1504?\u1493?\u1514?\line
+import "dotenv/config";\line
+console.log(process.env.DATABASE_URL);\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1491?\u1490?\u1513? security:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li720 "{\f1\ltrch .env\f0} \u1500?\u1488? \u1504?\u1499?\u1504?\u1505? \u1500?-Git. {\b \u1488?\u1497? \u1508?\u1506?\u1501?}. \u1494?\u1492? \u1505?\u1497?\u1499?\u1493?\u1503? \u1488?\u1489?\u1496?\u1495?\u1492? \u1511?\u1512?\u1497?\u1496?\u1497?."\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+echo ".env" >> .gitignore\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 8-9 \u8211? ESLint + Prettier\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1514?\u1511?\u1504?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+npm install -D eslint @eslint/js prettier eslint-config-prettier\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1511?\u1493?\u1489?\u1509? \u1511?\u1493?\u1504?\u1508?\u1497?\u1490?\u1493?\u1512?\u1510?\u1497?\u1492? ESLint 9:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// eslint.config.js\line
+import js from "@eslint/js";\line
+export default [\line
+  js.configs.recommended,\line
+  \{ rules: \{ "no-unused-vars": "warn", "no-console": "off" \} \}\line
+];\line
+\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// .prettierrc.json\line
+\{ "semi": true, "singleQuote": true, "printWidth": 100 \}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 10-11 \u8211? \u1502?\u1489?\u1504?\u1492? \u1514?\u1497?\u1511?\u1497?\u1493?\u1514?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1497?\u1510?\u1497?\u1512?\u1514? \u1492?\u1502?\u1489?\u1504?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+mkdir -p src/\{config,routes,controllers,services,middleware,models,utils\}\line
+touch src/app.js src/server.js\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1514?\u1508?\u1511?\u1497?\u1491? \u1499?\u1500? \u1514?\u1497?\u1511?\u1497?\u1497?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? {\f1\ltrch config/\f0} \u8211? \u1511?\u1493?\u1504?\u1508?\u1497?\u1490?\u1493?\u1512?\u1510?\u1497?\u1493?\u1514? (DB, API keys)\par}
+{\pard\rtlpar\li360\fi-360 \u8226? {\f1\ltrch routes/\f0} \u8211? \u1492?\u1490?\u1491?\u1512?\u1514? endpoints\par}
+{\pard\rtlpar\li360\fi-360 \u8226? {\f1\ltrch controllers/\f0} \u8211? \u1500?\u1493?\u1490?\u1497?\u1511?\u1514? \u1496?\u1497?\u1508?\u1493?\u1500? \u1489?\u1489?\u1511?\u1513?\u1493?\u1514?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? {\f1\ltrch services/\f0} \u8211? business logic\par}
+{\pard\rtlpar\li360\fi-360 \u8226? {\f1\ltrch middleware/\f0} \u8211? auth, validation, error handling\par}
+{\pard\rtlpar\li360\fi-360 \u8226? {\f1\ltrch models/\f0} \u8211? \u1502?\u1489?\u1504?\u1497? \u1504?\u1514?\u1493?\u1504?\u1497?\u1501?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? {\f1\ltrch utils/\f0} \u8211? \u1508?\u1493?\u1504?\u1511?\u1510?\u1497?\u1493?\u1514? \u1506?\u1494?\u1512? \u1499?\u1500?\u1500?\u1497?\u1493?\u1514?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? \u1492?\u1508?\u1512?\u1491?\u1492? app/server:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// src/app.js\line
+import express from "express";\line
+const app = express();\line
+app.use(express.json());\line
+export default app;\line
+\line
+// src/server.js\line
+import app from "./app.js";\line
+const PORT = process.env.PORT ?? 3000;\line
+app.listen(PORT, () => console.log(`Server on port $\{PORT\}`));\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 12 \u8211? Clean Error Boundaries\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1511?\u1500?\u1488?\u1505? {\f1\ltrch AppError\f0} \u1502?\u1505?\u1508?\u1511? contract \u1489?\u1497?\u1503? \u1492?\u1500?\u1493?\u1490?\u1497?\u1511?\u1492? \u1492?\u1506?\u1505?\u1511?\u1497?\u1514? \u1500?-error middleware. \u1499?\u1500? \u1513?\u1490?\u1497?\u1488?\u1492? \u1514?\u1508?\u1506?\u1493?\u1500?\u1497?\u1514? (operational error) \u1506?\u1493?\u1489?\u1512?\u1514? \u1491?\u1512?\u1499?\u1493?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// src/utils/AppError.js\line
+export class AppError extends Error \{\line
+  constructor(message, statusCode = 500) \{\line
+    super(message);\line
+    this.statusCode = statusCode;\line
+    this.isOperational = true;\line
+  \}\line
+\}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 13 \u8211? \u1505?\u1497?\u1499?\u1493?\u1501?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1506?\u1499?\u1513?\u1497?\u1493? \u1511?\u1497?\u1497?\u1501? foundation \u1502?\u1511?\u1510?\u1493?\u1506?\u1497? \u1500?\u1508?\u1512?\u1493?\u1497?\u1511?\u1496? Node.js \u1506?\u1501?:\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1502?\u1506?\u1512?\u1499?\u1514? \u1502?\u1493?\u1491?\u1493?\u1500?\u1497?\u1501? ESM \u1502?\u1493?\u1491?\u1512?\u1504?\u1497?\u1514?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1504?\u1497?\u1492?\u1493?\u1500? \u1511?\u1493?\u1504?\u1508?\u1497?\u1490?\u1493?\u1512?\u1510?\u1497?\u1492? \u1489?\u1496?\u1493?\u1495?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1499?\u1500?\u1497? \u1488?\u1497?\u1499?\u1493?\u1514? \u1511?\u1493?\u1491? (ESLint, Prettier)\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1502?\u1489?\u1504?\u1492? \u1514?\u1497?\u1511?\u1497?\u1493?\u1514? \u1505?\u1511?\u1497?\u1497?\u1500?\u1489?\u1497?\u1500?\u1497? \u1493?\u1502?\u1493?\u1489?\u1504?\u1492?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1492?\u1502?\u1510?\u1490?\u1514? \u1492?\u1489?\u1488?\u1492? \u1514?\u1514?\u1502?\u1511?\u1491? \u1489?-Express 5 \u1502?\u1506?\u1500? \u1492?\u1489?\u1505?\u1497?\u1505? \u1492?\u1494?\u1492?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1506?\u1512?\u1493?\u1514? \u1495?\u1513?\u1493?\u1489?\u1493?\u1514?:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1489?\u1505?\u1489?\u1497?\u1489?\u1514? production \u1502?\u1513?\u1514?\u1502?\u1513?\u1497?\u1501? \u1489?-environment variables \u1502?\u1492?\u1513?\u1512?\u1514?/Kubernetes/cloud provider, \u1500?\u1488? \u1489?\u1511?\u1493?\u1489?\u1509? .env\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1496?\u1506?\u1493?\u1514? \u1504?\u1508?\u1493?\u1510?\u1492?: \u1495?\u1493?\u1505?\u1512? \u1505?\u1497?\u1493?\u1502?\u1514? {\f1\ltrch .js\f0} \u1489?-import paths \u1489?-ESM\par}
+{\pard\rtlpar\par}
+}

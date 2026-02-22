@@ -1,4 +1,5 @@
 import "./Home.css";
+import DayProgress from "../components/DayProgress";
 
 function Home({ courseData, onSelectDay }) {
   const days = Object.entries(courseData);
@@ -27,6 +28,10 @@ function Home({ courseData, onSelectDay }) {
                 <h2 className="day-title">{day.title}</h2>
                 <p className="day-subtitle">{day.subtitle}</p>
                 <p className="day-desc">{day.description}</p>
+                <DayProgress
+                  presentations={day.presentations}
+                  dayColor={day.color}
+                />
                 <div className="day-meta">
                   <span className="pres-count">
                     {day.presentations.filter((p) => p.available).length} /{" "}

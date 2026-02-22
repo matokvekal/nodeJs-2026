@@ -1,0 +1,5 @@
+Hello from sample.txt!
+
+This is a sample text file used to demonstrate the res.sendFile() method in Express.js.
+
+You can add more text or edit this file as needed.

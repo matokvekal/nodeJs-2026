@@ -12,6 +12,8 @@ function App() {
   const [theme, setTheme] = useState("winter");
   const [bgMode, setBgMode] = useState("dark");
   const [fontScale, setFontScale] = useState(1.0);
+  const [isThemeSwitcherCollapsed, setIsThemeSwitcherCollapsed] =
+    useState(true);
 
   // Apply theme to root element
   useEffect(() => {
@@ -61,55 +63,62 @@ function App() {
   const goPresentation = (dayKey, presIndex) =>
     setRoute({ view: "presentation", dayKey, presIndex });
 
-  if (route.view === "home") {
-    return <Home courseData={courseData} onSelectDay={goDay} />;
-  }
-
-  if (route.view === "day") {
-    const day = courseData[route.dayKey];
-    return (
-      <DayView
-        day={day}
-        dayKey={route.dayKey}
-        onBack={goHome}
-        onSelectPresentation={(i) => goPresentation(route.dayKey, i)}
+  return (
+    <div className="app">
+      <ThemeSwitcher
+        currentTheme={theme}
+        onThemeChange={setTheme}
+        bgMode={bgMode}
+        onBgModeChange={setBgMode}
+        fontScale={fontScale}
+        onFontScaleChange={setFontScale}
+        isCollapsed={isThemeSwitcherCollapsed}
+        onToggleCollapse={() =>
+          setIsThemeSwitcherCollapsed(!isThemeSwitcherCollapsed)
+        }
       />
-    );
-  }
 
-  if (route.view === "presentation") {
-    const day = courseData[route.dayKey];
-    const pres = day.presentations[route.presIndex];
-    return (
-      <div className="app">
-        <ThemeSwitcher
-          currentTheme={theme}
-          onThemeChange={setTheme}
-          bgMode={bgMode}
-          onBgModeChange={setBgMode}
-          fontScale={fontScale}
-          onFontScaleChange={setFontScale}
+      {route.view === "home" && (
+        <Home courseData={courseData} onSelectDay={goDay} />
+      )}
+
+      {route.view === "day" && (
+        <DayView
+          day={courseData[route.dayKey]}
+          dayKey={route.dayKey}
+          onBack={goHome}
+          onSelectPresentation={(i) => goPresentation(route.dayKey, i)}
         />
-        <button
-          className="back-btn"
-          onClick={() => goDay(route.dayKey)}
-          title="חזור ליום"
-        >
-          ← חזור
-        </button>
-        <Deck slides={pres.slides} storageKey={pres.storageKey} />
-        <button
-          className="fullscreen-btn"
-          onClick={toggleFullscreen}
-          title="לחץ F או כפתור זה למסך מלא"
-        >
-          ⛶
-        </button>
-      </div>
-    );
-  }
+      )}
 
-  return null;
+      {route.view === "presentation" && (
+        <>
+          <button
+            className="back-btn"
+            onClick={() => goDay(route.dayKey)}
+            title="חזור ליום"
+          >
+            ← חזור
+          </button>
+          <Deck
+            slides={
+              courseData[route.dayKey].presentations[route.presIndex].slides
+            }
+            storageKey={
+              courseData[route.dayKey].presentations[route.presIndex].storageKey
+            }
+          />
+          <button
+            className="fullscreen-btn"
+            onClick={toggleFullscreen}
+            title="לחץ F או כפתור זה למסך מלא"
+          >
+            ⛶
+          </button>
+        </>
+      )}
+    </div>
+  );
 }
 
 export default App;

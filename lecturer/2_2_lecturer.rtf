@@ -1,0 +1,279 @@
+{\rtf1\ansi\ansicpg1255\deflang1037\deff0
+{\fonttbl{\f0\froman\fcharset177 David;}{\f1\fmodern\fcharset0 Courier New;}}
+{\colortbl ;\red0\green0\blue0;\red0\green100\blue0;\red180\green0\blue0;}
+\rtldoc\widowctrl\hyphauto
+{\pard\rtlpar\b\fs36 \u1502?\u1491?\u1512?\u1497?\u1498? \u1500?\u1502?\u1512?\u1510?\u1492? \u8211? \u1497?\u1493?\u1501? 2 \u1502?\u1510?\u1490?\u1514? 6: Express 5 Deep Dive\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1494?\u1502?\u1503?:} 11:00\u8211?12:30\par}
+{\pard\rtlpar {\b \u1502?\u1496?\u1512?\u1492?:} \u1489?\u1504?\u1497?\u1497?\u1514? Express app \u1502?\u1500?\u1488? \u1506?\u1501? middleware, validation, \u1493?-error handling\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 1 \u8211? \u1508?\u1514?\u1497?\u1495?\u1492?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1489?\u1504?\u1497?\u1504?\u1493? \u1488?\u1514? \u1502?\u1489?\u1504?\u1492? \u1492?\u1508?\u1512?\u1493?\u1497?\u1511?\u1496?. \u1506?\u1499?\u1513?\u1497?\u1493? \u1502?\u1512?\u1499?\u1497?\u1489?\u1497?\u1501? \u1488?\u1514? \u1513?\u1499?\u1489?\u1514? \u1492?-HTTP \u1506?\u1501? Express 5 \u8212? \u1492?\u1490?\u1512?\u1505?\u1492? \u1492?\u1502?\u1493?\u1491?\u1512?\u1504?\u1497?\u1514? \u1513?\u1505?\u1493?\u1507? \u1505?\u1493?\u1507? \u1502?\u1496?\u1508?\u1500?\u1514? \u1489?-async errors \u1488?\u1493?\u1496?\u1493?\u1502?\u1496?\u1497?\u1514?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1502?\u1492? \u1504?\u1500?\u1502?\u1491?:}\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Express 5 \u1493?\u1513?\u1497?\u1504?\u1493?\u1497? \u1492?\u1502?\u1492?\u1508?\u1499?\u1504?\u1497?: async error propagation \u1488?\u1493?\u1496?\u1493?\u1502?\u1496?\u1497?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Router, Controllers, Services \u8211? Separation of Concerns\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Middleware chain \u8211? \u1492?\u1505?\u1491?\u1512? \u1495?\u1513?\u1493?\u1489?!\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Zod validation \u8211? \u1492?\u1491?\u1512?\u1498? \u1492?\u1502?\u1493?\u1491?\u1512?\u1504?\u1497?\u1514? \u1500?\u1488?\u1502?\u1514? input\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Central error handler \u8211? \u1504?\u1511?\u1493?\u1491?\u1492? \u1488?\u1495?\u1514? \u1500?\u1499?\u1500? \u1492?\u1513?\u1490?\u1497?\u1488?\u1493?\u1514?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? RFC 7807 {\f1\ltrch problem+json\f0} \u8211? \u1514?\u1511?\u1503? \u1500?\u1514?\u1490?\u1493?\u1489?\u1493?\u1514? \u1513?\u1490?\u1497?\u1488?\u1492?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1513?\u1512?\u1513?\u1512?\u1514? Middleware \u8211? \u1492?\u1505?\u1491?\u1512? \u1492?\u1504?\u1499?\u1493?\u1503?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+Request \u8594?\line
+  [helmet] \u8594?          (security headers)\line
+  [cors] \u8594?            (cross-origin)\line
+  [express.json()] \u8594?  (parse body)\line
+  [authenticate] \u8594?    (JWT check)\line
+  [validate] \u8594?        (Zod schema)\line
+  [controller] \u8594?      (business logic)\line
+Response \u8592?\line
+  [errorHandler] \u8592?    (central error)\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1513?\u1490?\u1497?\u1488?\u1492? \u1504?\u1508?\u1493?\u1510?\u1492?:} {\f1\ltrch express.json()\f0} \u1495?\u1497?\u1497?\u1489? \u1500?\u1489?\u1493?\u1488? \u1500?\u1508?\u1504?\u1497? \u1492?Routes, \u1488?\u1495?\u1512?\u1514? {\f1\ltrch req.body\f0} \u1497?\u1492?\u1497?\u1492? {\f1\ltrch undefined\f0}.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 2 \u8211? Express 5\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar Express 5 \u1502?\u1489?\u1497?\u1488? \u1513?\u1497?\u1504?\u1493?\u1497? \u1502?\u1492?\u1508?\u1499?\u1504?\u1497?: async handlers \u1502?\u1506?\u1489?\u1497?\u1512?\u1497?\u1501? \u1513?\u1490?\u1497?\u1488?\u1493?\u1514? \u1488?\u1493?\u1496?\u1493?\u1502?\u1496?\u1497?\u1514? \u1500?-error middleware. \u1489?-Express 4 \u1492?\u1497?\u1492? \u1510?\u1493?\u1512?\u1498? \u1489?\u1511?\u1512?\u1497?\u1488?\u1492? \u1497?\u1491?\u1504?\u1497?\u1514? \u1500?-{\f1\ltrch next(err)\f0} \u1489?\u1499?\u1500? try-catch block.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1513?\u1493?\u1493?\u1488?\u1492? \u1489?\u1497?\u1503? \u1490?\u1512?\u1505?\u1488?\u1493?\u1514?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// Express 4 \u8592? \u1489?\u1506?\u1497?\u1493?\u1514? \u1506?\u1501? async\line
+app.get("/users/:id", async (req, res, next) => \{\line
+  try \{\line
+    const user = await findUser(req.params.id);\line
+    res.json(user);\line
+  \} catch (err) \{\line
+    next(err); // \u8592? \u1495?\u1493?\u1489?\u1492? \u1497?\u1491?\u1504?\u1497?\u1514?\line
+  \}\line
+\});\line
+\line
+// Express 5 \u8592? \u1488?\u1493?\u1496?\u1493?\u1502?\u1496?\u1497?!\line
+app.get("/users/:id", async (req, res) => \{\line
+  const user = await findUser(req.params.id); // throw \u8594? error middleware\line
+  res.json(user);\line
+\});\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 3 \u8211? \u1513?\u1512?\u1514? \u1489?\u1505?\u1497?\u1505?\u1497?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// src/app.js\line
+import express from "express";\line
+import userRoutes from "./routes/users.routes.js";\line
+\line
+const app = express();\line
+app.use(express.json(\{ limit: "10kb" \}));\line
+app.use("/api/v1/users", userRoutes);\line
+\line
+export default app;\line
+\line
+// src/server.js\line
+import app from "./app.js";\line
+app.listen(process.env.PORT ?? 3000);\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 4 \u8211? Routing\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? `src/routes/users.routes.js`:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import \{ Router \} from "express";\line
+import * as usersController from "../controllers/users.controller.js";\line
+import \{ validate \} from "../middleware/validate.js";\line
+import \{ createUserSchema \} from "../schemas/user.schema.js";\line
+\line
+const router = Router();\line
+\line
+router\line
+  .route("/")\line
+  .get(usersController.getAll)\line
+  .post(validate(createUserSchema), usersController.create);\line
+\line
+router\line
+  .route("/:id")\line
+  .get(usersController.getOne)\line
+  .put(validate(createUserSchema.partial()), usersController.update)\line
+  .delete(usersController.remove);\line
+\line
+export default router;\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 5 \u8211? Controllers\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? `src/controllers/users.controller.js`:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import * as userService from "../services/users.service.js";\line
+\line
+export async function getAll(req, res) \{\line
+  const users = await userService.findAll(req.query);\line
+  res.json(\{ data: users \});\line
+\}\line
+\line
+export async function getOne(req, res) \{\line
+  const user = await userService.findById(req.params.id);\line
+  res.json(\{ data: user \});\line
+\}\line
+\line
+export async function create(req, res) \{\line
+  const user = await userService.create(req.validatedData);\line
+  res.status(201).json(\{ data: user \});\line
+\}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1506?\u1511?\u1512?\u1493?\u1503? \u1495?\u1513?\u1493?\u1489?:} Controller \u1510?\u1512?\u1497?\u1498? \u1500?\u1492?\u1497?\u1493?\u1514? \u1491?\u1511?, \u1500?\u1500?\u1488? \u1500?\u1493?\u1490?\u1497?\u1511?\u1492? \u1506?\u1505?\u1511?\u1497?\u1514?. \u1508?\u1506?\u1493?\u1500?\u1493?\u1514? \u1499?\u1502?\u1493? \u1513?\u1500?\u1497?\u1495?\u1514? email \u1506?\u1500? \u1497?\u1510?\u1497?\u1512?\u1514? user \u1513?\u1497?\u1497?\u1499?\u1493?\u1514? \u1500?-Service layer.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 6-7 \u8211? Middleware Chain\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1497?\u1488?\u1490?\u1512?\u1502?\u1514? \u1492?\u1494?\u1512?\u1497?\u1502?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+Request \u8594?\line
+  [helmet] \u8594?\line
+  [cors] \u8594?\line
+  [express.json()] \u8594?\line
+  [authenticate] \u8594?\line
+  [validate] \u8594?\line
+  [controller] \u8594?\line
+Response \u8592?\line
+  [error middleware] \u8592?\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? middleware:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+function logger(req, res, next) \{\line
+  console.log(`$\{req.method\} $\{req.url\} [$\{new Date().toISOString()\}]`);\line
+  next(); // \u8592? \u1495?\u1493?\u1489?\u1492?! \u1489?\u1500?\u1497? \u1494?\u1492? \u1492?\u1489?\u1511?\u1513?\u1492? \u1504?\u1514?\u1511?\u1506?\u1514?\line
+\}\line
+\line
+app.use(logger);\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1513?\u1490?\u1497?\u1488?\u1492? \u1504?\u1508?\u1493?\u1510?\u1492?:} \u1513?\u1499?\u1495?\u1514? {\f1\ltrch next()\f0} \u1490?\u1493?\u1512?\u1502?\u1514? \u1500?\u1489?\u1511?\u1513?\u1492? \u1500?\u1492?\u1514?\u1511?\u1506? \u1489?\u1500?\u1497? \u1514?\u1490?\u1493?\u1489?\u1492? \u1506?\u1491? timeout.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 8 \u8211? express.json()\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+app.use(express.json(\{ limit: "10kb" \})); // \u1500?\u1508?\u1504?\u1497? routes!\line
+\line
+app.post("/test", (req, res) => \{\line
+  console.log(req.body); // \u8592? undefined \u1489?\u1500?\u1497? express.json()\line
+  res.json(req.body);\line
+\});\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 9 \u8211? Zod Validation\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? `src/schemas/user.schema.js`:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import \{ z \} from "zod";\line
+\line
+export const createUserSchema = z.object(\{\line
+  name: z.string().min(2).max(50),\line
+  email: z.string().email(),\line
+  age: z.number().int().min(18).optional()\line
+\});\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b `src/middleware/validate.js`:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+export function validate(schema) \{\line
+  return (req, res, next) => \{\line
+    const result = schema.safeParse(req.body);\line
+    if (!result.success) \{\line
+      return res.status(422).json(\{\line
+        status: 422,\line
+        title: "Validation Error",\line
+        errors: result.error.flatten().fieldErrors\line
+      \});\line
+    \}\line
+    req.validatedData = result.data;\line
+    next();\line
+  \};\line
+\}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1489?\u1491?\u1497?\u1511?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? POST /users \u1506?\u1501? body \u1495?\u1493?\u1511?\u1497? \u8594? 201\par}
+{\pard\rtlpar\li360\fi-360 \u8226? POST /users \u1506?\u1501? body \u1500?\u1488? \u1495?\u1493?\u1511?\u1497? \u8594? 422 + \u1508?\u1512?\u1496?\u1497? \u1513?\u1490?\u1497?\u1488?\u1492?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 10 \u8211? Error Handler\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? `src/middleware/error.js`:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+export function errorHandler(err, req, res, next) \{\line
+  const status = err.statusCode ?? 500;\line
+  const message = err.isOperational ? err.message : "Something went wrong";\line
+\line
+  if (process.env.NODE_ENV === "development") \{\line
+    console.error(err.stack);\line
+  \}\line
+\line
+  res.status(status).json(\{\line
+    type: "/errors/" + (status === 500 ? "internal" : "client"),\line
+    title: message,\line
+    status,\line
+    instance: req.originalUrl\line
+  \});\line
+\}\line
+\line
+// \u1489?-app.js - \u1488?\u1495?\u1512?\u1493?\u1503?!\line
+app.use(errorHandler);\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 11 \u8211? problem+json\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar RFC 7807 \u1502?\u1490?\u1491?\u1497?\u1512? \u1514?\u1511?\u1503? \u1500?\u1514?\u1490?\u1493?\u1489?\u1493?\u1514? \u1513?\u1490?\u1497?\u1488?\u1492? \u1489?-API. \u1513?\u1497?\u1502?\u1493?\u1513? \u1489?-problem+json \u1502?\u1488?\u1508?\u1513?\u1512? \u1500?\u1500?\u1511?\u1493?\u1495? \u1500?\u1491?\u1506?\u1514? \u1502?\u1492? \u1500?\u1510?\u1508?\u1493?\u1514? \u1514?\u1502?\u1497?\u1491? \u1489?\u1502?\u1489?\u1504?\u1492? \u1488?\u1495?\u1497?\u1491?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 12-13 \u8211? \u1505?\u1497?\u1499?\u1493?\u1501?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1489?\u1502?\u1510?\u1490?\u1514? \u1494?\u1493? \u1489?\u1504?\u1497?\u1504?\u1493? Express application \u1502?\u1500?\u1488? \u1506?\u1501?:\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Routing \u1502?\u1493?\u1489?\u1504?\u1492?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Controllers \u1493?-Services \u1502?\u1493?\u1508?\u1512?\u1491?\u1497?\u1501?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Validation \u1506?\u1501? Zod\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Error handling \u1502?\u1512?\u1499?\u1494?\u1497?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Middleware chain \u1492?\u1490?\u1497?\u1493?\u1504?\u1497?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1506?\u1512?\u1493?\u1514?:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1500?\u1513?\u1491?\u1512?\u1493?\u1490? \u1502?-Express 4 \u1500?-5: {\f1\ltrch npm install express@5\f0}\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Zod vs Joi: Zod \u1502?\u1493?\u1491?\u1512?\u1504?\u1497?\u1514? \u1497?\u1493?\u1514?\u1512? \u1506?\u1501? \u1514?\u1502?\u1497?\u1499?\u1514? TypeScript \u1502?\u1493?\u1489?\u1504?\u1497?\u1514?, Joi \u1493?\u1514?\u1497?\u1511?\u1492? \u1493?\u1502?\u1493?\u1508?\u1510?\u1514?\par}
+{\pard\rtlpar\par}
+}

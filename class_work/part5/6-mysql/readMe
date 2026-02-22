@@ -1,0 +1,8 @@
+docker run --name mysql -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=a1a1a1 --restart unless-stopped -v C:\mysql_data:/var/lib/mysql mysql:8
+
+docker exec -it mysql mysql -uroot -p
+CREATE DATABASE northwind;
+SHOW DATABASES;
+show tables;
+
+https://github.com/mrin9/northwind/blob/master/data_extended.sql

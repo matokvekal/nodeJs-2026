@@ -1,0 +1,11 @@
+id, name, course, grade
+1,Avi Lolo,Math,78
+2,Jane Smith,Math,88
+3,Alice Johnson,Math,90
+4,Bob Brown,Math,87
+5,Charlie Davis,Math,89
+6,David Evans,Math,86
+7,Eve Foster,Math,91
+8,Frank Green,Math,84
+9,Grace Hall,Math,92
+10,Henry Adams,Math,83

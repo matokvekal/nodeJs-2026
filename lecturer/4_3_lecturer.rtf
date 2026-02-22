@@ -1,0 +1,213 @@
+{\rtf1\ansi\ansicpg1255\deflang1037\deff0
+{\fonttbl{\f0\froman\fcharset177 David;}{\f1\fmodern\fcharset0 Courier New;}}
+{\colortbl ;\red0\green0\blue0;\red0\green100\blue0;\red180\green0\blue0;}
+\rtldoc\widowctrl\hyphauto
+{\pard\rtlpar\b\fs36 \u1502?\u1491?\u1512?\u1497?\u1498? \u1500?\u1502?\u1512?\u1510?\u1492? \u8211? \u1497?\u1493?\u1501? 4 \u1502?\u1510?\u1490?\u1514? 15: Advanced Node Topics\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1494?\u1502?\u1503?:} 11:15\u8211?12:00\par}
+{\pard\rtlpar {\b \u1502?\u1496?\u1512?\u1492?:} \u1492?\u1497?\u1499?\u1512?\u1493?\u1514? \u1506?\u1501? AsyncLocalStorage, EventEmitter patterns, \u1493?-worker_threads\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 1 \u8211? \u1508?\u1514?\u1497?\u1495?\u1492?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1489?\u1497?\u1493?\u1501? 4 \u1500?\u1502?\u1491?\u1504?\u1493? WebSocket \u1493?-Crypto. \u1506?\u1499?\u1513?\u1497?\u1493? \u1504?\u1505?\u1497?\u1497?\u1501? \u1506?\u1501? \u1504?\u1493?\u1513?\u1488?\u1497?\u1501? \u1502?\u1514?\u1511?\u1491?\u1502?\u1497?\u1501? \u1513?\u1492?\u1493?\u1508?\u1499?\u1497?\u1501? Node.js application \u1502?"\u1506?\u1493?\u1489?\u1491?" \u1500?"production-ready".\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1502?\u1492? \u1504?\u1500?\u1502?\u1491?:}\par}
+{\pard\rtlpar\li360\fi-360 \u8226? AsyncLocalStorage \u8212? Context propagation \u1488?\u1493?\u1496?\u1493?\u1502?\u1496?\u1497? \u1500?\u1488?\u1493?\u1512?\u1498? \u1513?\u1512?\u1513?\u1512?\u1514? async\par}
+{\pard\rtlpar\li360\fi-360 \u8226? EventEmitter Patterns \u8212? Decoupling \u1489?\u1497?\u1503? \u1513?\u1499?\u1489?\u1493?\u1514? \u1492?\u1511?\u1493?\u1491?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? worker_threads \u8212? \u1508?\u1514?\u1512?\u1493?\u1503? \u1500?\u1495?\u1497?\u1513?\u1493?\u1489?\u1497?\u1501? \u1499?\u1489?\u1491?\u1497?\u1501? \u1513?\u1495?\u1493?\u1505?\u1502?\u1497?\u1501? \u1488?\u1514? Event Loop\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Memory Leaks \u8212? \u1494?\u1497?\u1492?\u1493?\u1497? \u1493?\u1502?\u1504?\u1497?\u1506?\u1514? \u1491?\u1500?\u1497?\u1508?\u1493?\u1514? \u1494?\u1497?\u1499?\u1512?\u1493?\u1503?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Graceful Shutdown \u8212? \u1505?\u1490?\u1497?\u1512?\u1492? \u1502?\u1505?\u1493?\u1491?\u1512?\u1514? \u1513?\u1500? \u1492?\u1513?\u1512?\u1514?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1502?\u1514?\u1497? Event Loop \u1504?\u1495?\u1505?\u1501??}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1505?\u1497?\u1489?\u1492? {\f1 |} \u1491?\u1493?\u1490?\u1502?\u1492? {\f1 |} \u1508?\u1514?\u1512?\u1493?\u1503?\par}
+{\pard\rtlpar \u1495?\u1497?\u1513?\u1493?\u1489? \u1502?\u1512?\u1493?\u1489?\u1492? {\f1 |} \u1500?\u1493?\u1500?\u1488?\u1492? \u1513?\u1500? \u1502?\u1497?\u1500?\u1497?\u1488?\u1512?\u1491? \u1508?\u1506?\u1493?\u1500?\u1493?\u1514? {\f1 |} worker_threads\par}
+{\pard\rtlpar Sync I/O {\f1 |} {\f1\ltrch fs.readFileSync\f0} \u1511?\u1493?\u1489?\u1509? \u1490?\u1491?\u1493?\u1500? {\f1 |} {\f1\ltrch fs.promises.readFile\f0}\par}
+{\pard\rtlpar JSON.parse \u1490?\u1491?\u1493?\u1500? {\f1 |} body \u1513?\u1500? \u1502?\u1490?\u1492?-\u1489?\u1497?\u1497?\u1496?\u1497?\u1501? {\f1 |} Stream parsing\par}
+{\pard\rtlpar Regex catastrophic {\f1 |} {\f1\ltrch /(a+)+$/\f0} \u1506?\u1500? string \u1488?\u1512?\u1493?\u1498? {\f1 |} re2 library\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1502?\u1491?\u1493?\u1506? AsyncLocalStorage \u1495?\u1513?\u1493?\u1489??}\par}
+{\pard\rtlpar \u1489?\u1500?\u1506?\u1491?\u1497?\u1493?: {\f1\ltrch requestId\f0} \u1502?\u1493?\u1506?\u1489?\u1512? \u1497?\u1491?\u1504?\u1497?\u1514? \u1499?-parameter \u1489?\u1499?\u1500? \u1508?\u1493?\u1504?\u1511?\u1510?\u1497?\u1492?. \u1506?\u1501? AsyncLocalStorage: context \u1494?\u1502?\u1497?\u1503? \u1489?\u1499?\u1500? \u1502?\u1511?\u1493?\u1501? \u1500?\u1500?\u1488? \u1492?\u1506?\u1489?\u1512?\u1492? \u1497?\u1491?\u1504?\u1497?\u1514? \u8212? \u1499?\u1502?\u1493? thread-local storage, \u1488?\u1489?\u1500? \u1500?-async.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 2-3 \u8211? AsyncLocalStorage\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1489?\u1506?\u1497?\u1492?:} \u1513?\u1502?\u1497?\u1512?\u1514? requestId \u1493?\u1492?\u1506?\u1489?\u1512?\u1514?\u1493? \u1500?\u1499?\u1500? \u1513?\u1499?\u1489?\u1493?\u1514? \u1492?-\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import \{ AsyncLocalStorage \} from "node:async_hooks";\line
+import \{ randomUUID \} from "node:crypto";\line
+\line
+const requestContext = new AsyncLocalStorage();\line
+\line
+// Express middleware\line
+app.use((req, res, next) => \{\line
+  const context = \{\line
+    requestId: randomUUID(),\line
+    userId: req.user?.id,\line
+    startTime: Date.now()\line
+  \};\line
+  requestContext.run(context, next);\line
+\});\line
+\line
+// Logger helper\line
+function log(level, message, extra = \{\}) \{\line
+  const ctx = requestContext.getStore() ?? \{\};\line
+  console.log(JSON.stringify(\{ level, message, ...ctx, ...extra \}));\line
+\}\line
+\line
+// \u1489?service \u8211? \u1488?\u1497?\u1503? req, \u1488?\u1489?\u1500? \u1497?\u1513? context\line
+async function processOrder(orderId) \{\line
+  log("info", "Processing order", \{ orderId \});\line
+  // ...\line
+\}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1508?\u1500?\u1496?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+\{\line
+  "level": "info",\line
+  "message": "Processing order",\line
+  "requestId": "abc-123",\line
+  "userId": "user-456",\line
+  "orderId": "ord-789"\line
+\}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar AsyncLocalStorage \u1506?\u1493?\u1511?\u1489? \u1488?\u1495?\u1512?\u1497? context \u1500?\u1488?\u1493?\u1512?\u1498? \u1499?\u1500? \u1513?\u1512?\u1513?\u1512?\u1514? async \u1489?\u1488?\u1493?\u1508?\u1503? \u1488?\u1493?\u1496?\u1493?\u1502?\u1496?\u1497?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 4-5 \u8211? EventEmitter\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import \{ EventEmitter \} from "node:events";\line
+\line
+class OrderService extends EventEmitter \{\line
+  async createOrder(data) \{\line
+    const order = await Order.create(data);\line
+    this.emit("order:created", order);\line
+    return order;\line
+  \}\line
+\}\line
+\line
+const orderService = new OrderService();\line
+\line
+// \u1513?\u1497?\u1512?\u1493?\u1514? email \u1500?\u1488? \u1502?\u1499?\u1497?\u1512? \u1488?\u1514? OrderService\line
+orderService.on("order:created", async (order) => \{\line
+  await emailService.sendConfirmation(order.email, order);\line
+\});\line
+\line
+// \u1513?\u1497?\u1512?\u1493?\u1514? inventory \u1500?\u1488? \u1502?\u1499?\u1497?\u1512? \u1488?\u1514? OrderService\line
+orderService.on("order:created", async (order) => \{\line
+  await inventoryService.decreaseStock(order.items);\line
+\});\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar Decoupling! \u1488?\u1501? \u1502?\u1495?\u1512? \u1504?\u1493?\u1505?\u1497?\u1507? SMS \u8211? \u1512?\u1511? {\f1\ltrch orderService.on('order:created', smsSend)\f0}. \u1500?\u1488? \u1504?\u1493?\u1490?\u1506?\u1497?\u1501? \u1489?-createOrder.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 6-7 \u8211? worker_threads\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1489?\u1506?\u1497?\u1492? \u8211? \u1495?\u1505?\u1497?\u1502?\u1514? Event Loop:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// \u10060? \u1495?\u1493?\u1505?\u1501? Event Loop!\line
+app.get("/heavy", (req, res) => \{\line
+  let sum = 0;\line
+  for (let i = 0; i < 1e9; i++) sum += i; // 2-3 \u1513?\u1504?\u1497?\u1493?\u1514?!\line
+  res.json(\{ sum \});\line
+\});\line
+// \u1489?\u1494?\u1502?\u1503? \u1492?\u1494?\u1492?: \u1488?\u1497?\u1503? \u1514?\u1490?\u1493?\u1489?\u1492? \u1500?\u1513?\u1488?\u1512? \u1492?\u1489?\u1511?\u1513?\u1493?\u1514?!\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1508?\u1514?\u1512?\u1493?\u1503? \u1506?\u1501? worker:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// heavy-worker.js\line
+import \{ workerData, parentPort \} from "node:worker_threads";\line
+let sum = 0;\line
+for (let i = 0; i < workerData.n; i++) sum += i;\line
+parentPort.postMessage(\{ sum \});\line
+\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// app.js\line
+import \{ Worker \} from "node:worker_threads";\line
+\line
+app.get("/heavy", (req, res) => \{\line
+  const worker = new Worker("./heavy-worker.js", \{\line
+    workerData: \{ n: 1e9 \}\line
+  \});\line
+  worker.on("message", (result) => res.json(result));\line
+  worker.on("error", (err) => res.status(500).json(\{ error: err.message \}));\line
+\});\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1491?\u1490?\u1502?\u1492?:} \u1513?\u1500?\u1497?\u1495?\u1514? 2 \u1489?\u1511?\u1513?\u1493?\u1514? \u8211? {\f1\ltrch /heavy\f0} \u1493?-{\f1\ltrch /health\f0}. \u1506?\u1501? worker: \u1513?\u1504?\u1497?\u1492?\u1501? \u1502?\u1490?\u1497?\u1489?\u1497?\u1501?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 8-9 \u8211? Memory Leaks\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \\*\\*\u1491?\u1493?\u1490?\u1502?\u1514? leak:\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// \u10060? Classic leak - cache without eviction\line
+const cache = \{\};\line
+app.get("/data/:id", (req, res) => \{\line
+  cache[req.params.id] = fetchData(req.params.id);\line
+  // cache \u1490?\u1491?\u1500? \u1500?\u1500?\u1488? \u1490?\u1489?\u1493?\u1500?!\line
+\});\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1508?\u1514?\u1512?\u1493?\u1503?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import LRU from "lru-cache";\line
+const cache = new LRU(\{ max: 500, ttl: 1000 * 60 * 5 \}); // 500 items, 5 min TTL\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 12 \u8211? Graceful Shutdown\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+process.on("SIGTERM", async () => \{\line
+  server.close(async () => \{\line
+    await mongoose.disconnect();\line
+    process.exit(0);\line
+  \});\line
+  setTimeout(() => process.exit(1), 30_000);\line
+\});\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar Kubernetes \u1513?\u1493?\u1500?\u1495? SIGTERM \u1500?\u1508?\u1504?\u1497? \u1505?\u1490?\u1497?\u1512?\u1514? container. \u1488?\u1501? \u1500?\u1488? \u1502?\u1496?\u1508?\u1500?\u1497?\u1501? \u8211? \u1489?\u1511?\u1513?\u1493?\u1514? \u1508?\u1506?\u1497?\u1500?\u1493?\u1514? \u1504?\u1495?\u1514?\u1499?\u1493?\u1514?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1505?\u1497?\u1499?\u1493?\u1501?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1502?\u1510?\u1490?\u1514? \u1494?\u1493? \u1505?\u1497?\u1511?\u1512?\u1492?:\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? AsyncLocalStorage \u1500?\u1504?\u1497?\u1492?\u1493?\u1500? context \u1488?\u1493?\u1496?\u1493?\u1502?\u1496?\u1497?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? EventEmitter patterns \u1500?-decoupling\par}
+{\pard\rtlpar\li360\fi-360 \u8226? worker_threads \u1500?\u1502?\u1513?\u1497?\u1502?\u1493?\u1514? \u1499?\u1489?\u1491?\u1493?\u1514?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Memory leaks \u1493?\u1488?\u1497?\u1498? \u1500?\u1502?\u1504?\u1493?\u1506?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Graceful shutdown\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1506?\u1512?\u1493?\u1514?:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1502?\u1510?\u1490?\u1514? \u1511?\u1510?\u1512?\u1492? (45 \u1491?\u1511?\u1493?\u1514?)\par}
+{\pard\rtlpar\li360\fi-360 \u8226? AsyncLocalStorage \u1492?\u1499?\u1497? \u1513?\u1493?\u1493?\u1492? \u1502?\u1492?\u1502?\u1510?\u1490?\u1514?\par}
+{\pard\rtlpar\par}
+}

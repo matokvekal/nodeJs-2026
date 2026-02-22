@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>List of Cars</title>
+    <style>
+   
+      nav {
+        background-color: #333;
+        color: white;
+        padding: 10px 0;
+      }
+      nav ul {
+        display: flex;
+        justify-content: center;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      nav ul li {
+        margin: 0 10px;
+      }
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+      }
+      nav ul li a:hover {
+        text-decoration: underline;
+      }
+      /* Basic styling */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        /* justify-content: center; */
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+      }
+      h1 {
+        color: #333;
+        text-align: center;
+      }
+      table {
+        width: 50%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px 12px;
+        text-align: left;
+      }
+      th {
+        background-color: #333;
+        color: white;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      tr:hover {
+        background-color: #ddd;
+        cursor: pointer;
+      }
+      /* Animation */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      body {
+        animation: fadeIn 2s ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </header>
+    <h1>List of Tesla model Cars</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Tesla Types</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Model S</td>
+        </tr>
+        <tr>
+          <td>Model 3</td>
+        </tr>
+        <tr>
+          <td>Model X</td>
+        </tr>
+        <tr>
+          <td>Model Y</td>
+        </tr>
+        <tr>
+          <td>Roadster</td>
+        </tr>
+        <tr>
+          <td>Cybertruck</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

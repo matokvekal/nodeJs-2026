@@ -1,0 +1,219 @@
+{\rtf1\ansi\ansicpg1255\deflang1037\deff0
+{\fonttbl{\f0\froman\fcharset177 David;}{\f1\fmodern\fcharset0 Courier New;}}
+{\colortbl ;\red0\green0\blue0;\red0\green100\blue0;\red180\green0\blue0;}
+\rtldoc\widowctrl\hyphauto
+{\pard\rtlpar\b\fs36 \u1502?\u1491?\u1512?\u1497?\u1498? \u1500?\u1502?\u1512?\u1510?\u1492? \u8211? \u1497?\u1493?\u1501? 3 \u1502?\u1510?\u1490?\u1514? 10: SQL with Sequelize\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1494?\u1502?\u1503?:} 10:45\u8211?12:00\par}
+{\pard\rtlpar {\b \u1502?\u1496?\u1512?\u1492?:} \u1492?\u1497?\u1499?\u1512?\u1493?\u1514? \u1506?\u1501? Sequelize \u1493?\u1492?\u1489?\u1504?\u1514? \u1502?\u1514?\u1497? SQL \u1506?\u1491?\u1497?\u1507? \u1506?\u1500? MongoDB\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 1 \u8211? \u1508?\u1514?\u1497?\u1495?\u1492?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1512?\u1488?\u1497?\u1504?\u1493? MongoDB \u8212? \u1506?\u1499?\u1513?\u1497?\u1493? \u1504?\u1505?\u1514?\u1499?\u1500? \u1506?\u1500? \u1492?\u1510?\u1491? \u1492?\u1513?\u1504?\u1497?. SQL \u1511?\u1497?\u1497?\u1501? \u1499?\u1489?\u1512? 50 \u1513?\u1504?\u1492? \u1493?\u1506?\u1491?\u1497?\u1497?\u1503? \u1512?\u1500?\u1493?\u1493?\u1504?\u1496?\u1497? \u1502?\u1488?\u1493?\u1491? \u1489?-2026. \u1492?\u1502?\u1510?\u1490?\u1514? \u1492?\u1494?\u1493? \u1502?\u1511?\u1493?\u1510?\u1512?\u1514? \u1489?\u1499?\u1493?\u1493?\u1504?\u1492? \u8212? \u1502?\u1496?\u1512?\u1514?\u1492? \u1500?\u1492?\u1489?\u1497?\u1503? \u1502?\u1514?\u1497? \u1493?\u1500?\u1502?\u1492? \u1500?\u1489?\u1495?\u1493?\u1512? SQL.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1502?\u1492? \u1504?\u1500?\u1502?\u1491?:}\par}
+{\pard\rtlpar\li360\fi-360 \u8226? SQL vs MongoDB \u8212? \u1492?\u1492?\u1489?\u1491?\u1500?\u1497?\u1501? \u1492?\u1502?\u1489?\u1504?\u1497?\u1497?\u1501?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Sequelize ORM \u8212? \u1495?\u1497?\u1489?\u1493?\u1512? \u1493?\u1504?\u1497?\u1492?\u1493?\u1500? PostgreSQL \u1502?-Node.js\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Models, CRUD, Relations \u8212? \u1492?\u1489?\u1505?\u1497?\u1505?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Transactions \u8212? ACID atomicity\par}
+{\pard\rtlpar\li360\fi-360 \u8226? SQL Injection \u8212? \u1492?\u1492?\u1514?\u1511?\u1508?\u1492? \u1492?\u1504?\u1508?\u1493?\u1510?\u1492? \u1489?\u1497?\u1493?\u1514?\u1512? \u1493?\u1488?\u1497?\u1498? Sequelize \u1502?\u1490?\u1503?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1506?\u1511?\u1512?\u1493?\u1503? Migrations:}\par}
+{\pard\rtlpar Migrations \u1492?\u1501? \u1511?\u1489?\u1510?\u1497?\u1501? \u1513?\u1502?\u1490?\u1491?\u1497?\u1512?\u1497?\u1501? \u1513?\u1497?\u1504?\u1493?\u1497?\u1497?\u1501? \u1489?\u1502?\u1489?\u1504?\u1492? \u1492?-DB (\u1492?\u1493?\u1505?\u1508?\u1514? \u1506?\u1502?\u1493?\u1491?\u1492?, \u1497?\u1510?\u1497?\u1512?\u1514? \u1496?\u1489?\u1500?\u1492?). \u1492?\u1501? \u1506?\u1493?\u1489?\u1491?\u1497?\u1501? \u1499?\u1502?\u1493? Git \u1500?\u1505?\u1499?\u1502?\u1514? \u1492?-DB:\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+# \u1497?\u1510?\u1497?\u1512?\u1514? migration\line
+npx sequelize-cli migration:create --name add-role-to-users\line
+\line
+# \u1492?\u1512?\u1510?\u1514? migrations\line
+npx sequelize-cli db:migrate\line
+\line
+# rollback\line
+npx sequelize-cli db:migrate:undo\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1500?\u1502?\u1492? Migrations \u1495?\u1513?\u1493?\u1489?\u1493?\u1514?:} \u1489?\u1500?\u1506?\u1491?\u1497?\u1492?\u1503? \u1500?\u1488? \u1504?\u1497?\u1514?\u1503? \u1500?\u1504?\u1492?\u1500? \u1513?\u1497?\u1504?\u1493?\u1497?\u1497? schema \u1489?\u1510?\u1493?\u1493?\u1514? \u1488?\u1493? \u1489?-production \u1489?\u1510?\u1493?\u1512?\u1492? \u1489?\u1496?\u1493?\u1495?\u1492?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 2 \u8211? SQL vs MongoDB\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \\*\\*\u1492?\u1513?\u1493?\u1493?\u1488?\u1492? \u1493?\u1497?\u1494?\u1493?\u1488?\u1500?\u1497?\u1514?:\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+MongoDB:                    SQL (PostgreSQL):\line
+users collection            users table\line
+\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?          \u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\line
+\{ _id, name, email,        id | name | email\line
+  addresses: [             1  | Alice | alice@...\line
+    \{city: 'TLV'\}         2  | Bob   | bob@...\line
+  ]\line
+\}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar MongoDB \u1502?\u1505?\u1508?\u1511? \u1490?\u1502?\u1497?\u1513?\u1493?\u1514? \u8211? \u1504?\u1497?\u1514?\u1503? \u1500?\u1492?\u1496?\u1502?\u1497?\u1506? addresses \u1497?\u1513?\u1497?\u1512?\u1493?\u1514? \u1489?-document. SQL \u1502?\u1489?\u1493?\u1505?\u1505? \u1506?\u1500? relations \u8211? \u1504?\u1514?\u1493?\u1504?\u1497?\u1501? \u1502?\u1493?\u1495?\u1494?\u1511?\u1497?\u1501? \u1489?\u1496?\u1489?\u1500?\u1488?\u1493?\u1514? \u1504?\u1508?\u1512?\u1491?\u1493?\u1514?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1502?\u1514?\u1497? \u1500?\u1492?\u1513?\u1514?\u1502?\u1513? \u1489?-SQL:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1511?\u1513?\u1512?\u1497?\u1501? \u1502?\u1493?\u1512?\u1499?\u1489?\u1497?\u1501? \u1489?\u1497?\u1503? \u1497?\u1513?\u1493?\u1497?\u1493?\u1514?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1510?\u1493?\u1512?\u1498? \u1489?-ACID transactions \u1502?\u1500?\u1488?\u1497?\u1501?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1504?\u1514?\u1493?\u1504?\u1497?\u1501? \u1502?\u1488?\u1493?\u1491? structured \u1493?\u1511?\u1489?\u1493?\u1506?\u1497?\u1501?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 3 \u8211? Sequelize Connection\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? `src/config/db.js`:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import \{ Sequelize \} from "sequelize";\line
+\line
+export const sequelize = new Sequelize(process.env.DATABASE_URL, \{\line
+  dialect: "postgres",\line
+  logging: (sql) => logger.debug(sql),\line
+  pool: \{ max: 10, min: 2, idle: 10000 \}\line
+\});\line
+\line
+export async function connectDB() \{\line
+  await sequelize.authenticate();\line
+  console.log("PostgreSQL connected");\line
+\}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 4 \u8211? Models\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import \{ DataTypes \} from "sequelize";\line
+import \{ sequelize \} from "../config/db.js";\line
+\line
+export const User = sequelize.define(\line
+  "User",\line
+  \{\line
+    name: \{ type: DataTypes.STRING, allowNull: false \},\line
+    email: \{\line
+      type: DataTypes.STRING,\line
+      allowNull: false,\line
+      unique: true,\line
+      validate: \{ isEmail: true \}\line
+    \},\line
+    role: \{ type: DataTypes.ENUM("user", "admin"), defaultValue: "user" \}\line
+  \},\line
+  \{ tableName: "users" \}\line
+);\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 5 \u8211? CRUD\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \\*\\*\u1491?\u1493?\u1490?\u1502?\u1488?\u1493?\u1514? \u1508?\u1506?\u1493?\u1500?\u1493?\u1514? \u1489?\u1505?\u1497?\u1505?\u1497?\u1493?\u1514?:\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// Create\line
+const user = await User.create(\{ name: "Alice", email: "alice@test.com" \});\line
+\line
+// Find\line
+const users = await User.findAll(\{\line
+  where: \{ role: "admin" \},\line
+  attributes: ["name", "email"]\line
+\});\line
+\line
+// Update\line
+await user.update(\{ name: "Alice Smith" \});\line
+\line
+// Delete\line
+await User.destroy(\{ where: \{ id: 5 \} \});\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 6 \u8211? Relations\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \\*\\*\u1491?\u1493?\u1490?\u1502?\u1492?:\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// associations\line
+User.hasMany(Post, \{ foreignKey: "authorId" \});\line
+Post.belongsTo(User, \{ foreignKey: "authorId" \});\line
+\line
+// usage with include\line
+const users = await User.findAll(\{\line
+  include: [\line
+    \{\line
+      model: Post,\line
+      attributes: ["title", "createdAt"],\line
+      required: false // LEFT JOIN\line
+    \}\line
+  ]\line
+\});\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 8 \u8211? SQL Injection\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1491?\u1490?\u1502?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// \u10060? \u1502?\u1505?\u1493?\u1499?\u1503? \u1502?\u1488?\u1493?\u1491?!\line
+const username = req.body.username; // "'; DROP TABLE users; --"\line
+const query = `SELECT * FROM users WHERE username = '$\{username\}'`;\line
+\line
+// \u9989? \u1489?\u1496?\u1493?\u1495? - Sequelize \u1502?\u1490?\u1503? \u1488?\u1493?\u1496?\u1493?\u1502?\u1496?\u1497?\u1514?\line
+const user = await User.findOne(\{ where: \{ username: req.body.username \} \});\line
+\line
+// \u9989? \u1489?\u1496?\u1493?\u1495? - raw query \u1506?\u1501? replacements\line
+const result = await sequelize.query(\line
+  "SELECT * FROM users WHERE username = :name",\line
+  \{ replacements: \{ name: req.body.username \}, type: QueryTypes.SELECT \}\line
+);\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1508?\u1504?\u1497?\u1492?:} Bobby Tables \u8211? XKCD comic \u1502?\u1491?\u1490?\u1497?\u1501? \u1488?\u1514? \u1492?\u1489?\u1506?\u1497?\u1492? \u1489?\u1510?\u1493?\u1512?\u1492? \u1492?\u1493?\u1502?\u1493?\u1512?\u1497?\u1505?\u1496?\u1497?\u1514?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 9 \u8211? Transactions\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \\*\\*\u1491?\u1493?\u1490?\u1502?\u1492?:\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+const result = await sequelize.transaction(async (t) => \{\line
+  const sender = await Account.findByPk(1, \{ transaction: t, lock: true \});\line
+  const receiver = await Account.findByPk(2, \{ transaction: t, lock: true \});\line
+\line
+  if (sender.balance < 100) throw new AppError("Insufficient balance", 400);\line
+\line
+  await sender.decrement("balance", \{ by: 100, transaction: t \});\line
+  await receiver.increment("balance", \{ by: 100, transaction: t \});\line
+\line
+  return \{ success: true \};\line
+\});\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar Transaction \u1492?\u1497?\u1488? \u1499?\u1502?\u1493? \u1506?\u1505?\u1511?\u1492? \u1489?\u1504?\u1511?\u1488?\u1497?\u1514? \u1488?\u1496?\u1493?\u1502?\u1497?\u1514? \u8211? \u1488?\u1501? \u1502?\u1513?\u1492?\u1493? \u1504?\u1499?\u1513?\u1500? \u1489?\u1488?\u1502?\u1510?\u1506?, \u1499?\u1500? \u1492?\u1513?\u1497?\u1504?\u1493?\u1497?\u1497?\u1501? \u1502?\u1514?\u1489?\u1496?\u1500?\u1497?\u1501?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1505?\u1497?\u1499?\u1493?\u1501?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1502?\u1510?\u1490?\u1514? \u1494?\u1493? \u1505?\u1497?\u1511?\u1512?\u1492?:\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? SQL vs MongoDB \u8211? \u1492?\u1489?\u1491?\u1500?\u1497?\u1501? \u1502?\u1489?\u1504?\u1497?\u1497?\u1501?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Sequelize ORM \u1500?\u1492?\u1514?\u1495?\u1489?\u1512?\u1493?\u1514? \u1493?\u1504?\u1497?\u1492?\u1493?\u1500? PostgreSQL\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Models, CRUD, Relations\par}
+{\pard\rtlpar\li360\fi-360 \u8226? SQL Injection prevention\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Transactions\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1506?\u1512?\u1493?\u1514?:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1502?\u1510?\u1490?\u1514? \u1494?\u1493? \u1502?\u1511?\u1493?\u1510?\u1512?\u1514? \u1497?\u1495?\u1505?\u1497?\u1514? \u8211? \u1492?\u1494?\u1502?\u1503? \u1502?\u1493?\u1490?\u1489?\u1500?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? MongoDB \u1500?\u1488? "\u1497?\u1493?\u1514?\u1512? \u1496?\u1493?\u1489?" \u8211? \u1499?\u1500? \u1496?\u1499?\u1504?\u1493?\u1500?\u1493?\u1490?\u1497?\u1492? \u1502?\u1514?\u1488?\u1497?\u1502?\u1492? \u1500?-use case \u1488?\u1495?\u1512?\par}
+{\pard\rtlpar\par}
+}

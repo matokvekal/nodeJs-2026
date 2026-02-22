@@ -1,0 +1,287 @@
+{\rtf1\ansi\ansicpg1255\deflang1037\deff0
+{\fonttbl{\f0\froman\fcharset177 David;}{\f1\fmodern\fcharset0 Courier New;}}
+{\colortbl ;\red0\green0\blue0;\red0\green100\blue0;\red180\green0\blue0;}
+\rtldoc\widowctrl\hyphauto
+{\pard\rtlpar\b\fs36 \u1502?\u1491?\u1512?\u1497?\u1498? \u1500?\u1502?\u1512?\u1510?\u1492? \u8211? \u1497?\u1493?\u1501? 1 \u1502?\u1510?\u1490?\u1514? 2: Async Patterns & Control Flow\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1494?\u1502?\u1503?:} 10:45\u8211?12:00 (75 \u1491?\u1511?\u1493?\u1514?)\par}
+{\pard\rtlpar {\b \u1502?\u1496?\u1512?\u1492?:} \u1492?\u1499?\u1512?\u1514? \u1499?\u1500? \u1491?\u1508?\u1493?\u1505?\u1497? async \u1493?\u1489?\u1495?\u1497?\u1512?\u1514? async/await \u1499?\u1505?\u1496?\u1504?\u1491?\u1512?\u1496?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 1 \u8211? \u1508?\u1514?\u1497?\u1495?\u1492?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1489?\u1502?\u1510?\u1490?\u1514? \u1492?\u1511?\u1493?\u1491?\u1502?\u1514? \u1512?\u1488?\u1497?\u1504?\u1493? \u1488?\u1497?\u1498? Node.js \u1506?\u1493?\u1489?\u1491? \u1502?\u1489?\u1508?\u1504?\u1497?\u1501?. \u1506?\u1499?\u1513?\u1497?\u1493? \u1504?\u1500?\u1502?\u1491? \u1488?\u1497?\u1498? \u1500?\u1499?\u1514?\u1493?\u1489? \u1511?\u1493?\u1491? \u1488?\u1505?\u1497?\u1504?\u1499?\u1512?\u1493?\u1504?\u1497? \u1489?\u1510?\u1493?\u1512?\u1492? \u1504?\u1499?\u1493?\u1504?\u1492?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1502?\u1506?\u1489?\u1512? \u1502?\u1492?\u1497?\u1505?\u1496?\u1493?\u1512?\u1497?\u1492? \u1500?\u1506?\u1514?\u1497?\u1491?:} \u1502?-Callbacks \u1491?\u1512?\u1498? Promises \u1500?-async/await \u1502?\u1493?\u1491?\u1512?\u1504?\u1497?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 2 \u8211? Callbacks (\u1492?\u1497?\u1505?\u1496?\u1493?\u1512?\u1497?\u1492? \u1489?\u1500?\u1489?\u1491?!)\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1494?\u1502?\u1503? \u1502?\u1493?\u1490?\u1489?\u1500?:} 5 \u1491?\u1511?\u1493?\u1514? \u1489?\u1500?\u1489?\u1491? - Callbacks \u1502?\u1493?\u1508?\u1497?\u1506?\u1497?\u1501? \u1489?\u1511?\u1493?\u1491? \u1497?\u1513?\u1503? \u1493?\u1489?\u1495?\u1489?\u1497?\u1500?\u1493?\u1514? \u1497?\u1513?\u1504?\u1493?\u1514?. \u1489?\u1511?\u1493?\u1491? \u1495?\u1491?\u1513? \u1500?\u1488? \u1499?\u1493?\u1514?\u1489?\u1497?\u1501? callbacks.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? Callback Hell (Pyramid of Doom):}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+fs.readFile("a.txt", (err, a) => \{\line
+  fs.readFile("b.txt", (err, b) => \{\line
+    fs.readFile("c.txt", (err, c) => \{\line
+      // pyramid of doom!\line
+    \});\line
+  \});\line
+\});\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1489?\u1506?\u1497?\u1492?:} \u1511?\u1497?\u1504?\u1493?\u1503? \u1506?\u1502?\u1493?\u1511?, \u1511?\u1513?\u1492? \u1500?\u1511?\u1512?\u1497?\u1488?\u1492?, \u1496?\u1497?\u1508?\u1493?\u1500? \u1489?\u1513?\u1490?\u1497?\u1488?\u1493?\u1514? \u1502?\u1505?\u1493?\u1512?\u1489?\u1500?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1508?\u1514?\u1512?\u1493?\u1503?:} util.promisify \u1502?\u1502?\u1497?\u1512? callbacks \u1511?\u1497?\u1497?\u1502?\u1497?\u1501? \u1500?-Promises. \u1489?\u1511?\u1493?\u1491? \u1495?\u1491?\u1513? - \u1513?\u1497?\u1502?\u1493?\u1513? \u1489?-fs/promises \u1497?\u1513?\u1497?\u1512?\u1493?\u1514?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 3 \u8211? Promise\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar Promise \u1492?\u1493?\u1488? \u1488?\u1493?\u1489?\u1497?\u1497?\u1511?\u1496? \u1513?\u1502?\u1497?\u1497?\u1510?\u1490? \u1506?\u1512?\u1498? \u1506?\u1514?\u1497?\u1491?\u1497?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1488?\u1504?\u1500?\u1493?\u1490?\u1497?\u1492?:} \u1499?\u1502?\u1493? \u1511?\u1489?\u1500?\u1492? \u1502?\u1492?\u1502?\u1500?\u1510?\u1512? \u8211? \u1500?\u1488? \u1502?\u1511?\u1489?\u1500?\u1497?\u1501? \u1488?\u1514? \u1492?\u1488?\u1493?\u1499?\u1500? \u1502?\u1497?\u1491?, \u1488?\u1489?\u1500? \u1497?\u1513? \u1492?\u1489?\u1496?\u1495?\u1492? \u1513?\u1497?\u1490?\u1497?\u1506?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1502?\u1510?\u1489?\u1497? Promise:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+Promise\line
+  \u8595?\line
+pending \u8594? fulfilled (resolve)\line
+       \u8594? rejected  (reject)\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1495?\u1513?\u1493?\u1489?:} \u1489?\u1512?\u1490?\u1506? \u1513?Promise \u1492?\u1508?\u1498? \u1500?-settled (fulfilled \u1488?\u1493? rejected), \u1492?\u1502?\u1510?\u1489? \u1513?\u1500?\u1493? \u1500?\u1488? \u1502?\u1513?\u1514?\u1504?\u1492?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? \u1497?\u1510?\u1497?\u1512?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+const p = new Promise((resolve, reject) => \{\line
+  setTimeout(() => resolve("data!"), 1000);\line
+\});\line
+p.then((data) => console.log(data));\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 4 \u8211? \u1497?\u1510?\u1497?\u1512?\u1514? Promise\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1506?\u1511?\u1512?\u1493?\u1503?:} \u1489?\u1512?\u1493?\u1489? \u1492?\u1502?\u1511?\u1512?\u1497?\u1501? \u1500?\u1488? \u1497?\u1493?\u1510?\u1512?\u1497?\u1501? Promise \u1497?\u1491?\u1504?\u1497?\u1514? \u8211? \u1502?\u1513?\u1514?\u1502?\u1513?\u1497?\u1501? \u1489?\u1508?\u1493?\u1504?\u1511?\u1510?\u1497?\u1493?\u1514? \u1513?\u1499?\u1489?\u1512? \u1502?\u1495?\u1494?\u1497?\u1512?\u1493?\u1514? Promise. \u1488?\u1489?\u1500? \u1495?\u1513?\u1493?\u1489? \u1500?\u1492?\u1489?\u1497?\u1503? \u1488?\u1514? \u1492?\u1502?\u1504?\u1490?\u1504?\u1493?\u1503?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? util.promisify - \u1492?\u1502?\u1512?\u1514? callbacks \u1511?\u1497?\u1497?\u1502?\u1497?\u1501?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import \{ promisify \} from 'node:util';\line
+import \{ readFile \} from 'node:fs';\line
+\line
+const readFileAsync = promisify(readFile);\line
+const content = await readFileAsync('file.txt', 'utf8');\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1489?\u1511?\u1493?\u1491? \u1502?\u1493?\u1491?\u1512?\u1504?\u1497? \u8211? \u1497?\u1513?\u1497?\u1512?\u1493?\u1514? \u1502?-fs/promises:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import \{ readFile \} from 'node:fs/promises';\line
+const content = await readFile('file.txt', 'utf8');\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 5 \u8211? async/await \u8592? {\b \u1500?\u1497?\u1489?\u1514? \u1492?\u1502?\u1493?\u1491?\u1493?\u1500?}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar async/await \u1492?\u1493?\u1488? \u1505?\u1497?\u1504?\u1496?\u1511?\u1505? \u1513?\u1502?\u1488?\u1508?\u1513?\u1512? \u1500?\u1499?\u1514?\u1493?\u1489? \u1511?\u1493?\u1491? \u1488?\u1505?\u1497?\u1504?\u1499?\u1512?\u1493?\u1504?\u1497? \u1513?\u1504?\u1512?\u1488?\u1492? \u1499?\u1502?\u1493? \u1505?\u1497?\u1504?\u1499?\u1512?\u1493?\u1504?\u1497?. \u1514?\u1495?\u1514? \u1492?\u1502?\u1504?\u1493?\u1506? \u8211? \u1494?\u1492? Promises \u1489?\u1491?\u1497?\u1493?\u1511?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1494?\u1502?\u1497?\u1503? \u1502?\u1488?\u1494?:} Node.js 7.6+ (ES2017)\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1513?\u1493?\u1493?\u1488?\u1514? \u1505?\u1490?\u1504?\u1493?\u1504?\u1493?\u1514?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// Promise-style\line
+fetchUser(id)\line
+  .then(user => fetchOrders(user.id))\line
+  .then(orders => sendResponse(orders));\line
+\line
+// async/await \u8211? \u1488?\u1493?\u1514?\u1493? \u1491?\u1489?\u1512?, \u1511?\u1512?\u1497?\u1488? \u1497?\u1493?\u1514?\u1512?\line
+async function handler(id) \{\line
+  const user = await fetchUser(id);\line
+  const orders = await fetchOrders(user.id);\line
+  sendResponse(orders);\line
+\}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1513?\u1488?\u1500?\u1492? \u1504?\u1508?\u1493?\u1510?\u1492?:} \u1488?\u1501? await "\u1506?\u1493?\u1510?\u1512?" \u1488?\u1514? \u1492?\u1508?\u1493?\u1504?\u1511?\u1510?\u1497?\u1492?, \u1488?\u1497?\u1498? Node.js \u1502?\u1502?\u1513?\u1497?\u1498? \u1500?\u1511?\u1489?\u1500? \u1489?\u1511?\u1513?\u1493?\u1514??\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1514?\u1513?\u1493?\u1489?\u1492?:} \u1492?\u1508?\u1493?\u1504?\u1511?\u1510?\u1497?\u1492? async \u1502?\u1493?\u1513?\u1506?\u1514? (suspended), \u1488?\u1489?\u1500? Event Loop \u1502?\u1502?\u1513?\u1497?\u1498? \u1500?\u1508?\u1506?\u1493?\u1500?. await \u1506?\u1493?\u1510?\u1512? \u1512?\u1511? \u1488?\u1514? \u1492?\u1508?\u1493?\u1504?\u1511?\u1510?\u1497?\u1492? \u1492?\u1505?\u1508?\u1510?\u1497?\u1508?\u1497?\u1514?, \u1500?\u1488? \u1488?\u1514? \u1499?\u1500? \u1492?\u1514?\u1492?\u1500?\u1497?\u1498?! \u1494?\u1492? \u1492?\u1502?\u1493?\u1491?\u1500? Non-Blocking \u1489?\u1508?\u1506?\u1493?\u1500?\u1492?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1496?\u1497?\u1508?\u1493?\u1500? \u1489?\u1513?\u1490?\u1497?\u1488?\u1493?\u1514? \u1489?-async/await} \u1504?\u1506?\u1513?\u1492? \u1506?\u1501? try/catch \u1502?\u1505?\u1493?\u1512?\u1514?\u1497? - \u1508?\u1513?\u1493?\u1496? \u1493?\u1489?\u1512?\u1493?\u1512?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1513?\u1493?\u1493?\u1488?\u1514? Express 5 \u1500?-Express 4:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// Express 5 - Promise-aware (\u1488?\u1493?\u1496?\u1493?\u1502?\u1496?\u1497?)\line
+app.get('/users/:id', async (req, res) => \{\line
+  const user = await userService.findById(req.params.id);\line
+  // \u1488?\u1501? \u1504?\u1494?\u1512?\u1511?\u1514? \u1513?\u1490?\u1497?\u1488?\u1492? - Express 5 \u1513?\u1493?\u1500?\u1495? \u1488?\u1493?\u1496?\u1493?\u1502?\u1496?\u1497?\u1514? \u1500?-error middleware\line
+  res.json(user);\line
+\});\line
+\line
+// Express 4 - \u1496?\u1497?\u1508?\u1493?\u1500? \u1497?\u1491?\u1504?\u1497? \u1504?\u1491?\u1512?\u1513?\line
+app.get('/users/:id', async (req, res, next) => \{\line
+  try \{\line
+    const user = await userService.findById(req.params.id);\line
+    res.json(user);\line
+  \} catch (err) \{\line
+    next(err); // \u1495?\u1493?\u1489?\u1492? \u1500?\u1492?\u1506?\u1489?\u1497?\u1512? \u1500?-error middleware \u1497?\u1491?\u1504?\u1497?\u1514?\line
+  \}\line
+\});\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \\*\\*Best Practice \u1495?\u1497?\u1493?\u1504?\u1497?:\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar \u1502?\u1511?\u1489?\u1497?\u1500?\u1493?\u1514? (Concurrency) \u1492?\u1497?\u1488? \u1492?\u1502?\u1508?\u1514?\u1495? \u1500?\u1489?\u1497?\u1510?\u1493?\u1506?\u1497?\u1501?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1489?\u1506?\u1497?\u1492? \u1504?\u1508?\u1493?\u1510?\u1492? - \u1489?\u1497?\u1510?\u1493?\u1506? \u1505?\u1491?\u1512?\u1514?\u1497?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// \u10060? \u1488?\u1497?\u1496?\u1497? - \u1505?\u1491?\u1512?\u1514?\u1497? (1s + 1s + 1s = 3s)\line
+const user = await fetchUser(id);\line
+const orders = await fetchOrders(id);\line
+const profile = await fetchProfile(id);\line
+\line
+// \u9989? \u1502?\u1492?\u1497?\u1512? - \u1502?\u1511?\u1489?\u1497?\u1500? (max(1s, 1s, 1s) = 1s)\line
+const [user, orders, profile] = await Promise.all([\line
+  fetchUser(id),\line
+  fetchOrders(id),\line
+  fetchProfile(id)\line
+]);\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1492?\u1514?\u1504?\u1492?\u1490?\u1493?\u1514?:} Promise.all \u1504?\u1499?\u1513?\u1500? \u1499?\u1493?\u1500?\u1493? \u1488?\u1501? \u1488?\u1495?\u1491? \u1504?\u1499?\u1513?\u1500?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b Promise.allSettled - \u1490?\u1512?\u1505?\u1492? \u1505?\u1500?\u1495?\u1504?\u1497?\u1514?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+const results = await Promise.allSettled([\line
+  fetchUser(1),\line
+  fetchUser(999), // \u1497?\u1497?\u1499?\u1513?\u1500?\line
+  fetchUser(3)\line
+]);\line
+\line
+results.forEach((r) => \{\line
+  if (r.status === "fulfilled") console.log("Success:", r.value);\line
+  else console.log("Failed:", r.reason);\line
+\});\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b Promise.race:} \u1492?\u1495?\u1494?\u1512?\u1514? \u1492?\u1514?\u1493?\u1510?\u1488?\u1492? \u1513?\u1500? \u1492?\u1512?\u1488?\u1513?\u1493?\u1503? \u1513?\u1502?\u1505?\u1497?\u1497?\u1501? (\u1492?\u1510?\u1500?\u1495?\u1492? \u1488?\u1493? \u1499?\u1513?\u1500?\u1493?\u1503?).\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? timeout - \u1492?\u1491?\u1512?\u1498? \u1492?\u1502?\u1493?\u1491?\u1512?\u1504?\u1497?\u1514? \u1489?-2026:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+// \u9989? Modern approach - AbortSignal.timeout (Node 18+)\line
+const res = await fetch("https://api.slow.com", \{\line
+  signal: AbortSignal.timeout(5000)\line
+\});\line
+\line
+// \u128336? Old approach - Promise.race\line
+const res = await Promise.race([\line
+  fetch("https://api.slow.com"),\line
+  new Promise((_, reject) =>\line
+    setTimeout(() => reject(new Error("timeout")), 5000)\line
+  )\line
+]);\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b Promise.any:} \u1492?\u1495?\u1494?\u1512?\u1514? \u1492?\u1512?\u1488?\u1513?\u1493?\u1503? \u1513?\u1502?\u1510?\u1500?\u1497?\u1495?, \u1492?\u1514?\u1506?\u1500?\u1502?\u1493?\u1514? \u1502?\u1499?\u1513?\u1500?\u1493?\u1504?\u1493?\u1514?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 9 \u8211? finally\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar finally \u1502?\u1489?\u1510?\u1506? cleanup - \u1512?\u1509? \u1514?\u1502?\u1497?\u1491?, \u1489?\u1492?\u1510?\u1500?\u1495?\u1492? \u1488?\u1493? \u1489?\u1499?\u1513?\u1500?\u1493?\u1503?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? \u1513?\u1495?\u1512?\u1493?\u1512? \u1502?\u1513?\u1488?\u1489?\u1497?\u1501?:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+async function withDbConnection(fn) \{\line
+  const conn = await getConnection();\line
+  try \{\line
+    return await fn(conn);\line
+  \} finally \{\line
+    await conn.release(); // \u1512?\u1509? \u1514?\u1502?\u1497?\u1491? - \u1490?\u1501? \u1489?\u1513?\u1490?\u1497?\u1488?\u1492?!\line
+  \}\line
+\}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b Use Cases \u1504?\u1508?\u1493?\u1510?\u1497?\u1501?:} \u1505?\u1490?\u1497?\u1512?\u1514? \u1511?\u1489?\u1510?\u1497?\u1501?, \u1513?\u1495?\u1512?\u1493?\u1512? connections, cleanup \u1513?\u1500? resources.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 10 \u8211? Async Iterators\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar for await...of \u1502?\u1488?\u1508?\u1513?\u1512? \u1488?\u1497?\u1496?\u1512?\u1510?\u1497?\u1492? \u1506?\u1500? async collections.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1491?\u1493?\u1490?\u1502?\u1514? stream processing:}\par}
+{\pard\rtlpar\par}
+{\pard\ltrpar\f1\fs18\cf1
+import \{ createReadStream \} from "node:fs";\line
+const stream = createReadStream("./large-file.txt", "utf8");\line
+\line
+for await (const chunk of stream) \{\line
+  processChunk(chunk); // \u1502?\u1495?\u1499?\u1492? \u1500?\u1508?\u1504?\u1497? chunk \u1492?\u1489?\u1488?\line
+\}\line
+\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1497?\u1514?\u1512?\u1493?\u1503?:} \u1511?\u1493?\u1491? \u1511?\u1512?\u1497?\u1488?, \u1496?\u1497?\u1508?\u1493?\u1500? \u1489?\u1513?\u1490?\u1497?\u1488?\u1493?\u1514? \u1506?\u1501? try/catch, backpressure \u1488?\u1493?\u1496?\u1493?\u1502?\u1496?\u1497?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 11\u8211?12 \u8211? AbortSignal\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar AbortSignal = \u1502?\u1504?\u1490?\u1504?\u1493?\u1503? \u1489?\u1497?\u1496?\u1493?\u1500? (cancellation) \u1488?\u1493?\u1504?\u1497?\u1489?\u1512?\u1505?\u1500?\u1497?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1514?\u1502?\u1497?\u1499?\u1492? \u1504?\u1512?\u1495?\u1489?\u1514?:} fetch, streams, setTimeout, event listeners.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b Best Practice:} \u1514?\u1502?\u1497?\u1491? \u1500?\u1514?\u1502?\u1493?\u1498? \u1489?-AbortSignal \u1489?-APIs \u1488?\u1512?\u1493?\u1499?\u1497? \u1496?\u1493?\u1493?\u1495?.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 13 \u8211? \u1505?\u1497?\u1499?\u1493?\u1501?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1504?\u1511?\u1493?\u1491?\u1493?\u1514? \u1502?\u1512?\u1499?\u1494?\u1497?\u1493?\u1514? \u1500?\u1489?\u1491?\u1497?\u1511?\u1492?:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u1502?\u1492? \u1492?\u1492?\u1489?\u1491?\u1500? \u1489?\u1497?\u1503? {\f1\ltrch Promise.all\f0} \u1500?-{\f1\ltrch Promise.allSettled\f0}?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? all: \u1504?\u1499?\u1513?\u1500? \u1488?\u1501? \u1488?\u1495?\u1491? \u1504?\u1499?\u1513?\u1500? | allSettled: \u1514?\u1502?\u1497?\u1491? \u1502?\u1495?\u1494?\u1497?\u1512? \u1514?\u1493?\u1510?\u1488?\u1493?\u1514?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u1502?\u1492? \u1511?\u1493?\u1512?\u1492? \u1500?\u1511?\u1493?\u1491? \u1488?\u1495?\u1512?\u1497? {\f1\ltrch await\f0}?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1492?\u1508?\u1493?\u1504?\u1511?\u1510?\u1497?\u1492? \u1502?\u1493?\u1513?\u1506?\u1514?, Event Loop \u1502?\u1502?\u1513?\u1497?\u1498?, \u1511?\u1493?\u1491? \u1502?\u1502?\u1513?\u1497?\u1498? \u1488?\u1495?\u1512?\u1497? resolve\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u1502?\u1514?\u1497? \u1502?\u1513?\u1514?\u1502?\u1513?\u1497?\u1501? \u1489?-{\f1\ltrch for await\f0}?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? \u1500?\u1488?\u1497?\u1496?\u1512?\u1510?\u1497?\u1492? \u1506?\u1500? async collections \u1499?\u1502?\u1493? streams\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1514?\u1494?\u1499?\u1493?\u1512?\u1514?:} async/await \u1492?\u1493?\u1488? \u1492?\u1505?\u1496?\u1504?\u1491?\u1512?\u1496? \u1492?\u1502?\u1493?\u1491?\u1512?\u1504?\u1497? \u1489?-2026.\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li720 "AbortSignal = \u1502?\u1504?\u1490?\u1504?\u1493?\u1503? \u1489?\u1497?\u1496?\u1493?\u1500? \u1488?\u1495?\u1497?\u1491?. \u1497?\u1513? \u1500?\u1504?\u1493? \u1499?\u1489?\u1512? fetch \u1513?\u1502?\u1511?\u1489?\u1500? signal, streams, setTimeout \u8211? \u1492?\u1499?\u1500? \u1514?\u1493?\u1502?\u1498? \u1489?\u1494?\u1492?."\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1513?\u1511?\u1507? 13 \u8211? \u1505?\u1497?\u1499?\u1493?\u1501? (3 \u1491?\u1511?\u1493?\u1514?)\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar {\b \u1513?\u1488?\u1500?\u1493?\u1514?:}\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u1502?\u1492? \u1492?\u1492?\u1489?\u1491?\u1500? \u1489?\u1497?\u1503? {\f1\ltrch Promise.all\f0} \u1500?-{\f1\ltrch Promise.allSettled\f0}?\par}
+{\pard\rtlpar\li360\fi-360 \u1502?\u1492? \u1511?\u1493?\u1512?\u1492? \u1500?\u1511?\u1493?\u1491? \u1513?\u1488?\u1495?\u1512?\u1497? {\f1\ltrch await\f0} \u1499?\u1513?\u1492?\u1493?\u1488? \u1502?\u1495?\u1499?\u1492??\par}
+{\pard\rtlpar\li360\fi-360 \u1502?\u1514?\u1497? \u1504?\u1513?\u1514?\u1502?\u1513? \u1489?-{\f1\ltrch for await\f0}?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\brdrb\brdrs\brdrw10\brsp20 \par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\b\fs28 \u1492?\u1506?\u1512?\u1493?\u1514? \u1502?\u1512?\u1510?\u1492?\par}
+{\pard\rtlpar\par}
+{\pard\rtlpar\li360\fi-360 \u8226? {\b \u1494?\u1502?\u1503? \u1495?\u1505?\u1493?\u1498?}: \u1488?\u1501? \u1497?\u1513? \u1495?\u1493?\u1505?\u1512? \u1494?\u1502?\u1503?, \u1511?\u1510?\u1512? \u1488?\u1514? \u1513?\u1511?\u1507? 10-11 (Async Iterators) \u1500?-3 \u1491?\u1511?\u1493?\u1514?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? {\b \u1513?\u1488?\u1500?\u1493?\u1514? \u1504?\u1508?\u1493?\u1510?\u1493?\u1514?}: "\u1492?\u1488?\u1501? await \u1495?\u1493?\u1505?\u1501? \u1488?\u1514? Server?" \u8594? \u1500?\u1488?! \u1495?\u1493?\u1505?\u1501? \u1512?\u1511? \u1488?\u1514? \u1492?\u1508?\u1493?\u1504?\u1511?\u1510?\u1497?\u1492? \u1492?\u1505?\u1508?\u1510?\u1497?\u1508?\u1497?\u1514?\par}
+{\pard\rtlpar\li360\fi-360 \u8226? Generators \u1504?\u1491?\u1495?\u1493? \u1500?\u1497?\u1493?\u1501? 4 \u8211? \u1510?\u1497?\u1497?\u1503? \u1494?\u1488?\u1514? \u1488?\u1501? \u1513?\u1493?\u1488?\u1500?\u1497?\u1501?\par}
+{\pard\rtlpar\par}
+}

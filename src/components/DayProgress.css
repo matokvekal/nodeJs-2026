@@ -1,0 +1,38 @@
+.day-progress {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.progress-bar.completed {
+  background: var(--day-color);
+  box-shadow: 0 0 8px var(--day-color);
+}
+
+.progress-bar.incomplete {
+  background: rgba(127, 163, 176, 0.2);
+  border: 1px solid rgba(127, 163, 176, 0.1);
+}
+
+.progress-bar.completed::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  filter: blur(4px);
+  opacity: 0.5;
+  z-index: -1;
+}

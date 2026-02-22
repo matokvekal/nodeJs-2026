@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forms</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h2>Form with Action</h2>
+    <form id="form1" action="http://localhost:3000/submit" method="get">
+      <input type="text" name="first_name" placeholder="First Name" required />
+      <input type="text" name="last_name" placeholder="Last Name" required />
+      <input type="text" name="address" placeholder="Address" required />
+      <input type="tel" name="phone" placeholder="Phone" required />
+      <button type="submit">Submit</button>
+    </form>
+
+    <h2>Form On submit</h2>
+    <form
+      id='form0" onsubmit="submitForm(event, "http://localhost:3000/submit", "fetch")'
+    >
+      <input
+        type="text"
+        id="fname"
+        name="first_name"
+        placeholder="First Name"
+        required
+      />
+      <input
+        type="text"
+        id="lname"
+        name="last_name"
+        placeholder="Last Name"
+        required
+      />
+      <input
+        type="text"
+        id="address"
+        name="address"
+        placeholder="Address"
+        required
+      />
+      <input type="tel" id="phone" name="phone" placeholder="Phone" required />
+      <button type="submit">Submit</button>
+    </form>
+    <h2>Form with Fetch</h2>
+    <form id="form2">
+      <input
+        type="text"
+        id="fname"
+        name="first_name"
+        placeholder="First Name"
+        required
+      />
+      <input
+        type="text"
+        id="lname"
+        name="last_name"
+        placeholder="Last Name"
+        required
+      />
+      <input
+        type="text"
+        id="address"
+        name="address"
+        placeholder="Address"
+        required
+      />
+      <input type="tel" id="phone" name="phone" placeholder="Phone" required />
+      <button type="submit">Submit</button>
+    </form>
+
+    <h2>Form with Axios</h2>
+    <form id="form3">
+      <input
+        type="text"
+        id="fname2"
+        name="first_name"
+        placeholder="First Name"
+        required
+      />
+      <input
+        type="text"
+        id="lname2"
+        name="last_name"
+        placeholder="Last Name"
+        required
+      />
+      <input
+        type="text"
+        id="address2"
+        name="address"
+        placeholder="Address"
+        required
+      />
+      <input type="tel" id="phone2" name="phone" placeholder="Phone" required />
+      <button type="submit">Submit</button>
+    </form>
+
+    <script src="script.js"></script>
+  </body>
+</html>

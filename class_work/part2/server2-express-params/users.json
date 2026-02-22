@@ -1,0 +1,152 @@
+[
+   {
+       "id": 1,
+       "name": "אביגיל כהן",
+       "phone": "054-123-4567",
+       "email": "avigail@example.com"
+   },
+   {
+       "id": 2,
+       "name": "אורי כהנא",
+       "phone": "052-234-5678",
+       "email": "uri@example.com"
+   },
+   {
+       "id": 3,
+       "name": "מיכאל לוי",
+       "phone": "053-345-6789",
+       "email": "michael@example.com"
+   },
+   {
+       "id": 4,
+       "name": "איילת כהן",
+       "phone": "055-456-7890",
+       "email": "ailet@example.com"
+   },
+   {
+       "id": 5,
+       "name": "איתן גולן",
+       "phone": "054-567-8901",
+       "email": "eitan@example.com"
+   },
+   {
+       "id": 6,
+       "name": "ישראל גרין",
+       "phone": "052-678-9012",
+       "email": "yisrael@example.com"
+   },
+   {
+       "id": 7,
+       "name": "שירה רביבו",
+       "phone": "053-789-0123",
+       "email": "shira@example.com"
+   },
+   {
+       "id": 8,
+       "name": "אריאל לוי",
+       "phone": "055-890-1234",
+       "email": "ariel@example.com"
+   },
+   {
+       "id": 9,
+       "name": "אביה רוזנבלום",
+       "phone": "054-901-2345",
+       "email": "avya@example.com"
+   },
+   {
+       "id": 10,
+       "name": "נועם כהן",
+       "phone": "052-012-3456",
+       "email": "noam@example.com"
+   },
+   {
+       "id": 11,
+       "name": "שירה יצחקי",
+       "phone": "053-123-4567",
+       "email": "shira@example.com"
+   },
+   {
+       "id": 12,
+       "name": "אלעד לוי",
+       "phone": "055-234-5678",
+       "email": "elad@example.com"
+   },
+   {
+       "id": 13,
+       "name": "תמר רוזנבלום",
+       "phone": "054-345-6789",
+       "email": "tamar@example.com"
+   },
+   {
+       "id": 14,
+       "name": "יהודית רובינשטיין",
+       "phone": "052-456-7890",
+       "email": "yehudit@example.com"
+   },
+   {
+       "id": 15,
+       "name": "אבי גבאי",
+       "phone": "053-567-8901",
+       "email": "avi@example.com"
+   },
+   {
+       "id": 16,
+       "name": "תמיר רובינוביץ",
+       "phone": "055-678-9012",
+       "email": "tamer@example.com"
+   },
+   {
+       "id": 17,
+       "name": "רינת גרין",
+       "phone": "054-789-0123",
+       "email": "rinat@example.com"
+   },
+   {
+       "id": 18,
+       "name": "שלומית רובינשטיין",
+       "phone": "052-890-1234",
+       "email": "shlomit@example.com"
+   },
+   {
+       "id": 19,
+       "name": "גלעד רוזנבלום",
+       "phone": "053-901-2345",
+       "email": "gilad@example.com"
+   },
+   {
+       "id": 20,
+       "name": "רונית גרין",
+       "phone": "055-012-3456",
+       "email": "ronit@example.com"
+   },
+   {
+       "id": 21,
+       "name": "אדיר רובינוביץ",
+       "phone": "054-123-4567",
+       "email": "adir@example.com"
+   },
+   {
+       "id": 22,
+       "name": "עודד כהן",
+       "phone": "052-234-5678",
+       "email": "oded@example.com"
+   },
+   {
+       "id": 23,
+       "name": "רעות כהן",
+       "phone": "053-345-6789",
+       "email": "raut@example.com"
+   },
+   {
+       "id": 24,
+       "name": "נתן לוי",
+       "phone": "055-456-7890",
+       "email": "natan@example.com"
+   },
+   {
+       "id": 25,
+       "name": "רבקה כהנא",
+       "phone": "054-567-8901",
+       "email": "rivka@example.com"
+   }
+]

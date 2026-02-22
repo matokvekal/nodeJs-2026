@@ -1,0 +1,12 @@
+{
+  "name": "day2-lesson3",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Day 2 Lesson 3",
+  "scripts": {
+    "start": "node ex01.js",
+    "dev": "node --watch ex01.js"
+  },
+  "dependencies": {},
+  "license": "ISC"
+}

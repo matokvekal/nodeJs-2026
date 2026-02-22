@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSONP Example</title>
+</head>
+<body>
+    <h1>JSONP Example</h1>
+    <script>
+        function myFunction(data) {
+         debugger
+            console.log('Received data:', data);
+            console.log('Check the console for received data!');
+        }
+    </script>
+    <script src="http://localhost:3000/jsonp?callback=myFunction">
+      debugger
+      console.log('Script loaded!')
+    </script>
+</body>
+</html>

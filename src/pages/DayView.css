@@ -42,7 +42,7 @@
 .dv-title-block {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
 .dv-title {
@@ -69,7 +69,11 @@
 }
 
 .pres-card {
-  background: linear-gradient(135deg, rgba(21, 27, 36, 0.85), rgba(11, 15, 20, 0.9));
+  background: linear-gradient(
+    135deg,
+    rgba(21, 27, 36, 0.85),
+    rgba(11, 15, 20, 0.9)
+  );
   border: 2px solid rgba(97, 218, 251, 0.12);
   border-radius: 16px;
   padding: 24px 20px;
@@ -111,6 +115,44 @@
 
 .pres-card.locked {
   opacity: 0.4;
+}
+
+.pres-card.completed {
+  border-color: var(--day-color, var(--accent));
+  box-shadow: 0 0 20px rgba(var(--day-color), 0.2);
+  background: linear-gradient(
+    135deg,
+    rgba(21, 27, 36, 0.9),
+    rgba(11, 15, 20, 0.95)
+  );
+}
+
+.pres-card.completed::before {
+  opacity: 1;
+  height: 4px;
+  box-shadow: 0 0 10px var(--day-color, var(--accent));
+}
+
+.completion-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--day-color, var(--accent));
+  color: var(--bg-primary);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.completion-badge .checkmark {
+  font-size: 0.9rem;
+  font-weight: 900;
 }
 
 .pres-number {
@@ -174,7 +216,11 @@
 .btn-primary {
   width: 100%;
   padding: 10px 16px;
-  background: linear-gradient(135deg, rgba(0, 217, 255, 0.2), rgba(97, 218, 251, 0.2));
+  background: linear-gradient(
+    135deg,
+    rgba(0, 217, 255, 0.2),
+    rgba(97, 218, 251, 0.2)
+  );
   border: 2px solid var(--accent);
   border-radius: 10px;
   color: var(--text-primary);
@@ -187,7 +233,11 @@
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, rgba(0, 217, 255, 0.35), rgba(97, 218, 251, 0.35));
+  background: linear-gradient(
+    135deg,
+    rgba(0, 217, 255, 0.35),
+    rgba(97, 218, 251, 0.35)
+  );
   transform: translateY(-2px);
   box-shadow: 0 0 20px rgba(0, 217, 255, 0.35);
 }
@@ -250,5 +300,12 @@
   .day-view-header {
     flex-direction: column;
     align-items: flex-start;
+  }
+  .pres-card {
+    min-height: 320px;
+    padding: 20px 18px;
+  }
+  .pres-title {
+    font-size: 1.1rem;
   }
 }
