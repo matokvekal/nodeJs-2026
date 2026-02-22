@@ -242,6 +242,32 @@
   box-shadow: 0 0 20px rgba(0, 217, 255, 0.35);
 }
 
+.btn-code-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: var(--text-secondary, rgba(255,255,255,0.6));
+  font-family: "Assistant", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: center;
+}
+
+.btn-code-link:hover {
+  border-color: var(--day-color, #61dafb);
+  color: var(--day-color, #61dafb);
+  background: rgba(97, 218, 251, 0.08);
+}
+
 .btn-secondary {
   width: 100%;
   padding: 8px 16px;

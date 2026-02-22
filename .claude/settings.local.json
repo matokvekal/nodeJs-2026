@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(cd \"C:/Users/PC/Desktop/sela-node-26--final\" && git stash pop 2>&1)",
+      "Bash(cd \"C:/Users/PC/Desktop/sela-node-26--final\" && git stash drop 2>&1)",
+      "Bash(echo Cleanup done:*)",
+      "Bash(cd \"C:/Users/PC/Desktop/sela-node-26--final\" && git push origin main --force 2>&1)"
     ]
   }
 }

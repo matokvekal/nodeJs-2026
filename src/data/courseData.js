@@ -22,14 +22,15 @@ import { slides as slides_4_2 } from "../slides/day4/presentation2";
 import { slides as slides_4_3 } from "../slides/day4/presentation3";
 import { slides as slides_4_4 } from "../slides/day4/presentation4";
 
+const BASE = "https://github.com/matokvekal/nodeJs/tree/main/nodejs-lessons";
+
 export const courseData = {
   day1: {
     title: "יום 1",
     subtitle: "Node.js Runtime & Async",
     description: "V8, libuv, Event Loop, Async Patterns, File System, HTTP",
     color: "#61dafb",
-    githubLink:
-      "https://github.com/matokvekal/nodeJs/tree/main/nodejs-lessons/1_1",
+    githubLink: `${BASE}/day1_lesson1`,
     presentations: [
       {
         id: "1_1",
@@ -37,7 +38,8 @@ export const courseData = {
         subtitle: "V8, libuv, Event Loop, process",
         slides: slides_1_1,
         storageKey: "presentation-01-current-slide",
-        available: true
+        available: true,
+        githubLink: `${BASE}/day1_lesson1`
       },
       {
         id: "1_2",
@@ -45,7 +47,8 @@ export const courseData = {
         subtitle: "Callbacks, Promises, async/await",
         slides: slides_1_2,
         storageKey: "presentation-02-current-slide",
-        available: true
+        available: true,
+        githubLink: `${BASE}/day1_lesson2`
       },
       {
         id: "1_3",
@@ -53,7 +56,8 @@ export const courseData = {
         subtitle: "fs, ReadStream, WriteStream, Pipe",
         slides: slides_1_3,
         storageKey: "presentation-03-current-slide",
-        available: true
+        available: true,
+        githubLink: `${BASE}/day1_lesson3`
       },
       {
         id: "1_4",
@@ -61,7 +65,8 @@ export const courseData = {
         subtitle: "HTTP protocol, request handling",
         slides: slides_1_4,
         storageKey: "presentation-04-current-slide",
-        available: true
+        available: true,
+        githubLink: `${BASE}/day1_lesson4`
       }
     ]
   },
@@ -70,8 +75,7 @@ export const courseData = {
     subtitle: "Express & REST APIs",
     description: "Modules, NPM, Express 5, REST API Design",
     color: "#a8dadc",
-    githubLink:
-      "https://github.com/matokvekal/nodeJs/tree/main/nodejs-lessons/2_1",
+    githubLink: `${BASE}/day2_lesson1`,
     presentations: [
       {
         id: "2_1",
@@ -79,7 +83,8 @@ export const courseData = {
         subtitle: "CommonJS, ESM, npm",
         slides: slides_2_1,
         storageKey: "presentation-05-current-slide",
-        available: true
+        available: true,
+        githubLink: `${BASE}/day2_lesson1`
       },
       {
         id: "2_2",
@@ -87,7 +92,8 @@ export const courseData = {
         subtitle: "Routing, Middleware, Error handling",
         slides: slides_2_2,
         storageKey: "presentation-06-current-slide",
-        available: true
+        available: true,
+        githubLink: `${BASE}/day2_lesson2`
       },
       {
         id: "2_3",
@@ -95,7 +101,8 @@ export const courseData = {
         subtitle: "RESTful principles, best practices",
         slides: slides_2_3,
         storageKey: "presentation-07-current-slide",
-        available: true
+        available: true,
+        githubLink: `${BASE}/day2_lesson3`
       },
       {
         id: "2_4",
@@ -103,7 +110,8 @@ export const courseData = {
         subtitle: "Build a full API from scratch",
         slides: slides_2_4,
         storageKey: "presentation-08-current-slide",
-        available: true
+        available: true,
+        githubLink: `${BASE}/day2_lesson4`
       }
     ]
   },
@@ -111,9 +119,8 @@ export const courseData = {
     title: "יום 3",
     subtitle: "Databases & Security",
     description: "MongoDB, SQL, Auth, Security",
-    githubLink:
-      "https://github.com/matokvekal/nodeJs/tree/main/nodejs-lessons/3_1",
     color: "#9b59b6",
+    githubLink: `${BASE}/day3_lesson1`,
     presentations: [
       {
         id: "3_1",
@@ -121,7 +128,8 @@ export const courseData = {
         subtitle: "NoSQL, schemas, queries",
         slides: slides_3_1,
         storageKey: "presentation-09-current-slide",
-        available: true
+        available: true,
+        githubLink: `${BASE}/day3_lesson1`
       },
       {
         id: "3_2",
@@ -129,7 +137,8 @@ export const courseData = {
         subtitle: "Relational DB, ORM",
         slides: slides_3_2,
         storageKey: "presentation-10-current-slide",
-        available: true
+        available: true,
+        githubLink: `${BASE}/day3_lesson2`
       },
       {
         id: "3_3",
@@ -137,7 +146,8 @@ export const courseData = {
         subtitle: "JWT, sessions, OAuth",
         slides: slides_3_3,
         storageKey: "presentation-11-current-slide",
-        available: true
+        available: true,
+        githubLink: `${BASE}/day3_lesson3`
       },
       {
         id: "3_4",
@@ -145,7 +155,8 @@ export const courseData = {
         subtitle: "OWASP, XSS, SQL Injection",
         slides: slides_3_4,
         storageKey: "presentation-12-current-slide",
-        available: true
+        available: true,
+        githubLink: `${BASE}/day3_lesson4`
       }
     ]
   },
@@ -153,9 +164,8 @@ export const courseData = {
     title: "יום 4",
     subtitle: "Advanced Node.js",
     description: "WebSockets, Crypto, Testing, Performance",
-    githubLink:
-      "https://github.com/matokvekal/nodeJs/tree/main/nodejs-lessons/4_1",
     color: "#f39c12",
+    githubLink: `${BASE}/day4_lesson1`,
     presentations: [
       {
         id: "4_1",
@@ -163,7 +173,8 @@ export const courseData = {
         subtitle: "Socket.io, live communication",
         slides: slides_4_1,
         storageKey: "presentation-13-current-slide",
-        available: true
+        available: true,
+        githubLink: `${BASE}/day4_lesson1`
       },
       {
         id: "4_2",
@@ -171,7 +182,8 @@ export const courseData = {
         subtitle: "Encryption, hashing, signing",
         slides: slides_4_2,
         storageKey: "presentation-14-current-slide",
-        available: true
+        available: true,
+        githubLink: `${BASE}/day4_lesson2`
       },
       {
         id: "4_3",
@@ -179,7 +191,8 @@ export const courseData = {
         subtitle: "Clusters, workers, performance",
         slides: slides_4_3,
         storageKey: "presentation-15-current-slide",
-        available: true
+        available: true,
+        githubLink: `${BASE}/day4_lesson3`
       },
       {
         id: "4_4",
@@ -187,7 +200,8 @@ export const courseData = {
         subtitle: "node:test, Jest, best practices",
         slides: slides_4_4,
         storageKey: "presentation-16-current-slide",
-        available: true
+        available: true,
+        githubLink: `${BASE}/day4_lesson4`
       }
     ]
   }

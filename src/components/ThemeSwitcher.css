@@ -85,7 +85,7 @@
   opacity: 1;
   max-width: 1000px;
   transition: all 0.3s ease;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 .theme-switcher.collapsed .theme-controls {

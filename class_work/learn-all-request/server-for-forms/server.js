@@ -1,6 +1,6 @@
-const http = require("http");
-const url = require("url");
-const querystring = require("querystring");
+import http from "http";
+import url from "url";
+import querystring from "querystring";
 
 const server = http.createServer((req, res) => {
   // Parse request URL
