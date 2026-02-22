@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-const User = require('../models/user');
+import express from 'express';
+const router = express.Router();
+import User from '../models/user.js';
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
@@ -12,4 +12,4 @@ router.get('/', async function(req, res, next) {
   res.render('index', { title: 'Express', user: user });
 });
 
-module.exports = router;
+export default router;

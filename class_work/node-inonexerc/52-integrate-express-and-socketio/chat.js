@@ -1,5 +1,5 @@
-const socketio = require('socket.io');
-const Room = require('./models/room');
+import socketio from 'socket.io';
+import Room from './models/room.js';
 
 function init(server) {
     const io = socketio(server);
@@ -40,4 +40,4 @@ function init(server) {
     });
 }
 
-module.exports = init;
+export default init;

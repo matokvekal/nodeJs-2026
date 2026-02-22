@@ -1,4 +1,4 @@
-# מדריך למרצה – יום 3 מצגת 11: Authentication & Authorization 2026
+# הרחבות : – יום 3 מצגת 11: Authentication & Authorization 2026
 
 **זמן:** 13:00–14:45
 **מטרה:** יישום JWT auth מלא עם Refresh Tokens ו-Rotation
@@ -10,6 +10,7 @@
 ה-API שלנו עובד, אבל כרגע כל אחד יכול לגשת לכל endpoint. עכשיו מוסיפים Authentication (מי אתה?) ו-Authorization (מה מותר לך?).
 
 **מה נלמד:**
+
 - Stateful vs Stateless — Sessions לעומת JWT
 - JWT anatomy — מה בפנים הטוקן ואיך מאמתים אותו
 - Access Token + Refresh Token — הפיצול שמאפשר UX טוב + security
@@ -20,10 +21,10 @@
 
 **שלושה שאלות שכל מערכת Auth עונה:**
 
-| שאלה | מושג | מימוש |
-|------|------|-------|
-| מי אתה? | Authentication | Login + JWT |
-| מה מותר לך? | Authorization | RBAC / permissions |
+| שאלה            | מושג             | מימוש                    |
+| --------------- | ---------------- | ------------------------ |
+| מי אתה?         | Authentication   | Login + JWT              |
+| מה מותר לך?     | Authorization    | RBAC / permissions       |
 | האם הtoken תקף? | Token Validation | verify + blacklist check |
 
 **OAuth2 + OIDC — Overview:**

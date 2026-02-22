@@ -1,4 +1,4 @@
-const db = require('../models');
+import db from '../models.js';
 
 class Dig {
     dig(url, userName) {
@@ -47,4 +47,4 @@ class Dig {
 
 }
 
-module.exports = Dig;
+export default Dig;

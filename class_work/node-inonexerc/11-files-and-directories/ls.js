@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 
 function printTypeOf(entry) {
     fs.stat(entry, (err, stat) => {

@@ -1,6 +1,6 @@
-const socketio = require('socket.io');
+import socketio from 'socket.io';
 
-module.exports = function(server) {
+export default function(server) {
     const io = socketio(server);
 
     // a new client joined :)

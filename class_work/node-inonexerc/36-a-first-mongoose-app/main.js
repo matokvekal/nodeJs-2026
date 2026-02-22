@@ -1,13 +1,11 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const Contact = require('./contact');
+import Contact from './contact.js';
 
 
 async function main() {
     const connection = await mongoose.connect(
-        'mongodb://localhost/test',
-        { useNewUrlParser: true }
-    );
+        'mongodb://localhost/test');
 
     // const c1 = new Contact({ name: 'ynon', email: 'ynon@tocode.co.il' });
     // await c1.save();

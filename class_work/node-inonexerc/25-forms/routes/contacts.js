@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-const contacts = require('../lib/contacts');
+import express from 'express';
+const router = express.Router();
+import contacts from '../lib/contacts.js';
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -28,5 +28,5 @@ router.post('/:id', function(req, res) {
     res.render('contacts/edit', { item: item });
 });
 
-module.exports = router;
+export default router;
 

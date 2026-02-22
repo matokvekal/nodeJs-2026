@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const request = require('request-promise');
-const { parse } = require('node-html-parser');
+import mongoose from 'mongoose';
+import request from 'request-promise';
+import { parse } from 'node-html-parser';
 
 const linkSchema = new mongoose.Schema({
     href: String,
@@ -20,4 +20,4 @@ linkSchema.methods.getTitle = async function() {
     return root.querySelector('title').rawText;
 };
 
-module.exports = mongoose.model('Link', linkSchema);
+export default mongoose.model('Link', linkSchema);

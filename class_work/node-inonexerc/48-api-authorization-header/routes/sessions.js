@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
-const User = require('../models/user');
-const passport = require('passport');
+import express from 'express';
+const router = express.Router();
+import User from '../models/user.js';
+import passport from 'passport';
 
 // GET /sessions/new
 router.get('/new', function (req, res, next) {
@@ -17,4 +17,4 @@ router.post('/', passport.authenticate(
     }
 ));
 
-module.exports = router;
+export default router;

@@ -1,31 +1,26 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-const cookieSession = require('cookie-session');
+import createError from 'http-errors';
+import { fileURLToPath } from 'url';
+import path from 'path';
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
+import cookieSession from 'cookie-session';
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var sessionsRouter = require('./routes/sessions');
-var tokensRouter = require('./routes/tokens');
+import indexRouter from './routes/index.js';
+import usersRouter from './routes/users.js';
+import sessionsRouter from './routes/sessions.js';
+import tokensRouter from './routes/tokens.js';
 
-const passport = require('passport');
-const flash = require('connect-flash');
+import passport from 'passport';
+import flash from 'connect-flash';
 
-require('./initializers/passport');
+import './initializers/passport';
 
 
-const mongoose = require('mongoose');
-mongoose.connect(
-  'mongodb://localhost/test',
-  {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-  }
-);
+import mongoose from 'mongoose';
+mongoose.connect($1);
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -50,7 +45,7 @@ app.use('/users', usersRouter);
 app.use('/sessions', sessionsRouter);
 app.use('/tokens', tokensRouter);
 
-const apiRoute = require('./routes/api');
+import apiRoute from './routes/api.js';
 app.use('/api/v1.0/', apiRoute);
 
 // catch 404 and forward to error handler
@@ -69,4 +64,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+export default app;

@@ -1,5 +1,5 @@
 const debugMode = process.env.DEBUG;
-const fs = require('fs');
+import fs from 'fs';
 
 function debug(msg) {
     if (!debugMode) return;

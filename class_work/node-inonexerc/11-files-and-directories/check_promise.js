@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 const fsp = fs.promises;
 
 // process.argv[0] is node process

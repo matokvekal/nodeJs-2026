@@ -1,4 +1,4 @@
-# מדריך למרצה – יום 2 מצגת 7: REST API Design Modern
+# הרחבות : – יום 2 מצגת 7: REST API Design Modern
 
 **זמן:** 13:30–14:45
 **מטרה:** הבנת עקרונות REST מודרניים ויישום pagination ותיעוד
@@ -10,6 +10,7 @@
 יש לנו Express app עובד. עכשיו נלמד לעצב אותו נכון — REST API מקצועי שאחרים ישמחו לעבוד איתו.
 
 **מה נלמד:**
+
 - Resource naming – מוסכמות שמות נכונות
 - Status codes – כל קוד אומר משהו
 - Filtering, Sorting, Pagination – שאלות נפוצות בכל API
@@ -18,12 +19,12 @@
 
 **REST Maturity Levels (Richardson Model):**
 
-| רמה | תיאור | דוגמה |
-|-----|-------|-------|
-| Level 0 | HTTP כטנל — שגוי | POST /api?action=getUser |
-| Level 1 | משאבים | GET /users/42 |
-| Level 2 | HTTP Verbs + Status Codes | DELETE /users/42 → 204 |
-| Level 3 | HATEOAS | תגובה כוללת links לפעולות הבאות |
+| רמה     | תיאור                     | דוגמה                           |
+| ------- | ------------------------- | ------------------------------- |
+| Level 0 | HTTP כטנל — שגוי          | POST /api?action=getUser        |
+| Level 1 | משאבים                    | GET /users/42                   |
+| Level 2 | HTTP Verbs + Status Codes | DELETE /users/42 → 204          |
+| Level 3 | HATEOAS                   | תגובה כוללת links לפעולות הבאות |
 
 **רוב APIs בעולם האמיתי הם Level 2** — Level 3 נדיר ומורכב.
 
@@ -149,8 +150,8 @@ Versioning מאפשר לשמור שתי גרסאות API במקביל. v1 ו-v2 
   "name": "Alice",
   "status": "active",
   "_links": {
-    "self":    { "href": "/users/42" },
-    "orders":  { "href": "/users/42/orders" },
+    "self": { "href": "/users/42" },
+    "orders": { "href": "/users/42/orders" },
     "deactivate": { "href": "/users/42/deactivate", "method": "POST" }
   }
 }

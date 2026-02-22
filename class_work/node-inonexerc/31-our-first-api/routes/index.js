@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+import express from 'express';
+const router = express.Router();
 
 // messages -> /messages
 
@@ -21,4 +21,4 @@ router.post('/', function(req, res, next) {
   res.send(msg);
 });
 
-module.exports = router;
+export default router;

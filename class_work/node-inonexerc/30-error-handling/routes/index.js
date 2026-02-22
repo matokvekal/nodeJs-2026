@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var createError = require('http-errors');
-const fs = require('fs');
+import express from 'express';
+const router = express.Router();
+import createError from 'http-errors';
+import fs from 'fs';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -18,4 +18,4 @@ router.get('/file', function(req, res, next) {
   })
 });
 
-module.exports = router;
+export default router;

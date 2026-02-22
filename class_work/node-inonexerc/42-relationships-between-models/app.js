@@ -1,29 +1,21 @@
-const mongoose = require('mongoose');
-const Band = require('./models/band');
-const Artist = require('./models/artist');
-const _ = require('lodash');
+import mongoose from 'mongoose';
+import Band from './models/band.js';
+import Artist from './models/artist.js';
+import _ from 'lodash';
 
 async function main() {
-    await mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true });
+    await mongoose.connect($1);
 
     const vu = await Band.find({ name: 'The Velvet Underground'}).populate('members');
     console.log(vu);
 
-    mongoose.disconnect();
-}
-
-async function whereDidYouPlay(name) {
-    await mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true });
+    mongoose.disconnect($1);
 
     const artist = await Artist.findOne({ name });
     const bands = await Band.find({ members: artist });
     console.log(bands);
 
-    mongoose.disconnect();
-}
-
-async function whoDidYouPlayWith(name) {
-    await mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true });
+    mongoose.disconnect($1);
 
     const artist = await Artist.findOne({ name });
     const bands = await Band.find({ members: artist }).populate('members');

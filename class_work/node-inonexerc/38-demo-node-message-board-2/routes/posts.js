@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Post = require('../models/post');
+import Post from '../models/post.js';
 
 // GET /posts/new
 router.get('/new', function(req, res, next) {
@@ -40,4 +40,4 @@ router.post('/', async function(req, res, next) {
     }
 });
 
-module.exports = router;
+export default router;

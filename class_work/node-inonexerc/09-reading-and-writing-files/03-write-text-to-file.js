@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 
 const out = fs.createWriteStream('./log.txt', {
   encoding: 'utf8',

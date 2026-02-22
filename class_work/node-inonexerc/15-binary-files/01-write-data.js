@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 
 const buf = Buffer.alloc(10);
 for (let i=0; i < 10; i++) {

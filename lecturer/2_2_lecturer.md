@@ -1,4 +1,4 @@
-# מדריך למרצה – יום 2 מצגת 6: Express 5 Deep Dive
+# הרחבות : – יום 2 מצגת 6: Express 5 Deep Dive
 
 **זמן:** 11:00–12:30
 **מטרה:** בניית Express app מלא עם middleware, validation, ו-error handling
@@ -10,6 +10,7 @@
 בנינו את מבנה הפרויקט. עכשיו מרכיבים את שכבת ה-HTTP עם Express 5 — הגרסה המודרנית שסוף סוף מטפלת ב-async errors אוטומטית.
 
 **מה נלמד:**
+
 - Express 5 ושינוי המהפכני: async error propagation אוטומטי
 - Router, Controllers, Services – Separation of Concerns
 - Middleware chain – הסדר חשוב!

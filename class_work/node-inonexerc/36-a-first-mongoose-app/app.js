@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const Contact = require('./models/contact');
+import Contact from './models/contact.js';
 
 async function mainWithInsertMany() {
-    const connection = await mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true });
+    const connection = await mongoose.connect($1);
 
     const [c1, c2] = await Contact.insertMany([
         { name: 'ynon' },
@@ -13,12 +13,7 @@ async function mainWithInsertMany() {
     const contactItems = await Contact.find({});
     console.log(contactItems);
 
-    mongoose.disconnect();
-
-}
-
-async function mainWithCreate() {
-    const connection = await mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true });
+    mongoose.disconnect($1);
     
     const c1 = await Contact.create({ name: 'ynon' });
     const c2 = await Contact.create({ name: 'jj', email: 'jj@gmail.com' });
@@ -26,12 +21,7 @@ async function mainWithCreate() {
     const contactItems = await Contact.find({});
     console.log(contactItems);
 
-    mongoose.disconnect();
-
-}
-
-async function main() {
-    const connection = await mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true });
+    mongoose.disconnect($1);
     
     const c1 = new Contact({ name: 'ynon' });
     const c2 = new Contact({ name: 'jj', email: 'jj@gmail.com' });
@@ -41,11 +31,7 @@ async function main() {
     const contactItems = await Contact.find({});
     console.log(contactItems);
 
-    mongoose.disconnect();
-}
-
-async function findExamples() {
-    const connection = await mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true });
+    mongoose.disconnect($1);
 
     const ynon = await Contact.find({ email: /@gmail.com$/ });
     console.log(ynon);

@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 
 // process.argv[0] is node process
 // process.argv[1] is the name of THIS script

@@ -1,4 +1,4 @@
-const socketio = require('socket.io');
+import socketio from 'socket.io';
 
 function init(server) {
     const io = socketio(server);
@@ -32,4 +32,4 @@ function init(server) {
     });
 }
 
-module.exports = init;
+export default init;

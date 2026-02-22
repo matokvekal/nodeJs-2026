@@ -1,4 +1,4 @@
-# מדריך למרצה – יום 1 מצגת 1: Modern Node.js Runtime 2026
+# הרחבות : – יום 1 מצגת 1: Modern Node.js Runtime 2026
 
 **זמן:** 09:00–10:30 (90 דקות)
 **מטרה:** הבנת עבודת Node.js מבפנים – V8, libuv, Event Loop
@@ -10,6 +10,7 @@
 היום נתחיל מהיסוד. לפני לבנות APIs וטיפול בנתונים, חשוב להבין איך Node.js עובד מבפנים. זה יעזור לאבחן באגים ולכתוב קוד טוב יותר.
 
 **מה נלמד היום:**
+
 - איך Node.js עובד מבפנים: V8, libuv, Event Loop
 - מה זה Non-Blocking I/O ולמה זה חשוב
 - כלים מובנים חדשים ב-Node.js 20+
@@ -48,12 +49,14 @@ Node.js הוא לא שפה – JavaScript היא השפה. Node.js הוא **סב
 ```
 
 **מה Node.js מצוין לבנות:**
+
 - שרתי Web ו-REST APIs
 - אפליקציות Real-time (צ'אטים, התראות חיות)
 - כלי command-line
 - מיקרו-שירותים (microservices)
 
 **מתי לא להשתמש ב-Node.js:**
+
 - חישובים כבדים של CPU (Machine Learning, קידוד וידאו) — ייחסמו את ה-Event Loop
 - במקרים כאלה: Worker Threads, שפה אחרת, או microservice נפרד
 
@@ -113,14 +116,14 @@ libuv היא הלב השני של Node.js. בעוד V8 מריץ JavaScript, libu
 
 **סדר הביצוע המלא:**
 
-| סדר | סוג | דוגמאות |
-|-----|-----|---------|
-| 1 | קוד סינכרוני | כל שורה רגילה |
-| 2 | process.nextTick | process.nextTick(() => ...) |
-| 3 | Microtasks | Promise.resolve().then(...) |
-| 4 | Timers | setTimeout, setInterval |
-| 5 | Check | setImmediate |
-| 6 | Close | socket.on('close') |
+| סדר | סוג              | דוגמאות                     |
+| --- | ---------------- | --------------------------- |
+| 1   | קוד סינכרוני     | כל שורה רגילה               |
+| 2   | process.nextTick | process.nextTick(() => ...) |
+| 3   | Microtasks       | Promise.resolve().then(...) |
+| 4   | Timers           | setTimeout, setInterval     |
+| 5   | Check            | setImmediate                |
+| 6   | Close            | socket.on('close')          |
 
 **כלל אצבע:** בין כל phase, Node.js מרוקן את כל ה-Microtasks ו-nextTick לפני שעובר לשלב הבא.
 

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const bandSchema = new mongoose.Schema({
@@ -7,5 +7,5 @@ const bandSchema = new mongoose.Schema({
     members: [{ type: Schema.Types.ObjectId, ref: 'Artist' }],
 });
 
-module.exports = mongoose.model('Band', bandSchema);
+export default mongoose.model('Band', bandSchema);
 

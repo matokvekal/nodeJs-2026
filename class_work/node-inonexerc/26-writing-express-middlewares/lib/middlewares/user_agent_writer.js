@@ -1,11 +1,11 @@
-const fs = require('fs');
+import fs from 'fs';
 const log = fs.createWriteStream('./useragents.log', {
     flags: 'a',
 });
 
 const seen = {};
 
-module.exports = function(req, res, next) {
+export default function(req, res, next) {
     const ua = req.get('User-Agent');
     log.write(ua);
 

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const postSchema = new mongoose.Schema({
     author: { type: String, required: true },
     color: { type: String, default: '#333' },
@@ -6,5 +6,5 @@ const postSchema = new mongoose.Schema({
     text: String,
 });
 
-module.exports = new mongoose.model('Post', postSchema);
+export default new mongoose.model('Post', postSchema);
 

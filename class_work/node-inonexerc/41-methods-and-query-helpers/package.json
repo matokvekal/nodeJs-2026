@@ -13,5 +13,6 @@
     "node-html-parser": "^1.1.11",
     "request": "^2.88.0",
     "request-promise": "^4.2.2"
-  }
+  },
+  "type": "module"
 }

@@ -1,7 +1,7 @@
-const Post = require('../models/post');
+import Post from '../models/post.js';
 
 async function main() {
-    const mongoose = require('mongoose');
+    import mongoose from 'mongoose';
     mongoose.connect('mongodb://localhost/mymessages');
     
     await Post.create({ author: 'ynon', text: 'Hello World' });

@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
 const saltRounds = 10;
-const uniqueValidator = require('mongoose-unique-validator');
+import uniqueValidator from 'mongoose-unique-validator';
 
 const userSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
 userSchema.plugin(uniqueValidator);
 
 userSchema.pre('save', function(next) {
-    var user = this;
+    const user = this;
 
     if (!user.isModified('password')) return next();
 
@@ -31,4 +31,4 @@ userSchema.methods.checkPassword = function(candidatePassword) {
     })
 };
 
-module.exports = mongoose.model('User', userSchema);
+export default mongoose.model('User', userSchema);

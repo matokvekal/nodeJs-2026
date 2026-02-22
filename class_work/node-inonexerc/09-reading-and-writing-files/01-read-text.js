@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 
 // Demo 1 - read file async
 // fs.readFile('/etc/shells', 'utf8', (err, data) => {

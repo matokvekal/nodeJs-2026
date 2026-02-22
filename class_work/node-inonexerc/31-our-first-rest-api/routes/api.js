@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+import express from 'express';
+const router = express.Router();
 
 const messages = [
     { from: 'ynon', text: 'hello world'},
@@ -18,5 +18,5 @@ router.post('/messages', function(req, res, next) {
     res.send(msg);
 });
 
-module.exports = router;
+export default router;
 

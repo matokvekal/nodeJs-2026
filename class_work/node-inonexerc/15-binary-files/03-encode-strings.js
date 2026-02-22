@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 
 const dataUtf8 = Buffer.from('hello world', 'utf8');
 const dataUtf16 = Buffer.from('hello world', 'ucs-2');

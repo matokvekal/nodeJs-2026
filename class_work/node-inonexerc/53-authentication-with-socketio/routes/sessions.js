@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var passport = require('passport');
-const User = require('../models/user');
-const socketio = require('../liveupdate');
+import express from 'express';
+const router = express.Router();
+import passport from 'passport';
+import User from '../models/user.js';
+import socketio from '../liveupdate.js';
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -23,5 +23,5 @@ router.post('/logout', function(req, res, next) {
     res.redirect('/');
 });
 
-module.exports = router;
+export default router;
 

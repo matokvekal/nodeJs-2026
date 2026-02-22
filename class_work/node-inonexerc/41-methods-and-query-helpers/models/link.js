@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const URL = require('url').URL;
-const request = require('request-promise');
+import request from 'request-promise';
 const parse = require('node-html-parser').parse;
 
 const linkSchema = mongoose.Schema({
@@ -27,4 +27,4 @@ linkSchema.query.https = function() {
     return this.where({ href: /^https:/ });
 };
 
-module.exports = mongoose.model('Link', linkSchema);
+export default mongoose.model('Link', linkSchema);

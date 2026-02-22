@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-const jwt = require('jsonwebtoken');
+import express from 'express';
+const router = express.Router();
+import jwt from 'jsonwebtoken';
 
 router.get('/new', function(req, res, next) {
     res.render('tokens/new', { token: null });
@@ -19,4 +19,4 @@ router.post('/', function(req, res, next) {
     res.render('tokens/new', { token });
 });
 
-module.exports = router;
+export default router;

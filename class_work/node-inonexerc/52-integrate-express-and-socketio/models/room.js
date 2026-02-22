@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const roomSchema = new mongoose.Schema({
     name: { type: String, unique: true },
     messages: [{
@@ -21,4 +21,4 @@ roomSchema.statics.findOrCreateOne = function findOrCreateOne(name) {
     });
 }
 
-module.exports = mongoose.model('Room', roomSchema);
+export default mongoose.model('Room', roomSchema);

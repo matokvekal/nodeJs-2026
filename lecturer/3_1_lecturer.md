@@ -1,4 +1,4 @@
-# מדריך למרצה – יום 3 מצגת 9: MongoDB + Mongoose v7
+# הרחבות : – יום 3 מצגת 9: MongoDB + Mongoose v7
 
 **זמן:** 09:00–10:30
 **מטרה:** חיבור ה-API מיום 2 למסד MongoDB אמיתי
@@ -10,6 +10,7 @@
 ביום 2 בנינו API עם נתונים ב-Memory (Map). היום מחברים אותו למסד נתונים אמיתי — MongoDB. כמעט לא נצטרך לשנות את ה-Controllers, רק את ה-Service layer.
 
 **מה נלמד:**
+
 - MongoDB – Document database, מה הוא ומתי עדיף על SQL
 - Mongoose v7 – ODM שמוסיף schema, validation, ו-middleware
 - CRUD עם Mongoose: findById, create, findOneAndUpdate, deleteOne
@@ -21,11 +22,11 @@
 
 **MongoDB vs SQL — מתי להשתמש:**
 
-| MongoDB | SQL |
-|---------|-----|
-| נתונים לא-מובנים (flexible schema) | קשרים מורכבים בין ישויות |
-| Real-time, high write throughput | ACID transactions מלאים |
-| JSON-native (מושלם ל-Node.js) | נתונים מאוד מובנים וקבועים |
+| MongoDB                            | SQL                        |
+| ---------------------------------- | -------------------------- |
+| נתונים לא-מובנים (flexible schema) | קשרים מורכבים בין ישויות   |
+| Real-time, high write throughput   | ACID transactions מלאים    |
+| JSON-native (מושלם ל-Node.js)      | נתונים מאוד מובנים וקבועים |
 
 **כלל אצבע:** המסד הנכון תלוי ב-use case, לא בטרנד.
 

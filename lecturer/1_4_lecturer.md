@@ -1,4 +1,4 @@
-# מדריך למרצה – יום 1 מצגת 4: HTTP Fundamentals + WebHooks
+# הרחבות : – יום 1 מצגת 4: HTTP Fundamentals + WebHooks
 
 **זמן:** 14:45–16:30
 **מטרה:** בניית שרת HTTP והבנת מנגנון WebHooks
@@ -10,6 +10,7 @@
 סיימנו את הבסיס: Event Loop, Async, Streams. עכשיו מרכיבים את הכל לשרת HTTP אמיתי.
 
 **מה נלמד:**
+
 - `http.createServer` – מה Express בנוי עליו מתחת
 - `req` ו-`res` – אובייקטי Stream שכבר מכירים
 - Status codes – שפת התקשורת עם הלקוח
@@ -18,19 +19,20 @@
 - Idempotency – עיקרון חיוני לבניית מערכות אמינות
 
 **קשר לנושאים קודמים:**
+
 - `req` הוא Readable Stream – אותו דבר שלמדנו ב-Streams
 - `res` הוא Writable Stream – יכולים להגיש נתונים ב-chunks
 - כל handler הוא async callback שרץ דרך Event Loop
 
 **פרמטרי HTTP בסיסיים:**
 
-| מרכיב | תיאור | דוגמה |
-|-------|-------|-------|
-| Method | פעולה מבוקשת | GET, POST, PUT, DELETE |
-| URL | נתיב המשאב | /api/v1/users/42 |
-| Headers | מטא-דאטה | Content-Type, Authorization |
-| Body | תוכן הבקשה | JSON, form data |
-| Status Code | תוצאת הבקשה | 200, 404, 500 |
+| מרכיב       | תיאור        | דוגמה                       |
+| ----------- | ------------ | --------------------------- |
+| Method      | פעולה מבוקשת | GET, POST, PUT, DELETE      |
+| URL         | נתיב המשאב   | /api/v1/users/42            |
+| Headers     | מטא-דאטה     | Content-Type, Authorization |
+| Body        | תוכן הבקשה   | JSON, form data             |
+| Status Code | תוצאת הבקשה  | 200, 404, 500               |
 
 ---
 

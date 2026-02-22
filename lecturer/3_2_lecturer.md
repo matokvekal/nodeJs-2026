@@ -1,4 +1,4 @@
-# מדריך למרצה – יום 3 מצגת 10: SQL with Sequelize
+# הרחבות : – יום 3 מצגת 10: SQL with Sequelize
 
 **זמן:** 10:45–12:00
 **מטרה:** היכרות עם Sequelize והבנת מתי SQL עדיף על MongoDB
@@ -10,6 +10,7 @@
 ראינו MongoDB — עכשיו נסתכל על הצד השני. SQL קיים כבר 50 שנה ועדיין רלוונטי מאוד ב-2026. המצגת הזו מקוצרת בכוונה — מטרתה להבין מתי ולמה לבחור SQL.
 
 **מה נלמד:**
+
 - SQL vs MongoDB — ההבדלים המבניים
 - Sequelize ORM — חיבור וניהול PostgreSQL מ-Node.js
 - Models, CRUD, Relations — הבסיס

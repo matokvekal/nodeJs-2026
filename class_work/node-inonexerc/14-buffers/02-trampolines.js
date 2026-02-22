@@ -1,5 +1,5 @@
-const readline = require('readline');
-const fs = require('fs');
+import readline from 'readline';
+import fs from 'fs';
 
 function countLines(filename) {
     return new Promise((resolve, reject) => {

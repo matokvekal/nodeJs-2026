@@ -1,4 +1,4 @@
-# מדריך למרצה – יום 4 מצגת 13: WebSocket (ws)
+# הרחבות : – יום 4 מצגת 13: WebSocket (ws)
 
 **זמן:** 09:00–10:15
 **מטרה:** בניית שרת WebSocket עם broadcast, private messaging, ו-heartbeat
@@ -10,6 +10,7 @@
 ביום 3 בנינו API בטוח עם Auth ו-Security. עכשיו עוברים לתקשורת בזמן אמת — WebSocket.
 
 **מה נלמד:**
+
 - WebSocket vs HTTP Polling — למה WebSocket עדיף לReal-time
 - Handshake — איך מבוסס על HTTP ועובר לפרוטוקול נפרד
 - ws library — הספרייה הישירה, ללא overhead
@@ -20,11 +21,11 @@
 
 **WebSocket vs חלופות:**
 
-| טכנולוגיה | כיוון | שימוש מתאים |
-|-----------|-------|------------|
-| HTTP Polling | Client→Server (כל X שניות) | נתונים שמשתנים לאט |
-| Server-Sent Events | Server→Client (חד-כיווני) | feed, notifications |
-| WebSocket | דו-כיווני מלא | צ'אט, gaming, collaboration |
+| טכנולוגיה          | כיוון                      | שימוש מתאים                 |
+| ------------------ | -------------------------- | --------------------------- |
+| HTTP Polling       | Client→Server (כל X שניות) | נתונים שמשתנים לאט          |
+| Server-Sent Events | Server→Client (חד-כיווני)  | feed, notifications         |
+| WebSocket          | דו-כיווני מלא              | צ'אט, gaming, collaboration |
 
 **Authentication ב-WebSocket:**
 WebSocket Handshake הוא HTTP request — ניתן לשלוח JWT ב-query param או ב-cookie:

@@ -1,6 +1,6 @@
-var expect = require("chai").expect;
-const db = require('../models');
-const Dig = require('../lib/dig');
+const expect = require("chai").expect;
+import db from '../models.js';
+import Dig from '../lib/dig.js';
 
 describe("Dig test", function(){
     

@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var feed = require('../lib/feed');
+import express from 'express';
+const router = express.Router();
+import feed from '../lib/feed.js';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -15,4 +15,4 @@ router.post('/', async function(req, res, next) {
   res.render('index', { posts: feed.posts() });
 });
 
-module.exports = router;
+export default router;

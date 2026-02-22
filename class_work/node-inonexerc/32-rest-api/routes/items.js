@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const items = require('../lib/items');
+import items from '../lib/items.js';
 
 // collections
 // return index of all items
@@ -37,4 +37,4 @@ router.put('/:id', function(req, res, next) {
     res.sendStatus(200);
 });
 
-module.exports = router;
+export default router;

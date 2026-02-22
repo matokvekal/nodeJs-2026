@@ -1,13 +1,9 @@
-const mongoose = require('mongoose');
-const User = require('./user');
+import mongoose from 'mongoose';
+import User from './user.js';
 
 async function main() {
     const connection = await mongoose.connect(
-        'mongodb://localhost/test',
-        {
-            useNewUrlParser: true,
-            useCreateIndex: true,
-        });
+        'mongodb://localhost/test');
     
     const c1 = new User({ email: 'ynon@gmail.com', password: 'secret' });
     const c2 = new User({ email: 'jj@gmail.com', password: '1234' });

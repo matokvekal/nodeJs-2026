@@ -1,4 +1,4 @@
-const winston = require('winston');
+import winston from 'winston';
 
 winston.configure({
     format: winston.format.simple(),
@@ -11,4 +11,4 @@ if (process.env['NODE_ENV'] !== 'production') {
     winston.add(new winston.transports.Console());
 }
 
-module.exports = winston;
+export default winston;

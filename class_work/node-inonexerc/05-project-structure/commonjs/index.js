@@ -1,4 +1,4 @@
-const {twice} = require('./src/utils');
+import {twice} from './src/utils.js';
 // npm add express
 // npm install --save express
 // npm install express

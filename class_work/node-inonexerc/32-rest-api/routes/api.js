@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const items = require('../lib/items');
+import items from '../lib/items.js';
 
 router.get('/items', function(req, res, next) {
     res.send(items.index(req.param('s') || ''));
@@ -24,4 +24,4 @@ router.delete('/items/:id', function(req, res, next) {
     res.send(204);
 });
 
-module.exports = router;
+export default router;

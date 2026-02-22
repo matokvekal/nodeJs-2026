@@ -1,7 +1,7 @@
-const express = require('express');
-const passport = require('passport');
+import express from 'express';
+import passport from 'passport';
 const router = express.Router();
-const createError = require('http-errors');
+import createError from 'http-errors';
 
 router.get('/whoami', passport.authenticate('jwt', { session: false }), function(req, res, next) {
     if (req.user) {
@@ -11,4 +11,4 @@ router.get('/whoami', passport.authenticate('jwt', { session: false }), function
     }
 });
 
-module.exports = router;
+export default router;

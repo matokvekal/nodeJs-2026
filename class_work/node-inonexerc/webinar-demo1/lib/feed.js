@@ -23,4 +23,4 @@ class Feed {
     }
 }
 
-module.exports = new Feed();
+export default new Feed();

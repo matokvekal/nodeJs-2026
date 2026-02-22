@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const Post = require('../models/post');
+import Post from '../models/post.js';
 
-const multer = require('multer');
+import multer from 'multer';
 const postPhotoUpload = multer({
     storage: multer.memoryStorage(),
     limits: {
@@ -68,4 +68,4 @@ router.post('/', postPhotoUpload, async function(req, res, next) {
     }
 });
 
-module.exports = router;
+export default router;

@@ -1,14 +1,19 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var morgan = require('morgan');
-var logger = require('./lib/logger');
+import createError from 'http-errors';
+import { fileURLToPath } from 'url';
+import path from 'path';
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import morgan from 'morgan';
+import logger from './lib/logger.js';
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+import indexRouter from './routes/index.js';
+import usersRouter from './routes/users.js';
 
-var app = express();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const app = express();
 
 
 // view engine setup
@@ -50,4 +55,4 @@ if (env === 'dev') {
 
 
 
-module.exports = app;
+export default app;

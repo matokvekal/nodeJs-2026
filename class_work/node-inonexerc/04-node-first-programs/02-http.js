@@ -1,5 +1,5 @@
-const { URL } = require('url');
-const https = require('https');
+import { URL } from 'url';
+import https from 'https';
 
 const url = new URL('https://swapi.co/api/people/1/');
 

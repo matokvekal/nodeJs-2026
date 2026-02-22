@@ -1,4 +1,4 @@
-# מדריך למרצה – יום 4 מצגת 15: Advanced Node Topics
+# הרחבות : – יום 4 מצגת 15: Advanced Node Topics
 
 **זמן:** 11:15–12:00
 **מטרה:** היכרות עם AsyncLocalStorage, EventEmitter patterns, ו-worker_threads
@@ -10,6 +10,7 @@
 ביום 4 למדנו WebSocket ו-Crypto. עכשיו נסיים עם נושאים מתקדמים שהופכים Node.js application מ"עובד" ל"production-ready".
 
 **מה נלמד:**
+
 - AsyncLocalStorage — Context propagation אוטומטי לאורך שרשרת async
 - EventEmitter Patterns — Decoupling בין שכבות הקוד
 - worker_threads — פתרון לחישובים כבדים שחוסמים את Event Loop
@@ -18,12 +19,12 @@
 
 **מתי Event Loop נחסם?**
 
-| סיבה | דוגמה | פתרון |
-|------|-------|-------|
-| חישוב מרובה | לולאה של מיליארד פעולות | worker_threads |
-| Sync I/O | `fs.readFileSync` קובץ גדול | `fs.promises.readFile` |
-| JSON.parse גדול | body של מגה-בייטים | Stream parsing |
-| Regex catastrophic | `/(a+)+$/` על string ארוך | re2 library |
+| סיבה               | דוגמה                       | פתרון                  |
+| ------------------ | --------------------------- | ---------------------- |
+| חישוב מרובה        | לולאה של מיליארד פעולות     | worker_threads         |
+| Sync I/O           | `fs.readFileSync` קובץ גדול | `fs.promises.readFile` |
+| JSON.parse גדול    | body של מגה-בייטים          | Stream parsing         |
+| Regex catastrophic | `/(a+)+$/` על string ארוך   | re2 library            |
 
 **מדוע AsyncLocalStorage חשוב?**
 בלעדיו: `requestId` מועבר ידנית כ-parameter בכל פונקציה. עם AsyncLocalStorage: context זמין בכל מקום ללא העברה ידנית — כמו thread-local storage, אבל ל-async.

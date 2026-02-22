@@ -1,4 +1,4 @@
-# מדריך למרצה – יום 1 מצגת 2: Async Patterns & Control Flow
+# הרחבות : – יום 1 מצגת 2: Async Patterns & Control Flow
 
 **זמן:** 10:45–12:00 (75 דקות)
 **מטרה:** הכרת כל דפוסי async ובחירת async/await כסטנדרט
@@ -70,18 +70,18 @@ p.then((data) => console.log(data));
 **דוגמת util.promisify - המרת callbacks קיימים:**
 
 ```js
-import { promisify } from 'node:util';
-import { readFile } from 'node:fs';
+import { promisify } from "node:util";
+import { readFile } from "node:fs";
 
 const readFileAsync = promisify(readFile);
-const content = await readFileAsync('file.txt', 'utf8');
+const content = await readFileAsync("file.txt", "utf8");
 ```
 
 **בקוד מודרני – ישירות מ-fs/promises:**
 
 ```js
-import { readFile } from 'node:fs/promises';
-const content = await readFile('file.txt', 'utf8');
+import { readFile } from "node:fs/promises";
+const content = await readFile("file.txt", "utf8");
 ```
 
 ---
@@ -97,8 +97,8 @@ async/await הוא סינטקס שמאפשר לכתוב קוד אסינכרונ�
 ```js
 // Promise-style
 fetchUser(id)
-  .then(user => fetchOrders(user.id))
-  .then(orders => sendResponse(orders));
+  .then((user) => fetchOrders(user.id))
+  .then((orders) => sendResponse(orders));
 
 // async/await – אותו דבר, קריא יותר
 async function handler(id) {
@@ -118,14 +118,14 @@ async function handler(id) {
 
 ```js
 // Express 5 - Promise-aware (אוטומטי)
-app.get('/users/:id', async (req, res) => {
+app.get("/users/:id", async (req, res) => {
   const user = await userService.findById(req.params.id);
   // אם נזרקת שגיאה - Express 5 שולח אוטומטית ל-error middleware
   res.json(user);
 });
 
 // Express 4 - טיפול ידני נדרש
-app.get('/users/:id', async (req, res, next) => {
+app.get("/users/:id", async (req, res, next) => {
   try {
     const user = await userService.findById(req.params.id);
     res.json(user);
@@ -133,7 +133,7 @@ app.get('/users/:id', async (req, res, next) => {
     next(err); // חובה להעביר ל-error middleware ידנית
   }
 });
-````
+```
 
 \*\*Best Practice חיוני:
 

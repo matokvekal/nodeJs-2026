@@ -1,4 +1,4 @@
-# מדריך למרצה – יום 4 מצגת 14: Crypto in Node.js
+# הרחבות : – יום 4 מצגת 14: Crypto in Node.js
 
 **זמן:** 10:30–11:15
 **מטרה:** היכרות עם כלי crypto מובנים והבנת מתי להשתמש בכל אחד
@@ -10,6 +10,7 @@
 ב-Auth השתמשנו ב-argon2. ב-WebHooks השתמשנו ב-HMAC. עכשיו נבין מה יש בתוך מודול `crypto` של Node.js ומתי להשתמש בכל כלי.
 
 **מה נלמד:**
+
 - `createHash` — SHA-256 לverification ו-checksums
 - HMAC — אימות חתימה (webhooks, API signatures)
 - `timingSafeEqual` — השוואה בטוחה מפני timing attacks
@@ -19,14 +20,15 @@
 
 **תכונות Hash functions — לדעת בעל פה:**
 
-| תכונה | משמעות |
-|-------|--------|
-| Deterministic | אותו input תמיד → אותו output |
-| Fixed Length | output תמיד אותו גודל (SHA-256 = 256 bits) |
-| One-Way | לא ניתן לשחזר input מה-hash |
-| Avalanche Effect | שינוי קטן ב-input → שינוי גדול ב-output |
+| תכונה            | משמעות                                     |
+| ---------------- | ------------------------------------------ |
+| Deterministic    | אותו input תמיד → אותו output              |
+| Fixed Length     | output תמיד אותו גודל (SHA-256 = 256 bits) |
+| One-Way          | לא ניתן לשחזר input מה-hash                |
+| Avalanche Effect | שינוי קטן ב-input → שינוי גדול ב-output    |
 
 **סיסמאות — Salt ו-Stretching:**
+
 - **Salt**: מחרוזת אקראית ייחודית לכל משתמש, נוסף לסיסמה לפני hashing
 - מונע rainbow tables (טבלאות hash מוכנות מראש)
 - **Key Stretching**: hashing מכוון לוקח זמן (~150ms), מונע brute force

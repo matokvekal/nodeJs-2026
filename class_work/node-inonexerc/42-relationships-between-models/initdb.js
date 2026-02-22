@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const Band = require('./models/band');
-const Artist = require('./models/artist');
+import mongoose from 'mongoose';
+import Band from './models/band.js';
+import Artist from './models/artist.js';
 
 async function main() {
     await mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true });

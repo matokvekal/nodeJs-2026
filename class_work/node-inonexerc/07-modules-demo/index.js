@@ -1,6 +1,6 @@
-const music = require('./music');
+import music from './music.js';
 
-const { shuffle } = require('./lib/utils');
+import { shuffle } from './lib/utils.js';
 
 const sentence = 'I can see the mountain';
 

@@ -1,7 +1,7 @@
-var passport = require('passport')
+const passport = require('passport')
     , LocalStrategy = require('passport-local').Strategy;
 
-const User = require('../models/user');
+import User from '../models/user.js';
 
 passport.use(new LocalStrategy(
     {
@@ -24,9 +24,9 @@ passport.use(new LocalStrategy(
     }
 ));
 
-var JwtStrategy = require('passport-jwt').Strategy,
+const JwtStrategy = require('passport-jwt').Strategy,
     ExtractJwt = require('passport-jwt').ExtractJwt;
-var opts = {}
+const opts = {}
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = 'secret123';
 passport.use(new JwtStrategy(opts, function(jwt_payload, done) {

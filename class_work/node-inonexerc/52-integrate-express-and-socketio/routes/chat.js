@@ -1,6 +1,6 @@
-const express = require('express');
-const Room = require('../models/room');
-const chat = require('../chat');
+import express from 'express';
+import Room from '../models/room.js';
+import chat from '../chat.js';
 const router = express.Router();
 
 router.get('/chat', async function(req, res) {
@@ -14,4 +14,4 @@ router.post('/ping', async function(req, res) {
     res.send(200);
 });
 
-module.exports = router;
+export default router;

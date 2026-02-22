@@ -1,5 +1,5 @@
-const User = require('./models/user');
-const socketio = require('socket.io');
+import User from './models/user.js';
+import socketio from 'socket.io';
 const session = require('cookie-session')({
     name: 'session',
     secret: 'ninja',
@@ -31,4 +31,4 @@ function init(server) {
     })
 }
 
-module.exports = init;
+export default init;

@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const Post = require('../models/post');
+import Post from '../models/post.js';
 
 /*
 router.get('/', async function(req, res, next) {
@@ -16,7 +16,7 @@ router.get('/', async function(req, res, next) {
 */
 
 
-const multer = require('multer');
+import multer from 'multer';
 const postPhotoUpload = multer({
     storage: multer.memoryStorage(),
     limits: {
@@ -75,4 +75,4 @@ router.post('/', postPhotoUpload, async function(req, res, next) {
     res.redirect('/posts');
 });
 
-module.exports = router;
+export default router;

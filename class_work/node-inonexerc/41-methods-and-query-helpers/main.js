@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
-const Link = require('./models/link');
+import mongoose from 'mongoose';
+import Link from './models/link.js';
 
 async function main() {
-    await mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true });
+    await mongoose.connect('mongodb://localhost/test');
     console.log('connected');
 
     // l = await Link.create({ href: 'https://www.duckduckgo.com' });

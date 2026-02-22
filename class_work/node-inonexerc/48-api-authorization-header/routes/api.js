@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-const passport = require('passport');
+import express from 'express';
+const router = express.Router();
+import passport from 'passport';
 
 router.use(passport.authenticate('jwt', { session: false }));
 
@@ -8,4 +8,4 @@ router.get('/whoami', function(req, res, next) {
     res.send(`Hello! ${req.user.email}`);
 });
 
-module.exports = router;
+export default router;

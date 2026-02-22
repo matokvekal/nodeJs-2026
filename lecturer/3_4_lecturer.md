@@ -1,4 +1,4 @@
-# מדריך למרצה – יום 3 מצגת 12: Security Deep Dive
+# הרחבות : – יום 3 מצגת 12: Security Deep Dive
 
 **זמן:** 15:00–16:30
 **מטרה:** הוספת שכבות הגנה ל-API והיכרות עם OWASP API Top 10
@@ -10,6 +10,7 @@
 יש לנו API עם Auth — אבל Auth לבד לא מספיק. אפשר לעקוף Auth אם יש BOLA. אפשר לגנוב secrets אם הם ב-GitHub. עכשיו נוסיף שכבות הגנה.
 
 **מה נלמד:**
+
 - OWASP API Top 10 — הרשימה שכל מפתח חייב להכיר
 - helmet — security headers בשורה אחת
 - CORS — מי מורשה לגשת ל-API
@@ -21,18 +22,18 @@
 
 **OWASP API Top 10 — תיאור קצר:**
 
-| # | שם | תיאור |
-|---|----|----|
-| 1 | BOLA | גישה למשאב של משתמש אחר |
-| 2 | Broken Auth | JWT חלש, חסר refresh rotation |
-| 3 | Broken Object Level Auth | הרשאות לא נבדקות |
-| 4 | Unrestricted Resource Consumption | חסר rate limiting |
-| 5 | Broken Function Level Auth | endpoints חשופים לשגיאה |
-| 6 | Mass Assignment | עדכון שדות לא מורשים |
-| 7 | Security Misconfiguration | CORS רחב, headers חסרים |
-| 8 | Injection | SQL/NoSQL/Command injection |
-| 9 | Improper Assets Management | API versions ישנות חשופות |
-| 10 | Unsafe Consumption of APIs | סמיכות עיוורת ב-3rd party |
+| #   | שם                                | תיאור                         |
+| --- | --------------------------------- | ----------------------------- |
+| 1   | BOLA                              | גישה למשאב של משתמש אחר       |
+| 2   | Broken Auth                       | JWT חלש, חסר refresh rotation |
+| 3   | Broken Object Level Auth          | הרשאות לא נבדקות              |
+| 4   | Unrestricted Resource Consumption | חסר rate limiting             |
+| 5   | Broken Function Level Auth        | endpoints חשופים לשגיאה       |
+| 6   | Mass Assignment                   | עדכון שדות לא מורשים          |
+| 7   | Security Misconfiguration         | CORS רחב, headers חסרים       |
+| 8   | Injection                         | SQL/NoSQL/Command injection   |
+| 9   | Improper Assets Management        | API versions ישנות חשופות     |
+| 10  | Unsafe Consumption of APIs        | סמיכות עיוורת ב-3rd party     |
 
 ---
 

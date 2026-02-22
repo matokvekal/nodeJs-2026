@@ -23,5 +23,6 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "socketio": "^1.0.0"
-  }
+  },
+  "type": "module"
 }

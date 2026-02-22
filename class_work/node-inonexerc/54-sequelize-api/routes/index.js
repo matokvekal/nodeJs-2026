@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-const Dig = require('../lib/dig');
+import express from 'express';
+const router = express.Router();
+import Dig from '../lib/dig.js';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -20,4 +20,4 @@ router.get('/dig', async function(req, res, next) {
   res.send(data);
 });
 
-module.exports = router;
+export default router;
