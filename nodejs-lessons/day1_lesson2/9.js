@@ -10,8 +10,8 @@ async function fetchUsersAndPosts() {
     Promise.reject(new Error("Simulated error")) // Will fail
   ]);
 
-
   results.forEach((result, index) => {
+    if (result.status === "fulfilled") {
       // Success - access value with result.value
       console.log(`Promise ${index + 1}: SUCCESS`);
       console.log("  Value:", result.value);
@@ -24,6 +24,7 @@ async function fetchUsersAndPosts() {
 
   // Filter successful results
   const successful = results
+    .filter((r) => r.status === "fulfilled")
     .map((r) => r.value);
 
   console.log(`\n${successful.length} out of ${results.length} succeeded`);
@@ -49,6 +50,7 @@ async function fetchFromMultipleSources() {
   );
 
   const validUsers = results
+    .filter((r) => r.status === "fulfilled")
     .map((r) => r.value);
 
   console.log(`Fetched ${validUsers.length} valid users`);

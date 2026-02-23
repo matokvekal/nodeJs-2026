@@ -9,7 +9,7 @@ readFile("config.json", "utf8", (err, configData) => {
   }
 
   const config = JSON.parse(configData);
-
+  debugger;
   readFile(config.dataFile, "utf8", (err, data) => {
     if (err) {
       console.error("Error reading data:", err);

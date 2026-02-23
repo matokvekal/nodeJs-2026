@@ -39,7 +39,9 @@ async function fetchDataAdvanced(url) {
     return data;
   } catch (error) {
     // Handle different error types
+    if (error instanceof TypeError) {
       console.error("Network error or invalid JSON:", error.message);
+    } else if (error.name === "AbortError") {
       console.error("Request was aborted");
     } else {
       console.error("Unknown error:", error.message);

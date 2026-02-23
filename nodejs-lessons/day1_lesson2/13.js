@@ -23,6 +23,7 @@ async function fetchMultipleWithCancel() {
 
     console.log("All fetched:", results.length);
   } catch (error) {
+    if (error.name === "AbortError") {
       console.log("Requests were cancelled");
     } else {
       console.error("Error:", error.message);
