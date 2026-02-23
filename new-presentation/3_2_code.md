@@ -44,9 +44,9 @@ export const sequelize2 = new Sequelize({
 export async function connectDB() {
   try {
     await sequelize.authenticate();
-    console.log("✅ Database connected successfully");
+    console.log(" Database connected successfully");
   } catch (error) {
-    console.error("❌ Database connection failed:", error);
+    console.error("  Database connection failed:", error);
     process.exit(1);
   }
 }
@@ -658,7 +658,7 @@ export async function down(queryInterface, Sequelize) {
 ## Example 7: SQL Injection Prevention
 
 ```javascript
-// ❌ DANGEROUS - SQL Injection vulnerable
+//   DANGEROUS - SQL Injection vulnerable
 async function dangerousLogin(userId) {
   // NEVER DO THIS!
   const result = await sequelize.query(
@@ -667,7 +667,7 @@ async function dangerousLogin(userId) {
   // If userId = "1 OR 1=1" → returns all users!
 }
 
-// ✅ SAFE - Parameterized queries with replacements
+//  SAFE - Parameterized queries with replacements
 async function safeLogin(userId) {
   const [results] = await sequelize.query(
     "SELECT * FROM users WHERE id = ?", // Placeholder
@@ -680,7 +680,7 @@ async function safeLogin(userId) {
   return results[0];
 }
 
-// ✅ SAFE - Named replacements
+//  SAFE - Named replacements
 async function safeSearch(email, role) {
   const [results] = await sequelize.query(
     "SELECT * FROM users WHERE email = :email AND role = :role",
@@ -693,7 +693,7 @@ async function safeSearch(email, role) {
   return results;
 }
 
-// ✅ SAFE - Using Sequelize ORM (automatic parameterization)
+//  SAFE - Using Sequelize ORM (automatic parameterization)
 async function ormQuery(userId) {
   const user = await User.findByPk(userId);
   // Sequelize automatically uses parameterized queries

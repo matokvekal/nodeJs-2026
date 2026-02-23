@@ -45,7 +45,7 @@ import app from "./app.js";
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`✅ Server running on port ${PORT}`);
+  console.log(` Server running on port ${PORT}`);
   console.log(`📍 http://localhost:${PORT}`);
 });
 ```
@@ -719,16 +719,16 @@ app.use(
 
 ## Comparison Table: Express 4 vs Express 5
 
-| Feature                    | Express 4                      | Express 5            |
-| -------------------------- | ------------------------------ | -------------------- |
-| **Async error handling**   | Manual try/catch + next(error) | ✅ Automatic         |
-| **Promises in middleware** | Not supported                  | ✅ Supported         |
-| **Router improvements**    | Basic                          | ✅ Enhanced          |
-| **TypeScript support**     | Poor                           | ✅ Much better       |
-| **path-to-regexp**         | v0.1.7                         | ✅ v6.2.0 (breaking) |
-| **req.param()**            | Deprecated                     | ❌ Removed           |
-| **app.del()**              | Deprecated                     | ❌ Removed           |
-| **Performance**            | Good                           | ✅ Better            |
+| Feature                    | Express 4                      | Express 5         |
+| -------------------------- | ------------------------------ | ----------------- |
+| **Async error handling**   | Manual try/catch + next(error) | Automatic         |
+| **Promises in middleware** | Not supported                  | Supported         |
+| **Router improvements**    | Basic                          | Enhanced          |
+| **TypeScript support**     | Poor                           | Much better       |
+| **path-to-regexp**         | v0.1.7                         | v6.2.0 (breaking) |
+| **req.param()**            | Deprecated                     | Removed           |
+| **app.del()**              | Deprecated                     | Removed           |
+| **Performance**            | Good                           | Better            |
 
 ---
 

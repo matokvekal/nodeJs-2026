@@ -109,10 +109,10 @@ if (order.userId.toString() !== req.user.id) {
       "פתרון: whitelist שדות מורשים בלבד",
       "Zod schema מגדיר בדיוק אילו שדות מותרים → מניעת Mass Assignment"
     ],
-    code: `// ❌ מסוכן
+    code: `//   מסוכן
 await User.findByIdAndUpdate(id, req.body);
 
-// ✅ בטוח
+//  בטוח
 const { name, email, bio } = req.body;  // explicit fields only
 await User.findByIdAndUpdate(id, { name, email, bio });`
   },

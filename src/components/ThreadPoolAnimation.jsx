@@ -237,9 +237,7 @@ const ThreadPoolAnimation = () => {
           </div>
         </div>
         <div className="concept-item">
-          <span className="concept-icon" style={{ color: "#4ecdc4" }}>
-            ✅
-          </span>
+          <span className="concept-icon" style={{ color: "#4ecdc4" }}></span>
           <div>
             <strong>למה Thread Pool?</strong>
             <p>מאפשר פעולות blocking מבלי לחסום את Event Loop הראשי</p>

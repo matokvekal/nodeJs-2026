@@ -68,10 +68,10 @@ import multiply, { add, PI } from "./utils/math.js";
 ```js
 // CJS
 const path = require("path");
-console.log(__dirname); // ✅
+console.log(__dirname); //
 
 // ESM - לא עובד!
-console.log(__dirname); // ❌ ReferenceError
+console.log(__dirname); //   ReferenceError
 
 // ESM - פתרון
 import { fileURLToPath } from "node:url";

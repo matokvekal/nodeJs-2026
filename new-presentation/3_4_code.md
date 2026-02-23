@@ -129,7 +129,7 @@ import cors from "cors";
 // ===================================
 // Basic CORS (Development only!)
 // ===================================
-// ❌ NEVER in production!
+//   NEVER in production!
 app.use(cors()); // Allows ALL origins
 
 // ===================================
@@ -228,12 +228,12 @@ app.use((req, res, next) => {
 // ===================================
 // CORS Security Best Practices
 // ===================================
-// ✅ DO: Whitelist specific origins
-// ✅ DO: Use credentials: true with specific origins
-// ✅ DO: Set maxAge to cache preflight requests
-// ❌ DON'T: Use origin: '*' with credentials: true (browsers reject this)
-// ❌ DON'T: Use wildcard '*' in production
-// ❌ DON'T: Allow all origins without validation
+//  DO: Whitelist specific origins
+//  DO: Use credentials: true with specific origins
+//  DO: Set maxAge to cache preflight requests
+//   DON'T: Use origin: '*' with credentials: true (browsers reject this)
+//   DON'T: Use wildcard '*' in production
+//   DON'T: Allow all origins without validation
 ```
 
 ```bash
@@ -527,7 +527,7 @@ npm install express-mongo-sanitize validator dompurify jsdom
 // OWASP API #1 Security Risk
 // ===================================
 
-// ❌ VULNERABLE - No ownership check
+//   VULNERABLE - No ownership check
 router.get("/orders/:id", authenticate, async (req, res) => {
   const order = await Order.findByPk(req.params.id);
 
@@ -539,7 +539,7 @@ router.get("/orders/:id", authenticate, async (req, res) => {
   res.json({ data: order });
 });
 
-// ✅ SECURE - Ownership check
+//  SECURE - Ownership check
 router.get("/orders/:id", authenticate, async (req, res) => {
   const order = await Order.findByPk(req.params.id);
 
@@ -555,7 +555,7 @@ router.get("/orders/:id", authenticate, async (req, res) => {
   res.json({ data: order });
 });
 
-// ✅ BETTER - Query with ownership filter
+//  BETTER - Query with ownership filter
 router.get("/orders/:id", authenticate, async (req, res) => {
   const where = { id: req.params.id };
 
@@ -621,7 +621,7 @@ router.put(
 // ===================================
 // BOLA in Query Parameters
 // ===================================
-// ❌ VULNERABLE
+//   VULNERABLE
 router.get("/users", authenticate, async (req, res) => {
   const { userId } = req.query;
 
@@ -630,7 +630,7 @@ router.get("/users", authenticate, async (req, res) => {
   res.json({ data: posts });
 });
 
-// ✅ SECURE
+//  SECURE
 router.get("/users/me/posts", authenticate, async (req, res) => {
   // Only current user's posts
   const posts = await Post.findAll({
@@ -643,14 +643,14 @@ router.get("/users/me/posts", authenticate, async (req, res) => {
 // ===================================
 // Mass Assignment Prevention
 // ===================================
-// ❌ VULNERABLE
+//   VULNERABLE
 router.put("/users/:id", authenticate, async (req, res) => {
   // Attacker sends: { role: 'admin', isVerified: true }
   await User.update(req.body, { where: { id: req.params.id } });
   // User just made themselves admin!
 });
 
-// ✅ SECURE - Whitelist fields
+//  SECURE - Whitelist fields
 router.put("/users/:id", authenticate, async (req, res) => {
   const allowedFields = ["name", "bio", "avatar"];
   const updates = {};
@@ -664,7 +664,7 @@ router.put("/users/:id", authenticate, async (req, res) => {
   await User.update(updates, { where: { id: req.params.id } });
 });
 
-// ✅ BETTER - Use Zod schema (automatic whitelist)
+//  BETTER - Use Zod schema (automatic whitelist)
 const updateUserSchema = z.object({
   name: z.string().min(1).max(50).optional(),
   bio: z.string().max(500).optional(),
@@ -751,9 +751,9 @@ const envSchema = z.object({
 // Validate on startup
 try {
   const env = envSchema.parse(process.env);
-  console.log("✅ Environment variables validated");
+  console.log(" Environment variables validated");
 } catch (error) {
-  console.error("❌ Invalid environment variables:", error.errors);
+  console.error("  Invalid environment variables:", error.errors);
   process.exit(1);
 }
 
@@ -800,11 +800,11 @@ const dbCreds = await getSecret("prod/myapp/database");
 // ===================================
 // Logging Security
 // ===================================
-// ❌ DON'T log sensitive data
+//   DON'T log sensitive data
 console.log("User login:", user); // May contain password!
 console.log("JWT token:", token); // Exposes authentication
 
-// ✅ DO redact sensitive fields
+//  DO redact sensitive fields
 function sanitizeForLog(obj) {
   const sensitive = ["password", "token", "secret", "apiKey", "creditCard"];
   const sanitized = { ...obj };

@@ -61,10 +61,10 @@ function verifyWebhook(body, signature, secret) {
     title: "timingSafeEqual – השוואה בטוחה",
     code: `import { timingSafeEqual } from 'node:crypto';
 
-// ❌ לא בטוח – עלול לחשוף דרך timing
+//   לא בטוח – עלול לחשוף דרך timing
 if (expected === received) { ... }
 
-// ✅ בטוח
+//  בטוח
 const match = timingSafeEqual(
   Buffer.from(expected, 'hex'),
   Buffer.from(received, 'hex')

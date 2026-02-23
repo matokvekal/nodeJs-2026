@@ -88,10 +88,10 @@ app.use(
 **שגיאה נפוצה:**
 
 ```js
-// ❌ מסוכן! כוכבית + credentials = לא עובד ב-browser
+//   מסוכן! כוכבית + credentials = לא עובד ב-browser
 app.use(cors({ origin: "*", credentials: true }));
 
-// ✅ נכון
+//  נכון
 app.use(
   cors({ origin: process.env.ALLOWED_ORIGIN?.split(","), credentials: true })
 );
@@ -140,11 +140,11 @@ done
 \*\*דוגמת NoSQL Injection:
 
 ```js
-// ❌ מסוכן - query injection
+//   מסוכן - query injection
 // POST /auth/login { "email": { "$gt": "" }, "password": "anything" }
 const user = await User.findOne({ email: req.body.email });
 
-// ✅ עם sanitization
+//  עם sanitization
 import mongoSanitize from "express-mongo-sanitize";
 app.use(mongoSanitize()); // מסיר $ ו-. מכל הinput
 ```
@@ -166,13 +166,13 @@ After sanitize: { "email": {} }  ← operator הוסר
 // Setup: User A יש task #1, User B יש task #2
 // User B מנסה לגשת ל-task #1
 
-// ❌ BOLA - לא בטוח
+//   BOLA - לא בטוח
 router.get("/:id", authenticate, async (req, res) => {
   const task = await Task.findById(req.params.id);
   res.json(task); // User B קיבל את הtask של User A!
 });
 
-// ✅ בטוח
+//  בטוח
 router.get("/:id", authenticate, async (req, res) => {
   const task = await Task.findOne({
     _id: req.params.id,
@@ -190,11 +190,11 @@ router.get("/:id", authenticate, async (req, res) => {
 \*\*דוגמה:
 
 ```js
-// ❌ מסוכן
+//   מסוכן
 // POST /users { "name": "Alice", "role": "admin" }
 await User.findByIdAndUpdate(id, req.body); // role עודכן!
 
-// ✅ בטוח
+//  בטוח
 const { name, email, bio } = req.body; // whitelist
 await User.findByIdAndUpdate(id, { name, email, bio });
 ```

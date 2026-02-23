@@ -142,12 +142,12 @@ app.get("/users/:id", async (req, res, next) => {
 **בעיה נפוצה - ביצוע סדרתי:**
 
 ```js
-// ❌ איטי - סדרתי (1s + 1s + 1s = 3s)
+//   איטי - סדרתי (1s + 1s + 1s = 3s)
 const user = await fetchUser(id);
 const orders = await fetchOrders(id);
 const profile = await fetchProfile(id);
 
-// ✅ מהיר - מקביל (max(1s, 1s, 1s) = 1s)
+//  מהיר - מקביל (max(1s, 1s, 1s) = 1s)
 const [user, orders, profile] = await Promise.all([
   fetchUser(id),
   fetchOrders(id),
@@ -177,7 +177,7 @@ results.forEach((r) => {
 **דוגמת timeout - הדרך המודרנית ב-2026:**
 
 ```js
-// ✅ Modern approach - AbortSignal.timeout (Node 18+)
+//  Modern approach - AbortSignal.timeout (Node 18+)
 const res = await fetch("https://api.slow.com", {
   signal: AbortSignal.timeout(5000)
 });

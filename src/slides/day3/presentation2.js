@@ -112,10 +112,10 @@ User.belongsToMany(Role, { through: 'UserRoles' });`,
       "לעולם לא:",
       "ORM = הגנה מובנית, אבל חשוב להבין למה"
     ],
-    code: `// ❌ מסוכן!
+    code: `//   מסוכן!
 sequelize.query(\`SELECT * FROM users WHERE id = \${userId}\`);
 
-// ✅ בטוח
+//  בטוח
 sequelize.query('SELECT * FROM users WHERE id = ?',
   { replacements: [userId], type: QueryTypes.SELECT });`
   },

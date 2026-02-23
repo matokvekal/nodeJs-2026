@@ -956,7 +956,7 @@ async function fetchWithRetry(url, options = {}, maxRetries = 3) {
 
       // Success - return response
       if (response.ok) {
-        console.log("✅ Request succeeded");
+        console.log(" Request succeeded");
         return response;
       }
 
@@ -1001,7 +1001,7 @@ async function fetchWithRetry(url, options = {}, maxRetries = 3) {
       const totalDelay = delay + jitter;
 
       console.log(
-        `❌ Attempt failed. Retrying in ${(totalDelay / 1000).toFixed(2)}s...`
+        `  Attempt failed. Retrying in ${(totalDelay / 1000).toFixed(2)}s...`
       );
       await new Promise((resolve) => setTimeout(resolve, totalDelay));
     }
@@ -1062,13 +1062,13 @@ testRetry();
 
 ## Comparison Table: Request Methods (HTTP Verbs)
 
-| Method     | Idempotent | Safe   | Use Case                | Body |
-| ---------- | ---------- | ------ | ----------------------- | ---- |
-| **GET**    | ✅ Yes     | ✅ Yes | Retrieve resource       | No   |
-| **POST**   | ❌ No      | ❌ No  | Create resource         | Yes  |
-| **PUT**    | ✅ Yes     | ❌ No  | Replace entire resource | Yes  |
-| **PATCH**  | ❌ No      | ❌ No  | Partial update          | Yes  |
-| **DELETE** | ✅ Yes     | ❌ No  | Delete resource         | No   |
+| Method     | Idempotent | Safe | Use Case                | Body |
+| ---------- | ---------- | ---- | ----------------------- | ---- |
+| **GET**    | Yes        | Yes  | Retrieve resource       | No   |
+| **POST**   | No         | No   | Create resource         | Yes  |
+| **PUT**    | Yes        | No   | Replace entire resource | Yes  |
+| **PATCH**  | No         | No   | Partial update          | Yes  |
+| **DELETE** | Yes        | No   | Delete resource         | No   |
 
 **Idempotent**: Multiple identical requests have same effect as single request  
 **Safe**: Doesn't modify server state

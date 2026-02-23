@@ -544,7 +544,7 @@ export function errorHandler(err, req, res, next) {
   const code = err.code ?? "internal_error";
 
   // Log error (in production, use proper logger)
-  console.error("❌ Error:", {
+  console.error("  Error:", {
     message: err.message,
     statusCode,
     code,
@@ -769,11 +769,11 @@ curl -X POST http://localhost:3000/api/v1/tasks \
 
 | Error Type           | Status | isOperational | When to Use            |
 | -------------------- | ------ | ------------- | ---------------------- |
-| **Validation Error** | 422    | ✅ Yes        | Zod validation fails   |
-| **Not Found**        | 404    | ✅ Yes        | Resource doesn't exist |
-| **Bad Request**      | 400    | ✅ Yes        | Invalid input format   |
-| **Conflict**         | 409    | ✅ Yes        | Duplicate resource     |
-| **Internal Error**   | 500    | ❌ No         | Unexpected bugs        |
+| **Validation Error** | 422    | Yes           | Zod validation fails   |
+| **Not Found**        | 404    | Yes           | Resource doesn't exist |
+| **Bad Request**      | 400    | Yes           | Invalid input format   |
+| **Conflict**         | 409    | Yes           | Duplicate resource     |
+| **Internal Error**   | 500    | No            | Unexpected bugs        |
 
 **isOperational = true**: Expected/handled errors (safe to expose message)  
 **isOperational = false**: Programming errors (hide details)

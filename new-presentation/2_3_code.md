@@ -5,7 +5,7 @@
 ## Example 1: RESTful Resource Naming
 
 ```javascript
-// ✅ GOOD - RESTful resource names (nouns, plural)
+//  GOOD - RESTful resource names (nouns, plural)
 GET / api / v1 / users; // Get all users
 GET / api / v1 / users / 123; // Get specific user
 POST / api / v1 / users; // Create new user
@@ -18,13 +18,13 @@ GET / api / v1 / users / 123 / posts; // Get user's posts
 POST / api / v1 / users / 123 / posts; // Create post for user
 DELETE / api / v1 / users / 123 / posts / 456; // Delete specific post
 
-// ❌ BAD - Using verbs in URLs
+//   BAD - Using verbs in URLs
 GET / api / v1 / getUsers;
 POST / api / v1 / createUser;
 POST / api / v1 / deleteUser / 123;
 GET / api / v1 / getUserPosts / 123;
 
-// ✅ GOOD - Actions that don't fit CRUD
+//  GOOD - Actions that don't fit CRUD
 POST / api / v1 / users / 123 / activate; // Activate user
 POST / api / v1 / orders / 456 / cancel; // Cancel order
 POST / api / v1 / auth / login; // Login
@@ -603,13 +603,13 @@ function errorHandler(err, req, res, next) {
 
 ## Comparison Table: HTTP Methods
 
-| Method     | Idempotent | Safe   | Request Body | Response Body | Use Case                |
-| ---------- | ---------- | ------ | ------------ | ------------- | ----------------------- |
-| **GET**    | ✅ Yes     | ✅ Yes | No           | Yes           | Retrieve resource(s)    |
-| **POST**   | ❌ No      | ❌ No  | Yes          | Yes           | Create resource         |
-| **PUT**    | ✅ Yes     | ❌ No  | Yes          | Yes           | Replace entire resource |
-| **PATCH**  | ❌ No      | ❌ No  | Yes          | Yes           | Partial update          |
-| **DELETE** | ✅ Yes     | ❌ No  | No           | Optional      | Delete resource         |
+| Method     | Idempotent | Safe | Request Body | Response Body | Use Case                |
+| ---------- | ---------- | ---- | ------------ | ------------- | ----------------------- |
+| **GET**    | Yes        | Yes  | No           | Yes           | Retrieve resource(s)    |
+| **POST**   | No         | No   | Yes          | Yes           | Create resource         |
+| **PUT**    | Yes        | No   | Yes          | Yes           | Replace entire resource |
+| **PATCH**  | No         | No   | Yes          | Yes           | Partial update          |
+| **DELETE** | Yes        | No   | No           | Optional      | Delete resource         |
 
 **Idempotent**: Multiple identical requests = same result  
 **Safe**: Doesn't modify server state
@@ -622,8 +622,8 @@ function errorHandler(err, req, res, next) {
 | ---------------------- | ---------------------------- | -------------------------------------- |
 | **Syntax**             | `?page=2&limit=20`           | `?after=abc123&limit=20`               |
 | **Performance**        | Slow (skip expensive)        | Fast (no skip)                         |
-| **Jump to page**       | ✅ Yes                       | ❌ No                                  |
-| **Consistent results** | ❌ No (with live data)       | ✅ Yes                                 |
+| **Jump to page**       | Yes                          | No                                     |
+| **Consistent results** | No (with live data)          | Yes                                    |
 | **Use case**           | Admin panels, small datasets | Feeds, large datasets, infinite scroll |
 
 ---

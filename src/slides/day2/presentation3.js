@@ -13,8 +13,8 @@ export const slides = [
     bullets: [
       "REST = Representational State Transfer – ארכיטקטורת API מבוססת HTTP",
       "משאבים (Resources) = שמות עצם ברבים, לא פעלים",
-      "✅ /api/users ✅ /api/orders",
-      "❌ /api/getUsers ❌ /api/createOrder",
+      " /api/users  /api/orders",
+      "  /api/getUsers   /api/createOrder",
       "מתודות HTTP מבטאות את הפעולה: GET, POST, PUT, PATCH, DELETE",
       "Stateless – כל בקשה עצמאית עם כל המידע הנדרש",
       "Uniform Interface – API עקבי ומנבא"
@@ -166,12 +166,12 @@ export const slides = [
     id: 12,
     title: "Best Practices Summary",
     bullets: [
-      "✅ שמות עצם ברבים, לא פעלים בנתיבים",
-      "✅ קודי סטטוס מדויקים ומשמעותיים",
-      "✅ גרסאות בנתיב: /api/v1/",
-      "✅ Cursor pagination לקולקציות גדולות",
-      "✅ OpenAPI documentation מעודכן",
-      "❌ לא GET /deleteUser, לא 200 לכל דבר, לא URL כבד בלי pagination"
+      " שמות עצם ברבים, לא פעלים בנתיבים",
+      " קודי סטטוס מדויקים ומשמעותיים",
+      " גרסאות בנתיב: /api/v1/",
+      " Cursor pagination לקולקציות גדולות",
+      " OpenAPI documentation מעודכן",
+      "  לא GET /deleteUser, לא 200 לכל דבר, לא URL כבד בלי pagination"
     ]
   },
   {

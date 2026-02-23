@@ -2,7 +2,7 @@ export const getStudents = (req, res) => {
   const students = [
     { id: 1, name: "Alice" },
     { id: 2, name: "Bob" },
-    { id: 3, name: "Charlie" },
+    { id: 3, name: "Charlie" }
   ];
   let html = `
   <h1>Students Table</h1>
@@ -23,7 +23,7 @@ export const getStudents = (req, res) => {
       <td>${student.name}</td>
       <td>
       <button onclick="addStudent()">➕</button>
-      <button onclick="deleteStudent(${student.id})">❌</button>
+      <button onclick="deleteStudent(${student.id})"> </button>
         <button onclick="updateStudent(${student.id})">✏️</button
       </td>
     </tr>

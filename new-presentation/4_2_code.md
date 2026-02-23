@@ -83,9 +83,9 @@ const downloadedHash = await hashFile('./downloaded.zip');
 const expectedHash = 'abc123...';
 
 if (downloadedHash === expectedHash) {
-  console.log('✅ File integrity verified');
+  console.log(' File integrity verified');
 } else {
-  console.log('❌ File corrupted or tampered');
+  console.log('  File corrupted or tampered');
 }
 
 // ===================================
@@ -212,12 +212,12 @@ function verifyRequest(req, secret) {
 // ===================================
 // Why timingSafeEqual?
 // ===================================
-// ❌ BAD - Timing attack vulnerable
+//   BAD - Timing attack vulnerable
 if (expected === received) {
 }
 // Early exit on first mismatch → attacker can measure time differences
 
-// ✅ GOOD - Constant-time comparison
+//  GOOD - Constant-time comparison
 timingSafeEqual(Buffer.from(expected), Buffer.from(received));
 // Always takes same time, regardless of where mismatch occurs
 ```
@@ -317,11 +317,11 @@ export async function verifyPasswordResetToken(token) {
 // ===================================
 // Why NOT Math.random()?
 // ===================================
-// ❌ Math.random() is NOT cryptographically secure
+//   Math.random() is NOT cryptographically secure
 // - Predictable with enough samples
 // - Not suitable for security tokens
 
-// ✅ randomBytes() uses OS-level entropy
+//  randomBytes() uses OS-level entropy
 // - Unpredictable
 // - Suitable for passwords, tokens, keys
 ```
@@ -672,13 +672,13 @@ const encrypted = encrypt(data, key); // Use derived key
 
 ## Comparison Table: Hashing Algorithms
 
-| Algorithm   | Security  | Speed     | Output Size  | Use Case               |
-| ----------- | --------- | --------- | ------------ | ---------------------- |
-| **MD5**     | ❌ Broken | Very fast | 128 bits     | Legacy checksums only  |
-| **SHA-1**   | ❌ Broken | Fast      | 160 bits     | Avoid for security     |
-| **SHA-256** | ✅ Secure | Fast      | 256 bits     | General hashing, ETags |
-| **SHA-512** | ✅ Secure | Fast      | 512 bits     | High security          |
-| **BLAKE2b** | ✅ Secure | Fastest   | Configurable | Modern alternative     |
+| Algorithm   | Security | Speed     | Output Size  | Use Case               |
+| ----------- | -------- | --------- | ------------ | ---------------------- |
+| **MD5**     | Broken   | Very fast | 128 bits     | Legacy checksums only  |
+| **SHA-1**   | Broken   | Fast      | 160 bits     | Avoid for security     |
+| **SHA-256** | Secure   | Fast      | 256 bits     | General hashing, ETags |
+| **SHA-512** | Secure   | Fast      | 512 bits     | High security          |
+| **BLAKE2b** | Secure   | Fastest   | Configurable | Modern alternative     |
 
 ---
 

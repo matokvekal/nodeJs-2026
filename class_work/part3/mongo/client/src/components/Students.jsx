@@ -30,7 +30,7 @@ function Students() {
                 <td>{student.name}</td>
                 <td>
                   <button onClick={() => addStudent()}>➕</button>
-                  <button onClick={() => deleteStudent(student.id)}>❌</button>
+                  <button onClick={() => deleteStudent(student.id)}> </button>
                   <button onClick={() => updateStudent(student.id)}>✏️</button>
                 </td>
               </tr>

@@ -1,10 +1,11 @@
 // Form with Fetch API
 document.getElementById("form2").addEventListener("submit", function (event) {
+  debugger;
   event.preventDefault();
   const formData = new FormData(this);
   fetch("http://localhost:3000/submit", {
     method: "POST",
-    body: formData,
+    body: formData
   })
     .then((response) => {
       if (!response.ok) {
@@ -21,6 +22,7 @@ document.getElementById("form2").addEventListener("submit", function (event) {
 });
 
 function submitForm(event, url, method) {
+  debugger;
   event.preventDefault();
   let formData = {};
 
@@ -29,15 +31,15 @@ function submitForm(event, url, method) {
       first_name: document.getElementById("fname").value,
       last_name: document.getElementById("lname").value,
       address: document.getElementById("address").value,
-      phone: document.getElementById("phone").value,
+      phone: document.getElementById("phone").value
     };
 
     fetch(url, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(formData)
     })
       .then((response) => {
         if (!response.ok) {
@@ -56,7 +58,7 @@ function submitForm(event, url, method) {
       first_name: document.getElementById("fname2").value,
       last_name: document.getElementById("lname2").value,
       address: document.getElementById("address2").value,
-      phone: document.getElementById("phone2").value,
+      phone: document.getElementById("phone2").value
     };
 
     axios
@@ -72,6 +74,7 @@ function submitForm(event, url, method) {
 
 // Form with Axios
 document.getElementById("form3").addEventListener("submit", function (event) {
+  debugger;
   event.preventDefault();
   const formData = new FormData(this);
 
@@ -90,6 +93,7 @@ document.getElementById("form3").addEventListener("submit", function (event) {
 document
   .getElementById("form3")
   .addEventListener("submit", async function (event) {
+    debugger;
     event.preventDefault();
     try {
       const formData = new FormData(this);

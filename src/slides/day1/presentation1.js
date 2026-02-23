@@ -188,7 +188,7 @@ console.log("7: sync end");
       headers: ["היבט", "setImmediate", "setTimeout(0)"],
       rows: [
         ["שלב", "check phase", "timers phase"],
-        ["בתוך I/O callback", "תמיד ראשון ✅", "אחרי setImmediate"],
+        ["בתוך I/O callback", "תמיד ראשון ", "אחרי setImmediate"],
         ["מחוץ ל-I/O", "לא מובטח", "לא מובטח"],
         ["המלצה", "עדיף – יותר צפוי", "השתמש ב-setImmediate"]
       ]
@@ -239,7 +239,7 @@ for (let i = 0; i < 3; i++) {
   console.log(\`Processing item \${i + 1}\`);
 }
 // פלט: Start → This runs → Processing 1,2,3 → File read`,
-    note: "❌ fs.readFileSync חוסם את כל האפליקציה · ✅ fs.readFile אסינכרוני"
+    note: "  fs.readFileSync חוסם את כל האפליקציה ·  fs.readFile אסינכרוני"
   },
   {
     id: 9,

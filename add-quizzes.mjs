@@ -91,10 +91,10 @@ presentations.forEach((p) => {
     content = content.replace(/\];$/, quizSlide);
 
     writeFileSync(p.file, content, "utf-8");
-    console.log(`✅ Added quiz to ${p.file}`);
+    console.log(` Added quiz to ${p.file}`);
   } catch (error) {
-    console.error(`❌ Error processing ${p.file}:`, error.message);
+    console.error(`  Error processing ${p.file}:`, error.message);
   }
 });
 
-console.log("\n✅ Done! All quizzes added.");
+console.log("\n Done! All quizzes added.");

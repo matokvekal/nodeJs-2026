@@ -294,13 +294,13 @@ reqLogger.info("Processing request"); // → { requestId: 'abc-123', ... }
 אחרי ה-break: פרויקט מסכם. API מלא עם כל המרכיבים שנלמדו:
 
 ```
-✅ Express 5
-✅ MongoDB + Mongoose
-✅ Auth Access+Refresh
-✅ Rate Limiting
-✅ Logging (pino)
-✅ Tests (node:test)
-✅ WebSocket endpoint
-✅ Swagger docs
-✅ Clean Architecture
+ Express 5
+ MongoDB + Mongoose
+ Auth Access+Refresh
+ Rate Limiting
+ Logging (pino)
+ Tests (node:test)
+ WebSocket endpoint
+ Swagger docs
+ Clean Architecture
 ```

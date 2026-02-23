@@ -663,9 +663,9 @@ async function loadPlugins(pluginNames) {
     try {
       const plugin = await import(`./plugins/${name}.js`);
       plugins.push(plugin.default);
-      console.log(`✅ Loaded plugin: ${name}`);
+      console.log(` Loaded plugin: ${name}`);
     } catch (error) {
-      console.error(`❌ Failed to load plugin ${name}:`, error.message);
+      console.error(`  Failed to load plugin ${name}:`, error.message);
     }
   }
 
@@ -790,12 +790,12 @@ console.log(formatCurrency(99.99)); // $99.99
 | **Syntax**          | `require()` / `module.exports` | `import` / `export`                     |
 | **Loading**         | Synchronous                    | Asynchronous                            |
 | **File extension**  | `.js` (default), `.cjs`        | `.js` (with `"type": "module"`), `.mjs` |
-| **Top-level await** | ❌ No                          | ✅ Yes                                  |
-| **`__dirname`**     | ✅ Available                   | ❌ Use `import.meta.url`                |
+| **Top-level await** | No                             | Yes                                     |
+| **`__dirname`**     | Available                      | Use `import.meta.url`                   |
 | **Dynamic imports** | `require()` anywhere           | `await import()`                        |
-| **Tree shaking**    | ❌ No                          | ✅ Yes                                  |
-| **Browser support** | ❌ No (bundler needed)         | ✅ Native                               |
-| **Use in 2026**     | Legacy only                    | ✅ Recommended                          |
+| **Tree shaking**    | No                             | Yes                                     |
+| **Browser support** | No (bundler needed)            | Native                                  |
+| **Use in 2026**     | Legacy only                    | Recommended                             |
 
 ---
 

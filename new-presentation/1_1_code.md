@@ -545,7 +545,7 @@ console.log("Error handlers are set up. Application running...");
 | Aspect          | setImmediate                      | setTimeout(0)                |
 | --------------- | --------------------------------- | ---------------------------- |
 | **Phase**       | Check phase                       | Timers phase                 |
-| **Inside I/O**  | Always fires first ✅             | Fires after setImmediate     |
+| **Inside I/O**  | Always fires first                | Fires after setImmediate     |
 | **Outside I/O** | Order not guaranteed              | Order not guaranteed         |
 | **Use Case**    | Defer execution to next iteration | Schedule after minimum delay |
 | **Recommended** | Yes - more predictable in I/O     | Use setImmediate instead     |

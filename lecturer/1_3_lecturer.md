@@ -235,11 +235,11 @@ await pipeline(
 
 ```js
 // Buffer - צריכת זיכרון גבוהה
-const big = await readFile("./2gb-file.txt"); // ❌ 2GB בזיכרון
+const big = await readFile("./2gb-file.txt"); //   2GB בזיכרון
 
 // Stream - צריכת זיכרון קבועה ונמוכה
 for await (const chunk of createReadStream("./2gb-file.txt")) {
-  process(chunk); // ✅ רק chunks בזיכרון
+  process(chunk); //  רק chunks בזיכרון
 }
 ```
 

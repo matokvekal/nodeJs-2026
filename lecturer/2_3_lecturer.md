@@ -37,10 +37,10 @@ REST הוא architectural style, לא תקן. יש עקרונות מקובלים
 **דוגמאות – לא נכון vs נכון:**
 
 ```
-❌ POST /api/getAllUsers
-❌ GET /api/deleteUser/5
-✅ GET /api/v1/users
-✅ DELETE /api/v1/users/5
+  POST /api/getAllUsers
+  GET /api/deleteUser/5
+ GET /api/v1/users
+ DELETE /api/v1/users/5
 ```
 
 ---
@@ -50,11 +50,11 @@ REST הוא architectural style, לא תקן. יש עקרונות מקובלים
 **דוגמאות נכונות:**
 
 ```
-✅ GET  /api/v1/users         - כל המשתמשים
-✅ GET  /api/v1/users/42      - משתמש ספציפי
-✅ POST /api/v1/users         - יצירת משתמש
-✅ GET  /api/v1/users/42/orders  - הזמנות של משתמש
-✅ POST /api/v1/users/42/activate  - פעולה על משתמש
+ GET  /api/v1/users         - כל המשתמשים
+ GET  /api/v1/users/42      - משתמש ספציפי
+ POST /api/v1/users         - יצירת משתמש
+ GET  /api/v1/users/42/orders  - הזמנות של משתמש
+ POST /api/v1/users/42/activate  - פעולה על משתמש
 ```
 
 ---

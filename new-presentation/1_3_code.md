@@ -69,9 +69,9 @@ async function writeToFile() {
 
     // Write JSON to file
     await writeFile("output.json", JSON.stringify(data, null, 2), "utf8");
-    console.log("✅ File written successfully");
+    console.log(" File written successfully");
   } catch (error) {
-    console.error("❌ Write error:", error.message);
+    console.error("  Write error:", error.message);
   }
 }
 
@@ -82,9 +82,9 @@ async function appendToFile() {
 
     // Append to log file
     await appendFile("app.log", logEntry, "utf8");
-    console.log("✅ Log entry appended");
+    console.log(" Log entry appended");
   } catch (error) {
-    console.error("❌ Append error:", error.message);
+    console.error("  Append error:", error.message);
   }
 }
 
@@ -92,12 +92,12 @@ async function appendToFile() {
 async function deleteFile(filepath) {
   try {
     await unlink(filepath);
-    console.log("✅ File deleted:", filepath);
+    console.log(" File deleted:", filepath);
   } catch (error) {
     if (error.code === "ENOENT") {
       console.log("File does not exist (already deleted)");
     } else {
-      console.error("❌ Delete error:", error.message);
+      console.error("  Delete error:", error.message);
     }
   }
 }
@@ -122,9 +122,9 @@ async function createDirectory() {
   try {
     // recursive: true creates parent directories if needed
     await mkdir("data/backups/2026", { recursive: true });
-    console.log("✅ Directory created: data/backups/2026");
+    console.log(" Directory created: data/backups/2026");
   } catch (error) {
-    console.error("❌ mkdir error:", error.message);
+    console.error("  mkdir error:", error.message);
   }
 }
 
@@ -136,7 +136,7 @@ async function listDirectory(dirPath) {
     console.log("\n=== Files in", dirPath, "===");
     files.forEach((file) => console.log("  -", file));
   } catch (error) {
-    console.error("❌ readdir error:", error.message);
+    console.error("  readdir error:", error.message);
   }
 }
 
@@ -152,7 +152,7 @@ async function listDirectoryDetailed(dirPath) {
       console.log(`${type}: ${entry.name}`);
     }
   } catch (error) {
-    console.error("❌ Error:", error.message);
+    console.error("  Error:", error.message);
   }
 }
 
@@ -169,7 +169,7 @@ async function getFileInfo(filepath) {
     console.log("Is file:", stats.isFile());
     console.log("Is directory:", stats.isDirectory());
   } catch (error) {
-    console.error("❌ stat error:", error.message);
+    console.error("  stat error:", error.message);
   }
 }
 
@@ -179,9 +179,9 @@ async function deleteDirectory(dirPath) {
     // recursive: true deletes directory and all contents
     // force: true doesn't throw error if directory doesn't exist
     await rm(dirPath, { recursive: true, force: true });
-    console.log("✅ Directory deleted:", dirPath);
+    console.log(" Directory deleted:", dirPath);
   } catch (error) {
-    console.error("❌ rm error:", error.message);
+    console.error("  rm error:", error.message);
   }
 }
 
@@ -397,9 +397,9 @@ async function compressFile(inputFile, outputFile) {
       createWriteStream(outputFile) // Write to destination
     );
 
-    console.log("✅ Compression complete:", outputFile);
+    console.log(" Compression complete:", outputFile);
   } catch (error) {
-    console.error("❌ Compression failed:", error.message);
+    console.error("  Compression failed:", error.message);
   }
 }
 
@@ -414,9 +414,9 @@ async function decompressFile(inputFile, outputFile) {
       createWriteStream(outputFile)
     );
 
-    console.log("✅ Decompression complete:", outputFile);
+    console.log(" Decompression complete:", outputFile);
   } catch (error) {
-    console.error("❌ Decompression failed:", error.message);
+    console.error("  Decompression failed:", error.message);
   }
 }
 
@@ -441,9 +441,9 @@ async function convertToUppercase(inputFile, outputFile) {
       createWriteStream(outputFile, "utf8")
     );
 
-    console.log("✅ Converted to uppercase:", outputFile);
+    console.log(" Converted to uppercase:", outputFile);
   } catch (error) {
-    console.error("❌ Conversion failed:", error.message);
+    console.error("  Conversion failed:", error.message);
   }
 }
 
@@ -783,12 +783,12 @@ compare("./package.json");
 
 ## Comparison Table: fs Methods
 
-| Operation     | Sync            | Callback    | Promise                     | When to Use              |
-| ------------- | --------------- | ----------- | --------------------------- | ------------------------ |
-| **Read**      | `readFileSync`  | `readFile`  | `import from 'fs/promises'` | ✅ Promise always        |
-| **Write**     | `writeFileSync` | `writeFile` | `import from 'fs/promises'` | ✅ Promise always        |
-| **Exists**    | `existsSync`    | `access`    | `access`                    | ✅ Promise, or try/catch |
-| **Directory** | `readdirSync`   | `readdir`   | `import from 'fs/promises'` | ✅ Promise always        |
+| Operation     | Sync            | Callback    | Promise                     | When to Use           |
+| ------------- | --------------- | ----------- | --------------------------- | --------------------- |
+| **Read**      | `readFileSync`  | `readFile`  | `import from 'fs/promises'` | Promise always        |
+| **Write**     | `writeFileSync` | `writeFile` | `import from 'fs/promises'` | Promise always        |
+| **Exists**    | `existsSync`    | `access`    | `access`                    | Promise, or try/catch |
+| **Directory** | `readdirSync`   | `readdir`   | `import from 'fs/promises'` | Promise always        |
 
 ---
 

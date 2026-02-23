@@ -23,7 +23,7 @@ app.post('/submit', (req, res) => {
   res.send("POST request received");
 });
 
-// Handle 404 for other routesconst PORT
+// Handle 404 for other routes
 app.use((req, res, next) => {
   res.status(404).send("Not found");
 });

@@ -821,13 +821,13 @@ describe("Complete Application Tests", () => {
 
 ## Comparison Table: Testing Frameworks
 
-| Framework     | Built-in          | Assertions      | Mocking          | Speed | Popularity |
-| ------------- | ----------------- | --------------- | ---------------- | ----- | ---------- |
-| **node:test** | ✅ Yes (Node 18+) | node:assert     | Built-in         | Fast  | Growing    |
-| **Jest**      | ❌ No             | Included        | Excellent        | Slow  | Very high  |
-| **Vitest**    | ❌ No             | Included        | Excellent        | Fast  | High       |
-| **Mocha**     | ❌ No             | Separate (Chai) | Separate (Sinon) | Fast  | High       |
-| **AVA**       | ❌ No             | Included        | External         | Fast  | Medium     |
+| Framework     | Built-in       | Assertions      | Mocking          | Speed | Popularity |
+| ------------- | -------------- | --------------- | ---------------- | ----- | ---------- |
+| **node:test** | Yes (Node 18+) | node:assert     | Built-in         | Fast  | Growing    |
+| **Jest**      | No             | Included        | Excellent        | Slow  | Very high  |
+| **Vitest**    | No             | Included        | Excellent        | Fast  | High       |
+| **Mocha**     | No             | Separate (Chai) | Separate (Sinon) | Fast  | High       |
+| **AVA**       | No             | Included        | External         | Fast  | Medium     |
 
 ---
 

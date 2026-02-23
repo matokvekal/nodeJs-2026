@@ -99,10 +99,10 @@ JavaScript string comparison עוצר באי התאמה הראשונה. תוקף
 ```js
 import { timingSafeEqual } from 'node:crypto';
 
-// ❌ לא בטוח
+//   לא בטוח
 if (received === expected) { ... }
 
-// ✅ בטוח - תמיד לוקח אותו זמן
+//  בטוח - תמיד לוקח אותו זמן
 const safe = timingSafeEqual(
   Buffer.from(received),
   Buffer.from(expected)

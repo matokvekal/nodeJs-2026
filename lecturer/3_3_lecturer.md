@@ -229,10 +229,10 @@ router.delete("/:id", authenticate, authorize("admin"), deleteUser);
 **BOLA demo:**
 
 ```js
-// ❌ לא בטוח - משתמש יכול לגשת לtask של אחר
+//   לא בטוח - משתמש יכול לגשת לtask של אחר
 const task = await Task.findById(req.params.id);
 
-// ✅ בטוח - ownership check
+//  בטוח - ownership check
 const task = await Task.findOne({ _id: req.params.id, user: req.user.id });
 if (!task) throw new AppError("Not found", 404);
 ```

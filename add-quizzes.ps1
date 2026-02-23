@@ -41,4 +41,4 @@ foreach ($p in $presentations) {
     Write-Host "✓ Added quiz to $file" -ForegroundColor Cyan
 }
 
-Write-Host "`n✅ Done! All quizzes added." -ForegroundColor Green
+Write-Host "`n Done! All quizzes added." -ForegroundColor Green

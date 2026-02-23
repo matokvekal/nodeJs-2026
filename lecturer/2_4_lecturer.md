@@ -92,10 +92,10 @@ GET    /api-docs            → Swagger UI
 **שגיאות נפוצות לדיון:**
 
 ```js
-// ❌ שגוי – AppError ב-controller
+//   שגוי – AppError ב-controller
 throw new AppError("Not found", 404);
 
-// ✅ נכון – AppError ב-service
+//  נכון – AppError ב-service
 // controller רק קורא לservice ומחזיר תגובה
 ```
 

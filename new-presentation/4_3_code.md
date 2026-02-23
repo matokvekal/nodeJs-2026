@@ -106,11 +106,11 @@ export async function createOrder(orderData) {
 // ===================================
 // Use Cases
 // ===================================
-// ✅ Request ID tracking across all logs
-// ✅ User authentication context
-// ✅ Distributed tracing
-// ✅ Performance monitoring
-// ✅ Tenant isolation in multi-tenant apps
+//  Request ID tracking across all logs
+//  User authentication context
+//  Distributed tracing
+//  Performance monitoring
+//  Tenant isolation in multi-tenant apps
 ```
 
 ---
@@ -250,7 +250,7 @@ emitter.setMaxListeners(0);
 // ===================================
 // Heavy Computation (blocks Event Loop)
 // ===================================
-// ❌ DON'T do this in main thread!
+//   DON'T do this in main thread!
 function fibonacci(n) {
   if (n <= 1) return n;
   return fibonacci(n - 1) + fibonacci(n - 2);
@@ -376,12 +376,12 @@ app.get("/compute", async (req, res) => {
 // ===================================
 // Use Cases for worker_threads
 // ===================================
-// ✅ Image/video processing
-// ✅ Cryptography (hashing, encryption)
-// ✅ Data compression
-// ✅ Heavy mathematical calculations
-// ✅ PDF generation
-// ❌ I/O operations (use async instead!)
+//  Image/video processing
+//  Cryptography (hashing, encryption)
+//  Data compression
+//  Heavy mathematical calculations
+//  PDF generation
+//   I/O operations (use async instead!)
 ```
 
 ---
@@ -392,7 +392,7 @@ app.get("/compute", async (req, res) => {
 // ===================================
 // Common Memory Leak: Growing Cache
 // ===================================
-// ❌ MEMORY LEAK
+//   MEMORY LEAK
 const cache = {};
 
 app.get("/user/:id", async (req, res) => {
@@ -406,7 +406,7 @@ app.get("/user/:id", async (req, res) => {
   // Cache grows forever! Never cleaned up
 });
 
-// ✅ FIX: LRU Cache with Size Limit
+//  FIX: LRU Cache with Size Limit
 import { LRUCache } from "lru-cache";
 
 const cache = new LRUCache({
@@ -431,7 +431,7 @@ app.get("/user/:id", async (req, res) => {
 // ===================================
 // Common Memory Leak: Event Listeners
 // ===================================
-// ❌ MEMORY LEAK
+//   MEMORY LEAK
 function setupConnection(userId) {
   const connection = createConnection();
 
@@ -442,7 +442,7 @@ function setupConnection(userId) {
   // Connection closes but listener remains!
 }
 
-// ✅ FIX: Remove Listener
+//  FIX: Remove Listener
 function setupConnection(userId) {
   const connection = createConnection();
 
@@ -460,7 +460,7 @@ function setupConnection(userId) {
 // ===================================
 // Common Memory Leak: Closures
 // ===================================
-// ❌ MEMORY LEAK
+//   MEMORY LEAK
 function createLargeObject() {
   const huge = new Array(1000000).fill("data");
 
@@ -477,7 +477,7 @@ for (let i = 0; i < 100; i++) {
   objects.push(createLargeObject()); // Leaks memory!
 }
 
-// ✅ FIX: Don't capture large objects
+//  FIX: Don't capture large objects
 function createLargeObject() {
   const huge = new Array(1000000).fill("data");
   const firstItem = huge[0]; // Extract what you need
@@ -702,7 +702,7 @@ async function gracefulShutdown(signal) {
 
   // 1. Stop accepting new requests
   server.close(() => {
-    console.log("✅ HTTP server closed");
+    console.log(" HTTP server closed");
   });
 
   // 2. Close existing connections
@@ -714,13 +714,13 @@ async function gracefulShutdown(signal) {
 
   // 3. Close database connections
   await disconnectDB();
-  console.log("✅ Database disconnected");
+  console.log(" Database disconnected");
 
   // 4. Complete pending operations
   await flushLogs();
   await closeRedis();
 
-  console.log("✅ Graceful shutdown complete");
+  console.log(" Graceful shutdown complete");
   process.exit(0);
 }
 

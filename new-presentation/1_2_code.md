@@ -832,7 +832,7 @@ runLongTask();
 | ------------------- | --------------------------- | ----------------------------- | ----------------------------- | ---------------------- |
 | **Callbacks**       | `fs.readFile(path, cb)`     | Simple, universal             | Callback hell, error handling | Legacy only            |
 | **Promises**        | `.then().catch()`           | Chainable, better errors      | Still nesting                 | When needed            |
-| **async/await**     | `await promise`             | Sync-like, clean              | Requires async function       | ✅ Preferred           |
+| **async/await**     | `await promise`             | Sync-like, clean              | Requires async function       | Preferred              |
 | **Async Iterators** | `for await (const x of it)` | Stream-like, memory efficient | More complex                  | For streams/large data |
 
 ---

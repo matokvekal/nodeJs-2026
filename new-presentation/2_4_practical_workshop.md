@@ -15,12 +15,12 @@
 **כותרת ראשית:** 🎯 מטרת הסדנה
 **כל מה שלמדנו היום – עכשיו נבנה בעצמנו!**
 
-- ✅ Express 5 עם ESM
-- ✅ Validation עם Zod
-- ✅ Error Handling מקצועי
-- ✅ Clean Architecture (routes → controllers → services)
-- ✅ Swagger documentation
-- ✅ Tests בסיסיים
+- Express 5 עם ESM
+- Validation עם Zod
+- Error Handling מקצועי
+- Clean Architecture (routes → controllers → services)
+- Swagger documentation
+- Tests בסיסיים
 
 **התוצאה:** Tasks API מלא שעובד!
 
@@ -236,7 +236,7 @@ export const taskIdSchema = z.object({
 
 ## שקף 8
 
-**כותרת ראשית:** ✅ שלב 5: Validate Middleware
+**כותרת ראשית:** שלב 5: Validate Middleware
 
 **🔄 Middleware Chain:**
 
@@ -247,9 +247,9 @@ express.json()  ← parse body
    ↓
 validate(schema) ← Zod validation
    │
-   ├─ ✅ Valid   → req.validatedData = data → next()
+   ├─  Valid   → req.validatedData = data → next()
    │
-   └─ ❌ Invalid → 422 + errors
+   └─   Invalid → 422 + errors
 ```
 
 **ליצור קובץ `src/middleware/validate.js`:**
@@ -589,7 +589,7 @@ node --test tests/
 
 ## שקף 16
 
-**כותרת ראשית:** ✅ Checklist סופי – וודא שהכל עובד!
+**כותרת ראשית:** Checklist סופי – וודא שהכל עובד!
 
 - [ ] `GET /api/v1/tasks` – מחזיר מערך עם meta.total
 - [ ] `POST /api/v1/tasks` – יוצר task, מחזיר 201
@@ -607,11 +607,11 @@ node --test tests/
 **כותרת ראשית:** 🎉 מזל טוב! בנית API מקצועי
 **מה השגנו:**
 
-✅ CRUD API שלם: routes → controllers → services  
-✅ Zod validation בכל endpoint  
-✅ Error middleware מרכזי עם problem+json format  
-✅ Swagger UI לתיעוד אינטראקטיבי  
-✅ `node:test` לבדיקות unit של ה-service
+CRUD API שלם: routes → controllers → services  
+ Zod validation בכל endpoint  
+ Error middleware מרכזי עם problem+json format  
+ Swagger UI לתיעוד אינטראקטיבי  
+ `node:test` לבדיקות unit של ה-service
 
 **💡 העיקר:** הבנתם את הארכיטקטורה!
 

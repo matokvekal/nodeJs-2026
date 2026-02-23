@@ -117,7 +117,7 @@ Decoupling! אם מחר נוסיף SMS – רק `orderService.on('order:created'
 **הבעיה – חסימת Event Loop:**
 
 ```js
-// ❌ חוסם Event Loop!
+//   חוסם Event Loop!
 app.get("/heavy", (req, res) => {
   let sum = 0;
   for (let i = 0; i < 1e9; i++) sum += i; // 2-3 שניות!
@@ -158,7 +158,7 @@ app.get("/heavy", (req, res) => {
 \*\*דוגמת leak:
 
 ```js
-// ❌ Classic leak - cache without eviction
+//   Classic leak - cache without eviction
 const cache = {};
 app.get("/data/:id", (req, res) => {
   cache[req.params.id] = fetchData(req.params.id);

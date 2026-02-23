@@ -158,14 +158,14 @@ const users = await User.findAll({
 **הדגמה:**
 
 ```js
-// ❌ מסוכן מאוד!
+//   מסוכן מאוד!
 const username = req.body.username; // "'; DROP TABLE users; --"
 const query = `SELECT * FROM users WHERE username = '${username}'`;
 
-// ✅ בטוח - Sequelize מגן אוטומטית
+//  בטוח - Sequelize מגן אוטומטית
 const user = await User.findOne({ where: { username: req.body.username } });
 
-// ✅ בטוח - raw query עם replacements
+//  בטוח - raw query עם replacements
 const result = await sequelize.query(
   "SELECT * FROM users WHERE username = :name",
   { replacements: { name: req.body.username }, type: QueryTypes.SELECT }
