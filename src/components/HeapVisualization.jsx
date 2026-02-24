@@ -12,11 +12,12 @@ const HeapVisualization = () => {
     const ctx = canvas.getContext("2d");
     const dpr = window.devicePixelRatio || 1;
 
-    canvas.width = 800 * dpr;
-    canvas.height = 400 * dpr;
-    canvas.style.width = "800px";
-    canvas.style.height = "400px";
+    canvas.width = 500 * dpr;
+    canvas.height = 250 * dpr;
+    canvas.style.width = "500px";
+    canvas.style.height = "250px";
     ctx.scale(dpr, dpr);
+    ctx.scale(0.625, 0.625);
 
     let frame = 0;
     let objects = [];
@@ -184,52 +185,56 @@ const HeapVisualization = () => {
         </p>
       </div>
 
-      <canvas ref={canvasRef} className="heap-canvas" />
+      <div className="heap-main-row">
+        <canvas ref={canvasRef} className="heap-canvas" />
 
-      <div className="heap-stats">
-        <div className="stat-item young">
-          <span className="stat-label">Young Gen:</span>
-          <span className="stat-value">{stats.youngGen} objects</span>
-        </div>
-        <div className="stat-item old">
-          <span className="stat-label">Old Gen:</span>
-          <span className="stat-value">{stats.oldGen} objects</span>
-        </div>
-        <div className="stat-item total">
-          <span className="stat-label">Total:</span>
-          <span className="stat-value">{stats.total} objects</span>
-        </div>
-      </div>
+        <div className="heap-side">
+          <div className="heap-stats">
+            <div className="stat-item young">
+              <span className="stat-label">Young Gen:</span>
+              <span className="stat-value">{stats.youngGen} objects</span>
+            </div>
+            <div className="stat-item old">
+              <span className="stat-label">Old Gen:</span>
+              <span className="stat-value">{stats.oldGen} objects</span>
+            </div>
+            <div className="stat-item total">
+              <span className="stat-label">Total:</span>
+              <span className="stat-value">{stats.total} objects</span>
+            </div>
+          </div>
 
-      <div className="concept-explanation">
-        <div className="concept-item">
-          <span className="concept-icon" style={{ color: "#61dafb" }}>
-            🆕
-          </span>
-          <div>
-            <strong>Young Generation (2MB)</strong>
-            <p>אובייקטים חדשים. רוב נמחקים מהר (Scavenge GC - מהיר מאוד)</p>
-          </div>
-        </div>
-        <div className="concept-item">
-          <span className="concept-icon" style={{ color: "#a8dadc" }}>
-            👴
-          </span>
-          <div>
-            <strong>Old Generation (1GB+)</strong>
-            <p>
-              אובייקטים ששרדו מספר GC cycles. נמחקים בהדרגה (Mark-Sweep - איטי
-              יותר)
-            </p>
-          </div>
-        </div>
-        <div className="concept-item">
-          <span className="concept-icon" style={{ color: "#ff6b6b" }}>
-            🗑️
-          </span>
-          <div>
-            <strong>Garbage Collection</strong>
-            <p>מזהה ומוחק אוטומטית אובייקטים שאין להם הפניות (references)</p>
+          <div className="concept-explanation">
+            <div className="concept-item">
+              <span className="concept-icon" style={{ color: "#61dafb" }}>
+                🆕
+              </span>
+              <div>
+                <strong>Young Generation (2MB)</strong>
+                <p>אובייקטים חדשים. רוב נמחקים מהר (Scavenge GC - מהיר מאוד)</p>
+              </div>
+            </div>
+            <div className="concept-item">
+              <span className="concept-icon" style={{ color: "#a8dadc" }}>
+                👴
+              </span>
+              <div>
+                <strong>Old Generation (1GB+)</strong>
+                <p>
+                  אובייקטים ששרדו מספר GC cycles. נמחקים בהדרגה (Mark-Sweep - איטי
+                  יותר)
+                </p>
+              </div>
+            </div>
+            <div className="concept-item">
+              <span className="concept-icon" style={{ color: "#ff6b6b" }}>
+                🗑️
+              </span>
+              <div>
+                <strong>Garbage Collection</strong>
+                <p>מזהה ומוחק אוטומטית אובייקטים שאין להם הפניות (references)</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

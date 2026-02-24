@@ -1,0 +1,264 @@
+/* ══════════════════════════════════════
+   EXERCISES MODAL — file browser + code viewer
+   ══════════════════════════════════════ */
+
+.ex-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(6px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.ex-modal {
+  width: 88vw;
+  max-width: 1140px;
+  height: 82vh;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-glow);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.65),
+    0 0 0 1px var(--border-glow);
+}
+
+/* ── Header ── */
+.ex-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-glow);
+  flex-shrink: 0;
+  gap: 12px;
+}
+
+.ex-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.ex-header-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.ex-header-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: "Assistant", sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ex-header-count {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-family: "Fira Code", monospace;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 2px 9px;
+  border-radius: 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.ex-header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.ex-copy-btn {
+  padding: 5px 14px;
+  background: rgba(97, 218, 251, 0.07);
+  border: 1px solid var(--border-glow);
+  border-radius: 6px;
+  color: var(--accent);
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-family: "Fira Code", monospace;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.ex-copy-btn:hover {
+  background: rgba(97, 218, 251, 0.14);
+}
+
+.ex-copy-btn.copied {
+  background: rgba(97, 218, 251, 0.2);
+  border-color: var(--accent);
+}
+
+.ex-close-btn {
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid var(--border-glow);
+  border-radius: 6px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.ex-close-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--accent);
+}
+
+/* ── Body ── */
+.ex-body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* ── File List ── */
+.ex-file-list {
+  width: 158px;
+  flex-shrink: 0;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-glow);
+  overflow-y: auto;
+  padding: 8px 0;
+}
+
+.ex-file-btn {
+  width: 100%;
+  text-align: left;
+  padding: 9px 12px;
+  background: transparent;
+  border: none;
+  border-left: 2px solid transparent;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  cursor: pointer;
+  font-family: "Fira Code", monospace;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.15s;
+}
+
+.ex-file-btn:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+}
+
+.ex-file-btn.active {
+  border-left-color: var(--accent);
+  color: var(--accent);
+  background: rgba(97, 218, 251, 0.07);
+}
+
+.ex-file-badge {
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: var(--accent);
+  opacity: 0.55;
+  background: rgba(97, 218, 251, 0.1);
+  padding: 1px 4px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  letter-spacing: 0.5px;
+}
+
+.ex-file-btn.active .ex-file-badge {
+  opacity: 1;
+}
+
+.ex-file-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+/* ── Code Pane ── */
+.ex-code-pane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #0d1117;
+}
+
+.ex-code-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+}
+
+.ex-code-filename {
+  font-family: "Fira Code", monospace;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.ex-code-nav {
+  font-family: "Fira Code", monospace;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.ex-code-scroll {
+  flex: 1;
+  overflow: auto;
+}
+
+.ex-empty {
+  padding: 20px 14px;
+  color: var(--text-muted);
+  font-size: 0.83rem;
+  font-family: "Assistant", sans-serif;
+}
+
+/* ── Footer ── */
+.ex-footer {
+  padding: 8px 18px;
+  border-top: 1px solid var(--border-glow);
+  font-size: 0.73rem;
+  color: var(--text-muted);
+  font-family: "Fira Code", monospace;
+  background: var(--bg-secondary);
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .ex-modal {
+    width: 97vw;
+    height: 92vh;
+  }
+
+  .ex-file-list {
+    width: 100px;
+  }
+
+  .ex-header-title {
+    font-size: 0.82rem;
+  }
+}

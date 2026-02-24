@@ -1,7 +1,7 @@
 import "./Home.css";
 import DayProgress from "../components/DayProgress";
 
-function Home({ courseData, onSelectDay }) {
+function Home({ courseData, onSelectDay, onLecturerMode }) {
   const days = Object.entries(courseData);
 
   return (
@@ -9,6 +9,9 @@ function Home({ courseData, onSelectDay }) {
       <div className="home-header">
         <h1 className="home-title">Node.js 2026</h1>
         <p className="home-subtitle">קורס מלא – 4 ימים, 16 מצגות</p>
+        <button className="lecturer-mode-btn" onClick={onLecturerMode}>
+          🎓 מצב מרצה
+        </button>
       </div>
 
       <div className="days-grid">

@@ -133,3 +133,13 @@ code, pre {
 ::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--text-primary); }
 ::selection { background: rgba(97, 218, 251, 0.3); color: #fff; }
+
+@media (max-width: 1024px) {
+  body {
+    overflow-y: auto;
+  }
+  #root {
+    height: auto;
+    min-height: 100vh;
+  }
+}

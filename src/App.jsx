@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Home from "./pages/Home";
 import DayView from "./pages/DayView";
+import LecturerView from "./pages/LecturerView";
 import Deck from "./components/Deck";
 import ThemeSwitcher from "./components/ThemeSwitcher";
 import { courseData } from "./data/courseData";
@@ -59,6 +60,7 @@ function App() {
   };
 
   const goHome = () => setRoute({ view: "home" });
+  const goLecturer = () => setRoute({ view: "lecturer" });
   const goDay = (dayKey) => setRoute({ view: "day", dayKey });
   const goPresentation = (dayKey, presIndex) =>
     setRoute({ view: "presentation", dayKey, presIndex });
@@ -79,7 +81,11 @@ function App() {
       />
 
       {route.view === "home" && (
-        <Home courseData={courseData} onSelectDay={goDay} />
+        <Home courseData={courseData} onSelectDay={goDay} onLecturerMode={goLecturer} />
+      )}
+
+      {route.view === "lecturer" && (
+        <LecturerView courseData={courseData} onBack={goHome} />
       )}
 
       {route.view === "day" && (

@@ -4,6 +4,7 @@ import "./EventLoopAnimation.css";
 const EventLoopAnimation = () => {
   const canvasRef = useRef(null);
   const [currentPhase, setCurrentPhase] = useState(0);
+  const [infoOpen, setInfoOpen] = useState(false);
   const animationRef = useRef(null);
   const startTimeRef = useRef(Date.now());
 
@@ -23,11 +24,12 @@ const EventLoopAnimation = () => {
     const ctx = canvas.getContext("2d");
     const dpr = window.devicePixelRatio || 1;
 
-    canvas.width = 800 * dpr;
-    canvas.height = 600 * dpr;
-    canvas.style.width = "800px";
-    canvas.style.height = "600px";
+    canvas.width = 500 * dpr;
+    canvas.height = 375 * dpr;
+    canvas.style.width = "500px";
+    canvas.style.height = "375px";
     ctx.scale(dpr, dpr);
+    ctx.scale(0.625, 0.625);
 
     let animationFrame = 0;
     const centerX = 400;
@@ -177,47 +179,112 @@ const EventLoopAnimation = () => {
         </p>
       </div>
 
-      <canvas ref={canvasRef} className="event-loop-canvas" />
+      <div className="el-main-row">
+        <canvas ref={canvasRef} className="event-loop-canvas" />
 
-      <div className="phase-indicator">
-        <span className="phase-label">שלב נוכחי:</span>
-        <span
-          className="phase-name"
-          style={{ color: phases[currentPhase].color }}
-        >
-          {phases[currentPhase].name}
-        </span>
-      </div>
+        <div className="el-side">
+          <div className="phase-indicator">
+            <span className="phase-label">שלב נוכחי:</span>
+            <span
+              className="phase-name"
+              style={{ color: phases[currentPhase].color }}
+            >
+              {phases[currentPhase].name}
+            </span>
+          </div>
 
-      <div className="phase-description">
-        {phaseDescriptions[phases[currentPhase].name]}
-      </div>
+          <div className="phase-description">
+            {phaseDescriptions[phases[currentPhase].name]}
+          </div>
 
-      <div className="concept-explanation">
-        <div className="concept-item">
-          <span className="concept-icon">⏱️</span>
-          <div>
-            <strong>Macrotasks</strong>
-            <p>מבוצעים בשלבים שונים: setTimeout, setImmediate, I/O</p>
+          <div className="concept-explanation">
+            <div className="concept-item">
+              <span className="concept-icon">⏱️</span>
+              <div>
+                <strong>Macrotasks</strong>
+                <p>מבוצעים בשלבים שונים: setTimeout, setImmediate, I/O</p>
+              </div>
+            </div>
+            <div className="concept-item">
+              <span className="concept-icon">⚡</span>
+              <div>
+                <strong>Microtasks (מרכז)</strong>
+                <p>
+                  רצים מיד אחרי כל callback לפני המשך ה-Loop: Promise.then, nextTick
+                </p>
+              </div>
+            </div>
+            <div className="concept-item">
+              <span className="concept-icon">🔁</span>
+              <div>
+                <strong>זרימה מחזורית</strong>
+                <p>ה-Loop עובר מ-Timers → I/O → Poll → Check → Close ושוב מתחיל</p>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="concept-item">
-          <span className="concept-icon">⚡</span>
-          <div>
-            <strong>Microtasks (מרכז)</strong>
-            <p>
-              רצים מיד אחרי כל callback לפני המשך ה-Loop: Promise.then, nextTick
-            </p>
-          </div>
-        </div>
-        <div className="concept-item">
-          <span className="concept-icon">🔁</span>
-          <div>
-            <strong>זרימה מחזורית</strong>
-            <p>ה-Loop עובר מ-Timers → I/O → Poll → Check → Close ושוב מתחיל</p>
-          </div>
-        </div>
       </div>
+
+      <button className="el-info-btn" onClick={() => setInfoOpen(true)}>
+        📋 סדר ביצוע — nextTick, Promise, Timers
+      </button>
+
+      {infoOpen && (
+        <div className="el-info-overlay" onClick={() => setInfoOpen(false)}>
+          <div className="el-info-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="el-info-close" onClick={() => setInfoOpen(false)}>✕</button>
+
+            <h3 className="el-info-title">🔄 סדר ביצוע ב-Event Loop</h3>
+
+            <div className="el-info-section">
+              <h4>עדיפויות Microtasks</h4>
+              <div className="el-priority-list">
+                <div className="el-priority-item el-priority-1">
+                  <span className="el-priority-badge">1</span>
+                  <div>
+                    <strong>process.nextTick()</strong>
+                    <p>רץ ראשון — לפני כל Microtask אחר</p>
+                  </div>
+                </div>
+                <div className="el-priority-item el-priority-2">
+                  <span className="el-priority-badge">2</span>
+                  <div>
+                    <strong>Promise Microtasks</strong>
+                    <p><code>.then()</code> / <code>await</code> — רצים אחרי nextTick</p>
+                  </div>
+                </div>
+                <div className="el-priority-item el-priority-3">
+                  <span className="el-priority-badge">3</span>
+                  <div>
+                    <strong>Macrotasks</strong>
+                    <p><code>setTimeout</code> / <code>setImmediate</code> — רצים אחרון</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="el-info-section">
+              <h4>דוגמת קוד</h4>
+              <pre className="el-info-code">{`setTimeout(() => console.log("timer"), 0)
+
+setImmediate(() => console.log("immediate"))
+
+Promise.resolve().then(() => console.log("promise"))
+
+process.nextTick(() => console.log("nextTick"))`}</pre>
+            </div>
+
+            <div className="el-info-section">
+              <h4>פלט</h4>
+              <div className="el-output-list">
+                <div className="el-output-item"><span className="el-output-num">1</span><code>nextTick</code></div>
+                <div className="el-output-item"><span className="el-output-num">2</span><code>promise</code></div>
+                <div className="el-output-item el-output-note"><span className="el-output-num">3</span><code>timer / immediate</code><span className="el-output-tag">תלוי הקשר</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

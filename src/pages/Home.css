@@ -28,6 +28,31 @@
 
 .home-header {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.lecturer-mode-btn {
+  margin-top: 4px;
+  padding: 8px 22px;
+  background: transparent;
+  border: 1px solid rgba(97, 218, 251, 0.35);
+  border-radius: 20px;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-family: "Assistant", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.lecturer-mode-btn:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+  background: rgba(97, 218, 251, 0.08);
+  box-shadow: 0 0 14px rgba(97, 218, 251, 0.15);
 }
 
 .home-title {
@@ -248,6 +273,13 @@
   }
   .home-title {
     font-size: 3rem;
+  }
+  .home {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    justify-content: flex-start;
+    padding-top: 80px;
   }
 }
 

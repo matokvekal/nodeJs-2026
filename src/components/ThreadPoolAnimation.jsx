@@ -5,6 +5,7 @@ const ThreadPoolAnimation = () => {
   const canvasRef = useRef(null);
   const [poolSize] = useState(4);
   const [tasks, setTasks] = useState([]);
+  const [infoOpen, setInfoOpen] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -13,11 +14,12 @@ const ThreadPoolAnimation = () => {
     const ctx = canvas.getContext("2d");
     const dpr = window.devicePixelRatio || 1;
 
-    canvas.width = 800 * dpr;
-    canvas.height = 400 * dpr;
-    canvas.style.width = "800px";
-    canvas.style.height = "400px";
+    canvas.width = 500 * dpr;
+    canvas.height = 250 * dpr;
+    canvas.style.width = "500px";
+    canvas.style.height = "250px";
     ctx.scale(dpr, dpr);
+    ctx.scale(0.625, 0.625);
 
     let threads = Array.from({ length: poolSize }, (_, i) => ({
       id: i,
@@ -197,53 +199,139 @@ const ThreadPoolAnimation = () => {
         </p>
       </div>
 
-      <canvas ref={canvasRef} className="thread-pool-canvas" />
+      <div className="tp-main-row">
+        <canvas ref={canvasRef} className="thread-pool-canvas" />
 
-      <div className="thread-stats">
-        <div className="thread-stat waiting">
-          <span className="stat-label">Waiting</span>
-          <span className="stat-value">{tasks.waiting || 0}</span>
-        </div>
-        <div className="thread-stat processing">
-          <span className="stat-label">Processing</span>
-          <span className="stat-value">{tasks.processing || 0}</span>
-        </div>
-        <div className="thread-stat completed">
-          <span className="stat-label">Completed</span>
-          <span className="stat-value">{tasks.completed || 0}</span>
+        <div className="tp-side">
+          <div className="thread-stats">
+            <div className="thread-stat waiting">
+              <span className="stat-label">Waiting</span>
+              <span className="stat-value">{tasks.waiting || 0}</span>
+            </div>
+            <div className="thread-stat processing">
+              <span className="stat-label">Processing</span>
+              <span className="stat-value">{tasks.processing || 0}</span>
+            </div>
+            <div className="thread-stat completed">
+              <span className="stat-label">Completed</span>
+              <span className="stat-value">{tasks.completed || 0}</span>
+            </div>
+          </div>
+
+          <div className="concept-explanation">
+            <div className="concept-item">
+              <span className="concept-icon" style={{ color: "#f39c12" }}>
+                📥
+              </span>
+              <div>
+                <strong>Task Queue</strong>
+                <p>משימות ממתינות לטיפול. כל משימה תיקח thread פנוי כשיהיה זמין</p>
+              </div>
+            </div>
+            <div className="concept-item">
+              <span className="concept-icon" style={{ color: "#61dafb" }}>
+                ⚙️
+              </span>
+              <div>
+                <strong>Worker Threads</strong>
+                <p>
+                  מבצעים: crypto.pbkdf2, fs, dns.lookup, zlib. ניתן לשנות עם
+                  UV_THREADPOOL_SIZE
+                </p>
+              </div>
+            </div>
+            <div className="concept-item">
+              <span className="concept-icon" style={{ color: "#4ecdc4" }}></span>
+              <div>
+                <strong>למה Thread Pool?</strong>
+                <p>מאפשר פעולות blocking מבלי לחסום את Event Loop הראשי</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="concept-explanation">
-        <div className="concept-item">
-          <span className="concept-icon" style={{ color: "#f39c12" }}>
-            📥
-          </span>
-          <div>
-            <strong>Task Queue</strong>
-            <p>משימות ממתינות לטיפול. כל משימה תיקח thread פנוי כשיהיה זמין</p>
+      <button className="tp-info-btn" onClick={() => setInfoOpen(true)}>
+        📋 Thread Pool — מידע מלא
+      </button>
+
+      {infoOpen && (
+        <div className="tp-info-overlay" onClick={() => setInfoOpen(false)}>
+          <div className="tp-info-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="tp-info-close" onClick={() => setInfoOpen(false)}>✕</button>
+
+            <h3 className="tp-info-title">🧵 Thread Pool — מקסימום: 128</h3>
+
+            <div className="tp-info-section">
+              <h4>מה כן רץ ב-Thread Pool?</h4>
+              <div className="tp-uses-grid">
+                <div className="tp-use-card tp-use-fs">
+                  <span className="tp-use-icon">📁</span>
+                  <div>
+                    <strong>1️⃣ File System</strong>
+                    <p>רוב מערכות ההפעלה לא מספקות async אמיתי לקבצים →<br/>libuv מריץ אותן ב-worker thread</p>
+                    <code>fs.readFile, fs.writeFile, fs.stat</code>
+                  </div>
+                </div>
+                <div className="tp-use-card tp-use-crypto">
+                  <span className="tp-use-icon">🔐</span>
+                  <div>
+                    <strong>2️⃣ Crypto (חלק מהפונקציות)</strong>
+                    <code>crypto.pbkdf2()</code>
+                    <code>crypto.scrypt()</code>
+                    <code>crypto.randomBytes()</code>
+                  </div>
+                </div>
+                <div className="tp-use-card tp-use-zlib">
+                  <span className="tp-use-icon">🗜️</span>
+                  <div>
+                    <strong>3️⃣ Compression</strong>
+                    <code>zlib.gzip()</code>
+                    <code>zlib.deflate()</code>
+                    <code>zlib.gunzip()</code>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="tp-info-section">
+              <h4>חשוב להבין</h4>
+              <ul className="tp-info-list">
+                <li>✔ HTTP לא משתמש ב-thread pool</li>
+                <li>✔ setTimeout לא משתמש ב-thread pool</li>
+                <li>✔ Promise לא משתמש ב-thread pool</li>
+                <li>✔ ה-Event Loop נשאר single thread</li>
+              </ul>
+            </div>
+
+            <div className="tp-info-section">
+              <h4>סיכום קצר</h4>
+              <table className="tp-info-table">
+                <thead>
+                  <tr>
+                    <th>רכיב</th>
+                    <th>כמות</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>JS Thread</td>
+                    <td>1</td>
+                  </tr>
+                  <tr>
+                    <td>Event Loop</td>
+                    <td>1</td>
+                  </tr>
+                  <tr>
+                    <td>libuv Thread Pool</td>
+                    <td>4 (ברירת מחדל)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-        <div className="concept-item">
-          <span className="concept-icon" style={{ color: "#61dafb" }}>
-            ⚙️
-          </span>
-          <div>
-            <strong>Worker Threads</strong>
-            <p>
-              מבצעים: crypto.pbkdf2, fs, dns.lookup, zlib. ניתן לשנות עם
-              UV_THREADPOOL_SIZE
-            </p>
-          </div>
-        </div>
-        <div className="concept-item">
-          <span className="concept-icon" style={{ color: "#4ecdc4" }}></span>
-          <div>
-            <strong>למה Thread Pool?</strong>
-            <p>מאפשר פעולות blocking מבלי לחסום את Event Loop הראשי</p>
-          </div>
-        </div>
-      </div>
+      )}
     </div>
   );
 };

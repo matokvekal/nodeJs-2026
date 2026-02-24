@@ -37,6 +37,7 @@ async function deleteFile(filepath) {
     await unlink(filepath);
     console.log(" File deleted:", filepath);
   } catch (error) {
+    if (error.code === "ENOENT") {
       console.log("File does not exist (already deleted)");
     } else {
       console.error("  Delete error:", error.message);

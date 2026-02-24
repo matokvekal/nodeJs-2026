@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import AnimationModal from "./AnimationModal";
 import CodeModal from "./CodeModal";
 import Quiz from "./Quiz";
+import AIInfo from "./AIInfo";
 import "./Slide.css";
 
 /* ── helpers ── */
@@ -149,7 +150,7 @@ function Slide({ data, currentPanel, onNextPanel, onPrevPanel }) {
         <div className="slide-body">
           {/* ── RIGHT 70%: bullets / table / note ── */}
           <div className="slide-main" key={panelKey} data-dir={panelDir}>
-            <BulletList bullets={panel.bullets} />
+            <AIInfo bullets={panel.bullets} />
             <ComparisonTable data={panel.comparison} />
             {panel.note && <div className="slide-note"> {panel.note}</div>}
           </div>
