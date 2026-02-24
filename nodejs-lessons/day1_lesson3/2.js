@@ -12,9 +12,9 @@ async function writeToFile() {
 
     // Write JSON to file
     await writeFile("output.json", JSON.stringify(data, null, 2), "utf8");
-    console.log("✅ File written successfully");
+    console.log(" File written successfully");
   } catch (error) {
-    console.error("❌ Write error:", error.message);
+    console.error("  Write error:", error.message);
   }
 }
 
@@ -25,9 +25,9 @@ async function appendToFile() {
 
     // Append to log file
     await appendFile("app.log", logEntry, "utf8");
-    console.log("✅ Log entry appended");
+    console.log(" Log entry appended");
   } catch (error) {
-    console.error("❌ Append error:", error.message);
+    console.error("  Append error:", error.message);
   }
 }
 
@@ -35,11 +35,11 @@ async function appendToFile() {
 async function deleteFile(filepath) {
   try {
     await unlink(filepath);
-    console.log("✅ File deleted:", filepath);
+    console.log(" File deleted:", filepath);
   } catch (error) {
       console.log("File does not exist (already deleted)");
     } else {
-      console.error("❌ Delete error:", error.message);
+      console.error("  Delete error:", error.message);
     }
   }
 }

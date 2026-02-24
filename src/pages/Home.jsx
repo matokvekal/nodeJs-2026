@@ -67,6 +67,7 @@ function Home({ courseData, onSelectDay }) {
       </div>
 
       <div className="home-footer">
+        <span className="footer-brand">מכללת סלע</span>
         <span>השתמש ב-← → לניווט · F למסך מלא · ESC לסגירה</span>
       </div>
     </div>

@@ -140,7 +140,7 @@ function Deck({ slides, storageKey = "presentation-current-slide" }) {
               checked={isCompleted}
               onChange={handleCompletionToggle}
             />
-            <span>סיימתי מצגת זו</span>
+            <span>Done </span>
           </label>
         </div>
       )}

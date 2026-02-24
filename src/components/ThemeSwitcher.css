@@ -21,9 +21,25 @@
 
 .theme-switcher.collapsed {
   padding: 8px;
-  gap: 0;
+  gap: 8px;
   left: 20px;
   transform: translateX(0);
+}
+
+.header-logo {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 6px;
+  padding: 2px 4px;
+  margin-right: 0.5rem;
+  display: none;
+}
+
+.theme-switcher.collapsed .header-logo {
+  display: block;
 }
 
 .theme-toggle-btn {

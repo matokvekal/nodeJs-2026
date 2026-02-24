@@ -27,6 +27,7 @@ function ThemeSwitcher({
 }) {
   return (
     <div className={`theme-switcher ${isCollapsed ? "collapsed" : ""}`}>
+      <img src="/logo.png" className="header-logo" alt="logo" />
       <button
         className="theme-toggle-btn"
         onClick={onToggleCollapse}

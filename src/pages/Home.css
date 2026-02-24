@@ -231,6 +231,14 @@
   color: var(--text-muted);
   opacity: 0.6;
   font-family: "Fira Code", monospace;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.footer-brand {
+  font-weight: 600;
 }
 
 /* Responsive */
@@ -251,7 +259,11 @@
     font-size: 2.2rem;
   }
   .home {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    justify-content: flex-start;
     gap: 24px;
-    padding: 20px 16px;
+    padding: 80px 16px 24px;
   }
 }

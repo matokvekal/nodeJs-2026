@@ -91,7 +91,7 @@
 .completion-checkbox {
   position: fixed;
   bottom: 20px;
-  left: 50%;
+  left: 10%;
   transform: translateX(-50%);
   background: var(--bg-secondary);
   padding: 14px 24px;
