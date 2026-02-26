@@ -32,6 +32,9 @@ build/
 .cache/
 *.log
 
+# TypeScript
+*.tsbuildinfo
+
 # Temporary files
 *.tmp
 *.temp

@@ -13,11 +13,237 @@
   transition:
     opacity 0.4s ease,
     transform 0.4s ease;
+  position: relative;
 }
 
 .slide.animate {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ══════════════════════════════════════════
+   HI-TECH CIRCUIT SIDE DECORATIONS
+══════════════════════════════════════════ */
+.tech-decor {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 115px;
+  height: 80%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  color: var(--text-primary);
+  /* fade top & bottom edges */
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    black 12%,
+    black 88%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    black 12%,
+    black 88%,
+    transparent 100%
+  );
+}
+
+.tech-left {
+  left: 14px;
+}
+.tech-right {
+  right: 14px;
+}
+
+.tech-decor svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 5px rgba(var(--primary-rgb), 0.6));
+}
+
+/* entrance animations */
+.slide.animate .tech-left {
+  animation: techInLeft 0.65s ease 0.15s forwards;
+}
+.slide.animate .tech-right {
+  animation: techInRight 0.65s ease 0.15s forwards;
+}
+
+@keyframes techInLeft {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(-22px);
+  }
+  to {
+    opacity: 0.55;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+@keyframes techInRight {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(22px);
+  }
+  to {
+    opacity: 0.55;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+/* spine pulse */
+.t-spine {
+  animation: spinePulse 5s ease-in-out infinite;
+}
+@keyframes spinePulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* pulsing nodes */
+.t-nd {
+  animation: ndGlow 2.8s ease-in-out infinite;
+}
+.t-nd-alt {
+  animation: ndGlow 2.8s ease-in-out infinite 1.4s;
+}
+@keyframes ndGlow {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* scanning dot traveling down the spine — speed varies per presentation */
+.t-scan {
+  animation: scanTravel var(--scan-speed, 4s) linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.t-scan-delay {
+  animation-delay: calc(var(--scan-speed, 4s) / 2);
+}
+@keyframes scanTravel {
+  0% {
+    transform: translateY(0px);
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(480px);
+    opacity: 0;
+  }
+}
+
+/* ══════════════════════════════════════════
+   CORNER ACCENT BRACKETS
+══════════════════════════════════════════ */
+.cb {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.5s ease 0.3s;
+}
+.slide.animate .cb {
+  opacity: 0.65;
+}
+.cb-tl {
+  top: 10px;
+  left: 10px;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+  border-radius: 4px 0 0 0;
+}
+.cb-tr {
+  top: 10px;
+  right: 10px;
+  border-top: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+  border-radius: 0 4px 0 0;
+}
+.cb-bl {
+  bottom: 10px;
+  left: 10px;
+  border-bottom: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+  border-radius: 0 0 0 4px;
+}
+.cb-br {
+  bottom: 10px;
+  right: 10px;
+  border-bottom: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+  border-radius: 0 0 4px 0;
+}
+
+/* ══════════════════════════════════════════
+   HEX GRID BACKGROUND (inside frame)
+══════════════════════════════════════════ */
+.hex-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  color: var(--text-primary);
+  opacity: 0;
+  transition: opacity 0.7s ease 0.25s;
+}
+.slide.animate .hex-bg {
+  opacity: 0.14;
+}
+
+/* ══════════════════════════════════════════
+   FLOATING GLOW PARTICLES (outside frame)
+══════════════════════════════════════════ */
+.f-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow:
+    0 0 6px 2px rgba(var(--accent-rgb), 0.7),
+    0 0 14px 4px rgba(var(--primary-rgb), 0.3);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  animation: ptclPulse 3s ease-in-out infinite;
+}
+
+@keyframes ptclPulse {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.8);
+  }
+}
+
+@media (max-width: 1024px) {
+  .hex-bg,
+  .f-particle {
+    display: none;
+  }
 }
 
 /* ══════════════════════════════════════════
@@ -31,6 +257,8 @@
 .title-content {
   text-align: center;
   max-width: 900px;
+  position: relative;
+  z-index: 50;
 }
 
 .main-title {
@@ -87,6 +315,58 @@
   flex-direction: column;
   gap: 18px;
   overflow: hidden; /* ← NEVER SCROLLS */
+  position: relative;
+}
+
+/* Subtle tech grid overlay on frame */
+.slide-frame::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.12;
+  background-image:
+    linear-gradient(90deg, rgba(var(--primary-rgb), 0.15) 1px, transparent 1px),
+    linear-gradient(rgba(var(--primary-rgb), 0.15) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Animated corner accents */
+.slide-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  padding: 2px;
+  z-index: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--primary-rgb), 0.4) 0%,
+    transparent 20%,
+    transparent 80%,
+    rgba(var(--accent-rgb), 0.3) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.5;
+  animation: frameGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes frameGlow {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
 }
 
 /* ── Slide heading ── */
@@ -97,6 +377,8 @@
   border-bottom: 2px solid var(--border-glow);
   padding-bottom: 12px;
   flex-shrink: 0;
+  position: relative;
+  z-index: 50;
 }
 
 /* ══════════════════════════════════════════
@@ -109,6 +391,8 @@
   flex: 1;
   min-height: 0;
   overflow: hidden;
+  position: relative;
+  z-index: 50;
 }
 
 /* ── RIGHT 70%: content ── */
@@ -436,6 +720,12 @@
    RESPONSIVE
 ══════════════════════════════════════════ */
 @media (max-width: 1024px) {
+  /* Hide circuit decorations on tablets and mobile */
+  .tech-decor,
+  .cb {
+    display: none;
+  }
+
   .slide-frame {
     padding: 28px 36px 20px;
   }
