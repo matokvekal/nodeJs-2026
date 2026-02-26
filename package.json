@@ -2,6 +2,7 @@
   "name": "nodejs-course-presentations",
   "version": "1.0.0",
   "type": "module",
+  "developer": "gilad dolev",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
