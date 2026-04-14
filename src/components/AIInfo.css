@@ -7,13 +7,18 @@
 
 .ai-bullet-item {
   animation: bulletIn 0.35s ease both;
-  border-radius: 6px;
-  transition: background 0.15s;
+  border-radius: 8px;
+  transition:
+    background 0.15s,
+    box-shadow 0.15s;
 }
 
 .ai-bullet-item.expanded {
   background: var(--bg-secondary);
   border: 1px solid var(--border-glow);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 100;
 }
 
 .ai-bullet-row {
@@ -22,7 +27,7 @@
   gap: 0.5rem;
   padding: 0.3rem 0.5rem;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 8px;
   user-select: none;
 }
 
@@ -48,7 +53,9 @@
   flex-shrink: 0;
   min-width: 1rem;
   text-align: center;
-  transition: color 0.2s;
+  transition:
+    color 0.2s,
+    transform 0.2s;
 }
 
 .ai-bullet-row.copied .ai-arrow {
@@ -56,54 +63,85 @@
   font-weight: bold;
 }
 
-/* service panel */
+/* service panel — always rendered, shown/hidden via CSS */
 .ai-service-panel {
   display: flex;
-  gap: 0.4rem;
-  padding: 0.35rem 0.5rem 0.4rem;
-  animation: panelSlideIn 0.18s ease both;
-  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding: 0 0.5rem 0.45rem;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    max-height 0.2s ease,
+    opacity 0.18s ease,
+    transform 0.18s ease,
+    padding 0.2s ease;
+  pointer-events: none;
+  position: relative;
+  z-index: 101;
 }
 
-@keyframes panelSlideIn {
-  from { opacity: 0; transform: translateY(-6px); }
-  to   { opacity: 1; transform: translateY(0); }
+.ai-service-panel.visible {
+  max-height: 60px;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
 }
 
+/* buttons */
 .ai-service-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
   flex: 1;
-  min-width: 80px;
-  padding: 0.25rem 0.5rem;
+  padding: 0.28rem 0.55rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
   font-family: "Assistant", sans-serif;
-  font-size: 0.72rem;
-  font-weight: 600;
+  font-size: 0.7rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: filter 0.15s, transform 0.1s;
+  transition:
+    filter 0.15s,
+    transform 0.12s,
+    box-shadow 0.15s;
   white-space: nowrap;
+  letter-spacing: 0.02em;
 }
 
 .ai-service-btn:hover {
-  filter: brightness(1.15);
-  transform: translateY(-1px);
+  filter: brightness(1.18);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.28);
 }
 
 .ai-service-btn:active {
   transform: translateY(0);
+  filter: brightness(0.92);
+}
+
+.btn-icon {
+  font-size: 0.78rem;
+  font-weight: 900;
+  line-height: 1;
 }
 
 .chatgpt-btn {
-  background: #10a37f;
+  background: linear-gradient(135deg, #10a37f, #0c8c6b);
   color: #fff;
+  box-shadow: 0 2px 7px rgba(16, 163, 127, 0.35);
 }
 
 .google-btn {
-  background: #4285f4;
+  background: linear-gradient(135deg, #4285f4, #2c6fe0);
   color: #fff;
+  box-shadow: 0 2px 7px rgba(66, 133, 244, 0.35);
 }
 
 .so-btn {
-  background: #f48024;
+  background: linear-gradient(135deg, #f48024, #d96a12);
   color: #fff;
+  box-shadow: 0 2px 7px rgba(244, 128, 36, 0.35);
 }

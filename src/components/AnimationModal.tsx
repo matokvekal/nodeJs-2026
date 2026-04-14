@@ -1,0 +1,66 @@
+import EventLoopAnimation from "./EventLoopAnimation";
+import HeapVisualization from "./HeapVisualization";
+import ThreadPoolAnimation from "./ThreadPoolAnimation";
+import "./AnimationModal.css";
+
+interface AnimationModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  type: string | null;
+}
+
+const AnimationModal = ({
+  isOpen,
+  onClose,
+  type
+}: AnimationModalProps): JSX.Element | null => {
+  if (!isOpen) return null;
+
+  const renderAnimation = (): JSX.Element | null => {
+    switch (type) {
+      case "eventloop":
+        return <EventLoopAnimation />;
+      case "heap":
+        return <HeapVisualization />;
+      case "threadpool":
+        return <ThreadPoolAnimation />;
+      default:
+        return null;
+    }
+  };
+
+  const getTitle = (): string => {
+    switch (type) {
+      case "eventloop":
+        return "Event Loop - זרימת הביצוע";
+      case "heap":
+        return "V8 Heap Memory - ניהול זיכרון";
+      case "threadpool":
+        return "Thread Pool - עיבוד מקביל";
+      default:
+        return "אנימציה";
+    }
+  };
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div
+        className="modal-content"
+        onClick={(e: React.MouseEvent) => e.stopPropagation()}
+      >
+        <div className="modal-header">
+          <h2>{getTitle()}</h2>
+          <button className="modal-close" onClick={onClose}>
+            ✕
+          </button>
+        </div>
+        <div className="modal-body">{renderAnimation()}</div>
+        <div className="modal-footer">
+          <p className="modal-hint">לחץ ESC או מחוץ למודל לסגירה</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AnimationModal;
