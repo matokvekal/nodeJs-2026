@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ball Game — Event Listening Demo</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: monospace;
+      background: #0d1117;
+      color: #e6edf3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 20px;
+      gap: 24px;
+    }
+
+    h1 { color: #58a6ff; font-size: 1.6em; letter-spacing: 2px; }
+    h2 { color: #888; font-size: 0.95em; font-weight: normal; letter-spacing: 1px; }
+
+    /* ---- MENU ---- */
+    .menu {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 18px 28px;
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .key {
+      background: #21262d;
+      border: 2px solid #58a6ff;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 1em;
+      color: #58a6ff;
+      font-weight: bold;
+      min-width: 36px;
+      text-align: center;
+    }
+
+    .key-label { color: #8b949e; font-size: 0.9em; }
+
+    /* ---- BOARD ---- */
+    .board-wrap {
+      position: relative;
+    }
+
+    #board {
+      display: grid;
+      border: 3px solid #30363d;
+      border-radius: 8px;
+      background: #010409;
+      box-shadow: 0 0 30px #58a6ff33;
+    }
+
+    .cell {
+      width: 28px;
+      height: 28px;
+      border: 1px solid #0d1117;
+    }
+
+    .cell.ball {
+      background: radial-gradient(circle at 40% 35%, #fff 5%, #58a6ff 40%, #1f6feb 100%);
+      border-radius: 50%;
+      box-shadow: 0 0 12px #58a6ff, 0 0 4px #fff;
+      animation: pulse 0.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { box-shadow: 0 0 8px #58a6ff, 0 0 2px #fff; }
+      to   { box-shadow: 0 0 20px #58a6ff, 0 0 8px #58a6ffaa; }
+    }
+
+    /* ---- SCORE / STATUS ---- */
+    .stats {
+      display: flex;
+      gap: 32px;
+    }
+
+    .stat-box {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 10px 20px;
+      text-align: center;
+    }
+
+    .stat-value { font-size: 1.5em; color: #58a6ff; font-weight: bold; }
+    .stat-label { font-size: 0.75em; color: #8b949e; margin-top: 2px; }
+
+    /* ---- EVENT LOG ---- */
+    .log-title { color: #f0883e; font-size: 0.9em; letter-spacing: 1px; }
+
+    #log {
+      background: #010409;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 12px 16px;
+      width: 500px;
+      max-width: 95vw;
+      height: 160px;
+      overflow-y: auto;
+      font-size: 0.82em;
+      line-height: 1.7;
+    }
+
+    .log-move  { color: #58a6ff; }
+    .log-jump  { color: #3fb950; }
+    .log-key   { color: #f0883e; }
+    .log-quit  { color: #f85149; }
+    .log-info  { color: #8b949e; }
+
+    /* ---- OVERLAY ---- */
+    #overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #000000cc;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    #overlay.show { display: flex; }
+
+    #overlay h2 { color: #f85149; font-size: 2em; }
+    #overlay p  { color: #8b949e; }
+
+    #btnRestart {
+      background: #58a6ff;
+      color: #0d1117;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 28px;
+      font-size: 1em;
+      font-family: monospace;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #btnRestart:hover { background: #79c0ff; }
+  </style>
+</head>
+<body>
+
+<h1>Ball Game</h1>
+<h2>Event Listening Demo — Node.js for Students</h2>
+
+<!-- ========== CONTROLS MENU ========== -->
+<div class="menu">
+  <div class="menu-item">
+    <span class="key">↑</span><span class="key">↓</span><span class="key">←</span><span class="key">→</span>
+    <span class="key-label">Move ball</span>
+  </div>
+  <div class="menu-item">
+    <span class="key">Space</span>
+    <span class="key-label">Jump up</span>
+  </div>
+  <div class="menu-item">
+    <span class="key">Esc</span>
+    <span class="key-label">Quit game</span>
+  </div>
+</div>
+
+<!-- ========== STATS ========== -->
+<div class="stats">
+  <div class="stat-box">
+    <div class="stat-value" id="statMoves">0</div>
+    <div class="stat-label">MOVES</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-value" id="statJumps">0</div>
+    <div class="stat-label">JUMPS</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-value" id="statPos">—</div>
+    <div class="stat-label">POSITION</div>
+  </div>
+</div>
+
+<!-- ========== BOARD ========== -->
+<div class="board-wrap">
+  <div id="board"></div>
+</div>
+
+<!-- ========== EVENT LOG ========== -->
+<div class="log-title">EVENT LOG</div>
+<div id="log"></div>
+
+<!-- ========== QUIT OVERLAY ========== -->
+<div id="overlay">
+  <h2>Game Over</h2>
+  <p>You pressed <strong>Escape</strong> — the game ended.</p>
+  <button id="btnRestart">Restart</button>
+</div>
+
+<script>
+// ============================================================
+//  Simple Ball Game — functions only, no classes
+//  Demonstrates: addEventListener (browser) = .on() (Node.js)
+// ============================================================
+
+const COLS       = 20;
+const ROWS       = 12;
+const JUMP_STEPS = 3;
+
+// ---------- State ----------
+let ballX, ballY, moves, jumps, running;
+
+function initState() {
+  ballX   = Math.floor(COLS / 2);
+  ballY   = Math.floor(ROWS / 2);
+  moves   = 0;
+  jumps   = 0;
+  running = true;
+}
+
+// ---------- Build the grid ----------
+const boardEl = document.getElementById('board');
+
+function buildBoard() {
+  boardEl.style.gridTemplateColumns = `repeat(${COLS}, 28px)`;
+  boardEl.style.gridTemplateRows    = `repeat(${ROWS}, 28px)`;
+  boardEl.innerHTML = '';
+
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+      const cell = document.createElement('div');
+      cell.className = 'cell';
+      cell.id = `cell-${r}-${c}`;
+      boardEl.appendChild(cell);
+    }
+  }
+}
+
+// ---------- Draw ----------
+function drawBoard() {
+  // clear previous ball
+  document.querySelectorAll('.cell.ball').forEach(el => el.classList.remove('ball'));
+  // place new ball
+  const cell = document.getElementById(`cell-${ballY}-${ballX}`);
+  if (cell) cell.classList.add('ball');
+
+  // update stats
+  document.getElementById('statMoves').textContent = moves;
+  document.getElementById('statJumps').textContent = jumps;
+  document.getElementById('statPos').textContent   = `(${ballX}, ${ballY})`;
+}
+
+// ---------- Log helper ----------
+const logEl = document.getElementById('log');
+
+function addLog(msg, cls = 'log-info') {
+  const line = document.createElement('div');
+  line.className = cls;
+  line.textContent = msg;
+  logEl.appendChild(line);
+  logEl.scrollTop = logEl.scrollHeight;
+}
+
+// ============================================================
+//  EVENT HANDLERS  (plain functions)
+// ============================================================
+
+function onMove(direction) {
+  if (!running) return;
+  if (direction === 'up'    && ballY > 0)        ballY--;
+  if (direction === 'down'  && ballY < ROWS - 1) ballY++;
+  if (direction === 'left'  && ballX > 0)        ballX--;
+  if (direction === 'right' && ballX < COLS - 1) ballX++;
+  moves++;
+  drawBoard();
+  addLog(`emit('move', '${direction}')  →  ball at (${ballX}, ${ballY})`, 'log-move');
+}
+
+function onJump() {
+  if (!running) return;
+  ballY = Math.max(0, ballY - JUMP_STEPS);
+  jumps++;
+  drawBoard();
+  addLog(`emit('jump')  →  ball jumped to (${ballX}, ${ballY})`, 'log-jump');
+}
+
+function onQuit() {
+  if (!running) return;
+  running = false;
+  addLog(`emit('quit')  →  game ended`, 'log-quit');
+  document.getElementById('overlay').classList.add('show');
+}
+
+// ============================================================
+//  KEYBOARD LISTENER
+//  document.addEventListener  ≡  process.stdin.on (Node.js)
+// ============================================================
+
+function onKeyDown(event) {
+  addLog(`keydown: "${event.key}"`, 'log-key');
+
+  if (event.key === 'ArrowUp')    onMove('up');
+  else if (event.key === 'ArrowDown')  onMove('down');
+  else if (event.key === 'ArrowLeft')  onMove('left');
+  else if (event.key === 'ArrowRight') onMove('right');
+  else if (event.key === ' ')     { event.preventDefault(); onJump(); }
+  else if (event.key === 'Escape')     onQuit();
+}
+
+// Register the listener — same idea as .on() in Node.js
+document.addEventListener('keydown', onKeyDown);
+
+// ============================================================
+//  RESTART
+// ============================================================
+
+document.getElementById('btnRestart').addEventListener('click', function() {
+  document.getElementById('overlay').classList.remove('show');
+  logEl.innerHTML = '';
+  initState();
+  buildBoard();
+  drawBoard();
+  addLog('Game started — press arrow keys to move the ball.', 'log-info');
+});
+
+// ============================================================
+//  START
+// ============================================================
+
+initState();
+buildBoard();
+drawBoard();
+addLog('Game started — press arrow keys to move the ball.', 'log-info');
+</script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Global Object — Student Demo</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Courier New', monospace;
+      background: #0d1117;
+      color: #c9d1d9;
+      padding: 30px;
+    }
+    h1 { color: #58a6ff; margin-bottom: 6px; font-size: 1.6em; }
+    .subtitle { color: #8b949e; margin-bottom: 30px; font-size: 0.9em; }
+    .section {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .section h2 {
+      color: #f0883e;
+      margin-bottom: 12px;
+      font-size: 1em;
+      border-bottom: 1px solid #30363d;
+      padding-bottom: 8px;
+    }
+    .row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 4px 0;
+      border-bottom: 1px solid #21262d;
+      font-size: 0.88em;
+    }
+    .row:last-child { border-bottom: none; }
+    .key   { color: #79c0ff; min-width: 220px; flex-shrink: 0; }
+    .val   { color: #a5d6ff; word-break: break-all; }
+    .val.yes   { color: #3fb950; }
+    .val.no    { color: #f85149; }
+    .val.code  { color: #d2a8ff; }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75em;
+      font-weight: bold;
+      margin-left: 8px;
+    }
+    .badge.global   { background: #1f6feb; color: #fff; }
+    .badge.local    { background: #6e7681; color: #fff; }
+    .badge.window   { background: #238636; color: #fff; }
+    .note {
+      background: #1c2128;
+      border-left: 3px solid #f0883e;
+      padding: 10px 14px;
+      margin-top: 10px;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.82em;
+      color: #8b949e;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Global Object — Node.js vs Browser</h1>
+<p class="subtitle">Student demonstration | Open DevTools Console to explore more</p>
+
+<div class="section">
+  <h2>1. What is the global object?</h2>
+  <div class="row">
+    <span class="key">Browser global</span>
+    <span class="val window">window</span>
+    <span class="badge window">window</span>
+  </div>
+  <div class="row">
+    <span class="key">Node.js global</span>
+    <span class="val code">global / globalThis</span>
+    <span class="badge global">Node</span>
+  </div>
+  <div class="row">
+    <span class="key">Universal (both)</span>
+    <span class="val code">globalThis</span>
+  </div>
+  <div class="row">
+    <span class="key">window === globalThis ?</span>
+    <span class="val yes" id="winEqGlobal"></span>
+  </div>
+</div>
+
+<div class="section">
+  <h2>2. let x = 5 — NOT on global &nbsp;|&nbsp; window.y = 55 — ON global</h2>
+  <div class="row">
+    <span class="key">let x = 5 &nbsp;→ window.x</span>
+    <span class="val no" id="letX"></span>
+    <span class="badge local">not global</span>
+  </div>
+  <div class="row">
+    <span class="key">window.y = 55 &nbsp;→ window.y</span>
+    <span class="val yes" id="winY"></span>
+    <span class="badge global">global</span>
+  </div>
+  <div class="row">
+    <span class="key">var z = 99 &nbsp;→ window.z</span>
+    <span class="val yes" id="varZ"></span>
+    <span class="badge window">var leaks to global!</span>
+  </div>
+  <div class="note">
+    <strong>Rule:</strong> <code>let</code> / <code>const</code> are block-scoped — never go on <code>window</code>.<br>
+    <code>var</code> at top-level DOES leak to <code>window</code> (avoid this).<br>
+    <code>window.y = 55</code> explicitly puts <code>y</code> on the global object — accessible everywhere.
+  </div>
+</div>
+
+<div class="section">
+  <h2>3. Useful things already on window (global)</h2>
+  <div id="windowProps"></div>
+</div>
+
+<div class="section">
+  <h2>4. process (Node.js only) — equivalent info in browser</h2>
+  <div class="row">
+    <span class="key">User Agent</span>
+    <span class="val" id="ua"></span>
+  </div>
+  <div class="row">
+    <span class="key">Platform (navigator)</span>
+    <span class="val" id="platform"></span>
+  </div>
+  <div class="row">
+    <span class="key">Language</span>
+    <span class="val" id="lang"></span>
+  </div>
+  <div class="row">
+    <span class="key">Online?</span>
+    <span class="val yes" id="online"></span>
+  </div>
+  <div class="row">
+    <span class="key">Cookies enabled?</span>
+    <span class="val" id="cookies"></span>
+  </div>
+  <div class="row">
+    <span class="key">Screen resolution</span>
+    <span class="val" id="screen"></span>
+  </div>
+  <div class="note">
+    In <strong>Node.js</strong>: <code>process.platform</code>, <code>process.env</code>, <code>process.version</code>, <code>process.pid</code>.<br>
+    In <strong>Browser</strong>: we use <code>navigator</code> and <code>window</code> instead.
+  </div>
+</div>
+
+<div class="section">
+  <h2>5. Node.js globals cheat-sheet (reference)</h2>
+  <div class="row"><span class="key">global.y = 55</span><span class="val code">adds y to global — accessible anywhere</span></div>
+  <div class="row"><span class="key">process.version</span><span class="val code">Node.js version, e.g. "v20.11.0"</span></div>
+  <div class="row"><span class="key">process.env.NODE_ENV</span><span class="val code">"development" / "production"</span></div>
+  <div class="row"><span class="key">process.argv</span><span class="val code">command-line arguments array</span></div>
+  <div class="row"><span class="key">process.cwd()</span><span class="val code">current working directory</span></div>
+  <div class="row"><span class="key">process.exit(0)</span><span class="val code">end the program (0 = success)</span></div>
+  <div class="row"><span class="key">__filename</span><span class="val code">full path of current file (CommonJS)</span></div>
+  <div class="row"><span class="key">__dirname</span><span class="val code">directory of current file (CommonJS)</span></div>
+  <div class="row"><span class="key">Buffer.from('hello')</span><span class="val code">binary data — Node global, no import needed</span></div>
+  <div class="row"><span class="key">setTimeout / setInterval</span><span class="val code">timers — global in both Node and browser</span></div>
+</div>
+
+<script>
+  // ── Section 1 ──
+  document.getElementById('winEqGlobal').textContent = String(window === globalThis);
+
+  // ── Section 2 ──
+  let x = 5;
+  window.y = 55;
+  var z = 99;
+
+  document.getElementById('letX').textContent   = 'window.x = ' + window.x + '  (undefined — not global)';
+  document.getElementById('winY').textContent   = 'window.y = ' + window.y;
+  document.getElementById('varZ').textContent   = 'window.z = ' + window.z + '  ← var leaked!';
+
+  // ── Section 3 ──
+  const propsToShow = [
+    ['setTimeout',    typeof setTimeout],
+    ['setInterval',   typeof setInterval],
+    ['fetch',         typeof fetch],
+    ['console',       typeof console],
+    ['document',      typeof document],
+    ['localStorage',  typeof localStorage],
+    ['sessionStorage',typeof sessionStorage],
+    ['location.href', location.href],
+    ['innerWidth',    window.innerWidth + 'px'],
+    ['innerHeight',   window.innerHeight + 'px'],
+    ['devicePixelRatio', window.devicePixelRatio],
+  ];
+  const container = document.getElementById('windowProps');
+  propsToShow.forEach(([key, val]) => {
+    container.innerHTML += `
+      <div class="row">
+        <span class="key">window.${key}</span>
+        <span class="val code">${val}</span>
+      </div>`;
+  });
+
+  // ── Section 4 ──
+  document.getElementById('ua').textContent       = navigator.userAgent;
+  document.getElementById('platform').textContent = navigator.platform;
+  document.getElementById('lang').textContent     = navigator.language;
+  document.getElementById('online').textContent   = navigator.onLine ? 'Yes' : 'No';
+  document.getElementById('cookies').textContent  = navigator.cookieEnabled ? 'Yes' : 'No';
+  document.getElementById('screen').textContent   = screen.width + ' x ' + screen.height;
+</script>
+</body>
+</html>

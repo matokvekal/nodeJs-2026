@@ -1,0 +1,22 @@
+{
+  "name": "5middlewares",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start":       "node server.js",
+    "logger":      "node 01-logger.js",
+    "counter":     "node 02-counter.js",
+    "json":        "node 03-json-parser.js",
+    "cors":        "node 04-cors.js",
+    "helmet":      "node 05-helmet.js",
+    "auth":        "node 06-auth.js",
+    "ratelimit":   "node 07-rate-limiter.js",
+    "timer":       "node 08-timer.js",
+    "validator":   "node 09-validator.js",
+    "errors":      "node 10-error-handler.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "helmet": "^7.1.0"
+  }
+}

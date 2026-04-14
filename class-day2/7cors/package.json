@@ -1,0 +1,13 @@
+{
+  "name": "6cors",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start":   "node server-no-cors.js",
+    "cors":    "node server-with-cors.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  }
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CORS Demo — Client</title>
+  <style>
+    body { font-family: monospace; background: #0d1117; color: #c9d1d9; padding: 30px; }
+    h1   { color: #58a6ff; }
+    h2   { color: #f0883e; margin-top: 30px; }
+    button {
+      padding: 10px 20px; margin: 6px 4px;
+      border: none; border-radius: 6px;
+      cursor: pointer; font-size: 1em; font-family: monospace; font-weight: bold;
+    }
+    .btn-red   { background: #f85149; color: #fff; }
+    .btn-green { background: #3fb950; color: #111; }
+    .result {
+      background: #161b22; border: 1px solid #30363d;
+      border-radius: 8px; padding: 16px; margin-top: 14px;
+      min-height: 60px; white-space: pre-wrap;
+    }
+    .error   { color: #f85149; }
+    .success { color: #3fb950; }
+    .note {
+      background: #1c2128; border-left: 3px solid #f0883e;
+      padding: 10px 14px; border-radius: 0 6px 6px 0;
+      margin: 10px 0; font-size: 0.9em;
+    }
+    code { background: #21262d; padding: 2px 6px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+<h1>CORS Demo — Client Page</h1>
+<div class="note">
+  This HTML file is opened directly from your filesystem (file://).<br>
+  It tries to fetch data from <code>localhost:4000</code> or <code>localhost:4001</code>.<br>
+  Open the browser <strong>DevTools Console</strong> (F12) to see the CORS error clearly.
+</div>
+
+<!-- ── WITHOUT CORS ─────────────────────────────── -->
+<h2>1. Server WITHOUT CORS (port 4000)</h2>
+<p>Start: <code>npm start</code> in 6cors folder</p>
+<div class="note">
+  The browser blocks this because the server did not send<br>
+  <code>Access-Control-Allow-Origin</code> headers.<br>
+  <strong>Postman would work fine</strong> — only the browser enforces CORS.
+</div>
+<button class="btn-red" onclick="fetchNoCors()">Fetch from port 4000 (no CORS)</button>
+<div class="result" id="result-no-cors">Result will appear here...</div>
+
+<!-- ── WITH CORS ────────────────────────────────── -->
+<h2>2. Server WITH CORS (port 4001)</h2>
+<p>Start: <code>npm run cors</code> in 6cors folder</p>
+<div class="note">
+  The server sends <code>Access-Control-Allow-Origin</code> headers.<br>
+  The browser allows the response to be read.
+</div>
+
+<button class="btn-green" onclick="fetchAllOrigins()">Allow All Origins (*)</button>
+<button class="btn-green" onclick="fetchSpecific()">Allow Specific Origin</button>
+<button class="btn-green" onclick="fetchWithCredentials()">With Credentials</button>
+<button class="btn-green" onclick="fetchMethods()">Custom Methods</button>
+<div class="result" id="result-cors">Result will appear here...</div>
+
+<script>
+  // ── Fetch from server WITHOUT cors ──────────────
+  async function fetchNoCors() {
+    const el = document.getElementById('result-no-cors');
+    el.className = 'result';
+    el.textContent = 'Fetching...';
+    try {
+      const res  = await fetch('http://localhost:4000/data');
+      const data = await res.json();
+      el.className = 'result success';
+      el.textContent = 'SUCCESS (unexpected):\n' + JSON.stringify(data, null, 2);
+    } catch (err) {
+      el.className = 'result error';
+      el.textContent =
+        'CORS ERROR — browser blocked the response!\n\n' +
+        err.message + '\n\n' +
+        'Check DevTools Console (F12) for the full CORS error.\n' +
+        'Note: Postman would get the data just fine.';
+    }
+  }
+
+  // ── Fetch with Allow All Origins ─────────────────
+  async function fetchAllOrigins() {
+    fetchWithCors('/all-origins', 'result-cors');
+  }
+
+  // ── Fetch with specific origin ────────────────────
+  async function fetchSpecific() {
+    fetchWithCors('/specific-origin', 'result-cors');
+  }
+
+  // ── Fetch with credentials ────────────────────────
+  async function fetchWithCredentials() {
+    fetchWithCors('/with-credentials', 'result-cors', { credentials: 'include' });
+  }
+
+  // ── Fetch with custom methods ─────────────────────
+  async function fetchMethods() {
+    fetchWithCors('/custom-methods', 'result-cors');
+  }
+
+  async function fetchWithCors(path, elId, options = {}) {
+    const el = document.getElementById(elId);
+    el.className = 'result';
+    el.textContent = 'Fetching http://localhost:4001' + path + ' ...';
+    try {
+      const res  = await fetch('http://localhost:4001' + path, options);
+      const data = await res.json();
+      el.className = 'result success';
+      el.textContent = 'SUCCESS:\n' + JSON.stringify(data, null, 2);
+    } catch (err) {
+      el.className = 'result error';
+      el.textContent = 'Error: ' + err.message + '\nMake sure the server is running (npm run cors)';
+    }
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "day2-demo",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "events":  "cd 2events && npm start",
+    "globals": "cd 3global && npm start",
+    "errors":  "cd 4errors && npm start"
+  }
+}

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Car Race - Class & Events Demo</title>
+  <style>
+    body {
+      font-family: monospace;
+      background: #1a1a2e;
+      color: #eee;
+      padding: 30px;
+    }
+    h1 { color: #e94560; }
+    h2 { color: #0f3460; background: #e94560; display: inline-block; padding: 4px 12px; border-radius: 4px; }
+    .cars { display: flex; gap: 40px; margin: 20px 0; }
+    .car-card {
+      background: #16213e;
+      border: 2px solid #0f3460;
+      border-radius: 12px;
+      padding: 20px;
+      min-width: 200px;
+      transition: border-color 0.3s;
+    }
+    .car-card.running { border-color: #e94560; }
+    .car-card.stopped { border-color: #555; opacity: 0.6; }
+    .car-name { font-size: 1.3em; font-weight: bold; color: #e94560; }
+    .car-model { color: #aaa; margin-bottom: 10px; }
+    .fuel-bar-bg {
+      background: #333;
+      border-radius: 6px;
+      height: 20px;
+      width: 100%;
+      margin: 8px 0;
+      overflow: hidden;
+    }
+    .fuel-bar {
+      height: 100%;
+      border-radius: 6px;
+      background: linear-gradient(90deg, #e94560, #f5a623);
+      transition: width 0.5s ease;
+    }
+    .fuel-label { font-size: 0.85em; color: #ccc; }
+    .status { margin-top: 8px; font-weight: bold; }
+    .status.running { color: #4caf50; }
+    .status.stopped { color: #e94560; }
+    .log {
+      background: #0d1117;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 16px;
+      height: 220px;
+      overflow-y: auto;
+      margin-top: 20px;
+      font-size: 0.9em;
+    }
+    .log p { margin: 2px 0; }
+    .log .event { color: #f5a623; }
+    .log .info  { color: #58a6ff; }
+    .log .warn  { color: #e94560; }
+    .controls { margin: 20px 0; display: flex; gap: 12px; flex-wrap: wrap; }
+    button {
+      padding: 10px 22px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1em;
+      font-family: monospace;
+      font-weight: bold;
+      transition: opacity 0.2s;
+    }
+    button:hover { opacity: 0.85; }
+    #btnDrive1 { background: #e94560; color: #fff; }
+    #btnDrive2 { background: #0f3460; color: #fff; }
+    #btnStop1  { background: #555; color: #fff; }
+    #btnStop2  { background: #555; color: #fff; }
+    #btnReset  { background: #f5a623; color: #111; }
+  </style>
+</head>
+<body>
+
+<h1>Car Race Demo</h1>
+<h2>Classes + Events</h2>
+
+<div class="cars">
+  <div class="car-card" id="card1">
+    <div class="car-name" id="name1">Lightning</div>
+    <div class="car-model" id="model1">Toyota Supra</div>
+    <div class="fuel-bar-bg"><div class="fuel-bar" id="bar1" style="width:100%"></div></div>
+    <div class="fuel-label">Fuel: <span id="fuel1">10</span> / 10 L</div>
+    <div class="status" id="status1">Idle</div>
+  </div>
+
+  <div class="car-card" id="card2">
+    <div class="car-name" id="name2">Thunder</div>
+    <div class="car-model" id="model2">BMW M3</div>
+    <div class="fuel-bar-bg"><div class="fuel-bar" id="bar2" style="width:100%"></div></div>
+    <div class="fuel-label">Fuel: <span id="fuel2">10</span> / 10 L</div>
+    <div class="status" id="status2">Idle</div>
+  </div>
+</div>
+
+<div class="controls">
+  <button id="btnDrive1">Drive Lightning</button>
+  <button id="btnStop1">Stop Lightning</button>
+  <button id="btnDrive2">Drive Thunder</button>
+  <button id="btnStop2">Stop Thunder</button>
+  <button id="btnReset">Reset All</button>
+</div>
+
+<div class="log" id="log"><p class="info">Welcome! Press Drive to start a car.</p></div>
+
+<script>
+// =====================
+//  Car Class (browser)
+// =====================
+class Car {
+  constructor(name, model, fuel = 10) {
+    this.name = name;
+    this.model = model;
+    this.fuel = fuel;
+    this.maxFuel = fuel;
+    this.interval = null;
+    this.isRunning = false;
+    this.listeners = {};
+  }
+
+  // Simple event emitter built-in
+  on(event, callback) {
+    if (!this.listeners[event]) this.listeners[event] = [];
+    this.listeners[event].push(callback);
+  }
+
+  emit(event, data) {
+    (this.listeners[event] || []).forEach(cb => cb(data));
+  }
+
+  drive() {
+    if (this.isRunning) { this.emit('warn', `${this.name} is already driving!`); return; }
+    if (this.fuel === 0) { this.emit('warn', `${this.name} has no fuel!`); return; }
+
+    this.isRunning = true;
+    this.emit('start', { name: this.name, fuel: this.fuel });
+
+    this.interval = setInterval(() => {
+      this.fuel -= 1;
+      this.emit('fuel', { name: this.name, fuel: this.fuel });
+
+      if (this.fuel === 0) {
+        this.emit('empty', { name: this.name });
+        this.stop();
+      }
+    }, 3000);
+  }
+
+  stop() {
+    if (this.interval) { clearInterval(this.interval); this.interval = null; }
+    this.isRunning = false;
+    this.emit('stop', { name: this.name, fuel: this.fuel });
+  }
+
+  reset() {
+    this.stop();
+    this.fuel = this.maxFuel;
+    this.emit('reset', { name: this.name });
+  }
+}
+
+// =====================
+//  Create cars
+// =====================
+const car1 = new Car('Lightning', 'Toyota Supra', 10);
+const car2 = new Car('Thunder', 'BMW M3', 10);
+
+// =====================
+//  Log helper
+// =====================
+const logEl = document.getElementById('log');
+function log(msg, type = 'info') {
+  const p = document.createElement('p');
+  p.className = type;
+  p.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+  logEl.appendChild(p);
+  logEl.scrollTop = logEl.scrollHeight;
+}
+
+// =====================
+//  UI update helpers
+// =====================
+function updateUI(carNum, car) {
+  const pct = (car.fuel / car.maxFuel) * 100;
+  document.getElementById(`fuel${carNum}`).textContent = car.fuel;
+  document.getElementById(`bar${carNum}`).style.width = pct + '%';
+  const card = document.getElementById(`card${carNum}`);
+  const status = document.getElementById(`status${carNum}`);
+
+  if (car.isRunning) {
+    card.className = 'car-card running';
+    status.textContent = 'Driving...';
+    status.className = 'status running';
+  } else if (car.fuel === 0) {
+    card.className = 'car-card stopped';
+    status.textContent = 'Out of fuel';
+    status.className = 'status stopped';
+  } else {
+    card.className = 'car-card';
+    status.textContent = 'Idle';
+    status.className = 'status';
+  }
+}
+
+// =====================
+//  Attach events
+// =====================
+function attachEvents(car, carNum) {
+  car.on('start', ({ name, fuel }) => {
+    log(`${name} started driving! Fuel: ${fuel}L`, 'info');
+    updateUI(carNum, car);
+  });
+
+  car.on('fuel', ({ name, fuel }) => {
+    log(`${name} - fuel remaining: ${fuel}L`, 'info');
+    updateUI(carNum, car);
+  });
+
+  car.on('empty', ({ name }) => {
+    log(`${name} ran out of fuel!`, 'warn');
+  });
+
+  car.on('stop', ({ name, fuel }) => {
+    log(`${name} stopped. Fuel: ${fuel}L`, 'event');
+    updateUI(carNum, car);
+  });
+
+  car.on('warn', (msg) => {
+    log(msg, 'warn');
+  });
+
+  car.on('reset', ({ name }) => {
+    log(`${name} was reset.`, 'event');
+    updateUI(carNum, car);
+  });
+}
+
+attachEvents(car1, 1);
+attachEvents(car2, 2);
+
+// =====================
+//  Buttons
+// =====================
+document.getElementById('btnDrive1').onclick = () => car1.drive();
+document.getElementById('btnStop1').onclick  = () => car1.stop();
+document.getElementById('btnDrive2').onclick = () => car2.drive();
+document.getElementById('btnStop2').onclick  = () => car2.stop();
+document.getElementById('btnReset').onclick  = () => {
+  car1.reset();
+  car2.reset();
+};
+</script>
+</body>
+</html>

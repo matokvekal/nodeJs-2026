@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Node.js Events — All Types</title>
+  <style>
+    :root {
+      --bg:       #0d1117;
+      --surface:  #161b22;
+      --border:   #30363d;
+      --blue:     #58a6ff;
+      --green:    #3fb950;
+      --orange:   #f0883e;
+      --red:      #f85149;
+      --purple:   #bc8cff;
+      --yellow:   #e3b341;
+      --muted:    #8b949e;
+      --text:     #e6edf3;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 32px 20px 60px;
+    }
+
+    /* ── HEADER ── */
+    .page-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .page-header h1 {
+      font-size: 2em;
+      color: var(--blue);
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .page-header p {
+      color: var(--muted);
+      font-size: 1em;
+    }
+
+    /* ── TOP 10 BADGES ── */
+    .top10 {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin: 0 auto 40px;
+      max-width: 860px;
+    }
+
+    .top10 h2 {
+      color: var(--yellow);
+      font-size: 1em;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .badge {
+      background: #21262d;
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      border-radius: 20px;
+      padding: 5px 16px;
+      font-family: monospace;
+      font-size: 0.9em;
+      font-weight: bold;
+    }
+
+    /* ── GRID ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto 40px;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--blue);
+      box-shadow: 0 0 16px #58a6ff22;
+    }
+
+    .card-header {
+      padding: 14px 18px 10px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-header .num {
+      background: #21262d;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8em;
+      color: var(--muted);
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .card-header h3 {
+      font-size: 1em;
+      font-weight: 700;
+    }
+
+    .card-body { padding: 14px 18px; flex: 1; }
+
+    /* ── CODE BLOCK ── */
+    pre {
+      background: #010409;
+      border: 1px solid #21262d;
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.82em;
+      line-height: 1.7;
+      overflow-x: auto;
+      margin-bottom: 10px;
+      white-space: pre;
+      direction: ltr;
+      text-align: left;
+    }
+
+    .kw  { color: var(--purple); }
+    .fn  { color: var(--blue); }
+    .str { color: var(--green); }
+    .cm  { color: var(--muted); font-style: italic; }
+    .ev  { color: var(--orange); }
+    .num { color: var(--yellow); }
+
+    /* ── TIP BOX ── */
+    .tip {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-top: 10px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.85em;
+      line-height: 1.5;
+    }
+
+    .tip.blue   { background: #1f2d3d; border-left: 3px solid var(--blue);   color: #8cc6ff; }
+    .tip.green  { background: #1a2d1e; border-left: 3px solid var(--green);  color: #7ee787; }
+    .tip.red    { background: #2d1a1a; border-left: 3px solid var(--red);    color: #ff8080; }
+    .tip.orange { background: #2d2210; border-left: 3px solid var(--orange); color: #ffa657; }
+    .tip.purple { background: #241c36; border-left: 3px solid var(--purple); color: #d2a8ff; }
+
+    /* ── SUMMARY SECTION ── */
+    .summary {
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .summary-header {
+      background: #21262d;
+      padding: 14px 24px;
+      color: var(--blue);
+      font-weight: bold;
+      font-size: 1em;
+      letter-spacing: 1px;
+    }
+
+    .summary-body {
+      padding: 20px 24px;
+    }
+
+    .summary-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #21262d;
+    }
+
+    .summary-row:last-child { border-bottom: none; }
+
+    .arrow { color: var(--blue); font-size: 1.2em; flex-shrink: 0; }
+
+    .summary-row p { color: var(--muted); line-height: 1.6; }
+
+    .summary-row strong { color: var(--text); }
+
+    /* ── PATTERN CARD ── */
+    .pattern {
+      max-width: 860px;
+      margin: 0 auto 24px;
+      background: var(--surface);
+      border: 1px solid var(--green);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .pattern-header {
+      background: #1a2d1e;
+      padding: 12px 24px;
+      color: var(--green);
+      font-weight: bold;
+      font-size: 0.9em;
+      letter-spacing: 1px;
+    }
+
+    .pattern-body { padding: 18px 24px; }
+
+    /* ── COLOR ACCENTS PER CARD ── */
+    .card.c-blue   .card-header h3 { color: var(--blue); }
+    .card.c-green  .card-header h3 { color: var(--green); }
+    .card.c-orange .card-header h3 { color: var(--orange); }
+    .card.c-purple .card-header h3 { color: var(--purple); }
+    .card.c-red    .card-header h3 { color: var(--red); }
+    .card.c-yellow .card-header h3 { color: var(--yellow); }
+
+    .card.c-blue   { border-top: 3px solid var(--blue); }
+    .card.c-green  { border-top: 3px solid var(--green); }
+    .card.c-orange { border-top: 3px solid var(--orange); }
+    .card.c-purple { border-top: 3px solid var(--purple); }
+    .card.c-red    { border-top: 3px solid var(--red); }
+    .card.c-yellow { border-top: 3px solid var(--yellow); }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ HEADER ══════════════ -->
+<header class="page-header">
+  <h1>🔹 Node.js Events — All Types</h1>
+  <p>סוגי Events נפוצים — מדריך מלא לסטודנטים</p>
+</header>
+
+<!-- ══════════════ TOP 10 ══════════════ -->
+<section class="top10">
+  <h2>⭐ Top 10 Events הנפוצים ביותר</h2>
+  <div class="badges">
+    <span class="badge">error</span>
+    <span class="badge">data</span>
+    <span class="badge">end</span>
+    <span class="badge">close</span>
+    <span class="badge">connect</span>
+    <span class="badge">disconnect</span>
+    <span class="badge">message</span>
+    <span class="badge">request</span>
+    <span class="badge">exit</span>
+    <span class="badge">uncaughtException</span>
+  </div>
+</section>
+
+<!-- ══════════════ CARDS GRID ══════════════ -->
+<div class="grid">
+
+  <!-- 1. Process -->
+  <div class="card c-blue">
+    <div class="card-header">
+      <div class="num">1</div>
+      <h3>⚙️ Process Events</h3>
+    </div>
+    <div class="card-body">
+      <pre><span class="cm">// קריטי לפרודקשן</span>
+<span class="fn">process</span>.<span class="fn">on</span>(<span class="str">'exit'</span>, code <span class="kw">=></span> {
+  console.<span class="fn">log</span>(<span class="str">'Exiting with code:'</span>, code)
+})
+
+<span class="fn">process</span>.<span class="fn">on</span>(<span class="str">'uncaughtException'</span>, err <span class="kw">=></span> {
+  console.<span class="fn">error</span>(<span class="str">'Uncaught!'</span>, err)
+})
+
+<span class="fn">process</span>.<span class="fn">on</span>(<span class="str">'unhandledRejection'</span>, err <span class="kw">=></span> {
+  console.<span class="fn">error</span>(<span class="str">'Unhandled Promise!'</span>, err)
+})</pre>
+      <div class="tip blue">👉 קריטי לפרודקשן — מונע קריסות שקטות</div>
+    </div>
+  </div>
+
+  <!-- 2. OS Signals -->
+  <div class="card c-blue">
+    <div class="card-header">
+      <div class="num">2</div>
+      <h3>📡 OS / Signals</h3>
+    </div>
+    <div class="card-body">
+      <pre><span class="cm">// Graceful Shutdown</span>
+<span class="fn">process</span>.<span class="fn">on</span>(<span class="str">'SIGINT'</span>, () <span class="kw">=></span> {
+  console.<span class="fn">log</span>(<span class="str">'Ctrl+C pressed — shutting down'</span>)
+  server.<span class="fn">close</span>()
+  <span class="fn">process</span>.<span class="fn">exit</span>(<span class="num">0</span>)
+})
+
+<span class="fn">process</span>.<span class="fn">on</span>(<span class="str">'SIGTERM'</span>, () <span class="kw">=></span> {
+  console.<span class="fn">log</span>(<span class="str">'PM2/Docker stopped us'</span>)
+  server.<span class="fn">close</span>()
+})</pre>
+      <div class="tip blue">👉 Shutdown clean — חובה ב־PM2 / Docker</div>
+    </div>
+  </div>
+
+  <!-- 3. HTTP Server -->
+  <div class="card c-orange">
+    <div class="card-header">
+      <div class="num">3</div>
+      <h3>🌐 HTTP / Server Events</h3>
+    </div>
+    <div class="card-body">
+      <pre><span class="kw">const</span> server = http.<span class="fn">createServer</span>()
+
+server.<span class="fn">on</span>(<span class="str">'request'</span>, (req, res) <span class="kw">=></span> {
+  res.<span class="fn">end</span>(<span class="str">'Hello!'</span>)
+})
+
+server.<span class="fn">on</span>(<span class="str">'connection'</span>, socket <span class="kw">=></span> {
+  console.<span class="fn">log</span>(<span class="str">'New TCP connection'</span>)
+})
+
+server.<span class="fn">on</span>(<span class="str">'close'</span>, () <span class="kw">=></span> {
+  console.<span class="fn">log</span>(<span class="str">'Server closed'</span>)
+})</pre>
+      <div class="tip orange">👉 בסיס של כל שרת HTTP ב־Node</div>
+    </div>
+  </div>
+
+  <!-- 4. Streams -->
+  <div class="card c-green">
+    <div class="card-header">
+      <div class="num">4</div>
+      <h3>🌊 Streams (מאוד חשוב)</h3>
+    </div>
+    <div class="card-body">
+      <pre><span class="kw">const</span> stream = fs.<span class="fn">createReadStream</span>(<span class="str">'file.txt'</span>)
+
+stream.<span class="fn">on</span>(<span class="str">'data'</span>, chunk <span class="kw">=></span> {
+  console.<span class="fn">log</span>(<span class="str">'Got chunk:'</span>, chunk.<span class="fn">toString</span>())
+})
+
+stream.<span class="fn">on</span>(<span class="str">'end'</span>, () <span class="kw">=></span> {
+  console.<span class="fn">log</span>(<span class="str">'Done reading!'</span>)
+})
+
+stream.<span class="fn">on</span>(<span class="str">'error'</span>, err <span class="kw">=></span> {
+  console.<span class="fn">error</span>(<span class="str">'Stream error:'</span>, err)
+})
+
+stream.<span class="fn">on</span>(<span class="str">'close'</span>, () <span class="kw">=></span> {
+  console.<span class="fn">log</span>(<span class="str">'Stream closed'</span>)
+})</pre>
+      <div class="tip green">👉 הכי נפוץ בעבודה אמיתית — קבצים, HTTP body, DB</div>
+    </div>
+  </div>
+
+  <!-- 5. File System -->
+  <div class="card c-yellow">
+    <div class="card-header">
+      <div class="num">5</div>
+      <h3>📁 File System (fs)</h3>
+    </div>
+    <div class="card-body">
+      <pre><span class="kw">import</span> fs <span class="kw">from</span> <span class="str">'fs'</span>
+
+<span class="cm">// Watch for file changes</span>
+fs.<span class="fn">watch</span>(<span class="str">'file.txt'</span>, (eventType, filename) <span class="kw">=></span> {
+  console.<span class="fn">log</span>(<span class="str">`Event: ${eventType}`</span>)
+  console.<span class="fn">log</span>(<span class="str">`File: ${filename}`</span>)
+  <span class="cm">// eventType = 'rename' | 'change'</span>
+})</pre>
+      <div class="tip orange">👉 שימושי ל־hot reload, config watchers</div>
+    </div>
+  </div>
+
+  <!-- 6. Database -->
+  <div class="card c-purple">
+    <div class="card-header">
+      <div class="num">6</div>
+      <h3>🗄️ Database / Drivers</h3>
+    </div>
+    <div class="card-body">
+      <pre><span class="cm">// MongoDB / Redis / RabbitMQ</span>
+
+client.<span class="fn">on</span>(<span class="str">'connect'</span>, () <span class="kw">=></span> {
+  console.<span class="fn">log</span>(<span class="str">'DB connected!'</span>)
+})
+
+client.<span class="fn">on</span>(<span class="str">'error'</span>, err <span class="kw">=></span> {
+  console.<span class="fn">error</span>(<span class="str">'DB error:'</span>, err)
+})
+
+client.<span class="fn">on</span>(<span class="str">'disconnect'</span>, () <span class="kw">=></span> {
+  console.<span class="fn">log</span>(<span class="str">'DB disconnected!'</span>)
+})</pre>
+      <div class="tip purple">👉 כל DB driver = EventEmitter מתחת</div>
+    </div>
+  </div>
+
+  <!-- 7. Custom Events -->
+  <div class="card c-green">
+    <div class="card-header">
+      <div class="num">7</div>
+      <h3>✨ Custom Events (שלך)</h3>
+    </div>
+    <div class="card-body">
+      <pre><span class="kw">import</span> { EventEmitter } <span class="kw">from</span> <span class="str">'events'</span>
+
+<span class="kw">const</span> emitter = <span class="kw">new</span> <span class="fn">EventEmitter</span>()
+
+<span class="cm">// Register listener</span>
+emitter.<span class="fn">on</span>(<span class="str">'user:created'</span>, user <span class="kw">=></span> {
+  console.<span class="fn">log</span>(<span class="str">'New user:'</span>, user)
+})
+
+<span class="cm">// Fire the event</span>
+emitter.<span class="fn">emit</span>(<span class="str">'user:created'</span>, { id: <span class="num">1</span>, name: <span class="str">'Dana'</span> })</pre>
+      <div class="tip green">👉 Pattern חזק מאוד בארכיטקטורה — decoupling</div>
+    </div>
+  </div>
+
+  <!-- 8. Promises -->
+  <div class="card c-blue">
+    <div class="card-header">
+      <div class="num">8</div>
+      <h3>🤝 Promise Events</h3>
+    </div>
+    <div class="card-body">
+      <pre><span class="cm">// לא בדיוק EventEmitter אבל חשוב</span>
+
+fetch(<span class="str">'/api/data'</span>)
+  .<span class="fn">then</span>(res  <span class="kw">=></span> res.<span class="fn">json</span>())
+  .<span class="fn">then</span>(data <span class="kw">=></span> console.<span class="fn">log</span>(data))
+  .<span class="fn">catch</span>(err  <span class="kw">=></span> console.<span class="fn">error</span>(err))
+  .<span class="fn">finally</span>(()  <span class="kw">=></span> console.<span class="fn">log</span>(<span class="str">'Done'</span>))
+
+<span class="cm">// async/await — אותו דבר</span>
+<span class="kw">try</span> {
+  <span class="kw">const</span> data = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="str">'/api/data'</span>)
+} <span class="kw">catch</span> (err) { console.<span class="fn">error</span>(err) }</pre>
+      <div class="tip blue">👉 Event Loop based — חלק מאותה מערכת</div>
+    </div>
+  </div>
+
+  <!-- 9. Timers -->
+  <div class="card c-yellow">
+    <div class="card-header">
+      <div class="num">9</div>
+      <h3>⏱️ Timers</h3>
+    </div>
+    <div class="card-body">
+      <pre><span class="cm">// Event Loop based</span>
+<span class="fn">setTimeout</span>(() <span class="kw">=></span> {
+  console.<span class="fn">log</span>(<span class="str">'Runs once after 1 sec'</span>)
+}, <span class="num">1000</span>)
+
+<span class="fn">setInterval</span>(() <span class="kw">=></span> {
+  console.<span class="fn">log</span>(<span class="str">'Runs every 2 sec'</span>)
+}, <span class="num">2000</span>)
+
+<span class="cm">// Cancel</span>
+<span class="kw">const</span> id = <span class="fn">setInterval</span>(() <span class="kw">=></span> {}, <span class="num">500</span>)
+<span class="fn">clearInterval</span>(id)</pre>
+      <div class="tip yellow">👉 גם Event Loop based — לא thread נפרד!</div>
+    </div>
+  </div>
+
+  <!-- 10. Worker / Cluster -->
+  <div class="card c-orange">
+    <div class="card-header">
+      <div class="num">10</div>
+      <h3>👷 Worker / Cluster</h3>
+    </div>
+    <div class="card-body">
+      <pre><span class="kw">import</span> { Worker } <span class="kw">from</span> <span class="str">'worker_threads'</span>
+
+<span class="kw">const</span> worker = <span class="kw">new</span> <span class="fn">Worker</span>(<span class="str">'./worker.js'</span>)
+
+worker.<span class="fn">on</span>(<span class="str">'message'</span>, msg <span class="kw">=></span> {
+  console.<span class="fn">log</span>(<span class="str">'Worker says:'</span>, msg)
+})
+
+worker.<span class="fn">on</span>(<span class="str">'exit'</span>, code <span class="kw">=></span> {
+  console.<span class="fn">log</span>(<span class="str">'Worker exited:'</span>, code)
+})</pre>
+      <div class="tip orange">👉 CPU-heavy tasks — בלי לחסום Event Loop</div>
+    </div>
+  </div>
+
+  <!-- 11. WebSocket -->
+  <div class="card c-purple">
+    <div class="card-header">
+      <div class="num">11</div>
+      <h3>🔌 WebSocket (מאוד נפוץ)</h3>
+    </div>
+    <div class="card-body">
+      <pre><span class="kw">import</span> { WebSocketServer } <span class="kw">from</span> <span class="str">'ws'</span>
+
+<span class="kw">const</span> wss = <span class="kw">new</span> <span class="fn">WebSocketServer</span>({ port: <span class="num">8080</span> })
+
+wss.<span class="fn">on</span>(<span class="str">'connection'</span>, ws <span class="kw">=></span> {
+  ws.<span class="fn">on</span>(<span class="str">'message'</span>, msg <span class="kw">=></span> {
+    console.<span class="fn">log</span>(<span class="str">'Received:'</span>, msg.<span class="fn">toString</span>())
+    ws.<span class="fn">send</span>(<span class="str">'Echo: '</span> + msg)
+  })
+
+  ws.<span class="fn">on</span>(<span class="str">'close'</span>,  ()  <span class="kw">=></span> console.<span class="fn">log</span>(<span class="str">'Client left'</span>))
+  ws.<span class="fn">on</span>(<span class="str">'error'</span>,  err <span class="kw">=></span> console.<span class="fn">error</span>(err))
+})</pre>
+      <div class="tip purple">👉 Real-time apps — chat, games, dashboards</div>
+    </div>
+  </div>
+
+  <!-- 12. Error Handling -->
+  <div class="card c-red">
+    <div class="card-header">
+      <div class="num">⚠️</div>
+      <h3>🚨 Error Handling Pattern</h3>
+    </div>
+    <div class="card-body">
+      <pre><span class="cm">// ❗ תמיד לטפל ב־error</span>
+<span class="cm">// אם לא — Node יכול לקרוס!</span>
+
+emitter.<span class="fn">on</span>(<span class="str">'error'</span>, err <span class="kw">=></span> {
+  console.<span class="fn">error</span>(<span class="str">'Handled error:'</span>, err)
+})
+
+stream.<span class="fn">on</span>(<span class="str">'error'</span>, err <span class="kw">=></span> {
+  console.<span class="fn">error</span>(<span class="str">'Stream error:'</span>, err)
+})
+
+server.<span class="fn">on</span>(<span class="str">'error'</span>, err <span class="kw">=></span> {
+  console.<span class="fn">error</span>(<span class="str">'Server error:'</span>, err)
+})</pre>
+      <div class="tip red">❗ error event ללא listener = קריסה מיידית של Node!</div>
+    </div>
+  </div>
+
+</div><!-- /grid -->
+
+<!-- ══════════════ ADVANCED PATTERN ══════════════ -->
+<div class="pattern">
+  <div class="pattern-header">⚡ Advanced — Event-Driven Architecture</div>
+  <div class="pattern-body">
+    <pre style="margin:0"><span class="kw">import</span> { EventEmitter } <span class="kw">from</span> <span class="str">'events'</span>
+<span class="kw">const</span> bus = <span class="kw">new</span> <span class="fn">EventEmitter</span>()
+
+<span class="cm">// Multiple listeners on the SAME event → decoupling מלא</span>
+bus.<span class="fn">on</span>(<span class="str">'order:created'</span>, order <span class="kw">=></span> <span class="fn">sendEmail</span>(order))
+bus.<span class="fn">on</span>(<span class="str">'order:created'</span>, order <span class="kw">=></span> <span class="fn">updateInventory</span>(order))
+bus.<span class="fn">on</span>(<span class="str">'order:created'</span>, order <span class="kw">=></span> <span class="fn">logToAnalytics</span>(order))
+
+<span class="cm">// One emit — three handlers fire automatically</span>
+bus.<span class="fn">emit</span>(<span class="str">'order:created'</span>, { id: <span class="num">42</span>, item: <span class="str">'laptop'</span>, price: <span class="num">3500</span> })</pre>
+    <div class="tip green" style="margin-top:14px">
+      👉 זה הבסיס של Microservices, Message Queues, ו־Event Sourcing — אותו רעיון, בקנה מידה גדול יותר
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SUMMARY ══════════════ -->
+<div class="summary">
+  <div class="summary-header">📌 סיכום — למה Events?</div>
+  <div class="summary-body">
+    <div class="summary-row">
+      <span class="arrow">→</span>
+      <p><strong>Node בנוי על Events</strong> — כמעט כל API פנימי הוא EventEmitter</p>
+    </div>
+    <div class="summary-row">
+      <span class="arrow">→</span>
+      <p><strong>כמעט כל דבר = async + event</strong> — network, files, timers, DB, OS</p>
+    </div>
+    <div class="summary-row">
+      <span class="arrow">→</span>
+      <p><strong>תמיד לטפל ב־<code>error</code></strong> — זה ה־event הכי חשוב בכל emitter</p>
+    </div>
+    <div class="summary-row">
+      <span class="arrow">→</span>
+      <p><strong>Multiple listeners</strong> — כוח אמיתי: event אחד, פעולות מרובות, ללא coupling</p>
+    </div>
+    <div class="summary-row">
+      <span class="arrow">→</span>
+      <p><strong>Event Loop</strong> — כל Events, Promises, Timers רצים עליו</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
