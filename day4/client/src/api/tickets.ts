@@ -31,6 +31,11 @@ export async function getAvailableTickets(): Promise<TicketsResponse> {
   const res = await fetch(`${TICKETS_URL}/api/tickets`);
   const data = await res.json();
   if (!res.ok) throw new Error(data.error ?? 'Failed to fetch tickets');
+
+  // Handle old server (returns plain array) and new server (returns { tickets, dbCount, ... })
+  if (Array.isArray(data)) {
+    return { tickets: data, dbCount: data.length, cacheCount: 0, pid: 0 };
+  }
   return data;
 }
 
