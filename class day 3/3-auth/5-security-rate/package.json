@@ -1,0 +1,12 @@
+{
+  "name": "day3-lesson4",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Day 3 Lesson 4",
+  "scripts": {
+    "start": "node ex01.js",
+    "dev": "node --watch ex01.js"
+  },
+  "dependencies": {"express": "^5.0.0", "helmet": "^7.1.0", "cors": "^2.8.5", "express-rate-limit": "^7.1.5"},
+  "license": "ISC"
+}

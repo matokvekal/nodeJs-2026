@@ -1,0 +1,21 @@
+# docker-compose up -d
+# docker-compose logs
+
+# docker-compose down
+
+docker exec -it redis redis-cli ping
+
+docker run --name redis -p 6379:6379 -d redis:latest
+docker run -d --name redis -p 127.0.0.1:6379:6379 redis
+
+
+
+node server 1
+
+http://localhost:5001/set?key=name&value=Gilad  GET
+http://localhost:5001/get?key=name  GET
+
+
+
+node server2.js
+https://api.github.com/users/gilad  GET

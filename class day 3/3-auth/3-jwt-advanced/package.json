@@ -1,0 +1,20 @@
+{
+  "name": "jwt-advanced",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Advanced JWT auth: access tokens, refresh tokens, blacklisting, token rotation",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.22.2",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "license": "ISC"
+}

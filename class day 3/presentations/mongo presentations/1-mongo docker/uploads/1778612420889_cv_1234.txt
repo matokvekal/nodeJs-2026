@@ -1,0 +1,75 @@
+John Smith
+Tel Aviv, Israel
+johnsmith@gmail.com
++972-50-1234567
+linkedin.com/in/johnsmith
+
+-----------------------------------
+PROFILE
+-----------------------------------
+Computer Science student with strong motivation to learn software development and modern technologies. Fast learner, team player, and passionate about programming, problem solving, and technology.
+
+-----------------------------------
+EDUCATION
+-----------------------------------
+B.Sc. Computer Science
+Example University, Israel
+2024 – Present
+
+Relevant Courses:
+- Data Structures
+- JavaScript
+- Databases
+- Algorithms
+- Web Development
+
+-----------------------------------
+TECHNICAL SKILLS
+-----------------------------------
+Languages:
+- JavaScript
+- Python
+- HTML/CSS
+- SQL
+
+Tools & Technologies:
+- Git
+- Node.js
+- React
+- MongoDB
+- VS Code
+
+-----------------------------------
+PROJECTS
+-----------------------------------
+Student Management System
+- Built a web application using Node.js and MongoDB
+- Added login, CRUD operations, and API endpoints
+
+Portfolio Website
+- Developed personal portfolio website using React
+- Responsive design for desktop and mobile
+
+-----------------------------------
+EXPERIENCE
+-----------------------------------
+Sales Associate (Part-Time)
+Example Store, Tel Aviv
+2023 – Present
+
+- Assisted customers and handled sales
+- Worked in fast-paced environment
+- Improved communication and teamwork skills
+
+-----------------------------------
+LANGUAGES
+-----------------------------------
+- Hebrew – Native
+- English – Very Good
+
+-----------------------------------
+ADDITIONAL INFORMATION
+-----------------------------------
+- Strong problem-solving skills
+- Quick learner
+- Available for student/intern positions

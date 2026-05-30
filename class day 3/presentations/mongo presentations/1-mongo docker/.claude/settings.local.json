@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(mkdir db *)",
+      "Bash(Remove-Item \"C:/Users/gilad.dolev/Desktop/node js 26/sela-node-26--final/class day 3/1-data mongo docker/day3_lesson1/controllers/projects.js\" -Force)",
+      "Bash(Remove-Item \"C:/Users/gilad.dolev/Desktop/node js 26/sela-node-26--final/class day 3/1-data mongo docker/day3_lesson1/controllers/students-work.js\" -Force)",
+      "Bash(Remove-Item \"C:/Users/gilad.dolev/Desktop/node js 26/sela-node-26--final/class day 3/1-data mongo docker/day3_lesson1/db/models/projects.js\" -Force)",
+      "Bash(Remove-Item \"C:/Users/gilad.dolev/Desktop/node js 26/sela-node-26--final/class day 3/1-data mongo docker/day3_lesson1/db/models/students.js\" -Force)",
+      "Bash(Remove-Item \"C:/Users/gilad.dolev/Desktop/node js 26/sela-node-26--final/class day 3/1-data mongo docker/day3_lesson1/routes/projects.js\" -Force)"
+    ]
+  }
+}
