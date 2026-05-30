@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const env = {
-  port: Number(process.env.PORT) || 3001,
+  port: Number(process.env.PORT) || 3002,
 
   db: {
     host: process.env.DB_HOST || 'localhost',
@@ -14,9 +14,7 @@ export const env = {
 
   jwt: {
     secret: process.env.JWT_SECRET || 'change-me',
-    expiresIn: process.env.JWT_EXPIRES_IN || '7d',
   },
 
-  // Split comma-separated string into array: "http://localhost:5173,http://localhost:3000"
   corsOrigins: process.env.CORS_ORIGINS?.split(',') ?? ['http://localhost:5173'],
 };

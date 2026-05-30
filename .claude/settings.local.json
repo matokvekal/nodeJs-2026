@@ -10,7 +10,9 @@
       "Bash(grep:*)",
       "Bash(git remote *)",
       "Read(//c/dev2025/SYNAPSE/synapseBff/src/**)",
-      "Read(//c/dev2025/SYNAPSE/synapseServer/src/**)"
+      "Read(//c/dev2025/SYNAPSE/synapseServer/src/**)",
+      "Bash(Remove-Item \"C:\\\\Users\\\\gilad.dolev\\\\Desktop\\\\node js 26\\\\sela-node-26--final\\\\day4\\\\servers\\\\auth-service\\\\.gitignore\")",
+      "Bash(Remove-Item \"C:\\\\Users\\\\gilad.dolev\\\\Desktop\\\\node js 26\\\\sela-node-26--final\\\\day4\\\\servers\\\\ticket-service\\\\.gitignore\")"
     ]
   }
 }
