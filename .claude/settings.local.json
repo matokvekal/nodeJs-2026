@@ -7,7 +7,10 @@
       "Bash(echo Cleanup done:*)",
       "Bash(cd \"C:/Users/PC/Desktop/sela-node-26--final\" && git push origin main --force 2>&1)",
       "Bash(head:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(git remote *)",
+      "Read(//c/dev2025/SYNAPSE/synapseBff/src/**)",
+      "Read(//c/dev2025/SYNAPSE/synapseServer/src/**)"
     ]
   }
 }
