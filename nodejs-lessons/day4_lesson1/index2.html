@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WebSocket Test — 2.js</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: monospace; background: #1a1a2e; color: #eee; padding: 24px; }
+    h1 { color: #ffd166; margin-bottom: 20px; font-size: 1.2rem; }
+
+    .status { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: #555; }
+    .dot.connected { background: #00ff88; }
+    .dot.error { background: #ff4466; }
+
+    label { font-size: 0.8rem; color: #aaa; display: block; margin-bottom: 4px; }
+    .token-row { display: flex; gap: 8px; margin-bottom: 12px; align-items: flex-end; }
+    .token-row > div { flex: 1; }
+    input {
+      width: 100%; padding: 8px 12px; background: #16213e; border: 1px solid #333;
+      border-radius: 4px; color: #eee; font-family: monospace; font-size: 0.85rem;
+    }
+    input.bad { border-color: #ff4466; }
+
+    .controls { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+    button {
+      padding: 8px 16px; border: none; border-radius: 4px;
+      cursor: pointer; font-family: monospace; font-size: 0.85rem;
+    }
+    #btnConnect    { background: #ffd166; color: #000; }
+    #btnDisconnect { background: #ff4466; color: #fff; }
+    #btnDisconnect:disabled { opacity: 0.4; cursor: not-allowed; }
+    #btnHealth     { background: #333; color: #aaa; }
+    #btnClear      { background: #333; color: #aaa; }
+
+    .send-row { display: flex; gap: 8px; margin-bottom: 20px; }
+    #msgInput { flex: 1; }
+    #btnSend { background: #7c3aed; color: #fff; flex-shrink: 0; }
+
+    #log {
+      background: #0f3460; border-radius: 6px; padding: 16px;
+      height: 340px; overflow-y: auto; font-size: 0.8rem; line-height: 1.6;
+    }
+    .log-entry { margin-bottom: 4px; }
+    .log-entry.sent   { color: #ffd166; }
+    .log-entry.recv   { color: #06d6a0; }
+    .log-entry.sys    { color: #aaa; font-style: italic; }
+    .log-entry.err    { color: #ff4466; }
+    .log-entry.http   { color: #a78bfa; }
+    .ts { color: #555; margin-right: 6px; }
+  </style>
+</head>
+<body>
+  <h1>WebSocket Tester — 2.js (ws://localhost:3000)</h1>
+
+  <div class="status">
+    <div class="dot" id="dot"></div>
+    <span id="statusText">Disconnected</span>
+  </div>
+
+  <div class="token-row">
+    <div>
+      <label>Token (must be "valid-token" to connect)</label>
+      <input id="tokenInput" type="text" value="valid-token" placeholder="valid-token" />
+    </div>
+  </div>
+
+  <div class="controls">
+    <button id="btnConnect">Connect</button>
+    <button id="btnDisconnect" disabled>Disconnect</button>
+    <button id="btnHealth">GET /health</button>
+    <button id="btnClear">Clear log</button>
+  </div>
+
+  <div class="send-row">
+    <input id="msgInput" type="text" placeholder="Type a message..." value="hello from browser" />
+    <button id="btnSend">Send</button>
+  </div>
+
+  <div id="log"></div>
+
+  <script>
+    let ws = null;
+
+    const dot           = document.getElementById('dot');
+    const statusText    = document.getElementById('statusText');
+    const btnConnect    = document.getElementById('btnConnect');
+    const btnDisconnect = document.getElementById('btnDisconnect');
+    const btnHealth     = document.getElementById('btnHealth');
+    const btnSend       = document.getElementById('btnSend');
+    const btnClear      = document.getElementById('btnClear');
+    const tokenInput    = document.getElementById('tokenInput');
+    const msgInput      = document.getElementById('msgInput');
+    const log           = document.getElementById('log');
+
+    function ts() {
+      return new Date().toLocaleTimeString('en-GB', { hour12: false });
+    }
+
+    function addLog(text, type = 'sys') {
+      const el = document.createElement('div');
+      el.className = `log-entry ${type}`;
+      el.innerHTML = `<span class="ts">[${ts()}]</span>${escapeHtml(text)}`;
+      log.appendChild(el);
+      log.scrollTop = log.scrollHeight;
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function setConnected(connected) {
+      dot.className = 'dot' + (connected ? ' connected' : '');
+      statusText.textContent = connected ? 'Connected' : 'Disconnected';
+      btnConnect.disabled = connected;
+      btnDisconnect.disabled = !connected;
+    }
+
+    btnConnect.addEventListener('click', () => {
+      if (ws) return;
+      const token = tokenInput.value.trim();
+      if (!token) {
+        tokenInput.classList.add('bad');
+        addLog('Token is required', 'err');
+        return;
+      }
+      tokenInput.classList.remove('bad');
+
+      const url = `ws://localhost:3000?token=${encodeURIComponent(token)}`;
+      addLog(`Connecting to ${url}`, 'sys');
+
+      try {
+        ws = new WebSocket(url);
+
+        ws.onopen = () => {
+          setConnected(true);
+          addLog('Connection established', 'sys');
+        };
+
+        ws.onmessage = (event) => {
+          try {
+            const data = JSON.parse(event.data);
+            addLog('← ' + JSON.stringify(data, null, 0), 'recv');
+          } catch {
+            addLog('← ' + event.data, 'recv');
+          }
+        };
+
+        ws.onerror = () => {
+          addLog('WebSocket error — wrong token or server not running?', 'err');
+          dot.className = 'dot error';
+        };
+
+        ws.onclose = (e) => {
+          setConnected(false);
+          const reason = e.code === 1006
+            ? 'Refused (wrong token or server down)'
+            : `code ${e.code}`;
+          addLog(`Disconnected — ${reason}`, 'sys');
+          ws = null;
+        };
+      } catch (err) {
+        addLog('Failed to connect: ' + err.message, 'err');
+      }
+    });
+
+    btnDisconnect.addEventListener('click', () => {
+      if (ws) ws.close(1000, 'User closed');
+    });
+
+    btnSend.addEventListener('click', sendMessage);
+    msgInput.addEventListener('keydown', e => { if (e.key === 'Enter') sendMessage(); });
+
+    function sendMessage() {
+      if (!ws || ws.readyState !== WebSocket.OPEN) {
+        addLog('Not connected', 'err');
+        return;
+      }
+      const raw = msgInput.value.trim();
+      if (!raw) return;
+      ws.send(raw);
+      addLog('→ ' + raw, 'sent');
+    }
+
+    btnHealth.addEventListener('click', async () => {
+      try {
+        addLog('GET http://localhost:3000/health', 'http');
+        const res = await fetch('http://localhost:3000/health');
+        const json = await res.json();
+        addLog(`/health → ${JSON.stringify(json)}`, 'http');
+      } catch (err) {
+        addLog('HTTP error: ' + err.message, 'err');
+      }
+    });
+
+    btnClear.addEventListener('click', () => { log.innerHTML = ''; });
+
+    addLog('Enter a token and click Connect (use "valid-token")', 'sys');
+    addLog('Use GET /health to check connected clients count', 'sys');
+  </script>
+</body>
+</html>

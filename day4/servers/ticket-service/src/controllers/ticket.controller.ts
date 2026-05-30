@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import * as ticketService from '../services/ticket.service';
+import { log } from '../utils/logger';
 
 // GET /api/tickets
 // Header: none required (public)
@@ -13,9 +14,15 @@ import * as ticketService from '../services/ticket.service';
 export async function getAvailableTickets(_req: Request, res: Response): Promise<void> {
   try {
     const data = await ticketService.getAvailableTickets();
+
+    log('info', 'tickets.list', { dbCount: data.dbCount, cacheCount: data.cacheCount });
+
     res.json(data);
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Failed to fetch tickets';
+
+    log('error', 'tickets.list.error', { reason: message });
+
     res.status(500).json({ error: message });
   }
 }
@@ -36,23 +43,39 @@ export async function buyTicket(req: Request, res: Response): Promise<void> {
     const ticketId = parseInt(req.params.id);
 
     if (isNaN(ticketId)) {
+      log('warn', 'tickets.buy.invalid', { ticketId: req.params.id, userId: req.user?.id });
       res.status(400).json({ error: 'Invalid ticket id' });
       return;
     }
 
     const userId = req.user!.id;
-    const { ticket, remainingInDb, remainingInCache, pid } = await ticketService.buyTicket(ticketId, userId);
+    const { ticket, remainingInDb, remainingInCache, pid } =
+      await ticketService.buyTicket(ticketId, userId);
+
+    log('info', 'tickets.buy.success', {
+      userId,
+      ticketId,
+      showName: ticket.show_name,
+      remainingInDb,
+    });
 
     res.json({
       message: 'Ticket purchased successfully',
       ticket,
-      remainingInDb,     // from database — accurate for all processes
-      remainingInCache,  // from this process memory — differs per PM2 instance
-      pid,               // which PM2 process handled this request
+      remainingInDb,
+      remainingInCache,
+      pid,
     });
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Purchase failed';
-    const status = message === 'Ticket not available' ? 409 : 500;
+    const status  = message === 'Ticket not available' ? 409 : 500;
+
+    log(status === 409 ? 'warn' : 'error', 'tickets.buy.failed', {
+      userId: req.user?.id,
+      ticketId: req.params.id,
+      reason: message,
+    });
+
     res.status(status).json({ error: message });
   }
 }
@@ -74,9 +97,15 @@ export async function getMyTickets(req: Request, res: Response): Promise<void> {
   try {
     const userId = req.user!.id;
     const tickets = await ticketService.getMyTickets(userId);
+
+    log('info', 'tickets.my.fetched', { userId, count: tickets.length });
+
     res.json(tickets);
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Failed to fetch your tickets';
+
+    log('error', 'tickets.my.error', { userId: req.user?.id, reason: message });
+
     res.status(500).json({ error: message });
   }
 }

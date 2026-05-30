@@ -1,10 +1,11 @@
 // server.js
 import { WebSocketServer, WebSocket } from "ws";
 
-// Create WebSocket server on port 8080
-const wss = new WebSocketServer({ port: 8080 });
+// Create WebSocket server on port 8088
+const PORT = process.env.PORT || 8088;
+const wss = new WebSocketServer({ port: PORT });
 
-console.log("WebSocket server running on ws://localhost:8080");
+console.log(`WebSocket server running on ws://localhost:${PORT}`);
 
 // Connection Event
 wss.on("connection", (ws, req) => {
@@ -20,13 +21,12 @@ wss.on("connection", (ws, req) => {
       const message = JSON.parse(data.toString());
       console.log("Received:", message);
 
-      // Echo back
-      ws.send(
-        JSON.stringify({
-          type: "echo",
-          data: message
-        })
-      );
+      // Broadcast to ALL connected clients
+      wss.clients.forEach((client) => {
+        if (client.readyState === WebSocket.OPEN) {
+          client.send(JSON.stringify({ type: "broadcast", data: message }));
+        }
+      });
     } catch (error) {
       ws.send(JSON.stringify({ type: "error", message: "Invalid JSON" }));
     }
@@ -47,7 +47,7 @@ wss.on("connection", (ws, req) => {
 
 // Client Example (Browser)
 /*
-const ws = new WebSocket('ws://localhost:8080');
+const ws = new WebSocket('ws://localhost:8088');
 
 ws.onopen = () => {
   console.log('Connected!');

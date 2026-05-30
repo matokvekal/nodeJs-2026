@@ -200,48 +200,201 @@ VALUES
 (gen_random_uuid(),'Full Stack Workshop','2026-11-15 09:00',80,5,76,FALSE,NULL),
 (gen_random_uuid(),'Full Stack Workshop','2026-11-15 09:00',80,5,76,FALSE,NULL);
 
-## 7. Clone Project
+
+## 7. Deploy Application To Linux
+
+Create folders:
 
 ```bash
-git clone <repo-url>
-cd <repo-folder>
+sudo mkdir -p /opt/ticket-demo/auth-service
+sudo mkdir -p /opt/ticket-demo/ticket-service
+sudo mkdir -p /var/www/ticket-demo
 ```
 
-Install dependencies:
+Copy Auth Service:
 
 ```bash
-npm install
+sudo cp -r \
+"/mnt/c/Users/gilad.dolev/Desktop/node js 26/sela-node-26--final/day4/servers/auth-service/"* \
+/opt/ticket-demo/auth-service/
+```
+
+Copy Ticket Service:
+
+```bash
+sudo cp -r \
+"/mnt/c/Users/gilad.dolev/Desktop/node js 26/sela-node-26--final/day4/servers/ticket-service/"* \
+/opt/ticket-demo/ticket-service/
+```
+
+Copy Client Build:
+
+```bash
+sudo cp -r \
+"/mnt/c/Users/gilad.dolev/Desktop/node js 26/sela-node-26--final/day4/client/dist/"* \
+/var/www/ticket-demo/
+```
+
+Copy Environment Files:
+
+```bash
+sudo cp -r "/mnt/c/Users/gilad.dolev/Desktop/node js 26/sela-node-26--final/day4/servers/auth-service/." /opt/ticket-demo/auth-service/
+```
+
+```bash
+sudo cp \
+"/mnt/c/Users/gilad.dolev/Desktop/node js 26/sela-node-26--final/day4/servers/ticket-service/.env" \
+/opt/ticket-demo/ticket-service/
+```
+
+Verify:
+
+```bash
+ls /opt/ticket-demo/auth-service
+ls /opt/ticket-demo/ticket-service
+ls /var/www/ticket-demo
 ```
 
 ---
 
-## 8. Start Services
+## 8. Build Services
 
 Auth Service:
 
 ```bash
-pm2 start auth-service.js --name auth
+cd /opt/ticket-demo/auth-service
+
+npm install
+
+npx tsc
 ```
 
 Ticket Service:
 
 ```bash
-pm2 start ticket-service.js --name ticket
+cd /opt/ticket-demo/ticket-service
+
+npm install
+
+npx tsc
 ```
 
-Check:
+Verify:
+
+```bash
+ls dist
+```
+
+---
+
+## 9. Start Services With PM2
+
+## 9. Start Services With PM2
+
+Auth Service:
+
+```bash
+cd /opt/ticket-demo/auth-service
+
+pm2 start dist/app.js \
+  --name auth
+```
+
+Ticket Service:
+
+```bash
+cd /opt/ticket-demo/ticket-service
+
+pm2 start dist/app.js \
+  --name ticket \
+  -i 2
+```
+
+Verify:
 
 ```bash
 pm2 list
 ```
 
-Logs:
+Expected:
+
+```text
+auth
+ticket 0
+ticket 1
+```
+
+Check Logs:
 
 ```bash
 pm2 logs
 ```
 
----
+Specific Service Logs:
+
+```bash
+pm2 logs auth
+```
+
+```bash
+pm2 logs ticket
+```
+
+Monitor:
+
+```bash
+pm2 monit
+```
+
+Save PM2 Configuration:
+
+```bash
+pm2 save
+```
+
+Restart Services:
+
+```bash
+pm2 restart auth
+pm2 restart ticket
+```
+
+Stop Services:
+
+```bash
+pm2 stop auth
+pm2 stop ticket
+```
+
+Delete Services:
+
+```bash
+pm2 delete auth
+pm2 delete ticket
+```
+
+Check Running Processes:
+
+```bash
+pm2 list
+```
+
+Verify Open Ports:
+
+```bash
+ss -tulpn | grep LISTEN
+```
+
+Verify API:
+
+```bash
+curl http://localhost:3001
+```
+
+```bash
+curl http://localhost:3002
+```
+
 
 ## 9. PM2 Cluster Demo
 
@@ -277,7 +430,10 @@ pm2 logs
 
 ---
 
+
 ## 11. Install Nginx
+
+Install:
 
 ```bash
 sudo apt install -y nginx
@@ -295,29 +451,197 @@ Start:
 sudo service nginx start
 ```
 
----
+Check:
 
-## 12. Nginx Reverse Proxy
-
-```text
-/
-    -> React Build
-
-/api/auth
-    -> Auth Service
-
-/api/tickets
-    -> Ticket Service
+```bash
+curl http://localhost
 ```
 
-Test:
+You should see:
+
+```text
+Welcome to nginx!
+```
+
+---
+
+## 12. Configure Nginx
+
+Create a site configuration:
+
+```bash
+sudo nano /etc/nginx/sites-available/ticket-demo
+```
+
+Configuration:
+
+```nginx
+server {
+    listen 80;
+    server_name _;
+
+    root /var/www/ticket-demo;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    location /api/auth/ {
+        proxy_pass http://127.0.0.1:3001/;
+    }
+
+    location /api/tickets/ {
+        proxy_pass http://127.0.0.1:3002/;
+    }
+}
+```
+
+Enable the site:
+
+```bash
+sudo ln -s \
+/etc/nginx/sites-available/ticket-demo \
+/etc/nginx/sites-enabled/
+```
+
+Remove the default site:
+
+```bash
+sudo rm /etc/nginx/sites-enabled/default
+```
+
+---
+
+## 13. Nginx Reverse Proxy Architecture
+
+```text
+Browser
+    |
+Nginx
+    |
+    +--> React Client
+    |       /var/www/ticket-demo
+    |
+    +--> /api/auth
+    |         |
+    |         +--> Auth Service
+    |
+    +--> /api/tickets
+              |
+              +--> Ticket Service
+```
+
+---
+
+## 14. Verify Configuration
+
+Test configuration:
 
 ```bash
 sudo nginx -t
-sudo service nginx reload
 ```
 
----
+Reload:
+
+```bash
+sudo systemctl reload nginx
+```
+
+Verify:
+
+```bash
+curl http://localhost
+```
+
+Expected:
+
+```html
+<!doctype html>
+<html>
+```
+
+Check React files:
+
+```bash
+ls /var/www/ticket-demo
+```
+
+Expected:
+
+```text
+index.html
+assets
+```
+
+Open browser:
+
+```text
+http://localhost
+```
+
+The React application should now be served through Nginx.
+
+
+
+
+-------------------------------------------
+## 15. PM2 Cluster Mode
+
+Node.js runs as a single process by default and uses only one CPU core.
+
+PM2 Cluster Mode allows running multiple instances of the same service and automatically load balances requests between them.
+
+Check CPU cores:
+
+```bash
+nproc
+```
+
+Run Ticket Service with 2 instances:
+
+```bash
+pm2 delete ticket
+
+pm2 start dist/app.js \
+  --name ticket \
+  -i 2
+```
+
+Or use all available CPU cores:
+
+```bash
+pm2 delete ticket
+
+pm2 start dist/app.js \
+  --name ticket \
+  -i max
+```
+
+Verify:
+
+```bash
+pm2 list
+```
+
+Expected:
+
+```text
+ticket 0
+ticket 1
+```
+
+or
+
+```text
+ticket 0
+ticket 1
+ticket 2
+ticket 3
+```
+
+
+_________________________________________
 
 ## 13. API Testing
 

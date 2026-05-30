@@ -1,11 +1,15 @@
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import morgan from 'morgan';
 import { env } from './config/env';
 import { testConnection } from './db/postgres';
 import authRoutes from './routes/auth.routes';
 
 const app = express();
+
+// --- HTTP access log: "POST /api/auth/login 200 4.23 ms" ---
+app.use(morgan('[:date[iso]] :method :url :status :response-time ms'));
 
 // --- Security headers (helmet sets ~15 HTTP headers automatically) ---
 // Prevents: clickjacking, MIME sniffing, XSS via old browsers, etc.

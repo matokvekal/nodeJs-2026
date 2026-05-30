@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { ZodError } from 'zod';
 import * as authService from '../services/auth.service';
 import { registerSchema, loginSchema } from '../validators/auth.validator';
+import { log } from '../utils/logger';
 
 // POST /api/auth/register
 // Body:
@@ -17,20 +18,27 @@ import { registerSchema, loginSchema } from '../validators/auth.validator';
 // }
 export async function register(req: Request, res: Response): Promise<void> {
   try {
-    // Zod validates AND types the body in one step.
-    // If email is missing, password too short, etc → ZodError is thrown automatically.
     const input = registerSchema.parse(req.body);
 
     const user = await authService.registerUser(input);
+
+    log('info', 'auth.register.success', { username: input.username, email: input.email, userId: user.id });
+
     res.status(201).json({ message: 'User created successfully', user });
   } catch (error: unknown) {
     if (error instanceof ZodError) {
-      // Return the first validation message to the client
+      log('warn', 'auth.register.validation', { reason: error.errors[0].message });
       res.status(400).json({ error: error.errors[0].message });
       return;
     }
     const message = error instanceof Error ? error.message : 'Registration failed';
-    const status = message === 'User already exists' ? 409 : 500;
+    const status  = message === 'User already exists' ? 409 : 500;
+
+    log(status === 409 ? 'warn' : 'error', 'auth.register.failed', {
+      email: req.body?.email,
+      reason: message,
+    });
+
     res.status(status).json({ error: message });
   }
 }
@@ -51,14 +59,26 @@ export async function login(req: Request, res: Response): Promise<void> {
     const input = loginSchema.parse(req.body);
 
     const result = await authService.loginUser(input);
+
+    log('info', 'auth.login.success', { email: input.email, userId: result.user.id });
+
     res.json(result);
   } catch (error: unknown) {
     if (error instanceof ZodError) {
+      log('warn', 'auth.login.validation', { reason: error.errors[0].message });
       res.status(400).json({ error: error.errors[0].message });
       return;
     }
     const message = error instanceof Error ? error.message : 'Login failed';
-    const status = message === 'Invalid credentials' ? 401 : 500;
+    const status  = message === 'Invalid credentials' ? 401 : 500;
+
+    // 401 = wrong password (security audit event), 500 = server error
+    log(status === 401 ? 'warn' : 'error', 'auth.login.failed', {
+      email: req.body?.email,
+      ip: req.ip,
+      reason: message,
+    });
+
     res.status(status).json({ error: message });
   }
 }
@@ -73,10 +93,16 @@ export async function login(req: Request, res: Response): Promise<void> {
 export async function getProfile(req: Request, res: Response): Promise<void> {
   try {
     const userId = req.user!.id;
-    const user = await authService.getUserById(userId);
+    const user   = await authService.getUserById(userId);
+
+    log('info', 'auth.profile.accessed', { userId });
+
     res.json({ user });
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Failed to get profile';
+
+    log('error', 'auth.profile.error', { userId: req.user?.id, reason: message });
+
     res.status(500).json({ error: message });
   }
 }

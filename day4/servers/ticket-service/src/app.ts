@@ -1,12 +1,16 @@
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import morgan from 'morgan';
 import { env } from './config/env';
 import { testConnection, pool } from './db/postgres';
 import { initCache } from './cache/ticket.cache';
 import ticketRoutes from './routes/ticket.routes';
 
 const app = express();
+
+// HTTP access log: "GET /api/tickets 200 3.12 ms"
+app.use(morgan('[:date[iso]] :method :url :status :response-time ms'));
 
 // Security headers
 app.use(helmet());
@@ -42,6 +46,10 @@ async function start() {
   });
 }
 
-start();
+// In test mode Jest imports this file directly — we skip listen() and DB init
+// so tests don't need a running server and won't hang after finishing
+if (process.env.NODE_ENV !== 'test') {
+  start();
+}
 
 export default app;
